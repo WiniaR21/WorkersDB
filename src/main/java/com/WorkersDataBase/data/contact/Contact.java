@@ -34,4 +34,7 @@ public class Contact {
     public Contact(String email) {
         this.email = email;
     }
+
+
+
 }

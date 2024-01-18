@@ -4,7 +4,9 @@ import com.WorkersDataBase.data.contact.Contact;
 import com.WorkersDataBase.data.contract.Contract;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.builder.HashCodeExclude;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -13,6 +15,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Data
 @Table(name = "worker")
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "contract")
 public class Worker {
 
     @Id
@@ -33,6 +36,7 @@ public class Worker {
 
     @Column(name = "pesel")
     private String pesel;
+
 
     @OneToOne
     @JoinColumn(name = "contract_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "contract_fk"))

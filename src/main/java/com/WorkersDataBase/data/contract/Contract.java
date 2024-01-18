@@ -4,7 +4,7 @@ import com.WorkersDataBase.data.worker.Worker;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.apache.commons.lang3.builder.HashCodeExclude;
 
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
