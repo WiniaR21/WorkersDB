@@ -1,0 +1,17 @@
+.vaadin-grid::part(row){
+    background-color: #0D1219;
+    justify-content: center;
+
+}
+[part~='cell']{
+    background-color: #0D1219;
+    color: #eaf0f8;
+    justify-content: center;
+}
+
+:host {
+    color: #eaf0f8;
+    background-color: #0D1219;
+    --_lumo-grid-border-width: 0px;
+
+}
