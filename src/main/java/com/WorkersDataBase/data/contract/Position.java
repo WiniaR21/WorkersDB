@@ -3,6 +3,7 @@ package com.WorkersDataBase.data.contract;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Position {
     @Column(name = "position_name")
     private String positionName;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "position",orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Contract> contracts = new ArrayList<>();
 }

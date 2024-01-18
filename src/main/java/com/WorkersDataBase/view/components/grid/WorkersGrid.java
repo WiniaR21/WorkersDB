@@ -31,6 +31,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.setItems(service.getWorkers());
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
+        grid.addItemClickListener(workerClicked -> System.out.println(workerClicked.getItem()));
     }
 
     @Override

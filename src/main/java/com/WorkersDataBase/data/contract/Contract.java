@@ -4,7 +4,9 @@ import com.WorkersDataBase.data.worker.Worker;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.commons.lang3.builder.HashCodeExclude;
+import org.apache.commons.lang3.builder.ToStringExclude;
 
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -29,6 +31,7 @@ public class Contract {
     @Column(name = "salary")
     private Double salary;
 
+    @ToString.Exclude
     @OneToOne(mappedBy = "contract")
     private Worker worker;
 }
