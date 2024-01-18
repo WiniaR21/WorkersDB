@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
 public class TestDataConfiguration {
@@ -67,19 +68,24 @@ public class TestDataConfiguration {
         danielsContract.setPosition(lider);
         danielsContract.setSalary(4000.0);
 
-        Worker workerer = new Worker();
-        // TODO naprawić dodawanie kontrakru do worker
+        contractRepository.save(danielsContract);
 
-        //workerRepository.findByPesel(daniel.getPesel()).ifPresent(worker -> workerer = worker);
-
+        workerRepository.findByPesel(daniel.getPesel()).ifPresent(worker -> {
+            worker.setContract(danielsContract);
+            workerRepository.save(worker);
+        });
 
         Contract kubaContract = new Contract();
         kubaContract.setWorker(kuba);
         kubaContract.setPosition(pracownikProdukcji);
         kubaContract.setSalary(3000.0);
-        workerRepository.findByPesel(kuba.getPesel()).ifPresent(worker -> worker.setContract(kubaContract));
 
-        contractRepository.saveAll(List.of(danielsContract, kubaContract));
+        contractRepository.save(kubaContract);
+
+        workerRepository.findByPesel(kuba.getPesel()).ifPresent(worker -> {
+            worker.setContract(kubaContract);
+            workerRepository.save(worker);
+        });
 
 
     }
