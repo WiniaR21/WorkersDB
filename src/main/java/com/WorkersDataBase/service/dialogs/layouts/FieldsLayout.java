@@ -54,10 +54,12 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
 
     @Override
     public void configureFront() {
+        setAlignItems(Alignment.STRETCH);
         add(
                 firstNameField,
                 lastNameField,
-                peselField
+                peselField,
+                contactField
         );
     }
 }
