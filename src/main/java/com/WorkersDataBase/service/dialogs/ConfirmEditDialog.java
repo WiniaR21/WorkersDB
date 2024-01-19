@@ -13,11 +13,17 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
     public ConfirmEditDialog(Worker oryginalWorker, Worker newWorker) {
         this.oryginalWorker = oryginalWorker;
         this.newWorker = newWorker;
+
+        configureComponents();
+        configureFront();
     }
 
     @Override
     public void configureComponents() {
-        dialogLayout = new DialogLayout();
+        dialogLayout = new DialogLayout(
+                oryginalWorker,
+                newWorker
+        );
     }
 
     @Override

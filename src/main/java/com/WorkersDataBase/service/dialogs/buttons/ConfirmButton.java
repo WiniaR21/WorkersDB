@@ -5,9 +5,15 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 
 public class ConfirmButton extends Button implements ComponentCreator, ButtonCreator {
+
+    public ConfirmButton() {
+        configureComponents();
+        configureFront();
+    }
+
     @Override
     public void clickEvent() {
-
+        System.out.println(this);
     }
 
     @Override
@@ -17,6 +23,7 @@ public class ConfirmButton extends Button implements ComponentCreator, ButtonCre
 
     @Override
     public void configureFront() {
-
+        setText("Potwierdź");
+        addClickListener(buttonClickEvent -> clickEvent());
     }
 }

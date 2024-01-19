@@ -6,11 +6,13 @@ import com.vaadin.flow.component.button.Button;
 
 public class RejectButton extends Button implements ComponentCreator, ButtonCreator {
     public RejectButton() {
+        configureComponents();
+        configureFront();
     }
 
     @Override
     public void clickEvent() {
-
+        System.out.println(this);
     }
 
     @Override
@@ -20,6 +22,7 @@ public class RejectButton extends Button implements ComponentCreator, ButtonCrea
 
     @Override
     public void configureFront() {
-
+        setText("Odrzuć");
+        addClickListener(buttonClickEvent -> clickEvent());
     }
 }
