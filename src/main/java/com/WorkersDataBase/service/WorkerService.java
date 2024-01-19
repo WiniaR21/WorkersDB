@@ -55,21 +55,40 @@ public class WorkerService {
             return false;
         }
     }
-    private boolean tryAddWorker(Worker worker) {
-        String email = worker.getContact().getEmail();
-        boolean emailIsUnique = !contactRepository.existsByEmail(email);
-        String pesel = worker.getPesel();
-        boolean peselIsUnique = !workerRepository.existsByPesel(pesel);
 
-        if (emailIsUnique && peselIsUnique) {
-            workerRepository.save(worker);
-            notification.pushSuccess("Dodano nowego pracownika");
-            return true;
+    private boolean tryAddWorker(Worker worker) {
+
+        if(!userEditingWorker(worker)){
+
+            String email = worker.getContact().getEmail();
+            boolean emailIsUnique = !contactRepository.existsByEmail(email);
+            String pesel = worker.getPesel();
+            boolean peselIsUnique = !workerRepository.existsByPesel(pesel);
+
+            if (emailIsUnique && peselIsUnique) {
+                workerRepository.save(worker);
+                notification.pushSuccess("Dodano nowego pracownika");
+                return true;
+            }
+            else {
+                notification.pushInfo("PESEL oraz Email powinny być unikalne");
+                return false;
+            }
         }
-        else {
-            notification.pushInfo("PESEL oraz Email powinny być unikalne");
-            return false;
-        }
+        return false;
+
+    }
+
+    private boolean userEditingWorker(Worker worker){
+        Long id = worker.getId();
+        if(id != null){
+            boolean workerExistInDB = workerRepository.existsById(worker.getId());
+            if (workerExistInDB){
+                workerRepository.save(worker);
+                return true;
+            }
+        } else return false;
+        return false;
     }
     private boolean isStringLetters(String str) {
         for (char c : str.toCharArray()) {
