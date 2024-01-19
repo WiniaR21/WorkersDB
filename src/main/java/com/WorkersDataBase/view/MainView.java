@@ -3,6 +3,7 @@ package com.WorkersDataBase.view;
 
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.components.line.LineBetweenComponents;
 import com.WorkersDataBase.view.components.topbar.TopBar;

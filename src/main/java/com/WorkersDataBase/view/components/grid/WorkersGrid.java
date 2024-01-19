@@ -2,9 +2,11 @@ package com.WorkersDataBase.view.components.grid;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.ItemClickEvent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.Setter;
 
@@ -12,8 +14,14 @@ import java.util.Set;
 
 @Setter
 public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
+    //  To inject by constructor
+    private final WorkerService service;
+    EditWorkerDialog editWorkerDialog;
+
+    //  To configure
     Grid<Worker> grid;
-    WorkerService service;
+
+
     public WorkersGrid(WorkerService service) {
         this.service = service;
         configureComponents();
@@ -31,7 +39,9 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.setItems(service.getWorkers());
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
-        grid.addItemClickListener(workerClicked -> System.out.println(workerClicked.getItem()));
+        grid.addItemClickListener(this::clickEvent);
+
+        editWorkerDialog = new EditWorkerDialog();
     }
 
     @Override
@@ -65,6 +75,37 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         }
 
     }
+    private void clickEvent(ItemClickEvent<Worker> event){
+        editWorkerDialog
+                .getDialogLayout()
+                .getFieldsLayout()
+                .getLastNameField()
+                .setLastName(
+                        event.getItem().getLastName()
+                );
+        editWorkerDialog
+                .getDialogLayout()
+                .getFieldsLayout()
+                .getFirstNameField()
+                .setFirstName(
+                        event.getItem().getFirstName()
+                );
+        editWorkerDialog
+                .getDialogLayout()
+                .getFieldsLayout()
+                .getEmailField()
+                .setEmail(
+                        event.getItem().getContact().getEmail()
+                );
+        editWorkerDialog
+                .getDialogLayout()
+                .getFieldsLayout()
+                .getPeselField()
+                .setPesel(
+                        event.getItem().getPesel()
+                );
 
+        editWorkerDialog.open();
+    }
 
 }
