@@ -2,6 +2,7 @@ package com.WorkersDataBase.service;
 import com.WorkersDataBase.data.contact.ContactRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
+import com.WorkersDataBase.service.dialogs.ConfirmEditDialog;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -84,7 +85,10 @@ public class WorkerService {
         if(id != null){
             boolean workerExistInDB = workerRepository.existsById(worker.getId());
             if (workerExistInDB){
-                workerRepository.save(worker);
+                workerRepository.findById(id).ifPresent(original ->{
+                    new ConfirmEditDialog(original, worker);
+                });
+                //workerRepository.save(worker);
                 return true;
             }
         } else return false;
