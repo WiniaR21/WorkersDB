@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.CancelChangesButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.SaveChangesButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.WritteContractButton;
@@ -12,23 +13,26 @@ import lombok.Getter;
 public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
 
     // To inject by constructor
-    FieldsLayout fieldsLayout;
+
     private final WorkerService workerService;
+    EditWorkerDialog editWorkerDialog;
 
     // To configure
     SaveChangesButton saveChangesButton;
     CancelChangesButton cancelChangesButton;
     WritteContractButton writteContractButton;
 
-    public ButtonsLayout(FieldsLayout fieldsLayout, WorkerService workerService) {
+    public ButtonsLayout(WorkerService workerService, EditWorkerDialog editWorkerDialog) {
         this.workerService = workerService;
+        this.editWorkerDialog = editWorkerDialog;
+
         configureComponents();
         configureFront();
     }
 
     @Override
     public void configureComponents() {
-        saveChangesButton = new SaveChangesButton(fieldsLayout, workerService);
+        saveChangesButton = new SaveChangesButton(workerService, editWorkerDialog);
         cancelChangesButton = new CancelChangesButton();
         writteContractButton = new WritteContractButton();
     }

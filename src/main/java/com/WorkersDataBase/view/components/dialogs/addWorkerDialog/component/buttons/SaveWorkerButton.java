@@ -56,7 +56,7 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
     }
     private void addWorkerToDB(){
         Worker worker = getWorkerFromUser();
-        boolean operationSuccess = service.addWorker(worker);
+        boolean operationSuccess = service.addWorker(worker, false);
         if(operationSuccess){
             workersGrid.refresh();
             addWorkerDialog.close();

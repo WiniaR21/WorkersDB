@@ -2,12 +2,11 @@ package com.WorkersDataBase.service;
 import com.WorkersDataBase.data.contact.ContactRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.dialogs.ConfirmEditDialog;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -17,18 +16,24 @@ public class WorkerService {
     private final WorkerRepository workerRepository;
     private final ServicePushNotification notification;
 
+    public Optional<Worker> getById(Long id){
+        return workerRepository.findById(id);
+    }
+    public boolean workerWithIdExistInDB(Long id){
+        return workerRepository.existsById(id);
+    }
     @Transactional
-    public boolean addWorker(Worker worker){
+    public boolean addWorker(Worker worker, boolean editingWorker){
         boolean workerIsNotNull = worker != null;
         if (workerIsNotNull) {
-           return startAddingProcedure(worker);
+           return startAddingProcedure(worker, editingWorker);
         }
         else {
             notification.pushError("Coś poszło nie tak");
             return false;
         }
     }
-    private boolean startAddingProcedure(Worker worker){
+    private boolean startAddingProcedure(Worker worker, boolean editingWorker){
         boolean workerHasNotNullFields =
                 !worker.getContact().getEmail().isEmpty() &&
                         !worker.getFirstName().isEmpty() &&
@@ -36,20 +41,20 @@ public class WorkerService {
                         !worker.getPesel().isEmpty();
 
         if (workerHasNotNullFields) {
-            return validWorker(worker);
+            return validWorker(worker, editingWorker);
         }
         else {
             notification.pushError("Uzupełnij wymagane pola");
             return false;
         }
     }
-    private boolean validWorker(Worker worker){
+    private boolean validWorker(Worker worker, boolean editingWorker){
         boolean fNameIsValid = isStringLetters(worker.getFirstName());
         boolean lNameIsValid = isStringLetters(worker.getLastName());
         boolean peselIsValid = isStringDigits(worker.getPesel());
 
         if (fNameIsValid && lNameIsValid && peselIsValid) {
-            return tryAddWorker(worker);
+            return tryAddWorker(worker, editingWorker);
         }
         else {
             notification.pushError("Usuń znaki specjalne");
@@ -57,9 +62,13 @@ public class WorkerService {
         }
     }
 
-    private boolean tryAddWorker(Worker worker) {
+    private boolean tryAddWorker(Worker worker, boolean editingWorker) {
 
-        if(!userEditingWorker(worker)){
+            if(editingWorker){
+                workerRepository.save(worker);
+                notification.pushSuccess("Edycja powiodła się");
+                return true;
+            }
 
             String email = worker.getContact().getEmail();
             boolean emailIsUnique = !contactRepository.existsByEmail(email);
@@ -75,25 +84,10 @@ public class WorkerService {
                 notification.pushInfo("PESEL oraz Email powinny być unikalne");
                 return false;
             }
-        }
-        return false;
+
 
     }
 
-    private boolean userEditingWorker(Worker worker){
-        Long id = worker.getId();
-        if(id != null){
-            boolean workerExistInDB = workerRepository.existsById(worker.getId());
-            if (workerExistInDB){
-                workerRepository.findById(id).ifPresent(original ->{
-                    new ConfirmEditDialog(original, worker);
-                });
-                //workerRepository.save(worker);
-                return true;
-            }
-        } else return false;
-        return false;
-    }
     private boolean isStringLetters(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isLetter(c)) {

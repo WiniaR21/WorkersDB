@@ -1,27 +1,22 @@
-package com.WorkersDataBase.service.dialogs.textfields;
+package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields;
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
 
-public class ContactField extends TextField implements ComponentCreator {
-    String originalEmail;
-    String newEmail;
-
+public class PeselField extends TextField implements ComponentCreator {
+    String originalPesel;
     String message;
 
-    public ContactField(String originalEmail, String newEmail) {
-        this.originalEmail = originalEmail;
-        this.newEmail = newEmail;
+    public PeselField(String originalPesel) {
+        this.originalPesel = originalPesel;
 
         message = createTextMessage();
         configureComponents();
         configureFront();
     }
-
     private String createTextMessage() {
-        return originalEmail + " -> " + newEmail;
+        return originalPesel + " -> ";
     }
-
     @Override
     public void configureComponents() {
 
@@ -29,9 +24,8 @@ public class ContactField extends TextField implements ComponentCreator {
 
     @Override
     public void configureFront() {
+        setLabel("PESEL");
         setReadOnly(true);
         setValue(message);
-
-
     }
 }

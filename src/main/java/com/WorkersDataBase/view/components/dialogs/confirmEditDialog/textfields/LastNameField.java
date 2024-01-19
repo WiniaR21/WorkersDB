@@ -1,4 +1,4 @@
-package com.WorkersDataBase.service.dialogs.textfields;
+package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields;
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
@@ -6,14 +6,12 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class LastNameField extends TextField implements ComponentCreator {
     String originalLastName;
-    String newLastName;
     String message;
 
-    public LastNameField(String originalLastName, String newLastName) {
+    public LastNameField(String originalLastName) {
         this.originalLastName = originalLastName;
-        this.newLastName = newLastName;
-
         message = createTextMessage();
+
         configureComponents();
         configureFront();
     }
@@ -23,10 +21,11 @@ public class LastNameField extends TextField implements ComponentCreator {
 
     }
     private String createTextMessage() {
-        return originalLastName + " -> " + newLastName;
+        return originalLastName + " -> ";
     }
     @Override
     public void configureFront() {
+        setLabel("Nazwisko");
         setReadOnly(true);
         setValue(message);
     }

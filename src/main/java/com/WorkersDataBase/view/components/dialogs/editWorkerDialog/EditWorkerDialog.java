@@ -24,7 +24,7 @@ public class EditWorkerDialog extends Dialog implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-        dialogLayout = new DialogLayout(workerService);
+        dialogLayout = new DialogLayout(workerService, this);
     }
 
     @Override

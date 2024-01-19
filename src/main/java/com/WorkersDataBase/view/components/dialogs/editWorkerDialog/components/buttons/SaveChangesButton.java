@@ -2,6 +2,8 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.FieldsLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -10,19 +12,28 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Setter
 public class SaveChangesButton extends Button implements ComponentCreator, ButtonCreator {
     // To inject by constructor
     private final WorkerService workerService;
+    EditWorkerDialog editWorkerDialog;
+    FieldsLayout fieldsLayout;
 
     // To inject by setter
     Worker workerSelectedFromGrid;
-    FieldsLayout fieldsLayout;
     WorkersGrid workersGrid;
 
-    public SaveChangesButton(FieldsLayout fieldsLayout, WorkerService workerService) {
-        this.fieldsLayout = fieldsLayout;
+    // To Configure
+    ConfirmEditDialog confirmEditDialog;
+
+    public SaveChangesButton(
+            WorkerService workerService,
+            EditWorkerDialog editWorkerDialog
+    ) {
         this.workerService = workerService;
+        this.editWorkerDialog = editWorkerDialog;
 
         configureComponents();
         configureFront();
@@ -42,9 +53,18 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
         workerSelectedFromGrid.getContact()
                 .setEmail(fieldsLayout.getEmailField().getValue());
 
-        workerService.addWorker(workerSelectedFromGrid);
+        if(workerService.workerWithIdExistInDB(workerSelectedFromGrid.getId())){
+            Optional<Worker> original = workerService.getById(workerSelectedFromGrid.getId());
+            Worker newWorker = workerSelectedFromGrid;
+
+            original.ifPresent(worker ->
+                    new ConfirmEditDialog(worker, newWorker, workerService, workersGrid)
+                    );
+
+        }
 
         workersGrid.refresh();
+        editWorkerDialog.close();
     }
 
     @Override
