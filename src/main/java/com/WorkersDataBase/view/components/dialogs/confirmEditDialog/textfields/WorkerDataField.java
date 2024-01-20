@@ -3,31 +3,33 @@ package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
 
-public class ContactField extends TextField implements ComponentCreator {
-    String originalEmail;
-
+public class WorkerDataField extends TextField implements ComponentCreator {
+    //  To inject by constructor
+    private final String data;
+    private final boolean dataCollectedFromRepo;
+    //  To configure
     String message;
 
-    public ContactField(String originalEmail) {
-        this.originalEmail = originalEmail;
-        message = createTextMessage();
+    public WorkerDataField(String data, boolean dataCollectedFromRepo) {
+        this.data = data;
+        this.dataCollectedFromRepo = dataCollectedFromRepo;
+
 
         configureComponents();
         configureFront();
     }
 
     private String createTextMessage() {
-        return originalEmail + " -> ";
+        return dataCollectedFromRepo ? data + " ->" : data;
     }
-
     @Override
     public void configureComponents() {
-
+        message = createTextMessage();
     }
 
     @Override
     public void configureFront() {
-        setLabel("Adres email");
+        setLabel("PESEL");
         setReadOnly(true);
         setValue(message);
     }

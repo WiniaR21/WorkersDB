@@ -12,20 +12,18 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
     Worker newWorker;
 
     //  To configure
-    FirstNameField firstNameField;
-    LastNameField lastNameField;
-    PeselField peselField;
-    ContactField contactField;
-    FirstNameFieldNew firstNameFieldNew;
-    LastNameFieldNew lastNameFieldNew;
-    PeselFieldNew peselFieldNew;
-    ContactFieldNew contactFieldNew;
+    WorkerDataField
+            firstNameField, newFirstNameField,
+            lastNameField, newLastnameField,
+            peselField, newPeselField,
+            contactField, newContactField;
 
 
 
     public FieldsLayout(Worker oryginalWorker, Worker newWorker) {
         this.oryginalWorker = oryginalWorker;
         this.newWorker = newWorker;
+
         configureComponents();
         configureFront();
     }
@@ -33,31 +31,31 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
     @Override
     public void configureComponents() {
 
-        firstNameField = new FirstNameField(
-                oryginalWorker.getFirstName()
+        firstNameField = new WorkerDataField(
+                oryginalWorker.getFirstName(), true
         );
-        lastNameField = new LastNameField(
-                oryginalWorker.getLastName()
+        lastNameField = new WorkerDataField(
+                oryginalWorker.getLastName(), true
         );
-        peselField = new PeselField(
-                oryginalWorker.getPesel()
+        peselField = new WorkerDataField(
+                oryginalWorker.getPesel(), true
         );
-        contactField = new ContactField(
-                oryginalWorker.getContact().getEmail()
+        contactField = new WorkerDataField(
+                oryginalWorker.getContact().getEmail(), true
         );
 
 
-        firstNameFieldNew = new FirstNameFieldNew(
-                newWorker.getFirstName()
+        newFirstNameField = new WorkerDataField(
+               newWorker.getFirstName(), false
         );
-        lastNameFieldNew = new LastNameFieldNew(
-                newWorker.getLastName()
+        newLastnameField = new WorkerDataField(
+                 newWorker.getLastName(), false
+         );
+        newPeselField = new WorkerDataField(
+                newWorker.getPesel(), false
         );
-        peselFieldNew = new PeselFieldNew(
-                newWorker.getPesel()
-        );
-        contactFieldNew = new ContactFieldNew(
-                newWorker.getContact().getEmail()
+        newContactField = new WorkerDataField(
+                newWorker.getContact().getEmail(), false
         );
     }
 
@@ -66,10 +64,10 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         setAlignItems(Alignment.STRETCH);
         setWidthFull();
         add(
-                new HorizontalLayout(firstNameField, firstNameFieldNew),
-                new HorizontalLayout(lastNameField, lastNameFieldNew),
-                new HorizontalLayout(peselField, peselFieldNew),
-                new HorizontalLayout(contactField, contactFieldNew)
+                new HorizontalLayout(firstNameField, newFirstNameField),
+                new HorizontalLayout(lastNameField, newLastnameField),
+                new HorizontalLayout(peselField, newPeselField),
+                new HorizontalLayout(contactField, newContactField)
 
         );
     }
