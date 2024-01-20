@@ -11,9 +11,9 @@ import lombok.Getter;
 
 @Getter
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
-    private final Worker workerOriginal;
-    public FieldsLayout(Worker workerOriginal) {
-        this.workerOriginal = workerOriginal;
+    private final Worker workerSelectedFromGrid;
+    public FieldsLayout(Worker workerSelectedFromGrid) {
+        this.workerSelectedFromGrid = workerSelectedFromGrid;
 
         configureComponents();
         configureFront();
@@ -29,19 +29,19 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
     public void configureComponents() {
 
         emailField = new EmailField(
-                workerOriginal.getContact().getEmail()
+                workerSelectedFromGrid.getContact().getEmail()
         );
 
         firstNameField = new FirstNameField(
-                workerOriginal.getFirstName()
+                workerSelectedFromGrid.getFirstName()
         );
 
         lastNameField = new LastNameField(
-                workerOriginal.getLastName()
+                workerSelectedFromGrid.getLastName()
         );
 
         peselField = new PeselField(
-                workerOriginal.getPesel()
+                workerSelectedFromGrid.getPesel()
         );
     }
 

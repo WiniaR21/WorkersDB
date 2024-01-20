@@ -14,15 +14,15 @@ public class EditWorkerDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
-    private final Worker workerOriginal;
+    Worker workerSelectedFromGrid;
     public EditWorkerDialog(
             WorkerService workerService,
             WorkersGrid workersGrid,
-            Worker workerOriginal
+            Worker workerSelectedFromGrid
     ) {
         this.workerService = workerService;
         this.workersGrid = workersGrid;
-        this.workerOriginal = workerOriginal;
+        this.workerSelectedFromGrid = workerSelectedFromGrid;
 
         configureComponents();
         configureFront();
@@ -37,13 +37,14 @@ public class EditWorkerDialog extends Dialog implements ComponentCreator {
                 workerService,
                 this,
                 workersGrid,
-                workerOriginal
+                workerSelectedFromGrid
         );
     }
 
     @Override
     public void configureFront() {
         add(dialogLayout);
+        open();
     }
 
 }

@@ -55,6 +55,16 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         newContactField = new WorkerDataField(
                 newWorker.getContact().getEmail(), false
         );
+
+        firstNameField.setLabel("Imie");
+        lastNameField.setLabel("Nazwisko");
+        peselField.setLabel("PESEL");
+        contactField.setLabel("Email");
+
+        newFirstNameField.setLabel("Imie");
+        newLastnameField.setLabel("Nazwisko");
+        newPeselField.setLabel("PESEL");
+        newContactField.setLabel("Email");
     }
 
     @Override

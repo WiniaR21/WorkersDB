@@ -15,18 +15,18 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
-    private final Worker workerOriginal;
+    private final Worker workerSelectedFromGrid;
 
     public DialogLayout(
             WorkerService workerService,
             EditWorkerDialog editWorkerDialog,
             WorkersGrid workersGrid,
-            Worker workerOriginal
+            Worker workerSelectedFromGrid
     ) {
         this.workerService = workerService;
         this.editWorkerDialog = editWorkerDialog;
         this.workersGrid = workersGrid;
-        this.workerOriginal = workerOriginal;
+        this.workerSelectedFromGrid = workerSelectedFromGrid;
 
         configureComponents();
         configureFront();
@@ -41,12 +41,14 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     public void configureComponents() {
         editHeader = new EditHeader();
 
-        fieldsLayout = new FieldsLayout(workerOriginal);
+        fieldsLayout = new FieldsLayout(workerSelectedFromGrid);
 
         buttonsLayout = new ButtonsLayout(
                 workerService,
                 workersGrid,
-                editWorkerDialog
+                editWorkerDialog,
+                fieldsLayout,
+                workerSelectedFromGrid
         );
     }
 

@@ -10,32 +10,30 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import lombok.Setter;
+
 
 import java.util.Optional;
 
-@Setter
 public class SaveChangesButton extends Button implements ComponentCreator, ButtonCreator {
     // To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
-
-    // To inject by setter
-    Worker workerSelectedFromGrid;
-
-    FieldsLayout fieldsLayout;
-    // To Configure
-    ConfirmEditDialog confirmEditDialog;
+    private final FieldsLayout fieldsLayout;
+    private final Worker workerSelectedFromGrid;
 
     public SaveChangesButton(
             WorkerService workerService,
             WorkersGrid workersGrid,
-            EditWorkerDialog editWorkerDialog
+            EditWorkerDialog editWorkerDialog,
+            FieldsLayout fieldsLayout,
+            Worker workerSelectedFromGrid
     ) {
         this.workerService = workerService;
         this.editWorkerDialog = editWorkerDialog;
         this.workersGrid = workersGrid;
+        this.fieldsLayout = fieldsLayout;
+        this.workerSelectedFromGrid = workerSelectedFromGrid;
 
         configureComponents();
         configureFront();
@@ -43,21 +41,11 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
 
     @Override
     public void clickEvent() {
-        workerSelectedFromGrid
-                .setFirstName(fieldsLayout.getFirstNameField().getValue());
 
-        workerSelectedFromGrid
-                .setLastName(fieldsLayout.getLastNameField().getValue());
-
-        workerSelectedFromGrid
-                .setPesel(fieldsLayout.getPeselField().getValue());
-
-        workerSelectedFromGrid.getContact()
-                .setEmail(fieldsLayout.getEmailField().getValue());
 
         if(workerService.workerWithIdExistInDB(workerSelectedFromGrid.getId())){
             Optional<Worker> original = workerService.getById(workerSelectedFromGrid.getId());
-            Worker newWorker = workerSelectedFromGrid;
+            Worker newWorker = getWorkerFromUser();
 
             original.ifPresent(worker ->
                     new ConfirmEditDialog(
@@ -84,5 +72,19 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
         addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         addClickListener(buttonClickEvent -> clickEvent());
     }
+    private Worker getWorkerFromUser(){
+        workerSelectedFromGrid
+                .setFirstName(fieldsLayout.getFirstNameField().getValue());
 
+        workerSelectedFromGrid
+                .setLastName(fieldsLayout.getLastNameField().getValue());
+
+        workerSelectedFromGrid
+                .setPesel(fieldsLayout.getPeselField().getValue());
+
+        workerSelectedFromGrid.getContact()
+                .setEmail(fieldsLayout.getEmailField().getValue());
+
+        return workerSelectedFromGrid;
+    }
 }

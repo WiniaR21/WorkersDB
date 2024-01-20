@@ -17,17 +17,16 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
 
+    public WorkersGrid(WorkerService workerService) {
+        this.workerService = workerService;
+
+        configureComponents();
+        configureFront();
+    }
 
     //  To configure
     Grid<Worker> grid;
 
-
-    public WorkersGrid(WorkerService workerService) {
-        this.workerService = workerService;
-        configureComponents();
-        configureFront();
-
-    }
     @Override
     public void configureComponents() {
         grid = new Grid<>(Worker.class);
@@ -39,8 +38,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.setItems(workerService.getWorkers());
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
-        grid.addItemClickListener(this::gridClickEvent);
-
+        grid.addItemClickListener(this::gridWorkerClickEvent);
     }
 
     @Override
@@ -72,34 +70,13 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         if (checkBoxValue.contains("Email")){
             grid.addColumn(worker -> worker.getContact().getEmail()).setHeader("Email").setTextAlign(ColumnTextAlign.CENTER);
         }
-
     }
-    private void gridClickEvent(ItemClickEvent<Worker> event){
-        EditWorkerDialog editWorkerDialog =
+    private void gridWorkerClickEvent(ItemClickEvent<Worker> event){
                 new EditWorkerDialog(
                         workerService,
                         this,
                         event.getItem()
                 );
-
-        editWorkerDialog
-                .getDialogLayout()
-                .getButtonsLayout()
-                .getSaveChangesButton()
-                .setWorkerSelectedFromGrid(event.getItem());
-
-        editWorkerDialog
-                .getDialogLayout()
-                .getButtonsLayout()
-                .getSaveChangesButton()
-                .setFieldsLayout(
-                    editWorkerDialog
-                            .getDialogLayout()
-                            .getFieldsLayout()
-        );
-
-
-        editWorkerDialog.open();
     }
 
 }
