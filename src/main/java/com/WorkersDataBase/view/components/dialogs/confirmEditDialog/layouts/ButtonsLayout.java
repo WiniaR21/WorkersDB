@@ -14,41 +14,45 @@ import org.hibernate.jdbc.Work;
 
 public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
-    Worker newWorker;
     private final WorkerService workerService;
-    private final ConfirmEditDialog confirmEditDialog;
+    private final Worker newWorker;
     private final WorkersGrid workersGrid;
-
-    //  To configure
-    ConfirmButton confirmButton;
-    RejectButton rejectButton;
-
+    private final ConfirmEditDialog confirmEditDialog;
 
     public ButtonsLayout(
-            Worker newWorker,
             WorkerService workerService,
-            ConfirmEditDialog confirmEditDialog,
-            WorkersGrid workersGrid
+            Worker newWorker,
+            WorkersGrid workersGrid,
+            ConfirmEditDialog confirmEditDialog
     ) {
-        this.newWorker = newWorker;
         this.workerService = workerService;
-        this.confirmEditDialog = confirmEditDialog;
+        this.newWorker = newWorker;
         this.workersGrid = workersGrid;
+        this.confirmEditDialog = confirmEditDialog;
 
         configureComponents();
         configureFront();
     }
 
+    //  To configure
+    ConfirmButton confirmButton;
+    RejectButton rejectButton;
+
     @Override
     public void configureComponents() {
-        confirmButton = new ConfirmButton(newWorker, workersGrid, workerService, confirmEditDialog);
+        confirmButton = new ConfirmButton(
+                workerService,
+                newWorker,
+                workersGrid,
+                confirmEditDialog
+        );
+
         rejectButton = new RejectButton(confirmEditDialog);
     }
 
     @Override
     public void configureFront() {
         setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-
         add(confirmButton, rejectButton);
     }
 }

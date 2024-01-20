@@ -12,21 +12,21 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
 public class ConfirmButton extends Button implements ComponentCreator, ButtonCreator {
-
-
-    private final WorkersGrid workersGrid;
+    // To inject by constructor
     private final WorkerService workerService;
-    private final ConfirmEditDialog confirmEditDialog;
     private final Worker newWorker;
+    private final WorkersGrid workersGrid;
+    private final ConfirmEditDialog confirmEditDialog;
+
     public ConfirmButton(
+            WorkerService workerService,
             Worker newWorker,
             WorkersGrid workersGrid,
-            WorkerService workerService,
             ConfirmEditDialog confirmEditDialog
     ) {
+        this.workerService = workerService;
         this.newWorker = newWorker;
         this.workersGrid = workersGrid;
-        this.workerService = workerService;
         this.confirmEditDialog = confirmEditDialog;
 
         configureComponents();

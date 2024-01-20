@@ -8,17 +8,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
-    Worker oryginalWorker;
-    Worker newWorker;
-
-    //  To configure
-    WorkerDataField
-            firstNameField, newFirstNameField,
-            lastNameField, newLastnameField,
-            peselField, newPeselField,
-            contactField, newContactField;
-
-
+    private final Worker oryginalWorker;
+    private final Worker newWorker;
 
     public FieldsLayout(Worker oryginalWorker, Worker newWorker) {
         this.oryginalWorker = oryginalWorker;
@@ -27,6 +18,13 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         configureComponents();
         configureFront();
     }
+
+    //  To configure
+    WorkerDataField
+            firstNameField, newFirstNameField,
+            lastNameField, newLastnameField,
+            peselField, newPeselField,
+            contactField, newContactField;
 
     @Override
     public void configureComponents() {
@@ -68,7 +66,6 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
                 new HorizontalLayout(lastNameField, newLastnameField),
                 new HorizontalLayout(peselField, newPeselField),
                 new HorizontalLayout(contactField, newContactField)
-
         );
     }
 }

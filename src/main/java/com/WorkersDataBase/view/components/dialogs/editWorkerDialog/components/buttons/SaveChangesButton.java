@@ -58,8 +58,12 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
             Worker newWorker = workerSelectedFromGrid;
 
             original.ifPresent(worker ->
-                    new ConfirmEditDialog(worker, newWorker, workerService, workersGrid)
-                    );
+                    new ConfirmEditDialog(
+                            workerService,
+                            newWorker,
+                            workersGrid,
+                            worker
+                    ));
 
         }
 

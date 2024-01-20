@@ -8,6 +8,7 @@ import com.vaadin.flow.component.button.Button;
 public class RejectButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final ConfirmEditDialog confirmEditDialog;
+
     public RejectButton(ConfirmEditDialog confirmEditDialog) {
         this.confirmEditDialog = confirmEditDialog;
 

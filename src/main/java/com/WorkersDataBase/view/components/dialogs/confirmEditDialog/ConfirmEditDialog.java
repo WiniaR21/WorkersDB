@@ -8,33 +8,38 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 
 public class ConfirmEditDialog extends Dialog implements ComponentCreator {
-
     //  To inject by constructor
-    private final Worker oryginalWorker;
-    private final Worker newWorker;
     private final WorkerService workerService;
+    private final Worker newWorker;
     private final WorkersGrid workersGrid;
-    //  To configure
-    DialogLayout dialogLayout;
+    private final Worker oryginalWorker;
 
-    public ConfirmEditDialog(Worker oryginalWorker, Worker newWorker, WorkerService workerService, WorkersGrid workersGrid) {
-        this.oryginalWorker = oryginalWorker;
-        this.newWorker = newWorker;
+    public ConfirmEditDialog(
+            WorkerService workerService,
+            Worker newWorker,
+            WorkersGrid workersGrid,
+            Worker oryginalWorker
+    ) {
         this.workerService = workerService;
+        this.newWorker = newWorker;
         this.workersGrid = workersGrid;
+        this.oryginalWorker = oryginalWorker;
 
         configureComponents();
         configureFront();
     }
 
+    //  To configure
+    DialogLayout dialogLayout;
+
     @Override
     public void configureComponents() {
         dialogLayout = new DialogLayout(
                 workerService,
-                this,
-                oryginalWorker,
                 newWorker,
-                workersGrid
+                workersGrid,
+                this,
+                oryginalWorker
         );
     }
 
