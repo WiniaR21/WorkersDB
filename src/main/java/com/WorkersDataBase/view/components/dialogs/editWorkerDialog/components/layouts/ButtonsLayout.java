@@ -5,35 +5,48 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDi
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.CancelChangesButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.SaveChangesButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.WritteContractButton;
+import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.Getter;
 
 @Getter
 public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
-
     // To inject by constructor
-
     private final WorkerService workerService;
-    EditWorkerDialog editWorkerDialog;
+    private final EditWorkerDialog editWorkerDialog;
+    private final WorkersGrid workersGrid;
 
-    // To configure
-    SaveChangesButton saveChangesButton;
-    CancelChangesButton cancelChangesButton;
-    WritteContractButton writteContractButton;
-
-    public ButtonsLayout(WorkerService workerService, EditWorkerDialog editWorkerDialog) {
+    public ButtonsLayout(
+            WorkerService workerService,
+            WorkersGrid workersGrid,
+            EditWorkerDialog editWorkerDialog
+    ) {
         this.workerService = workerService;
+        this.workersGrid = workersGrid;
         this.editWorkerDialog = editWorkerDialog;
 
         configureComponents();
         configureFront();
     }
 
+    // To configure
+    SaveChangesButton saveChangesButton;
+    CancelChangesButton cancelChangesButton;
+    WritteContractButton writteContractButton;
+
     @Override
     public void configureComponents() {
-        saveChangesButton = new SaveChangesButton(workerService, editWorkerDialog);
-        cancelChangesButton = new CancelChangesButton();
+        saveChangesButton = new SaveChangesButton(
+                workerService,
+                workersGrid,
+                editWorkerDialog
+        );
+
+        cancelChangesButton = new CancelChangesButton(
+                editWorkerDialog
+        );
+
         writteContractButton = new WritteContractButton();
     }
 

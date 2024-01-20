@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
+import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.textfields.EmailField;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.textfields.FirstNameField;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.textfields.LastNameField;
@@ -10,22 +11,38 @@ import lombok.Getter;
 
 @Getter
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
+    private final Worker workerOriginal;
+    public FieldsLayout(Worker workerOriginal) {
+        this.workerOriginal = workerOriginal;
+
+        configureComponents();
+        configureFront();
+    }
+
+    //  To configure
     FirstNameField firstNameField;
     LastNameField lastNameField;
     PeselField peselField;
     EmailField emailField;
 
-    public FieldsLayout() {
-        configureComponents();
-        configureFront();
-    }
-
     @Override
     public void configureComponents() {
-        emailField = new EmailField();
-        firstNameField = new FirstNameField();
-        lastNameField = new LastNameField();
-        peselField = new PeselField();
+
+        emailField = new EmailField(
+                workerOriginal.getContact().getEmail()
+        );
+
+        firstNameField = new FirstNameField(
+                workerOriginal.getFirstName()
+        );
+
+        lastNameField = new LastNameField(
+                workerOriginal.getLastName()
+        );
+
+        peselField = new PeselField(
+                workerOriginal.getPesel()
+        );
     }
 
     @Override

@@ -15,15 +15,15 @@ import java.util.Set;
 @Setter
 public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
-    private final WorkerService service;
-    EditWorkerDialog editWorkerDialog;
+    private final WorkerService workerService;
+
 
     //  To configure
     Grid<Worker> grid;
 
 
-    public WorkersGrid(WorkerService service) {
-        this.service = service;
+    public WorkersGrid(WorkerService workerService) {
+        this.workerService = workerService;
         configureComponents();
         configureFront();
 
@@ -36,12 +36,11 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.getColumnByKey("firstName").setHeader("Imie").setTextAlign(ColumnTextAlign.CENTER);
         grid.getColumnByKey("lastName").setHeader("Nazwisko").setTextAlign(ColumnTextAlign.CENTER);
         grid.getColumnByKey("pesel").setHeader("PESEL").setTextAlign(ColumnTextAlign.CENTER);
-        grid.setItems(service.getWorkers());
+        grid.setItems(workerService.getWorkers());
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
-        grid.addItemClickListener(this::clickEvent);
+        grid.addItemClickListener(this::gridClickEvent);
 
-        editWorkerDialog = new EditWorkerDialog(service);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     }
 
     public void refresh(){
-        grid.setItems(service.getWorkers());
+        grid.setItems(workerService.getWorkers());
     }
     public void setBySetting(Set<String> checkBoxValue){
         grid.removeAllColumns();
@@ -75,35 +74,14 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         }
 
     }
-    private void clickEvent(ItemClickEvent<Worker> event){
-        editWorkerDialog
-                .getDialogLayout()
-                .getFieldsLayout()
-                .getLastNameField()
-                .setLastName(
-                        event.getItem().getLastName()
+    private void gridClickEvent(ItemClickEvent<Worker> event){
+        EditWorkerDialog editWorkerDialog =
+                new EditWorkerDialog(
+                        workerService,
+                        this,
+                        event.getItem()
                 );
-        editWorkerDialog
-                .getDialogLayout()
-                .getFieldsLayout()
-                .getFirstNameField()
-                .setFirstName(
-                        event.getItem().getFirstName()
-                );
-        editWorkerDialog
-                .getDialogLayout()
-                .getFieldsLayout()
-                .getEmailField()
-                .setEmail(
-                        event.getItem().getContact().getEmail()
-                );
-        editWorkerDialog
-                .getDialogLayout()
-                .getFieldsLayout()
-                .getPeselField()
-                .setPesel(
-                        event.getItem().getPesel()
-                );
+
         editWorkerDialog
                 .getDialogLayout()
                 .getButtonsLayout()
@@ -120,11 +98,6 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
                             .getFieldsLayout()
         );
 
-        editWorkerDialog
-                .getDialogLayout()
-                .getButtonsLayout()
-                .getSaveChangesButton()
-                .setWorkersGrid(this);
 
         editWorkerDialog.open();
     }

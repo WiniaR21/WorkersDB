@@ -18,22 +18,24 @@ import java.util.Optional;
 public class SaveChangesButton extends Button implements ComponentCreator, ButtonCreator {
     // To inject by constructor
     private final WorkerService workerService;
-    EditWorkerDialog editWorkerDialog;
-    FieldsLayout fieldsLayout;
+    private final EditWorkerDialog editWorkerDialog;
+    private final WorkersGrid workersGrid;
 
     // To inject by setter
     Worker workerSelectedFromGrid;
-    WorkersGrid workersGrid;
 
+    FieldsLayout fieldsLayout;
     // To Configure
     ConfirmEditDialog confirmEditDialog;
 
     public SaveChangesButton(
             WorkerService workerService,
+            WorkersGrid workersGrid,
             EditWorkerDialog editWorkerDialog
     ) {
         this.workerService = workerService;
         this.editWorkerDialog = editWorkerDialog;
+        this.workersGrid = workersGrid;
 
         configureComponents();
         configureFront();
