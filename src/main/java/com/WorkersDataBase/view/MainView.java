@@ -39,7 +39,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-        grid = new WorkersGrid(service);
+        grid = new WorkersGrid(service, positionService);
 
         addWorkerDialog = new AddWorkerDialog(service, grid);
 

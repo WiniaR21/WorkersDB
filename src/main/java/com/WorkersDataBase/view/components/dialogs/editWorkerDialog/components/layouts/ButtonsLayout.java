@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.CancelChangesButton;
@@ -19,18 +20,21 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
     private final WorkersGrid workersGrid;
     private final FieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
+    private final PositionService positionService;
 
     public ButtonsLayout(
             WorkerService workerService,
             WorkersGrid workersGrid,
             EditWorkerDialog editWorkerDialog,
-            FieldsLayout fieldsLayout, Worker workerSelectedFromGrid
+            FieldsLayout fieldsLayout, Worker workerSelectedFromGrid,
+            PositionService positionService
     ) {
         this.workerService = workerService;
         this.workersGrid = workersGrid;
         this.editWorkerDialog = editWorkerDialog;
         this.fieldsLayout = fieldsLayout;
         this.workerSelectedFromGrid = workerSelectedFromGrid;
+        this.positionService = positionService;
 
         configureComponents();
         configureFront();
@@ -55,7 +59,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 editWorkerDialog
         );
 
-        writteContractButton = new WritteContractButton();
+        writteContractButton = new WritteContractButton(positionService, workerSelectedFromGrid);
     }
 
     @Override

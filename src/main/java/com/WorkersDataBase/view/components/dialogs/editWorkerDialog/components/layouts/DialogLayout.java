@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.EditHeader;
@@ -16,17 +17,20 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final Worker workerSelectedFromGrid;
+    private final PositionService positionService;
 
     public DialogLayout(
             WorkerService workerService,
             EditWorkerDialog editWorkerDialog,
             WorkersGrid workersGrid,
-            Worker workerSelectedFromGrid
+            Worker workerSelectedFromGrid,
+            PositionService positionService
     ) {
         this.workerService = workerService;
         this.editWorkerDialog = editWorkerDialog;
         this.workersGrid = workersGrid;
         this.workerSelectedFromGrid = workerSelectedFromGrid;
+        this.positionService = positionService;
 
         configureComponents();
         configureFront();
@@ -48,7 +52,8 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 workersGrid,
                 editWorkerDialog,
                 fieldsLayout,
-                workerSelectedFromGrid
+                workerSelectedFromGrid,
+                positionService
         );
     }
 
