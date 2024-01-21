@@ -23,6 +23,9 @@ public class WorkerService {
     public boolean workerWithIdExistInDB(Long id){
         return workerRepository.existsById(id);
     }
+    public List<Worker> getWorkers(){
+        return workerRepository.findAll();
+    }
 
 
     //  addWorker returns true if adding was successful
@@ -38,7 +41,7 @@ public class WorkerService {
         }
 
     }
-    private boolean startAddingProcedure(Worker worker, boolean editingWorker){
+        private boolean startAddingProcedure(Worker worker, boolean editingWorker){
 
         if (workerValidTool.workerHasNotNullFields(worker)) {
             return validWorker(worker, editingWorker);
@@ -50,7 +53,7 @@ public class WorkerService {
         }
 
     }
-    private boolean validWorker(Worker worker, boolean editingWorker){
+        private boolean validWorker(Worker worker, boolean editingWorker){
 
         if (workerValidTool.noSpecialSymbols(worker)) {
             return tryAddWorker(worker, editingWorker);
@@ -62,8 +65,7 @@ public class WorkerService {
         }
 
     }
-
-    private boolean tryAddWorker(Worker worker, boolean editingWorker) {
+        private boolean tryAddWorker(Worker worker, boolean editingWorker) {
 
             if(editingWorker){
                 workerRepository.save(worker);
@@ -85,8 +87,6 @@ public class WorkerService {
     }
 
 
-    public List<Worker> getWorkers(){
-        return workerRepository.findAll();
-    }
+
 
 }

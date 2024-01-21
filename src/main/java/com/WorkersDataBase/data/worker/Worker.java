@@ -6,9 +6,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.builder.HashCodeExclude;
-import org.hibernate.validator.constraints.pl.PESEL;
-
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity
