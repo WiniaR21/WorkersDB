@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.grid;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -18,12 +19,15 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final PositionService positionService;
+    private final ContractService contractService;
     public WorkersGrid(
             WorkerService workerService,
-            PositionService positionService
+            PositionService positionService,
+            ContractService contractService
     ) {
         this.workerService = workerService;
         this.positionService = positionService;
+        this.contractService = contractService;
 
         configureComponents();
         configureFront();
@@ -102,7 +106,8 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
                         workerService,
                         this,
                         event.getItem(),
-                        positionService
+                        positionService,
+                        contractService
                 );
 
     }

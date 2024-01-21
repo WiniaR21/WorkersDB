@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog.layouts;
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.CloseWriteContract;
@@ -16,35 +17,44 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
     private final PositionService positionService;
-    Worker worker;
+    private final Worker worker;
+    private final ContractService contractService;
 
     public WriteContractLayout(
             WriteContractDialog writeContractDialog,
             PositionService positionService,
-            Worker worker
+            Worker worker,
+            ContractService contractService
     ) {
         this.writeContractDialog = writeContractDialog;
         this.positionService = positionService;
         this.worker = worker;
+        this.contractService = contractService;
 
         configureComponents();
         configureFront();
     }
     //   To configure
-    ComboBox<Position> positions;
+    ComboBox<Position> position;
     SalaryField salaryField;
     CloseWriteContract closeWriteContract;
     WritteContractButton writteContractButton;
 
     @Override
     public void configureComponents() {
-        positions = new ComboBox<>("Wybierz stanowisko");
-        positions.setItems(positionService.getPositions());
-        positions.setItemLabelGenerator(Position::getPositionName);
+        position = new ComboBox<>("Wybierz stanowisko");
+        position.setItems(positionService.getPositions());
+        position.setItemLabelGenerator(Position::getPositionName);
 
         salaryField = new SalaryField();
 
-        writteContractButton = new WritteContractButton(writeContractDialog);
+        writteContractButton = new WritteContractButton(
+                writeContractDialog,
+                worker,
+                salaryField,
+                position,
+                contractService
+        );
 
         closeWriteContract = new CloseWriteContract(writeContractDialog);
     }
@@ -52,7 +62,7 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     @Override
     public void configureFront() {
             add(
-                    positions,
+                    position,
                     salaryField,
                     new HorizontalLayout(writteContractButton, closeWriteContract)
             );

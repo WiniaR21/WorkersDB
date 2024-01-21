@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -11,14 +12,17 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final PositionService positionService;
     private final Worker worker;
     private final boolean workerHasContract;
+    private final ContractService contractService;
     public WritteContractButton(
             PositionService positionService,
             Worker worker,
-            boolean workerHasContract
+            boolean workerHasContract,
+            ContractService contractService
     ) {
         this.positionService = positionService;
         this.worker = worker;
         this.workerHasContract = workerHasContract;
+        this.contractService = contractService;
 
         configureComponents();
         configureFront();
@@ -26,7 +30,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
 
     @Override
     public void clickEvent() {
-        new WriteContractDialog(positionService, worker);
+        new WriteContractDialog(positionService, worker, contractService);
     }
 
     @Override

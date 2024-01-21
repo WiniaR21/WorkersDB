@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -21,13 +22,15 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
     private final FieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
     private final PositionService positionService;
+    private final ContractService contractService;
 
     public ButtonsLayout(
             WorkerService workerService,
             WorkersGrid workersGrid,
             EditWorkerDialog editWorkerDialog,
             FieldsLayout fieldsLayout, Worker workerSelectedFromGrid,
-            PositionService positionService
+            PositionService positionService,
+            ContractService contractService
     ) {
         this.workerService = workerService;
         this.workersGrid = workersGrid;
@@ -35,6 +38,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         this.fieldsLayout = fieldsLayout;
         this.workerSelectedFromGrid = workerSelectedFromGrid;
         this.positionService = positionService;
+        this.contractService = contractService;
 
         configureComponents();
         configureFront();
@@ -62,7 +66,8 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         writteContractButton = new WritteContractButton(
                 positionService,
                 workerSelectedFromGrid,
-                workerSelectedFromGrid.getContract() != null
+                workerSelectedFromGrid.getContract() != null,
+                contractService
         );
     }
 

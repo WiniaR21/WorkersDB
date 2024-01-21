@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view;
 
 
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.service.worker.WorkerService;
@@ -21,10 +22,16 @@ public class MainView extends VerticalLayout implements ComponentCreator {
     // To inject by constructor
     private final WorkerService service;
     private final PositionService positionService;
+    private final ContractService contractService;
     @Autowired
-    public MainView(WorkerService service, PositionService positionService) {
+    public MainView(
+            WorkerService service,
+            PositionService positionService,
+            ContractService contractService
+    ) {
         this.service = service;
         this.positionService = positionService;
+        this.contractService = contractService;
 
         configureComponents();
         configureFront();
@@ -39,7 +46,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-        grid = new WorkersGrid(service, positionService);
+        grid = new WorkersGrid(service, positionService, contractService);
 
         addWorkerDialog = new AddWorkerDialog(service, grid);
 
