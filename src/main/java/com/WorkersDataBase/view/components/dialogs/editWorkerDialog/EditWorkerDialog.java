@@ -10,12 +10,13 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.Getter;
 
+
 @Getter
 public class EditWorkerDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
-    Worker workerSelectedFromGrid;
+    private final Worker workerSelectedFromGrid;
     private final PositionService positionService;
 
     public EditWorkerDialog(

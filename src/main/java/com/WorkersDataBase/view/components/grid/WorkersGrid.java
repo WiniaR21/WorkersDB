@@ -104,6 +104,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
                         event.getItem(),
                         positionService
                 );
+
     }
 
 }

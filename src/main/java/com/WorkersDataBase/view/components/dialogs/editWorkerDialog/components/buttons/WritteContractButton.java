@@ -10,12 +10,15 @@ import com.vaadin.flow.component.button.Button;
 public class WritteContractButton extends Button implements ComponentCreator, ButtonCreator {
     private final PositionService positionService;
     private final Worker worker;
+    private final boolean workerHasContract;
     public WritteContractButton(
             PositionService positionService,
-            Worker worker
+            Worker worker,
+            boolean workerHasContract
     ) {
         this.positionService = positionService;
         this.worker = worker;
+        this.workerHasContract = workerHasContract;
 
         configureComponents();
         configureFront();
@@ -33,7 +36,12 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
 
     @Override
     public void configureFront() {
-        setText("Daj umowę");
+        if (workerHasContract){
+            setText("Zmień umowę");
+        }
+        else{
+            setText("Podpisz umowę");
+        }
         addClickListener(buttonClickEvent -> clickEvent());
     }
 }

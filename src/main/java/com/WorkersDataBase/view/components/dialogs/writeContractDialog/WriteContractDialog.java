@@ -17,6 +17,8 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
 
         configureComponents();
         configureFront();
+
+        //  TODO logika podpisywania kontraktu
     }
 
     //  To configure
