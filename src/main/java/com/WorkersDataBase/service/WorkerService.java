@@ -15,6 +15,7 @@ public class WorkerService {
     private final ContactRepository contactRepository;
     private final WorkerRepository workerRepository;
     private final ServicePushNotification notification;
+    private final WorkerValidTool workerValidTool;
 
     public Optional<Worker> getById(Long id){
         return workerRepository.findById(id);
@@ -38,32 +39,28 @@ public class WorkerService {
 
     }
     private boolean startAddingProcedure(Worker worker, boolean editingWorker){
-        boolean workerHasNotNullFields =
-                !worker.getContact().getEmail().isEmpty() &&
-                        !worker.getFirstName().isEmpty() &&
-                        !worker.getLastName().isEmpty() &&
-                        !worker.getPesel().isEmpty();
 
-        if (workerHasNotNullFields) {
+        if (workerValidTool.workerHasNotNullFields(worker)) {
             return validWorker(worker, editingWorker);
         }
+
         else {
             notification.pushError("Uzupełnij wymagane pola");
             return false;
         }
+
     }
     private boolean validWorker(Worker worker, boolean editingWorker){
-        boolean fNameIsValid = isStringLetters(worker.getFirstName());
-        boolean lNameIsValid = isStringLetters(worker.getLastName());
-        boolean peselIsValid = isStringDigits(worker.getPesel());
 
-        if (fNameIsValid && lNameIsValid && peselIsValid) {
+        if (workerValidTool.noSpecialSymbols(worker)) {
             return tryAddWorker(worker, editingWorker);
         }
+
         else {
             notification.pushError("Usuń znaki specjalne");
             return false;
         }
+
     }
 
     private boolean tryAddWorker(Worker worker, boolean editingWorker) {
@@ -74,12 +71,9 @@ public class WorkerService {
                 return true;
             }
 
-            String email = worker.getContact().getEmail();
-            boolean emailIsUnique = !contactRepository.existsByEmail(email);
-            String pesel = worker.getPesel();
-            boolean peselIsUnique = !workerRepository.existsByPesel(pesel);
 
-            if (emailIsUnique && peselIsUnique) {
+            if (workerValidTool.peselAndEmailUnique(worker, workerRepository, contactRepository))
+            {
                 workerRepository.save(worker);
                 notification.pushSuccess("Dodano nowego pracownika");
                 return true;
@@ -90,22 +84,6 @@ public class WorkerService {
             }
     }
 
-    private boolean isStringLetters(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isLetter(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    public boolean isStringDigits(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public List<Worker> getWorkers(){
         return workerRepository.findAll();
