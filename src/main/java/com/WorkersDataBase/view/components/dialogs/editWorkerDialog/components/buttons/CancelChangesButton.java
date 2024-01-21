@@ -6,7 +6,9 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 
 public class CancelChangesButton extends Button implements ComponentCreator, ButtonCreator {
+    //  To inject by constructor
     private final EditWorkerDialog editWorkerDialog;
+
     public CancelChangesButton(EditWorkerDialog editWorkerDialog) {
         this.editWorkerDialog = editWorkerDialog;
 

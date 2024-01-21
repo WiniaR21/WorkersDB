@@ -10,9 +10,10 @@ import java.util.Set;
 
 public class OpenSettingsButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
-    SettingsDialog settingsDialog;
+    private final SettingsDialog settingsDialog;
     public OpenSettingsButton(SettingsDialog settingsDialog) {
         this.settingsDialog = settingsDialog;
+
         configureComponents();
         configureFront();
     }

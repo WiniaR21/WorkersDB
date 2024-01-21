@@ -16,13 +16,8 @@ import java.util.HashSet;
 import java.util.Set;
 @Getter
 public class SettingsDialog extends Dialog implements ComponentCreator {
-
     //  To inject by constructor
-    WorkersGrid workersGrid;
-
-    // To configure
-    SettingsDialogLayout settingsDialogLayout;
-
+    private final WorkersGrid workersGrid;
 
     public SettingsDialog(WorkersGrid grid) {
         this.workersGrid = grid;
@@ -30,6 +25,10 @@ public class SettingsDialog extends Dialog implements ComponentCreator {
         configureComponents();
         configureFront();
     }
+
+    // To configure
+    SettingsDialogLayout settingsDialogLayout;
+
     @Override
     public void configureComponents(){
         settingsDialogLayout = new SettingsDialogLayout(

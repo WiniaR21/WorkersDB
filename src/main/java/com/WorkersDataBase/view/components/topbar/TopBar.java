@@ -11,13 +11,11 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 public class TopBar extends HorizontalLayout implements ComponentCreator {
 
     //  Inject by constructor
-    WorkersGrid grid;
-    AddWorkerDialog addWorkerDialog;
-    SettingsDialog settingsDialog;
+    private final WorkersGrid grid;
+    private final AddWorkerDialog addWorkerDialog;
+    private final SettingsDialog settingsDialog;
 
-    //  To configure
-    FilterText filterText;
-    ButtonsLayoutTopBar buttonsLayout;
+
     public TopBar(WorkersGrid grid, AddWorkerDialog addWorkerDialog, SettingsDialog settingsDialog) {
        this.grid = grid;
        this.addWorkerDialog = addWorkerDialog;
@@ -27,10 +25,18 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
        configureFront();
     }
 
+    //  To configure
+    FilterText filterText;
+    ButtonsLayoutTopBar buttonsLayout;
+
     @Override
     public void configureComponents() {
         filterText = new FilterText(grid);
-        buttonsLayout = new ButtonsLayoutTopBar(addWorkerDialog, settingsDialog);
+
+        buttonsLayout = new ButtonsLayoutTopBar(
+                addWorkerDialog,
+                settingsDialog
+        );
     }
 
     @Override

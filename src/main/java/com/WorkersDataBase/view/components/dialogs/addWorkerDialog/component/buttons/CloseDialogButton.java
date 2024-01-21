@@ -11,8 +11,9 @@ import lombok.Setter;
 @Setter
 public class CloseDialogButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
-    AddWorkerDialog addWorkerDialog;
-    WorkersGrid workersGrid;
+    private final AddWorkerDialog addWorkerDialog;
+    private final WorkersGrid workersGrid;
+
     public CloseDialogButton(AddWorkerDialog addWorkerDialog, WorkersGrid workersGrid) {
         this.addWorkerDialog = addWorkerDialog;
         this.workersGrid = workersGrid;
@@ -37,7 +38,6 @@ public class CloseDialogButton extends Button implements ComponentCreator, Butto
         setText("Strona główna");
         addClickShortcut(Key.ESCAPE);
         addClickListener(clickEvent -> clickEvent());
-
 
     }
 }

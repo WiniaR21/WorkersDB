@@ -42,23 +42,20 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
     @Override
     public void clickEvent() {
 
-
         if(workerService.workerWithIdExistInDB(workerSelectedFromGrid.getId())){
             Optional<Worker> original = workerService.getById(workerSelectedFromGrid.getId());
             Worker newWorker = getWorkerFromUser();
 
-            original.ifPresent(worker ->
+            original.ifPresent(originalWorker ->
                     new ConfirmEditDialog(
                             workerService,
                             newWorker,
                             workersGrid,
-                            worker
+                            originalWorker
                     ));
-
+            editWorkerDialog.close();
         }
 
-        workersGrid.refresh();
-        editWorkerDialog.close();
     }
 
     @Override

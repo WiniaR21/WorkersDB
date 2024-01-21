@@ -17,17 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @PageTitle("Pracownicy")
 @Route("strona-glowna")
 public class MainView extends VerticalLayout implements ComponentCreator {
-
     // To inject by constructor
     private final WorkerService service;
-
-    //  To configure
-    WorkersGrid grid;
-    AddWorkerDialog addWorkerDialog;
-    SettingsDialog settingsDialog;
-    TopBar topBar;
-    LineBetweenComponents line;
-
 
     @Autowired
     public MainView(WorkerService service) {
@@ -36,6 +27,14 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         configureComponents();
         configureFront();
     }
+
+    //  To configure
+    WorkersGrid grid;
+    AddWorkerDialog addWorkerDialog;
+    SettingsDialog settingsDialog;
+    TopBar topBar;
+    LineBetweenComponents line;
+
     @Override
     public void configureComponents() {
         grid = new WorkersGrid(service);

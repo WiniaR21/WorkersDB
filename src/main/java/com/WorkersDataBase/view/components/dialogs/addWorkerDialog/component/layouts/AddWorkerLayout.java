@@ -6,9 +6,11 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class AddWorkerLayout extends VerticalLayout implements ComponentCreator {
-    HeadlineAddWorker headlineAddWorker;
-    FieldsLayout fieldsLayout;
-    ButtonsLayoutWorkerDialog buttonsLayout;
+    //  To inject by constructor
+    private final HeadlineAddWorker headlineAddWorker;
+    private final FieldsLayout fieldsLayout;
+    private final ButtonsLayoutWorkerDialog buttonsLayout;
+
     public AddWorkerLayout(HeadlineAddWorker headlineAddWorker, FieldsLayout fieldsLayout, ButtonsLayoutWorkerDialog buttonsLayout) {
         this.headlineAddWorker = headlineAddWorker;
         this.fieldsLayout = fieldsLayout;

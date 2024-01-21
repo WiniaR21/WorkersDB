@@ -14,13 +14,8 @@ import lombok.Setter;
 @Setter
 public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
-    AddWorkerDialog addWorkerDialog;
-    SettingsDialog settingsDialog;
-
-    //  To configure
-    AddContractButton addContractButton;
-    AddWorkerButton addWorkerButton;
-    OpenSettingsButton openSettingsButton;
+    private final AddWorkerDialog addWorkerDialog;
+    private final SettingsDialog settingsDialog;
 
     public ButtonsLayoutTopBar(AddWorkerDialog addWorkerDialog, SettingsDialog settingsDialog) {
         this.addWorkerDialog = addWorkerDialog;
@@ -29,6 +24,11 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
         configureComponents();
         configureFront();
     }
+
+    //  To configure
+    AddContractButton addContractButton;
+    AddWorkerButton addWorkerButton;
+    OpenSettingsButton openSettingsButton;
 
     @Override
     public void configureComponents() {

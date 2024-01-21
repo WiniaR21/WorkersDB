@@ -8,7 +8,7 @@ import com.vaadin.flow.component.button.Button;
 
 public class CloseSettingsDialogButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
-    SettingsDialog settingsDialog;
+    private final SettingsDialog settingsDialog;
 
     public CloseSettingsDialogButton(SettingsDialog settingsDialog) {
         this.settingsDialog = settingsDialog;

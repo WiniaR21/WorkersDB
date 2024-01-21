@@ -9,16 +9,10 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 public class SettingsDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
-
     //  To inject by constructor
-    SettingsDialog settingsDialog;
-    WorkersGrid workersGrid;
-    CheckBoxLayout checkBoxLayout;
-
-    //  To configure
-    SaveSettingsButton saveSettingsButton;
-    CloseSettingsDialogButton closeSettingsDialogButton;
-
+    private final SettingsDialog settingsDialog;
+    private final WorkersGrid workersGrid;
+    private final CheckBoxLayout checkBoxLayout;
 
     public SettingsDialogButtonsLayout(
             SettingsDialog settingsDialog,
@@ -32,6 +26,10 @@ public class SettingsDialogButtonsLayout extends HorizontalLayout implements Com
         configureComponents();
         configureFront();
     }
+
+    //  To configure
+    SaveSettingsButton saveSettingsButton;
+    CloseSettingsDialogButton closeSettingsDialogButton;
 
     @Override
     public void configureComponents() {

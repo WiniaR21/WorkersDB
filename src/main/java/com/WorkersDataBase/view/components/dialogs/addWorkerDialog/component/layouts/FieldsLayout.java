@@ -11,14 +11,12 @@ import lombok.Getter;
 
 @Getter
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
-    WorkersFirstNameField workersFirstNameField;
-    WorkersLastNameField workersLastNameField;
-    WorkersEmailField workersEmailField;
-    WorkersPeselField workersPeselField;
+
     public FieldsLayout( ) {
         configureComponents();
         configureFront();
     }
+
     @Override
     public void configureComponents(){
         workersFirstNameField = new WorkersFirstNameField();
@@ -26,6 +24,13 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         workersEmailField = new WorkersEmailField();
         workersPeselField = new WorkersPeselField();
     }
+
+    //  To configure
+    WorkersFirstNameField workersFirstNameField;
+    WorkersLastNameField workersLastNameField;
+    WorkersEmailField workersEmailField;
+    WorkersPeselField workersPeselField;
+
     @Override
     public void configureFront(){
         setAlignItems(Alignment.CENTER);

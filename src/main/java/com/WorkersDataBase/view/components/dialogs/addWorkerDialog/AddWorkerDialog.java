@@ -16,14 +16,7 @@ import lombok.Setter;
 public class AddWorkerDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService service;
-    WorkersGrid workersGrid;
-
-    // To configure
-    FieldsLayout fieldsLayout;
-    ButtonsLayoutWorkerDialog buttonsLayout;
-    HeadlineAddWorker headlineAddWorker;
-    AddWorkerLayout addWorkerLayout;
-
+    private final WorkersGrid workersGrid;
 
     public AddWorkerDialog(WorkerService service, WorkersGrid workersGrid) {
         this.service = service;
@@ -32,6 +25,13 @@ public class AddWorkerDialog extends Dialog implements ComponentCreator {
         configureComponents();
         configureFront();
     }
+
+    // To configure
+    FieldsLayout fieldsLayout;
+    ButtonsLayoutWorkerDialog buttonsLayout;
+    HeadlineAddWorker headlineAddWorker;
+    AddWorkerLayout addWorkerLayout;
+
     @Override
     public void configureComponents(){
         fieldsLayout = new FieldsLayout();

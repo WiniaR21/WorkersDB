@@ -55,20 +55,41 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     }
     public void setBySetting(Set<String> checkBoxValue){
         grid.removeAllColumns();
+
         if(checkBoxValue.contains("Imie")){
-            grid.addColumn("firstName").setTextAlign(ColumnTextAlign.CENTER);
-            grid.getColumnByKey("firstName").setHeader("Imie");
+            grid
+                    .addColumn("firstName")
+                    .setTextAlign(ColumnTextAlign.CENTER);
+            grid
+                    .getColumnByKey("firstName")
+                    .setHeader("Imie");
         }
+
         if (checkBoxValue.contains("Nazwisko")){
-            grid.addColumn("lastName").setTextAlign(ColumnTextAlign.CENTER);
-            grid.getColumnByKey("lastName").setHeader("Nazwisko");
+            grid
+                    .addColumn("lastName")
+                    .setTextAlign(ColumnTextAlign.CENTER);
+
+            grid
+                    .getColumnByKey("lastName")
+                    .setHeader("Nazwisko");
         }
         if (checkBoxValue.contains("PESEL")){
-            grid.addColumn("pesel").setTextAlign(ColumnTextAlign.CENTER);
-            grid.getColumnByKey("pesel").setHeader("PESEL");
+            grid
+                    .addColumn("pesel").
+                    setTextAlign(ColumnTextAlign.CENTER);
+            grid
+                    .getColumnByKey("pesel")
+                    .setHeader("PESEL");
         }
         if (checkBoxValue.contains("Email")){
-            grid.addColumn(worker -> worker.getContact().getEmail()).setHeader("Email").setTextAlign(ColumnTextAlign.CENTER);
+            grid
+                    .addColumn(
+                            worker -> worker
+                                    .getContact()
+                                    .getEmail())
+                    .setHeader("Email")
+                    .setTextAlign(ColumnTextAlign.CENTER);
         }
     }
     private void gridWorkerClickEvent(ItemClickEvent<Worker> event){

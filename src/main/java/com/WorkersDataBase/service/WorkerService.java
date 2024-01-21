@@ -22,6 +22,9 @@ public class WorkerService {
     public boolean workerWithIdExistInDB(Long id){
         return workerRepository.existsById(id);
     }
+
+
+    //  addWorker returns true if adding was successful
     @Transactional
     public boolean addWorker(Worker worker, boolean editingWorker){
         boolean workerIsNotNull = worker != null;
@@ -32,6 +35,7 @@ public class WorkerService {
             notification.pushError("Coś poszło nie tak");
             return false;
         }
+
     }
     private boolean startAddingProcedure(Worker worker, boolean editingWorker){
         boolean workerHasNotNullFields =
@@ -84,8 +88,6 @@ public class WorkerService {
                 notification.pushInfo("PESEL oraz Email powinny być unikalne");
                 return false;
             }
-
-
     }
 
     private boolean isStringLetters(String str) {

@@ -7,7 +7,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 
 public class FilterText extends TextField implements ComponentCreator {
     //  To inject by constructor
-    WorkersGrid grid;
+    private final WorkersGrid grid;
     public FilterText(WorkersGrid grid) {
         this.grid = grid;
 

@@ -15,12 +15,11 @@ import lombok.Setter;
 
 @Setter
 public class SaveWorkerButton extends Button implements ComponentCreator, ButtonCreator {
-
     //  To inject by constructor
     private final WorkerService service;
-    FieldsLayout fieldsLayout;
-    WorkersGrid workersGrid;
-    AddWorkerDialog addWorkerDialog;
+    private final FieldsLayout fieldsLayout;
+    private final WorkersGrid workersGrid;
+    private final AddWorkerDialog addWorkerDialog;
 
     public SaveWorkerButton(
             WorkerService service,

@@ -12,17 +12,11 @@ import lombok.Getter;
 
 @Getter
 public class ButtonsLayoutWorkerDialog extends HorizontalLayout implements ComponentCreator {
-
     //  To inject by constructor
     private final WorkerService workerService;
-    AddWorkerDialog addWorkerDialog;
-    WorkersGrid workersGrid;
-    FieldsLayout fieldsLayout;
-
-
-    // To configure
-    SaveWorkerButton saveWorkerButton;
-    CloseDialogButton closeDialogButton;
+    private final AddWorkerDialog addWorkerDialog;
+    private final WorkersGrid workersGrid;
+    private final FieldsLayout fieldsLayout;
 
     public ButtonsLayoutWorkerDialog(
             WorkerService workerService,
@@ -30,7 +24,6 @@ public class ButtonsLayoutWorkerDialog extends HorizontalLayout implements Compo
             WorkersGrid workersGrid,
             FieldsLayout fieldsLayout
     ){
-
         this.workerService = workerService;
         this.addWorkerDialog = addWorkerDialog;
         this.workersGrid = workersGrid;
@@ -39,6 +32,10 @@ public class ButtonsLayoutWorkerDialog extends HorizontalLayout implements Compo
         configureComponents();
         configureFront();
     }
+
+    // To configure
+    SaveWorkerButton saveWorkerButton;
+    CloseDialogButton closeDialogButton;
 
     @Override
     public void configureComponents(){

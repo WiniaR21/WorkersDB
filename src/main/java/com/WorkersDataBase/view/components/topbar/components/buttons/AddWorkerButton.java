@@ -9,9 +9,10 @@ import com.vaadin.flow.component.button.ButtonVariant;
 
 public class AddWorkerButton extends Button implements ComponentCreator, ButtonCreator {
     // To inject by constructor
-    AddWorkerDialog addWorkerDialog;
+    private final AddWorkerDialog addWorkerDialog;
     public AddWorkerButton(AddWorkerDialog addWorkerDialog) {
        this.addWorkerDialog = addWorkerDialog;
+
        configureComponents();
        configureFront();
     }

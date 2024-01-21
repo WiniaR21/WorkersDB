@@ -10,13 +10,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class SettingsDialogLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
-    SettingsDialog settingsDialog;
-    WorkersGrid workersGrid;
+    private final SettingsDialog settingsDialog;
+    private final WorkersGrid workersGrid;
 
-    //  To configure
-    HeaderSettings headerSettings;
-    CheckBoxLayout checkBoxLayout;
-    SettingsDialogButtonsLayout settingsDialogButtonsLayout;
     public SettingsDialogLayout(
             SettingsDialog settingsDialog,
             WorkersGrid workersGrid
@@ -27,6 +23,11 @@ public class SettingsDialogLayout extends VerticalLayout implements ComponentCre
         configureComponents();
         configureFront();
     }
+
+    //  To configure
+    HeaderSettings headerSettings;
+    CheckBoxLayout checkBoxLayout;
+    SettingsDialogButtonsLayout settingsDialogButtonsLayout;
 
     @Override
     public void configureComponents() {

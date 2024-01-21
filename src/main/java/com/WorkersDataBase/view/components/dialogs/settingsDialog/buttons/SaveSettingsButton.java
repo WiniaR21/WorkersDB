@@ -11,11 +11,15 @@ import com.vaadin.flow.component.button.ButtonVariant;
 
 public class SaveSettingsButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
-    WorkersGrid workersGrid;
-    CheckBoxLayout checkBoxLayout;
-    SettingsDialog settingsDialog;
+    private final WorkersGrid workersGrid;
+    private final CheckBoxLayout checkBoxLayout;
+    private final SettingsDialog settingsDialog;
 
-    public SaveSettingsButton(WorkersGrid workersGrid, SettingsDialog settingsDialog, CheckBoxLayout checkBoxLayout) {
+    public SaveSettingsButton(
+            WorkersGrid workersGrid,
+            SettingsDialog settingsDialog,
+            CheckBoxLayout checkBoxLayout
+    ) {
         this.workersGrid = workersGrid;
         this.settingsDialog = settingsDialog;
         this.checkBoxLayout = checkBoxLayout;
