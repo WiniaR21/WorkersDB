@@ -1,5 +1,6 @@
-package com.WorkersDataBase.data.contract;
+package com.WorkersDataBase.data.position;
 
+import com.WorkersDataBase.data.contract.Contract;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,6 @@ public class Position {
     private String positionName;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "position",orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "position", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Contract> contracts = new ArrayList<>();
 }

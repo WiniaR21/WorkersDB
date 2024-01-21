@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog.layouts;
 
-import com.WorkersDataBase.data.contract.Position;
+import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
@@ -48,7 +48,8 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
         positions.setItems(positionService.getPositions());
         positions.setItemLabelGenerator(Position::getPositionName);
 
-        removePositionButton = new RemovePositionButton(positions, positionService);
+        removePositionButton = new RemovePositionButton(
+                positions, positionService, removePositionDialog);
 
         closeRemovePositionDialog = new CloseRemovePositionDialog(
                 removePositionDialog, manageCompanyDialog

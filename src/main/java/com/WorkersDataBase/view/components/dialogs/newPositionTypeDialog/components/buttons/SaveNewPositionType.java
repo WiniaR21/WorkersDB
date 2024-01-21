@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons;
 
 import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.dataFields.PositionNameField;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -9,11 +10,19 @@ import com.vaadin.flow.component.button.ButtonVariant;
 
 
 public class SaveNewPositionType extends Button implements ComponentCreator, ButtonCreator {
+    //  To inject by constructor
     private final PositionNameField positionNameField;
     private final PositionService positionService;
-    public SaveNewPositionType(PositionNameField positionNameField, PositionService positionService) {
+    private final NewPositionTypeDialog newPositionTypeDialog;
+
+    public SaveNewPositionType(
+            PositionNameField positionNameField,
+            PositionService positionService,
+            NewPositionTypeDialog newPositionTypeDialog
+    ) {
         this.positionNameField = positionNameField;
         this.positionService = positionService;
+        this.newPositionTypeDialog = newPositionTypeDialog;
 
         configureComponents();
         configureFront();
@@ -22,7 +31,9 @@ public class SaveNewPositionType extends Button implements ComponentCreator, But
     @Override
     public void clickEvent() {
         String positionName = positionNameField.getValue();
-        positionService.addNewPositionType(positionName);
+
+        boolean success = positionService.addNewPositionType(positionName);
+        if(success) newPositionTypeDialog.close();
     }
 
     @Override

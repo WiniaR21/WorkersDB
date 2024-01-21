@@ -1,7 +1,8 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog.buttons;
 
-import com.WorkersDataBase.data.contract.Position;
+import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
@@ -9,14 +10,19 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 
 public class RemovePositionButton extends Button implements ComponentCreator, ButtonCreator {
+    //  To inject by constructor
     private final ComboBox<Position> positions;
     private final PositionService positionService;
+    private final RemovePositionDialog removePositionDialog;
+
     public RemovePositionButton(
             ComboBox<Position> positions,
-            PositionService positionService
+            PositionService positionService,
+            RemovePositionDialog removePositionDialog
     ) {
         this.positions = positions;
         this.positionService = positionService;
+        this.removePositionDialog = removePositionDialog;
 
         configureComponents();
         configureFront();
@@ -24,7 +30,8 @@ public class RemovePositionButton extends Button implements ComponentCreator, Bu
 
     @Override
     public void clickEvent() {
-        positionService.deletePosition(positions.getValue());
+        boolean success = positionService.deletePosition(positions.getValue());
+        if (success) removePositionDialog.close();
     }
 
     @Override

@@ -1,9 +1,9 @@
-package com.WorkersDataBase.data.contract;
+package com.WorkersDataBase.data.position;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PositionRepository extends JpaRepository<Position,Long> {
-    void deleteByPositionName(String positionName);
+   boolean existsByPositionName(String positionName);
 }

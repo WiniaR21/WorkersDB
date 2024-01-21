@@ -47,7 +47,8 @@ public class NewPositionDialogLayout extends VerticalLayout implements Component
         cancelNewPositionTypeDialog = new CancelNewPositionTypeDialog(
                 newPositionTypeDialog, manageCompanyDialog);
 
-        saveNewPositionType = new SaveNewPositionType(positionNameField, positionService);
+        saveNewPositionType = new SaveNewPositionType(
+                positionNameField, positionService, newPositionTypeDialog);
     }
 
     @Override
