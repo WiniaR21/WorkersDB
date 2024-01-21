@@ -12,15 +12,18 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     private final PositionService positionService;
     private final Worker worker;
     private final ContractService contractService;
+    private final boolean workerHasContract;
 
     public WriteContractDialog(
             PositionService positionService,
             Worker worker,
-            ContractService contractService
+            ContractService contractService,
+            boolean workerHasContract
     ) {
         this.positionService = positionService;
         this.worker = worker;
         this.contractService = contractService;
+        this.workerHasContract = workerHasContract;
 
         configureComponents();
         configureFront();
@@ -35,7 +38,8 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
                 this,
                 positionService,
                 worker,
-                contractService
+                contractService,
+                workerHasContract
         );
     }
 

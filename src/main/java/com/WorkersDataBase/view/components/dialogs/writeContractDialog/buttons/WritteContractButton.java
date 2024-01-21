@@ -19,19 +19,22 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final SalaryField salaryField;
     private final ComboBox<Position> position;
     private final ContractService contractService;
+    private final boolean workerHasContract;
 
     public WritteContractButton(
             WriteContractDialog writeContractDialog,
             Worker worker,
             SalaryField salaryField,
             ComboBox<Position> position,
-            ContractService contractService
+            ContractService contractService,
+            boolean workerHasContract
     ) {
         this.writeContractDialog = writeContractDialog;
         this.worker = worker;
         this.salaryField = salaryField;
         this.position = position;
         this.contractService = contractService;
+        this.workerHasContract = workerHasContract;
 
         configureComponents();
         configureFront();
@@ -40,7 +43,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     @Override
     public void clickEvent() {
         Contract contract = getContractFromUser();
-        boolean success = contractService.writeContractWithWorker(worker, contract);
+        boolean success = contractService.writeContractWithWorker(worker, contract, workerHasContract);
         if (success) writeContractDialog.close();
     }
 

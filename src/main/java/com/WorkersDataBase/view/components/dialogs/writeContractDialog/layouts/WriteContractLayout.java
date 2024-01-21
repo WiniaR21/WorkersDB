@@ -19,17 +19,20 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     private final PositionService positionService;
     private final Worker worker;
     private final ContractService contractService;
+    private final boolean workerHasContract;
 
     public WriteContractLayout(
             WriteContractDialog writeContractDialog,
             PositionService positionService,
             Worker worker,
-            ContractService contractService
+            ContractService contractService,
+            boolean workerHasContract
     ) {
         this.writeContractDialog = writeContractDialog;
         this.positionService = positionService;
         this.worker = worker;
         this.contractService = contractService;
+        this.workerHasContract = workerHasContract;
 
         configureComponents();
         configureFront();
@@ -53,7 +56,8 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 worker,
                 salaryField,
                 position,
-                contractService
+                contractService,
+                workerHasContract
         );
 
         closeWriteContract = new CloseWriteContract(writeContractDialog);

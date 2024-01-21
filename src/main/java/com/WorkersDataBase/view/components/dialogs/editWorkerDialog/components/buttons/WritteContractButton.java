@@ -30,7 +30,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
 
     @Override
     public void clickEvent() {
-        new WriteContractDialog(positionService, worker, contractService);
+        new WriteContractDialog(positionService, worker, contractService, workerHasContract);
     }
 
     @Override
