@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.topbar.components.buttons;
 
-import com.WorkersDataBase.service.contract.PositionService;
+import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

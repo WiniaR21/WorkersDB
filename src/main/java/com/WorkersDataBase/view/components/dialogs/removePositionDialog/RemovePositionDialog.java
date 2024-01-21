@@ -1,17 +1,17 @@
-package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog;
+package com.WorkersDataBase.view.components.dialogs.removePositionDialog;
 
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
-import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts.NewPositionDialogLayout;
+import com.WorkersDataBase.view.components.dialogs.removePositionDialog.layouts.RemovePositionLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 
-public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
-    // To inject by constructor
+public class RemovePositionDialog extends Dialog implements ComponentCreator {
+    //  To inject by constructor
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;
 
-    public NewPositionTypeDialog(
+    public RemovePositionDialog(
             PositionService positionService,
             ManageCompanyDialog manageCompanyDialog
     ) {
@@ -23,17 +23,19 @@ public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
     }
 
     //  To configure
-    NewPositionDialogLayout newPositionDialogLayout;
-
+    RemovePositionLayout removePositionLayout;
     @Override
     public void configureComponents() {
-        newPositionDialogLayout = new NewPositionDialogLayout(
-                this, positionService, manageCompanyDialog);
+        removePositionLayout = new RemovePositionLayout(
+                positionService,
+                this,
+                manageCompanyDialog
+        );
     }
 
     @Override
     public void configureFront() {
-        add(newPositionDialogLayout);
+        add(removePositionLayout);
         open();
     }
 }

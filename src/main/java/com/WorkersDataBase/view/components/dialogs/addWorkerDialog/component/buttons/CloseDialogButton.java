@@ -6,17 +6,17 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.Setter;
 
 @Setter
 public class CloseDialogButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final AddWorkerDialog addWorkerDialog;
-    private final WorkersGrid workersGrid;
 
-    public CloseDialogButton(AddWorkerDialog addWorkerDialog, WorkersGrid workersGrid) {
+    public CloseDialogButton(AddWorkerDialog addWorkerDialog) {
         this.addWorkerDialog = addWorkerDialog;
-        this.workersGrid = workersGrid;
+
 
         configureComponents();
         configureFront();
@@ -25,7 +25,6 @@ public class CloseDialogButton extends Button implements ComponentCreator, Butto
     @Override
     public void clickEvent() {
         addWorkerDialog.close();
-        workersGrid.refresh();
     }
 
     @Override
@@ -35,10 +34,10 @@ public class CloseDialogButton extends Button implements ComponentCreator, Butto
 
     @Override
     public void configureFront() {
-        setText("Strona główna");
+        setText("Cofnij");
         addClickShortcut(Key.ESCAPE);
         addClickListener(clickEvent -> clickEvent());
-
+        addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     }
 }
 

@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view;
 
 
-import com.WorkersDataBase.service.contract.PositionService;
+import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;

@@ -1,4 +1,4 @@
-package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.dataFields;
+package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.dataFields;
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;

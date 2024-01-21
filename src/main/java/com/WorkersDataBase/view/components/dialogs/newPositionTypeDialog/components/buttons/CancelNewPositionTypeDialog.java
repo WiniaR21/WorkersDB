@@ -1,15 +1,22 @@
-package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.buttons;
+package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons;
 
+import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 
 public class CancelNewPositionTypeDialog extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final NewPositionTypeDialog newPositionTypeDialog;
-    public CancelNewPositionTypeDialog(NewPositionTypeDialog newPositionTypeDialog) {
+    private final ManageCompanyDialog manageCompanyDialog;
+    public CancelNewPositionTypeDialog(
+            NewPositionTypeDialog newPositionTypeDialog,
+            ManageCompanyDialog manageCompanyDialog
+    ) {
         this.newPositionTypeDialog = newPositionTypeDialog;
+        this.manageCompanyDialog = manageCompanyDialog;
 
         configureComponents();
         configureFront();
@@ -18,6 +25,7 @@ public class CancelNewPositionTypeDialog extends Button implements ComponentCrea
     @Override
     public void clickEvent() {
         newPositionTypeDialog.close();
+        manageCompanyDialog.open();
     }
 
     @Override
@@ -29,5 +37,6 @@ public class CancelNewPositionTypeDialog extends Button implements ComponentCrea
     public void configureFront() {
         setText("Cofnij");
         addClickListener(e -> clickEvent());
+        addThemeVariants(ButtonVariant.LUMO_PRIMARY);
     }
 }

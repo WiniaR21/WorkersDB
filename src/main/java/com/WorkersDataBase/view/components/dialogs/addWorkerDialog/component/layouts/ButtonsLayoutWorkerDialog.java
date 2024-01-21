@@ -40,7 +40,7 @@ public class ButtonsLayoutWorkerDialog extends HorizontalLayout implements Compo
     @Override
     public void configureComponents(){
         saveWorkerButton = new SaveWorkerButton(workerService, fieldsLayout, workersGrid, addWorkerDialog);
-        closeDialogButton = new CloseDialogButton(addWorkerDialog, workersGrid);
+        closeDialogButton = new CloseDialogButton(addWorkerDialog);
     }
     @Override
     public void configureFront(){

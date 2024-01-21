@@ -50,7 +50,7 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
     public void configureFront() {
         setText("Zapisz");
         addClickListener(clickEvent -> clickEvent());
-        addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         addClickShortcut(Key.ENTER);
     }
     private void addWorkerToDB(){

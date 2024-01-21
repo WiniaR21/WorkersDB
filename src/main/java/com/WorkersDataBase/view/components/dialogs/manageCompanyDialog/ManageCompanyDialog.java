@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog;
 
-import com.WorkersDataBase.service.contract.PositionService;
+import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.layouts.DialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
