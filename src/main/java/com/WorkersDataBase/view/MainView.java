@@ -1,8 +1,9 @@
 package com.WorkersDataBase.view;
 
 
+import com.WorkersDataBase.service.contract.PositionService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.components.line.LineBetweenComponents;
 import com.WorkersDataBase.view.components.topbar.TopBar;
@@ -19,10 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MainView extends VerticalLayout implements ComponentCreator {
     // To inject by constructor
     private final WorkerService service;
-
+    private final PositionService positionService;
     @Autowired
-    public MainView(WorkerService service) {
+    public MainView(WorkerService service, PositionService positionService) {
         this.service = service;
+        this.positionService = positionService;
 
         configureComponents();
         configureFront();
@@ -43,7 +45,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
 
         settingsDialog = new SettingsDialog(grid);
 
-        topBar = new TopBar(grid,addWorkerDialog,settingsDialog);
+        topBar = new TopBar(grid,addWorkerDialog,settingsDialog, positionService);
 
         line = new LineBetweenComponents();
     }

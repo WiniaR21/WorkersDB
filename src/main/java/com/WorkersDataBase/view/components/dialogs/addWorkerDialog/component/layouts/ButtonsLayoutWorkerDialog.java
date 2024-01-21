@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts;
 
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

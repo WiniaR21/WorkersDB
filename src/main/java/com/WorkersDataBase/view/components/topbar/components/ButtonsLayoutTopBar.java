@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.topbar.components;
 
+import com.WorkersDataBase.service.contract.PositionService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.topbar.components.buttons.AddContractButton;
@@ -16,10 +17,16 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     //  To inject by constructor
     private final AddWorkerDialog addWorkerDialog;
     private final SettingsDialog settingsDialog;
+    private final PositionService positionService;
 
-    public ButtonsLayoutTopBar(AddWorkerDialog addWorkerDialog, SettingsDialog settingsDialog) {
+    public ButtonsLayoutTopBar(
+            AddWorkerDialog addWorkerDialog,
+            SettingsDialog settingsDialog,
+            PositionService positionService
+    ) {
         this.addWorkerDialog = addWorkerDialog;
         this.settingsDialog = settingsDialog;
+        this.positionService = positionService;
 
         configureComponents();
         configureFront();
@@ -32,7 +39,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
 
     @Override
     public void configureComponents() {
-        addContractButton = new AddContractButton();
+        addContractButton = new AddContractButton(positionService);
         addWorkerButton = new AddWorkerButton(addWorkerDialog);
         openSettingsButton = new OpenSettingsButton(settingsDialog);
     }

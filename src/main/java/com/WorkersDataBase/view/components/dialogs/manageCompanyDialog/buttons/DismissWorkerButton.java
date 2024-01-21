@@ -5,9 +5,14 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 
 public class DismissWorkerButton extends Button implements ComponentCreator, ButtonCreator {
+    public DismissWorkerButton() {
+        configureComponents();
+        configureFront();
+    }
+
     @Override
     public void clickEvent() {
-        
+        System.out.println(this);
     }
 
     @Override
@@ -17,6 +22,7 @@ public class DismissWorkerButton extends Button implements ComponentCreator, But
 
     @Override
     public void configureFront() {
-
+        setText("Zwolnij pracownika");
+        addClickListener(e -> clickEvent());
     }
 }

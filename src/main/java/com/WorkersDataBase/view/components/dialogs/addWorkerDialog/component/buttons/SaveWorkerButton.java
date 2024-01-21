@@ -4,7 +4,7 @@ import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDial
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.FieldsLayout;
 import com.WorkersDataBase.data.contact.Contact;
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

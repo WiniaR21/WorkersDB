@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog;
 
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.DialogLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

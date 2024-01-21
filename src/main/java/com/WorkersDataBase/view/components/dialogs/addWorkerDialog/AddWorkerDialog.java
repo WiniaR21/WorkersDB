@@ -6,7 +6,7 @@ import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.Hea
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.ButtonsLayoutWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.AddWorkerLayout;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.FieldsLayout;
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.Getter;
 import lombok.Setter;

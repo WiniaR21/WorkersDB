@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.topbar;
 
+import com.WorkersDataBase.service.contract.PositionService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -14,15 +15,21 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
     private final WorkersGrid grid;
     private final AddWorkerDialog addWorkerDialog;
     private final SettingsDialog settingsDialog;
+    private final PositionService positionService;
 
+    public TopBar(
+            WorkersGrid grid,
+            AddWorkerDialog addWorkerDialog,
+            SettingsDialog settingsDialog,
+            PositionService positionService
+    ) {
+        this.grid = grid;
+        this.addWorkerDialog = addWorkerDialog;
+        this.settingsDialog = settingsDialog;
+        this.positionService = positionService;
 
-    public TopBar(WorkersGrid grid, AddWorkerDialog addWorkerDialog, SettingsDialog settingsDialog) {
-       this.grid = grid;
-       this.addWorkerDialog = addWorkerDialog;
-       this.settingsDialog = settingsDialog;
-
-       configureComponents();
-       configureFront();
+        configureComponents();
+        configureFront();
     }
 
     //  To configure
@@ -35,7 +42,8 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
 
         buttonsLayout = new ButtonsLayoutTopBar(
                 addWorkerDialog,
-                settingsDialog
+                settingsDialog,
+                positionService
         );
     }
 

@@ -1,4 +1,4 @@
-package com.WorkersDataBase.service;
+package com.WorkersDataBase.service.worker;
 
 import com.WorkersDataBase.data.contact.ContactRepository;
 import com.WorkersDataBase.data.worker.Worker;

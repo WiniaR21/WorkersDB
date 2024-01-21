@@ -1,8 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.buttons.ConfirmButton;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.buttons.RejectButton;
@@ -10,7 +9,6 @@ import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import org.hibernate.jdbc.Work;
 
 public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor

@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.FieldsLayout;
