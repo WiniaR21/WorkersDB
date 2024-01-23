@@ -7,20 +7,14 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Setter
+@RequiredArgsConstructor
 public class CloseDialogButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final AddWorkerDialog addWorkerDialog;
-
-    public CloseDialogButton(AddWorkerDialog addWorkerDialog) {
-        this.addWorkerDialog = addWorkerDialog;
-
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

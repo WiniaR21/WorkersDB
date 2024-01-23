@@ -2,10 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.addWorkerDialog;
 
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.HeadlineAddWorker;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.ButtonsLayoutWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.AddWorkerLayout;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.FieldsLayout;
+import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.AddWorkerDialogLayout;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.Getter;
@@ -15,11 +12,11 @@ import lombok.Setter;
 @Setter
 public class AddWorkerDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
-    private final WorkerService service;
+    private final WorkerService workerService;
     private final WorkersGrid workersGrid;
 
-    public AddWorkerDialog(WorkerService service, WorkersGrid workersGrid) {
-        this.service = service;
+    public AddWorkerDialog(WorkerService workerService, WorkersGrid workersGrid) {
+        this.workerService = workerService;
         this.workersGrid = workersGrid;
 
         configureComponents();
@@ -27,25 +24,18 @@ public class AddWorkerDialog extends Dialog implements ComponentCreator {
     }
 
     // To configure
-    FieldsLayout fieldsLayout;
-    ButtonsLayoutWorkerDialog buttonsLayout;
-    HeadlineAddWorker headlineAddWorker;
-    AddWorkerLayout addWorkerLayout;
+    AddWorkerDialogLayout addWorkerDialogLayout;
 
     @Override
     public void configureComponents(){
-        fieldsLayout = new FieldsLayout();
 
-        buttonsLayout = new ButtonsLayoutWorkerDialog(service,this, workersGrid, fieldsLayout);
-
-        headlineAddWorker = new HeadlineAddWorker();
-
-        addWorkerLayout = new AddWorkerLayout(headlineAddWorker, fieldsLayout,buttonsLayout);
+        addWorkerDialogLayout = new AddWorkerDialogLayout(
+                workerService, workersGrid, this
+        );
     }
     @Override
     public void configureFront(){
         setModal(true);
-        setCloseOnOutsideClick(false);
-        add(addWorkerLayout);
+        add(addWorkerDialogLayout);
     }
 }
