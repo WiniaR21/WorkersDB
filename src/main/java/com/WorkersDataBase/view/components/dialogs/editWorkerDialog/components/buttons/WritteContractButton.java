@@ -41,6 +41,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
                 workerHasContract,
                 editWorkerDialog
         );
+
+        editWorkerDialog.close();
     }
 
     @Override

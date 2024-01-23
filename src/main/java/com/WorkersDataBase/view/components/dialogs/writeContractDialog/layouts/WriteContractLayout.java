@@ -11,6 +11,7 @@ import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.W
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.SalaryField;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
@@ -22,6 +23,7 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     private final ContractService contractService;
     private final boolean workerHasContract;
     private final EditWorkerDialog editWorkerDialog;
+
 
     public WriteContractLayout(
             WriteContractDialog writeContractDialog,
@@ -46,9 +48,20 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     SalaryField salaryField;
     CloseWriteContract closeWriteContract;
     WritteContractButton writteContractButton;
+    H3 header;
 
     @Override
     public void configureComponents() {
+
+        if(workerHasContract) header = new H3("Zmień umowę");
+        else header = new H3("Podpisz nową umowę");
+
+        header.getStyle()
+                .set("margin", "var(--lumo-space-m) 0 0 0")
+                .set("font-size", "1.5em").set("font-weight", "bold");
+
+
+
         position = new ComboBox<>("Wybierz stanowisko");
         position.setItems(positionService.getPositions());
         position.setItemLabelGenerator(Position::getPositionName);
@@ -65,12 +78,14 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 editWorkerDialog
         );
 
-        closeWriteContract = new CloseWriteContract(writeContractDialog);
+        closeWriteContract = new CloseWriteContract(
+                writeContractDialog, editWorkerDialog);
     }
 
     @Override
     public void configureFront() {
             add(
+                    header,
                     position,
                     salaryField,
                     new HorizontalLayout(writteContractButton, closeWriteContract)
