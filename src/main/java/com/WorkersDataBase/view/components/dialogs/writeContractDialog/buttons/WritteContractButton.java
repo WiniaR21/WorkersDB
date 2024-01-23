@@ -4,6 +4,7 @@ import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.SalaryField;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -20,6 +21,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final ComboBox<Position> position;
     private final ContractService contractService;
     private final boolean workerHasContract;
+    private final EditWorkerDialog editWorkerDialog;
 
     public WritteContractButton(
             WriteContractDialog writeContractDialog,
@@ -27,7 +29,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
             SalaryField salaryField,
             ComboBox<Position> position,
             ContractService contractService,
-            boolean workerHasContract
+            boolean workerHasContract,
+            EditWorkerDialog editWorkerDialog
     ) {
         this.writeContractDialog = writeContractDialog;
         this.worker = worker;
@@ -35,6 +38,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
         this.position = position;
         this.contractService = contractService;
         this.workerHasContract = workerHasContract;
+        this.editWorkerDialog = editWorkerDialog;
 
         configureComponents();
         configureFront();
@@ -42,9 +46,13 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
 
     @Override
     public void clickEvent() {
-        Contract contract = getContractFromUser();
-        boolean success = contractService.writeContractWithWorker(worker, contract, workerHasContract);
-        if (success) writeContractDialog.close();
+        boolean success = contractService.writeContractWithWorker(
+                worker, getPositionFromUser(), getSalaryFromUser(),workerHasContract);
+
+        if (success) {
+            writeContractDialog.close();
+            editWorkerDialog.close();
+        }
     }
 
     @Override
@@ -58,11 +66,10 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
         addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         addClickListener(e -> clickEvent());
     }
-    private Contract getContractFromUser(){
-        Contract contract = new Contract();
-        contract.setPosition(position.getValue());
-        contract.setSalary(salaryField.getValue());
-        contract.setWorker(worker);
-        return contract;
+    private String getPositionFromUser(){
+        return position.getValue().getPositionName();
+    }
+    private double getSalaryFromUser(){
+        return salaryField.getValue();
     }
 }

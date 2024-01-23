@@ -4,6 +4,7 @@ import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.CloseWriteContract;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.WritteContractButton;
@@ -20,19 +21,22 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     private final Worker worker;
     private final ContractService contractService;
     private final boolean workerHasContract;
+    private final EditWorkerDialog editWorkerDialog;
 
     public WriteContractLayout(
             WriteContractDialog writeContractDialog,
             PositionService positionService,
             Worker worker,
             ContractService contractService,
-            boolean workerHasContract
+            boolean workerHasContract,
+            EditWorkerDialog editWorkerDialog
     ) {
         this.writeContractDialog = writeContractDialog;
         this.positionService = positionService;
         this.worker = worker;
         this.contractService = contractService;
         this.workerHasContract = workerHasContract;
+        this.editWorkerDialog = editWorkerDialog;
 
         configureComponents();
         configureFront();
@@ -57,7 +61,8 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 salaryField,
                 position,
                 contractService,
-                workerHasContract
+                workerHasContract,
+                editWorkerDialog
         );
 
         closeWriteContract = new CloseWriteContract(writeContractDialog);

@@ -20,16 +20,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Route("strona-glowna")
 public class MainView extends VerticalLayout implements ComponentCreator {
     // To inject by constructor
-    private final WorkerService service;
+    private final WorkerService workerService;
     private final PositionService positionService;
     private final ContractService contractService;
     @Autowired
     public MainView(
-            WorkerService service,
+            WorkerService workerService,
             PositionService positionService,
             ContractService contractService
     ) {
-        this.service = service;
+        this.workerService = workerService;
         this.positionService = positionService;
         this.contractService = contractService;
 
@@ -46,9 +46,9 @@ public class MainView extends VerticalLayout implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-        grid = new WorkersGrid(service, positionService, contractService);
+        grid = new WorkersGrid(workerService, positionService, contractService);
 
-        addWorkerDialog = new AddWorkerDialog(service, grid);
+        addWorkerDialog = new AddWorkerDialog(workerService, grid);
 
         settingsDialog = new SettingsDialog(grid);
 

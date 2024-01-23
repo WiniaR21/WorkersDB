@@ -3,6 +3,7 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.layouts.WriteContractLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -13,17 +14,21 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     private final Worker worker;
     private final ContractService contractService;
     private final boolean workerHasContract;
+    private final EditWorkerDialog editWorkerDialog;
+
 
     public WriteContractDialog(
             PositionService positionService,
             Worker worker,
             ContractService contractService,
-            boolean workerHasContract
+            boolean workerHasContract,
+            EditWorkerDialog editWorkerDialog
     ) {
         this.positionService = positionService;
         this.worker = worker;
         this.contractService = contractService;
         this.workerHasContract = workerHasContract;
+        this.editWorkerDialog = editWorkerDialog;
 
         configureComponents();
         configureFront();
@@ -39,7 +44,8 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
                 positionService,
                 worker,
                 contractService,
-                workerHasContract
+                workerHasContract,
+                editWorkerDialog
         );
     }
 

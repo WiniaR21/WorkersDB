@@ -18,48 +18,64 @@ public class ContractService {
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
 
+    //  writeContractWithWorker returns true if operation was success
     @Transactional
-    public boolean writeContractWithWorker(Worker worker, Contract contract, boolean workerHasContract){
+    public boolean writeContractWithWorker(
+            Worker worker,
+            String positionName,
+            double salary,
+            boolean workerHasContract
+    ) {
         if (workerHasContract){
-
-            Contract workersContract = worker.getContract();
-            Long idContractToRemove = worker.getContract().getId();
-            Long idPositionWhereRemoveContract = worker.getContract().getPosition().getId();
-
-            //  Remove contract from worker
-            worker.setContract(null);
-            workerRepository.save(worker);
-
-            // Remove worker from contract
-            contractRepository.findById(idContractToRemove).ifPresent(
-                    contractToRemove -> {
-                        contractToRemove.setWorker(null);
-                        contractRepository.save(contractToRemove);
-                    }
-            );
-
-            // Remove contract from positions
-            positionRepository.findById(idPositionWhereRemoveContract).ifPresent(position -> {
-                position.getContracts().remove(workersContract);
-                positionRepository.save(position);
-            });
-
-            contractRepository.delete(workersContract);
-            // TODO prosze działaj
+            removeOldContract(worker);
+            Contract contract = writeContract(worker, positionName, salary);
 
             worker.setContract(contract);
-            contractRepository.save(contract);
             workerRepository.save(worker);
-            System.out.println("Podmieniono");
+
             return true;
 
         }
-
-        worker.setContract(contract);
-        contractRepository.save(contract);
-        workerRepository.save(worker);
-        System.out.println("Nowy kotnrakt");
-        return true;
+        return false;
     }
 
+    private void removeOldContract(Worker worker) {
+        //  Get old contract from worker and remove dependencies
+        //      For now delete, but of course is possible to storage old contract in DB
+        Position position = worker.getContract().getPosition();
+
+        Contract contractToRemove = worker.getContract();
+        position.getContracts().remove(contractToRemove);
+
+        worker.setContract(null);
+
+        workerRepository.save(worker);
+        positionRepository.save(position);
+    }
+
+    private Contract writeContract(Worker worker, String positionName, double salary) {
+        //  Write new contract based on data provided by user
+        Contract contract = new Contract();
+        contract.setWorker(worker);
+        contract.setSalary(salary);
+
+        //  Add dependencies
+        positionRepository.getPositionsByPositionName(positionName).ifPresent(
+                position -> {
+                    contract.setPosition(position);
+                    contractRepository.save(contract);
+                }
+
+        );
+
+        positionRepository.getPositionsByPositionName(positionName).ifPresent(
+                position -> {
+                    position.getContracts().add(contract);
+                    positionRepository.save(position);
+                }
+        );
+
+        return contract;
+    }
 }
+

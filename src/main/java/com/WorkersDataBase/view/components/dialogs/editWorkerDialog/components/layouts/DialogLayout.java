@@ -65,6 +65,7 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     @Override
     public void configureFront() {
         setAlignItems(Alignment.CENTER);
+
         add(
                 editHeader,
                 fieldsLayout,
