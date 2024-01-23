@@ -1,4 +1,4 @@
-package com.WorkersDataBase.service.worker;
+package com.WorkersDataBase.service;
 
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;

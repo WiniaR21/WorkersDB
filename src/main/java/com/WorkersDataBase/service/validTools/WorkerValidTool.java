@@ -1,12 +1,16 @@
-package com.WorkersDataBase.service.worker;
+package com.WorkersDataBase.service.validTools;
 
 import com.WorkersDataBase.data.contact.ContactRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class WorkerValidTool {
+
+    private final StringValidTool stringValidTool;
 
     public boolean workerHasNotNullFields(Worker worker){
         return  !worker.getContact().getEmail().isEmpty() &&
@@ -15,9 +19,9 @@ public class WorkerValidTool {
                 !worker.getPesel().isEmpty();
     }
     public boolean noSpecialSymbols(Worker worker){
-        return  isStringLetters(worker.getFirstName()) &&
-                isStringLetters(worker.getLastName()) &&
-                isStringDigits(worker.getPesel());
+        return  stringValidTool.isStringLetters(worker.getFirstName()) &&
+                stringValidTool.isStringLetters(worker.getLastName()) &&
+                stringValidTool.isStringDigits(worker.getPesel());
     }
     public boolean peselAndEmailUnique(
             Worker worker,
@@ -32,20 +36,5 @@ public class WorkerValidTool {
 
         return  peselIsUnique && emailIsUnique;
     }
-    private boolean isStringLetters(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isLetter(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    private boolean isStringDigits(String str) {
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
-    }
+
 }
