@@ -4,17 +4,13 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDi
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class CancelChangesButton extends Button implements ComponentCreator, ButtonCreator {
+
     //  To inject by constructor
     private final EditWorkerDialog editWorkerDialog;
-
-    public CancelChangesButton(EditWorkerDialog editWorkerDialog) {
-        this.editWorkerDialog = editWorkerDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

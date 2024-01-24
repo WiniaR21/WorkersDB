@@ -5,14 +5,15 @@ import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.EditHeader;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@Getter
+@RequiredArgsConstructor
 public class DialogLayout extends VerticalLayout implements ComponentCreator {
+
     //  To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
@@ -21,45 +22,16 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     private final PositionService positionService;
     private final ContractService contractService;
 
-    public DialogLayout(
-            WorkerService workerService,
-            EditWorkerDialog editWorkerDialog,
-            WorkersGrid workersGrid,
-            Worker workerSelectedFromGrid,
-            PositionService positionService,
-            ContractService contractService
-    ) {
-        this.workerService = workerService;
-        this.editWorkerDialog = editWorkerDialog;
-        this.workersGrid = workersGrid;
-        this.workerSelectedFromGrid = workerSelectedFromGrid;
-        this.positionService = positionService;
-        this.contractService = contractService;
-
-        configureComponents();
-        configureFront();
-    }
-
     //  To configure
-    EditHeader editHeader;
+    H3 header;
     FieldsLayout fieldsLayout;
     ButtonsLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
-        editHeader = new EditHeader();
-
-        fieldsLayout = new FieldsLayout(workerSelectedFromGrid);
-
-        buttonsLayout = new ButtonsLayout(
-                workerService,
-                workersGrid,
-                editWorkerDialog,
-                fieldsLayout,
-                workerSelectedFromGrid,
-                positionService,
-                contractService
-        );
+        configureHeader();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
 
     @Override
@@ -67,9 +39,35 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
         setAlignItems(Alignment.CENTER);
 
         add(
-                editHeader,
+                header,
                 fieldsLayout,
                 buttonsLayout
         );
+    }
+
+    private void configureHeader(){
+        header = new H3("Edytuj dane pracownika");
+        header.getStyle()
+                .set("margin", "var(--lumo-space-m) 0 0 0")
+                .set("font-size", "1.5em").set("font-weight", "bold");
+    }
+
+    private void configureFieldsLayout() {
+        fieldsLayout = new FieldsLayout(workerSelectedFromGrid);
+        fieldsLayout.configure();
+    }
+
+    private void configureButtonsLayout(){
+        buttonsLayout = new ButtonsLayout(
+                workerService,
+                editWorkerDialog,
+                workersGrid,
+                fieldsLayout,
+                workerSelectedFromGrid,
+                positionService,
+                contractService
+        );
+
+        buttonsLayout.configure();
     }
 }

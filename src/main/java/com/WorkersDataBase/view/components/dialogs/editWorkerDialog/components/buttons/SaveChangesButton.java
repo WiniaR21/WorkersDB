@@ -10,34 +10,19 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
 
 import java.util.Optional;
-
+@RequiredArgsConstructor
 public class SaveChangesButton extends Button implements ComponentCreator, ButtonCreator {
+
     // To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final FieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
-
-    public SaveChangesButton(
-            WorkerService workerService,
-            WorkersGrid workersGrid,
-            EditWorkerDialog editWorkerDialog,
-            FieldsLayout fieldsLayout,
-            Worker workerSelectedFromGrid
-    ) {
-        this.workerService = workerService;
-        this.editWorkerDialog = editWorkerDialog;
-        this.workersGrid = workersGrid;
-        this.fieldsLayout = fieldsLayout;
-        this.workerSelectedFromGrid = workerSelectedFromGrid;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {
@@ -52,7 +37,6 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
 
             editWorkerDialog.close();
         }
-
     }
 
     @Override
@@ -89,7 +73,6 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
                 workersGrid,
                 originalWorker
         );
-        confirmEditDialog.configureComponents();
-        confirmEditDialog.configureFront();
+        confirmEditDialog.configure();
     }
 }

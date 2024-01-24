@@ -24,20 +24,8 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-
-        fieldsLayout = new FieldsLayout(
-                oryginalWorker,
-                newWorker
-        );
-        fieldsLayout.configure();
-
-        buttonsLayout = new ButtonsLayout(
-                workerService,
-                newWorker,
-                workersGrid,
-                confirmEditDialog
-        );
-        buttonsLayout.configure();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
 
     @Override
@@ -46,5 +34,23 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 fieldsLayout,
                 buttonsLayout
         );
+    }
+
+    private void configureFieldsLayout(){
+        fieldsLayout = new FieldsLayout(
+                oryginalWorker,
+                newWorker
+        );
+        fieldsLayout.configure();
+    }
+
+    private void configureButtonsLayout(){
+        buttonsLayout = new ButtonsLayout(
+                workerService,
+                newWorker,
+                workersGrid,
+                confirmEditDialog
+        );
+        buttonsLayout.configure();
     }
 }

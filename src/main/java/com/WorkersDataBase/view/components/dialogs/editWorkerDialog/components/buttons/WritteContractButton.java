@@ -8,29 +8,17 @@ import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteCont
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class WritteContractButton extends Button implements ComponentCreator, ButtonCreator {
+
+    //  To inject by constructor
     private final PositionService positionService;
     private final Worker worker;
     private final boolean workerHasContract;
     private final ContractService contractService;
     private final EditWorkerDialog editWorkerDialog;
-    public WritteContractButton(
-            PositionService positionService,
-            Worker worker,
-            boolean workerHasContract,
-            ContractService contractService,
-            EditWorkerDialog editWorkerDialog
-    ) {
-        this.positionService = positionService;
-        this.worker = worker;
-        this.workerHasContract = workerHasContract;
-        this.contractService = contractService;
-        this.editWorkerDialog = editWorkerDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

@@ -2,18 +2,14 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-
+@RequiredArgsConstructor
 public class EmailField extends TextField implements ComponentCreator {
+
     //  To inject by constructor
     private final String email;
-    public EmailField(String email) {
-        this.email = email;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void configureComponents() {

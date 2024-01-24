@@ -47,7 +47,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.setItems(workerService.getWorkers());
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
-        grid.addItemClickListener(this::gridWorkerClickEvent);
+        grid.addItemClickListener(this::openEditWorkerDialog);
     }
 
     @Override
@@ -101,15 +101,17 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
                     .setTextAlign(ColumnTextAlign.CENTER);
         }
     }
-    private void gridWorkerClickEvent(ItemClickEvent<Worker> event){
-                new EditWorkerDialog(
+    private void openEditWorkerDialog(ItemClickEvent<Worker> event){
+
+        EditWorkerDialog editWorkerDialog = new EditWorkerDialog(
                         workerService,
                         this,
                         event.getItem(),
                         positionService,
                         contractService
-                );
+        );
 
+        editWorkerDialog.configure();
     }
 
 }

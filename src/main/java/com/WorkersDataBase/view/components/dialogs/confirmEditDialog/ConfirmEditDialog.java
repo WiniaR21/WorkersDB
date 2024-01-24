@@ -23,6 +23,16 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
 
     @Override
     public void configureComponents() {
+        configureDialogLayout();
+    }
+
+    @Override
+    public void configureFront() {
+        add(dialogLayout);
+        open();
+    }
+
+    private void configureDialogLayout(){
         dialogLayout = new DialogLayout(
                 workerService,
                 newWorker,
@@ -31,11 +41,5 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
                 oryginalWorker
         );
         dialogLayout.configure();
-    }
-
-    @Override
-    public void configureFront() {
-        add(dialogLayout);
-        open();
     }
 }

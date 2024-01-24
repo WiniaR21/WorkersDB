@@ -8,16 +8,14 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.t
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
-    private final Worker workerSelectedFromGrid;
-    public FieldsLayout(Worker workerSelectedFromGrid) {
-        this.workerSelectedFromGrid = workerSelectedFromGrid;
 
-        configureComponents();
-        configureFront();
-    }
+    //  To inject by constructor
+    private final Worker workerSelectedFromGrid;
 
     //  To configure
     FirstNameField firstNameField;
@@ -28,21 +26,10 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
     @Override
     public void configureComponents() {
 
-        emailField = new EmailField(
-                workerSelectedFromGrid.getContact().getEmail()
-        );
-
-        firstNameField = new FirstNameField(
-                workerSelectedFromGrid.getFirstName()
-        );
-
-        lastNameField = new LastNameField(
-                workerSelectedFromGrid.getLastName()
-        );
-
-        peselField = new PeselField(
-                workerSelectedFromGrid.getPesel()
-        );
+        configureEmailField();
+        configureFirstNameField();
+        configureLastNameField();
+        configurePeselField();
     }
 
     @Override
@@ -53,5 +40,33 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
                 peselField,
                 emailField
         );
+    }
+
+    private void configureEmailField(){
+        emailField = new EmailField(
+                workerSelectedFromGrid.getContact().getEmail()
+        );
+        emailField.configure();
+    }
+
+    private void configureFirstNameField(){
+        firstNameField = new FirstNameField(
+                workerSelectedFromGrid.getFirstName()
+        );
+        firstNameField.configure();
+    }
+
+    private void configureLastNameField(){
+        lastNameField = new LastNameField(
+                workerSelectedFromGrid.getLastName()
+        );
+        lastNameField.configure();
+    }
+
+    private void configurePeselField(){
+        peselField = new PeselField(
+                workerSelectedFromGrid.getPesel()
+        );
+        peselField.configure();
     }
 }

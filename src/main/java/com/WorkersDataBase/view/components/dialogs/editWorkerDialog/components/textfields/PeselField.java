@@ -2,17 +2,13 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
+import lombok.RequiredArgsConstructor;
 
-
+@RequiredArgsConstructor
 public class PeselField extends TextField implements ComponentCreator {
+
     //  To inject by constructor
     private final String pesel;
-    public PeselField(String pesel) {
-        this.pesel = pesel;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void configureComponents() {
