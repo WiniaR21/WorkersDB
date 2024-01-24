@@ -10,34 +10,35 @@ import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.ItemClickEvent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
 @Setter
+@RequiredArgsConstructor
 public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final PositionService positionService;
     private final ContractService contractService;
-    public WorkersGrid(
-            WorkerService workerService,
-            PositionService positionService,
-            ContractService contractService
-    ) {
-        this.workerService = workerService;
-        this.positionService = positionService;
-        this.contractService = contractService;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     Grid<Worker> grid;
 
     @Override
     public void configureComponents() {
+        configureGrid();
+    }
+    @Override
+    public void configureFront() {
+        setSizeFull();
+        setClassName("grid-layout");
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        getStyle().set("background-color", "#0D1219");
+        add(grid);
+    }
+    private void configureGrid(){
         grid = new Grid<>(Worker.class);
         grid.addClassName("grid");
         grid.setColumns("firstName", "lastName", "pesel");
@@ -48,19 +49,6 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
         grid.addItemClickListener(this::openEditWorkerDialog);
-    }
-
-    @Override
-    public void configureFront() {
-        setSizeFull();
-        setClassName("grid-layout");
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        getStyle().set("background-color", "#0D1219");
-        add(grid);
-    }
-
-    public void refresh(){
-        grid.setItems(workerService.getWorkers());
     }
     public void setBySetting(Set<String> checkBoxValue){
         grid.removeAllColumns();
@@ -104,14 +92,17 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     private void openEditWorkerDialog(ItemClickEvent<Worker> event){
 
         EditWorkerDialog editWorkerDialog = new EditWorkerDialog(
-                        workerService,
-                        this,
-                        event.getItem(),
-                        positionService,
-                        contractService
+                workerService,
+                this,
+                event.getItem(),
+                positionService,
+                contractService
         );
 
         editWorkerDialog.configure();
+    }
+    public void refresh(){
+        grid.setItems(workerService.getWorkers());
     }
 
 }
