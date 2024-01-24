@@ -6,15 +6,12 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class AddContractButton extends Button implements ComponentCreator, ButtonCreator {
+    //  To inject by constructor
     private final PositionService positionService;
-    public AddContractButton(PositionService positionService) {
-        this.positionService = positionService;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

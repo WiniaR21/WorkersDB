@@ -56,6 +56,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         settingsDialog.configure();
 
         topBar = new TopBar(grid,addWorkerDialog,settingsDialog, positionService);
+        topBar.configure();
 
         line = new LineBetweenComponents();
     }

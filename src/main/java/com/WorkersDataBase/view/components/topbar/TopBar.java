@@ -8,29 +8,15 @@ import com.WorkersDataBase.view.components.dialogs.settingsDialog.SettingsDialog
 import com.WorkersDataBase.view.components.topbar.components.ButtonsLayoutTopBar;
 import com.WorkersDataBase.view.components.topbar.components.FilterText;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class TopBar extends HorizontalLayout implements ComponentCreator {
-
     //  Inject by constructor
     private final WorkersGrid grid;
     private final AddWorkerDialog addWorkerDialog;
     private final SettingsDialog settingsDialog;
     private final PositionService positionService;
-
-    public TopBar(
-            WorkersGrid grid,
-            AddWorkerDialog addWorkerDialog,
-            SettingsDialog settingsDialog,
-            PositionService positionService
-    ) {
-        this.grid = grid;
-        this.addWorkerDialog = addWorkerDialog;
-        this.settingsDialog = settingsDialog;
-        this.positionService = positionService;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     FilterText filterText;
@@ -38,15 +24,9 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-        filterText = new FilterText(grid);
-
-        buttonsLayout = new ButtonsLayoutTopBar(
-                addWorkerDialog,
-                settingsDialog,
-                positionService
-        );
+        configureFilterText();
+        configureButtonsLayout();
     }
-
     @Override
     public void configureFront() {
         setWidthFull();
@@ -54,5 +34,17 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
         setJustifyContentMode(JustifyContentMode.CENTER);
         setAlignItems(Alignment.CENTER);
         add(filterText, buttonsLayout);
+    }
+    private void configureFilterText(){
+        filterText = new FilterText(grid);
+        filterText.configure();
+    }
+    private void configureButtonsLayout(){
+        buttonsLayout = new ButtonsLayoutTopBar(
+                addWorkerDialog,
+                settingsDialog,
+                positionService
+        );
+        buttonsLayout.configure();
     }
 }
