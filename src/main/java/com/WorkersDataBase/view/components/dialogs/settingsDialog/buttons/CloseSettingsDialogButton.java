@@ -5,17 +5,12 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class CloseSettingsDialogButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final SettingsDialog settingsDialog;
-
-    public CloseSettingsDialogButton(SettingsDialog settingsDialog) {
-        this.settingsDialog = settingsDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

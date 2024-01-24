@@ -52,6 +52,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         addWorkerDialog.configure();
 
         settingsDialog = new SettingsDialog(grid);
+        settingsDialog.configure();
 
         topBar = new TopBar(grid,addWorkerDialog,settingsDialog, positionService);
 

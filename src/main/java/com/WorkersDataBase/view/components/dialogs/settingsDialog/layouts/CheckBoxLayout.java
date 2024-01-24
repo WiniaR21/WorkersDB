@@ -6,18 +6,16 @@ import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.util.HashSet;
 import java.util.Set;
 @Getter
+@RequiredArgsConstructor
 public class CheckBoxLayout extends VerticalLayout implements ComponentCreator {
     //To configure
     CheckboxGroup<String> checkBox;
     Set<String> checkBoxValue;
-    public CheckBoxLayout() {
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void configureComponents() {

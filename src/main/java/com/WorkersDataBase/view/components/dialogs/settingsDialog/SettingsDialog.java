@@ -10,38 +10,36 @@ import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.checkbox.CheckboxGroupVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 
 import java.util.HashSet;
 import java.util.Set;
-@Getter
+
+@RequiredArgsConstructor
 public class SettingsDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final WorkersGrid workersGrid;
-
-    public SettingsDialog(WorkersGrid grid) {
-        this.workersGrid = grid;
-
-        configureComponents();
-        configureFront();
-    }
 
     // To configure
     SettingsDialogLayout settingsDialogLayout;
 
     @Override
     public void configureComponents(){
-        settingsDialogLayout = new SettingsDialogLayout(
-                this,
-                workersGrid
-        );
-
+       configureSettingsDialogLayout();
     }
     @Override
     public void configureFront() {
         setModal(true);
         setCloseOnOutsideClick(false);
         add(settingsDialogLayout);
+    }
+    private void configureSettingsDialogLayout(){
+        settingsDialogLayout = new SettingsDialogLayout(
+                this,
+                workersGrid
+        );
+        settingsDialogLayout.configure();
     }
 
 

@@ -8,25 +8,14 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class SaveSettingsButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final WorkersGrid workersGrid;
     private final CheckBoxLayout checkBoxLayout;
     private final SettingsDialog settingsDialog;
-
-    public SaveSettingsButton(
-            WorkersGrid workersGrid,
-            SettingsDialog settingsDialog,
-            CheckBoxLayout checkBoxLayout
-    ) {
-        this.workersGrid = workersGrid;
-        this.settingsDialog = settingsDialog;
-        this.checkBoxLayout = checkBoxLayout;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {
