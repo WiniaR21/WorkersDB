@@ -5,35 +5,32 @@ import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCom
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts.NewPositionDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
+
     // To inject by constructor
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;
-
-    public NewPositionTypeDialog(
-            PositionService positionService,
-            ManageCompanyDialog manageCompanyDialog
-    ) {
-        this.positionService = positionService;
-        this.manageCompanyDialog = manageCompanyDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     NewPositionDialogLayout newPositionDialogLayout;
 
     @Override
     public void configureComponents() {
-        newPositionDialogLayout = new NewPositionDialogLayout(
-                this, positionService, manageCompanyDialog);
+        configureNewPositionDialogLayout();
     }
 
     @Override
     public void configureFront() {
         add(newPositionDialogLayout);
         open();
+    }
+
+    private void configureNewPositionDialogLayout(){
+        newPositionDialogLayout = new NewPositionDialogLayout(
+                this, positionService, manageCompanyDialog);
+        newPositionDialogLayout.configure();
     }
 }

@@ -3,14 +3,11 @@ package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.compon
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
+@RequiredArgsConstructor
 public class PositionNameField extends TextField implements ComponentCreator {
-
-    public PositionNameField() {
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void configureComponents() {

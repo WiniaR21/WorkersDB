@@ -10,45 +10,28 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class NewPositionDialogLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final NewPositionTypeDialog newPositionTypeDialog;
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;
-    public NewPositionDialogLayout(
-            NewPositionTypeDialog newPositionTypeDialog,
-            PositionService positionService,
-            ManageCompanyDialog manageCompanyDialog
-    ) {
-        this.newPositionTypeDialog = newPositionTypeDialog;
-        this.positionService = positionService;
-        this.manageCompanyDialog = manageCompanyDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
+    H3 header;
     PositionNameField positionNameField;
     SaveNewPositionType saveNewPositionType;
     CancelNewPositionTypeDialog cancelNewPositionTypeDialog;
-    H3 header;
+
 
     @Override
     public void configureComponents() {
-        header = new H3("Nowe stanowisko");
-        header.getStyle()
-                .set("margin", "var(--lumo-space-m) 0 0 0")
-                .set("font-size", "1.5em").set("font-weight", "bold");
-
-        positionNameField = new PositionNameField();
-
-        cancelNewPositionTypeDialog = new CancelNewPositionTypeDialog(
-                newPositionTypeDialog, manageCompanyDialog);
-
-        saveNewPositionType = new SaveNewPositionType(
-                positionNameField, positionService, newPositionTypeDialog);
+        configureHeader();
+        configurePositionNameField();
+        configureCancelNewPositionTypeDialog();
+        configureSaveNewPositionType();
     }
 
     @Override
@@ -61,5 +44,29 @@ public class NewPositionDialogLayout extends VerticalLayout implements Component
                 positionNameField,
 
                 new HorizontalLayout(saveNewPositionType, cancelNewPositionTypeDialog));
+    }
+    private void configureHeader(){
+        header = new H3("Nowe stanowisko");
+        header.getStyle()
+                .set("margin", "var(--lumo-space-m) 0 0 0")
+                .set("font-size", "1.5em").set("font-weight", "bold");
+    }
+    private void configurePositionNameField(){
+        positionNameField = new PositionNameField();
+        positionNameField.configure();
+    }
+
+    private void configureCancelNewPositionTypeDialog(){
+        cancelNewPositionTypeDialog = new CancelNewPositionTypeDialog(
+                newPositionTypeDialog, manageCompanyDialog);
+
+        cancelNewPositionTypeDialog.configure();
+    }
+
+    private void configureSaveNewPositionType(){
+        saveNewPositionType = new SaveNewPositionType(
+                positionNameField, positionService, newPositionTypeDialog);
+
+        saveNewPositionType.configure();
     }
 }

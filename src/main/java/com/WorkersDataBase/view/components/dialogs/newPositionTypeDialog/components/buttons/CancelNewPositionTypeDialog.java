@@ -6,21 +6,14 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class CancelNewPositionTypeDialog extends Button implements ComponentCreator, ButtonCreator {
+
     //  To inject by constructor
     private final NewPositionTypeDialog newPositionTypeDialog;
     private final ManageCompanyDialog manageCompanyDialog;
-    public CancelNewPositionTypeDialog(
-            NewPositionTypeDialog newPositionTypeDialog,
-            ManageCompanyDialog manageCompanyDialog
-    ) {
-        this.newPositionTypeDialog = newPositionTypeDialog;
-        this.manageCompanyDialog = manageCompanyDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {
