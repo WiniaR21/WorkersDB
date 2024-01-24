@@ -8,25 +8,14 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class RemovePositionButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final ComboBox<Position> positions;
     private final PositionService positionService;
     private final RemovePositionDialog removePositionDialog;
-
-    public RemovePositionButton(
-            ComboBox<Position> positions,
-            PositionService positionService,
-            RemovePositionDialog removePositionDialog
-    ) {
-        this.positions = positions;
-        this.positionService = positionService;
-        this.removePositionDialog = removePositionDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

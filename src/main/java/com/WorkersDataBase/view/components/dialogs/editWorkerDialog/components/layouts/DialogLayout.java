@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class DialogLayout extends VerticalLayout implements ComponentCreator {
-
     //  To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;

@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CancelNewPositionTypeDialog extends Button implements ComponentCreator, ButtonCreator {
-
     //  To inject by constructor
     private final NewPositionTypeDialog newPositionTypeDialog;
     private final ManageCompanyDialog manageCompanyDialog;

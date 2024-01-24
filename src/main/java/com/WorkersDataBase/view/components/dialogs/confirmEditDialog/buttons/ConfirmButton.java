@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class ConfirmButton extends Button implements ComponentCreator, ButtonCreator {
-
     // To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;

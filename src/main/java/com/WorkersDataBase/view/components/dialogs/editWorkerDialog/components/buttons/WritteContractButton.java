@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class WritteContractButton extends Button implements ComponentCreator, ButtonCreator {
-
     //  To inject by constructor
     private final PositionService positionService;
     private final Worker worker;

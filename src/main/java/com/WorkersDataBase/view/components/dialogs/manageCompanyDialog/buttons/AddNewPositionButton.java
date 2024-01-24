@@ -9,6 +9,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
 public class AddNewPositionButton extends Button implements ComponentCreator ,ButtonCreator {
+    //  To inject by constructor
     private final ManageCompanyDialog manageCompanyDialog;
     private final PositionService positionService;
 

@@ -17,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
-
     // To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;

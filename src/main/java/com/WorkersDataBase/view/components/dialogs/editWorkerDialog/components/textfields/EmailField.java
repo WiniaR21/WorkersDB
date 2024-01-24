@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @RequiredArgsConstructor
 public class EmailField extends TextField implements ComponentCreator {
-
     //  To inject by constructor
     private final String email;
 

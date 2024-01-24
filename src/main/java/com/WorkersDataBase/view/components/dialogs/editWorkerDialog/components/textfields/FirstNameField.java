@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @RequiredArgsConstructor
 public class FirstNameField extends TextField implements ComponentCreator {
-
     //  To inject by constructor
     private final String firstName;
 

@@ -6,22 +6,13 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class CloseRemovePositionDialog extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final RemovePositionDialog removePositionDialog;
     private final ManageCompanyDialog manageCompanyDialog;
-
-    public CloseRemovePositionDialog(
-            RemovePositionDialog removePositionDialog,
-            ManageCompanyDialog manageCompanyDialog
-    ) {
-        this.removePositionDialog = removePositionDialog;
-        this.manageCompanyDialog = manageCompanyDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class ConfirmEditDialog extends Dialog implements ComponentCreator {
-
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;

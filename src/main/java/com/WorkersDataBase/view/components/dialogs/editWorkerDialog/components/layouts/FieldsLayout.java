@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
-
     //  To inject by constructor
     private final Worker workerSelectedFromGrid;
 

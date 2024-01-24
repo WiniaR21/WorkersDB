@@ -11,25 +11,14 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class RemovePositionLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final PositionService positionService;
     private final RemovePositionDialog removePositionDialog;
     private final ManageCompanyDialog manageCompanyDialog;
-
-    public RemovePositionLayout(
-            PositionService positionService,
-            RemovePositionDialog removePositionDialog,
-            ManageCompanyDialog manageCompanyDialog
-    ) {
-        this.positionService = positionService;
-        this.removePositionDialog = removePositionDialog;
-        this.manageCompanyDialog = manageCompanyDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     ComboBox<Position> positions;
@@ -39,21 +28,9 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
 
     @Override
     public void configureComponents() {
-        header = new H3("Usuń stanowisko");
-        header.getStyle()
-                .set("margin", "var(--lumo-space-m) 0 0 0")
-                .set("font-size", "1.5em").set("font-weight", "bold");
-
-        positions = new ComboBox<>("Stanowiska");
-        positions.setItems(positionService.getPositions());
-        positions.setItemLabelGenerator(Position::getPositionName);
-
-        removePositionButton = new RemovePositionButton(
-                positions, positionService, removePositionDialog);
-
-        closeRemovePositionDialog = new CloseRemovePositionDialog(
-                removePositionDialog, manageCompanyDialog
-        );
+        configureHeader();
+        configurePositions();
+        configureButtons();
     }
 
     @Override
@@ -66,5 +43,27 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
                 positions,
                 new HorizontalLayout(removePositionButton, closeRemovePositionDialog)
         );
+    }
+
+    private void configureHeader(){
+        header = new H3("Usuń stanowisko");
+        header.getStyle()
+                .set("margin", "var(--lumo-space-m) 0 0 0")
+                .set("font-size", "1.5em").set("font-weight", "bold");
+    }
+    private void configurePositions(){
+        positions = new ComboBox<>("Stanowiska");
+        positions.setItems(positionService.getPositions());
+        positions.setItemLabelGenerator(Position::getPositionName);
+    }
+
+    private void configureButtons(){
+        removePositionButton = new RemovePositionButton(
+                positions, positionService, removePositionDialog);
+        removePositionButton.configure();
+
+        closeRemovePositionDialog = new CloseRemovePositionDialog(
+                removePositionDialog, manageCompanyDialog);
+        closeRemovePositionDialog.configure();
     }
 }

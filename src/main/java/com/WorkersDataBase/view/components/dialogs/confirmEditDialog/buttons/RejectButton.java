@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class RejectButton extends Button implements ComponentCreator, ButtonCreator {
-
     //  To inject by constructor
     private final ConfirmEditDialog confirmEditDialog;
 

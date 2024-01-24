@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CancelChangesButton extends Button implements ComponentCreator, ButtonCreator {
-
     //  To inject by constructor
     private final EditWorkerDialog editWorkerDialog;
 

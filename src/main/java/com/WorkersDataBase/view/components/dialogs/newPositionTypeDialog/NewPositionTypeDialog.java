@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
-
     // To inject by constructor
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;

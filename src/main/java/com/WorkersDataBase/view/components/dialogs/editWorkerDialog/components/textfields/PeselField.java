@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class PeselField extends TextField implements ComponentCreator {
-
     //  To inject by constructor
     private final String pesel;
 

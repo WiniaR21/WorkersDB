@@ -12,7 +12,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {
-
     //  To inject by constructor
     private final Worker oryginalWorker;
     private final Worker newWorker;
