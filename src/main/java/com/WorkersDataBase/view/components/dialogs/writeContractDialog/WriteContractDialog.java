@@ -7,7 +7,9 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDi
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.layouts.WriteContractLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class WriteContractDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final PositionService positionService;
@@ -16,29 +18,21 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     private final boolean workerHasContract;
     private final EditWorkerDialog editWorkerDialog;
 
-
-    public WriteContractDialog(
-            PositionService positionService,
-            Worker worker,
-            ContractService contractService,
-            boolean workerHasContract,
-            EditWorkerDialog editWorkerDialog
-    ) {
-        this.positionService = positionService;
-        this.worker = worker;
-        this.contractService = contractService;
-        this.workerHasContract = workerHasContract;
-        this.editWorkerDialog = editWorkerDialog;
-
-        configureComponents();
-        configureFront();
-    }
-
     //  To configure
     WriteContractLayout writeContractLayout;
 
     @Override
     public void configureComponents() {
+        configureWriteContractLayout();
+    }
+
+    @Override
+    public void configureFront() {
+        add(writeContractLayout);
+        open();
+    }
+
+    private void configureWriteContractLayout(){
         writeContractLayout = new WriteContractLayout(
                 this,
                 positionService,
@@ -47,11 +41,6 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
                 workerHasContract,
                 editWorkerDialog
         );
-    }
-
-    @Override
-    public void configureFront() {
-        add(writeContractLayout);
-        open();
+        writeContractLayout.configure();
     }
 }

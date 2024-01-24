@@ -21,15 +21,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
 
     @Override
     public void clickEvent() {
-        new WriteContractDialog(
-                positionService,
-                worker,
-                contractService,
-                workerHasContract,
-                editWorkerDialog
-        );
-
         editWorkerDialog.close();
+        openWriteContractDialog();
     }
 
     @Override
@@ -46,5 +39,16 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
             setText("Podpisz umowę");
         }
         addClickListener(buttonClickEvent -> clickEvent());
+    }
+
+    private void openWriteContractDialog(){
+        WriteContractDialog writeContractDialog = new WriteContractDialog(
+                positionService,
+                worker,
+                contractService,
+                workerHasContract,
+                editWorkerDialog
+        );
+        writeContractDialog.configure();
     }
 }

@@ -3,13 +3,10 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFiel
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.NumberField;
+import lombok.RequiredArgsConstructor;
 
-
+@RequiredArgsConstructor
 public class SalaryField extends NumberField implements ComponentCreator {
-    public SalaryField() {
-        configureComponents();
-        configureFront();
-    }
     //  To configure
     Div zlSuffix;
     @Override

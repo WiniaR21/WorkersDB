@@ -14,7 +14,9 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class WriteContractLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
@@ -24,50 +26,48 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     private final boolean workerHasContract;
     private final EditWorkerDialog editWorkerDialog;
 
-
-    public WriteContractLayout(
-            WriteContractDialog writeContractDialog,
-            PositionService positionService,
-            Worker worker,
-            ContractService contractService,
-            boolean workerHasContract,
-            EditWorkerDialog editWorkerDialog
-    ) {
-        this.writeContractDialog = writeContractDialog;
-        this.positionService = positionService;
-        this.worker = worker;
-        this.contractService = contractService;
-        this.workerHasContract = workerHasContract;
-        this.editWorkerDialog = editWorkerDialog;
-
-        configureComponents();
-        configureFront();
-    }
     //   To configure
+    H3 header;
     ComboBox<Position> position;
     SalaryField salaryField;
-    CloseWriteContract closeWriteContract;
     WritteContractButton writteContractButton;
-    H3 header;
+    CloseWriteContract closeWriteContract;
 
     @Override
     public void configureComponents() {
-
+        configureHeader();
+        configurePosition();
+        configureSalaryField();
+        configureWriteContractButton();
+        configureCloseWriteContract();
+    }
+    @Override
+    public void configureFront() {
+            add(
+                    header,
+                    position,
+                    salaryField,
+                    new HorizontalLayout(writteContractButton, closeWriteContract)
+            );
+    }
+    private void configureHeader(){
         if(workerHasContract) header = new H3("Zmień umowę");
         else header = new H3("Podpisz nową umowę");
 
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
-
-
-
+    }
+    private void configurePosition(){
         position = new ComboBox<>("Wybierz stanowisko");
         position.setItems(positionService.getPositions());
         position.setItemLabelGenerator(Position::getPositionName);
-
+    }
+    private void configureSalaryField(){
         salaryField = new SalaryField();
-
+        salaryField.configure();
+    }
+    private void configureWriteContractButton(){
         writteContractButton = new WritteContractButton(
                 writeContractDialog,
                 worker,
@@ -77,18 +77,11 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 workerHasContract,
                 editWorkerDialog
         );
-
+        writteContractButton.configure();
+    }
+    private void configureCloseWriteContract(){
         closeWriteContract = new CloseWriteContract(
                 writeContractDialog, editWorkerDialog);
-    }
-
-    @Override
-    public void configureFront() {
-            add(
-                    header,
-                    position,
-                    salaryField,
-                    new HorizontalLayout(writteContractButton, closeWriteContract)
-            );
+        closeWriteContract.configure();
     }
 }
