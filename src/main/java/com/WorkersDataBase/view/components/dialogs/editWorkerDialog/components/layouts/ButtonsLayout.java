@@ -37,7 +37,6 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         configureCancelChangesButton();
         configureWriteContractButton();
     }
-
     @Override
     public void configureFront() {
         add(
@@ -46,7 +45,6 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 writteContractButton
         );
     }
-
     private void configureSaveChangesButton(){
         saveChangesButton = new SaveChangesButton(
                 workerService,
@@ -73,7 +71,6 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 contractService,
                 editWorkerDialog
         );
-
         writteContractButton.configure();
     }
 }

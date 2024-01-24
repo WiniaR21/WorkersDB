@@ -25,7 +25,6 @@ public class SettingsDialogButtonsLayout extends HorizontalLayout implements Com
         configureSaveSettingsButton();
         configureCloseSettingsDialogButton();
     }
-
     @Override
     public void configureFront() {
         setJustifyContentMode(FlexComponent.JustifyContentMode.END);

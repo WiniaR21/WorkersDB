@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 public class WorkersEmailField extends EmailField implements ComponentCreator {
 
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setLabel("Adres email");

@@ -20,19 +20,16 @@ public class AddNewPositionButton extends Button implements ComponentCreator ,Bu
         manageCompanyDialog.close();
         openNewPositionTypeDialog();
     }
-
     @Override
     public void configureComponents() {
 
     }
-
     @Override
     public void configureFront() {
         setText("Nowy rodzaj stanowiska");
         addClickListener(e -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_TERTIARY);
     }
-
     private void openNewPositionTypeDialog(){
         NewPositionTypeDialog newPositionTypeDialog =
                 new NewPositionTypeDialog(positionService, manageCompanyDialog);

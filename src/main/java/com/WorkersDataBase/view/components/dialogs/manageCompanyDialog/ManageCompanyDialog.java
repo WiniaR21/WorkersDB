@@ -17,7 +17,6 @@ public class ManageCompanyDialog extends Dialog implements ComponentCreator {
     public void configureComponents() {
        configureManageCompanyDialogLayout();
     }
-
     @Override
     public void configureFront() {
         add(manageCompanyDialogLayout);

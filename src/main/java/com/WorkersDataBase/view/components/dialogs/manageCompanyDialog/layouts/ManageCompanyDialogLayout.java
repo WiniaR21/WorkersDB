@@ -30,7 +30,6 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
         configureRemovePositionButton();
         configureCancelButton();
     }
-
     @Override
     public void configureFront() {
         setAlignItems(Alignment.STRETCH);
@@ -44,26 +43,22 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
                 cancelButton
         );
     }
-
     private void configureHeader(){
         header = new H3("Zarządzanie");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-
     private void configureAddNewPositionButton(){
         addNewPositionButton =
                 new AddNewPositionButton(manageCompanyDialog, positionService);
         addNewPositionButton.configure();
     }
-
     private void configureRemovePositionButton(){
         removePositionButton =
                 new RemovePositionButton(positionService, manageCompanyDialog);
         removePositionButton.configure();
     }
-
     private void configureCancelButton(){
         cancelButton = new CancelButton(manageCompanyDialog);
         cancelButton.configure();

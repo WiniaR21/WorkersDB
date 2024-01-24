@@ -10,10 +10,7 @@ public class LastNameField extends TextField implements ComponentCreator {
     private final String lastName;
 
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setLabel("Nazwisko");

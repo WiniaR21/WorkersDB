@@ -32,7 +32,6 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
         configureFieldsLayout();
         configureButtonsLayout();
     }
-
     @Override
     public void configureFront() {
         setAlignItems(Alignment.CENTER);
@@ -43,19 +42,16 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 buttonsLayout
         );
     }
-
     private void configureHeader(){
         header = new H3("Edytuj dane pracownika");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-
     private void configureFieldsLayout() {
         fieldsLayout = new FieldsLayout(workerSelectedFromGrid);
         fieldsLayout.configure();
     }
-
     private void configureButtonsLayout(){
         buttonsLayout = new ButtonsLayout(
                 workerService,

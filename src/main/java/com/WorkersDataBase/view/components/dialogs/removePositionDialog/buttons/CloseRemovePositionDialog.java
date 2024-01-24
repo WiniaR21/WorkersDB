@@ -19,12 +19,8 @@ public class CloseRemovePositionDialog extends Button implements ComponentCreato
         removePositionDialog.close();
         manageCompanyDialog.open();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Cofnij");

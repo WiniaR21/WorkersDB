@@ -33,12 +33,8 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
     public void clickEvent() {
         addWorkerToDB();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Zapisz");
@@ -46,7 +42,6 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
         addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         addClickShortcut(Key.ENTER);
     }
-
     private void addWorkerToDB(){
         Worker worker = getWorkerFromUser();
         boolean operationSuccess = workerService.addWorker(worker, false);
@@ -55,7 +50,6 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
             addWorkerDialog.close();
         }
     }
-
     private Worker getWorkerFromUser(){
         Contact contact = new Contact(emailField.getValue());
 
@@ -66,6 +60,4 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
                 contact
         );
     }
-
-
 }

@@ -36,7 +36,6 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         rejectButton = new RejectButton(confirmEditDialog);
         rejectButton.configure();
     }
-
     @Override
     public void configureFront() {
         setJustifyContentMode(FlexComponent.JustifyContentMode.END);

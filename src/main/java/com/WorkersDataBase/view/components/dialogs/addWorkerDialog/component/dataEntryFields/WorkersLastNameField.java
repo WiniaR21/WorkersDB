@@ -6,12 +6,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class WorkersLastNameField extends TextField implements ComponentCreator {
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setLabel("Nazwisko");

@@ -32,7 +32,6 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
         configurePositions();
         configureButtons();
     }
-
     @Override
     public void configureFront() {
         setAlignItems(Alignment.CENTER);
@@ -44,7 +43,6 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
                 new HorizontalLayout(removePositionButton, closeRemovePositionDialog)
         );
     }
-
     private void configureHeader(){
         header = new H3("Usuń stanowisko");
         header.getStyle()
@@ -56,7 +54,6 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
         positions.setItems(positionService.getPositions());
         positions.setItemLabelGenerator(Position::getPositionName);
     }
-
     private void configureButtons(){
         removePositionButton = new RemovePositionButton(
                 positions, positionService, removePositionDialog);

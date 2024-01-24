@@ -16,12 +16,8 @@ public class CloseSettingsDialogButton extends Button implements ComponentCreato
     public void clickEvent() {
         settingsDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Wyjdź");

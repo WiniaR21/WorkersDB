@@ -49,7 +49,18 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
         configureButtons();
         configureButtonsLayout();
     }
+    @Override
+    public void configureFront(){
+        setPadding(false);
+        setAlignItems(FlexComponent.Alignment.STRETCH);
+        getStyle().set("width", "300px").set("max-width", "100%");
 
+        add(
+                header,
+                fieldsLayout,
+                buttonsLayout
+        );
+    }
     private void configureButtons() {
         saveWorkerButton = new SaveWorkerButton(
                 workerService,
@@ -68,20 +79,6 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
     private void configureButtonsLayout() {
         buttonsLayout = new HorizontalLayout(saveWorkerButton, closeDialogButton);
         buttonsLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-    }
-
-
-    @Override
-    public void configureFront(){
-        setPadding(false);
-        setAlignItems(FlexComponent.Alignment.STRETCH);
-        getStyle().set("width", "300px").set("max-width", "100%");
-
-        add(
-                header,
-                fieldsLayout,
-                buttonsLayout
-        );
     }
     private void configureFields() {
         workersFirstNameField = new WorkersFirstNameField();

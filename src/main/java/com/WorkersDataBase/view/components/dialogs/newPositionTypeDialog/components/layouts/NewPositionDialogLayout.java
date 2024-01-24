@@ -33,7 +33,6 @@ public class NewPositionDialogLayout extends VerticalLayout implements Component
         configureCancelNewPositionTypeDialog();
         configureSaveNewPositionType();
     }
-
     @Override
     public void configureFront() {
         setAlignItems(Alignment.CENTER);
@@ -55,14 +54,12 @@ public class NewPositionDialogLayout extends VerticalLayout implements Component
         positionNameField = new PositionNameField();
         positionNameField.configure();
     }
-
     private void configureCancelNewPositionTypeDialog(){
         cancelNewPositionTypeDialog = new CancelNewPositionTypeDialog(
                 newPositionTypeDialog, manageCompanyDialog);
 
         cancelNewPositionTypeDialog.configure();
     }
-
     private void configureSaveNewPositionType(){
         saveNewPositionType = new SaveNewPositionType(
                 positionNameField, positionService, newPositionTypeDialog);

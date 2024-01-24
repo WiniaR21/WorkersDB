@@ -25,7 +25,6 @@ public class SettingsDialogLayout extends VerticalLayout implements ComponentCre
        configureCheckBoxLayout();
        configureSettingsDialogButtonLayout();
     }
-
     @Override
     public void configureFront() {
         add(

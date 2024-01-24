@@ -34,12 +34,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
             editWorkerDialog.close();
         }
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Zatwierdź");

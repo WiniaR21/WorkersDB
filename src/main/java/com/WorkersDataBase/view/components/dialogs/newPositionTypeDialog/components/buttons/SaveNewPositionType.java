@@ -23,12 +23,8 @@ public class SaveNewPositionType extends Button implements ComponentCreator, But
         boolean success = positionService.addNewPositionType(positionName);
         if(success) newPositionTypeDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Zapisz");

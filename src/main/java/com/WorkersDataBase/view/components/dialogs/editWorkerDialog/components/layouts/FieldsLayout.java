@@ -30,7 +30,6 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         configureLastNameField();
         configurePeselField();
     }
-
     @Override
     public void configureFront() {
         add(
@@ -40,28 +39,24 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
                 emailField
         );
     }
-
     private void configureEmailField(){
         emailField = new EmailField(
                 workerSelectedFromGrid.getContact().getEmail()
         );
         emailField.configure();
     }
-
     private void configureFirstNameField(){
         firstNameField = new FirstNameField(
                 workerSelectedFromGrid.getFirstName()
         );
         firstNameField.configure();
     }
-
     private void configureLastNameField(){
         lastNameField = new LastNameField(
                 workerSelectedFromGrid.getLastName()
         );
         lastNameField.configure();
     }
-
     private void configurePeselField(){
         peselField = new PeselField(
                 workerSelectedFromGrid.getPesel()

@@ -20,13 +20,11 @@ public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
     public void configureComponents() {
         configureNewPositionDialogLayout();
     }
-
     @Override
     public void configureFront() {
         add(newPositionDialogLayout);
         open();
     }
-
     private void configureNewPositionDialogLayout(){
         newPositionDialogLayout = new NewPositionDialogLayout(
                 this, positionService, manageCompanyDialog);

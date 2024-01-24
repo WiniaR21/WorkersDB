@@ -25,12 +25,8 @@ public class ConfirmButton extends Button implements ComponentCreator, ButtonCre
         workersGrid.refresh();
         confirmEditDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Potwierdź");

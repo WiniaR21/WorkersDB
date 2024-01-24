@@ -12,9 +12,7 @@ public class FilterText extends TextField implements ComponentCreator {
     private final WorkersGrid grid;
 
     @Override
-    public void configureComponents() {
-
-    }
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setClassName("search-text");

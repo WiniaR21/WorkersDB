@@ -36,11 +36,9 @@ public class EditWorkerDialog extends Dialog implements ComponentCreator {
         );
         dialogLayout.configure();
     }
-
     @Override
     public void configureFront() {
         add(dialogLayout);
         open();
     }
-
 }

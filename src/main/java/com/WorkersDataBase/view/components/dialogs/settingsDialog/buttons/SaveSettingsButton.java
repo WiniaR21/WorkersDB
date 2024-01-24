@@ -22,12 +22,8 @@ public class SaveSettingsButton extends Button implements ComponentCreator, Butt
         workersGrid.setBySetting(checkBoxLayout.getCheckBoxValue());
         settingsDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Zapisz");

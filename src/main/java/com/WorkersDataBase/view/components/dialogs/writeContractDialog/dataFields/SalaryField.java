@@ -9,12 +9,12 @@ import lombok.RequiredArgsConstructor;
 public class SalaryField extends NumberField implements ComponentCreator {
     //  To configure
     Div zlSuffix;
+
     @Override
     public void configureComponents() {
         zlSuffix = new Div();
         zlSuffix.setText("ZŁ");
     }
-
     @Override
     public void configureFront() {
         setLabel("Wynagrodzenie brutto");

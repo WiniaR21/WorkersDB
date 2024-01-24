@@ -19,12 +19,8 @@ public class CancelNewPositionTypeDialog extends Button implements ComponentCrea
         newPositionTypeDialog.close();
         manageCompanyDialog.open();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Cofnij");

@@ -25,13 +25,11 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     public void configureComponents() {
         configureWriteContractLayout();
     }
-
     @Override
     public void configureFront() {
         add(writeContractLayout);
         open();
     }
-
     private void configureWriteContractLayout(){
         writeContractLayout = new WriteContractLayout(
                 this,

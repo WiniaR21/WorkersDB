@@ -8,12 +8,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class PositionNameField extends TextField implements ComponentCreator {
-
     @Override
     public void configureComponents() {
 
     }
-
     @Override
     public void configureFront() {
         setLabel("Nazwa Stanowiska");

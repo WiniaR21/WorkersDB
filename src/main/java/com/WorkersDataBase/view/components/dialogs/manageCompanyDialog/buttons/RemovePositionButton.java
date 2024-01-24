@@ -20,19 +20,14 @@ public class RemovePositionButton extends Button implements ComponentCreator, Bu
         manageCompanyDialog.close();
         openRemovePositionDialog();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Usuń rodzaj stanowiska");
         addClickListener(e -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_TERTIARY);
     }
-
     private void openRemovePositionDialog(){
         RemovePositionDialog removePositionDialog =
                 new RemovePositionDialog(positionService, manageCompanyDialog);

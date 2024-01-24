@@ -19,12 +19,10 @@ public class CloseWriteContract extends Button implements ComponentCreator, Butt
         writeContractDialog.close();
         editWorkerDialog.open();
     }
-
     @Override
     public void configureComponents() {
 
     }
-
     @Override
     public void configureFront() {
         setText("Cofnij");

@@ -22,12 +22,10 @@ public class RemovePositionButton extends Button implements ComponentCreator, Bu
         boolean success = positionService.deletePosition(positions.getValue());
         if (success) removePositionDialog.close();
     }
-
     @Override
     public void configureComponents() {
 
     }
-
     @Override
     public void configureFront() {
         setText("Usuń");

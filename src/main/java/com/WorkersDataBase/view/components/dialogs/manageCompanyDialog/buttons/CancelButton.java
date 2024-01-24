@@ -16,17 +16,12 @@ public class CancelButton extends Button implements ComponentCreator, ButtonCrea
     public void clickEvent() {
         manageCompanyDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Cofnij");
         addClickListener(e -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-
     }
 }

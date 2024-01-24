@@ -25,7 +25,6 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
 
     @Override
     public void clickEvent() {
-
         if(workerService.workerWithIdExistInDB(workerSelectedFromGrid.getId())){
             Optional<Worker> original = workerService.getById(workerSelectedFromGrid.getId());
             Worker newWorker = getWorkerFromUser();
@@ -37,12 +36,8 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
             editWorkerDialog.close();
         }
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Zapisz");
@@ -64,7 +59,6 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
 
         return workerSelectedFromGrid;
     }
-
     private void openConfirmEditDialog(Worker newWorker, Worker originalWorker){
         ConfirmEditDialog confirmEditDialog = new ConfirmEditDialog(
                 workerService,

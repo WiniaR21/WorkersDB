@@ -20,12 +20,8 @@ public class CloseDialogButton extends Button implements ComponentCreator, Butto
     public void clickEvent() {
         addWorkerDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Cofnij");

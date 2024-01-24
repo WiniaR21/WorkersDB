@@ -24,12 +24,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
         editWorkerDialog.close();
         openWriteContractDialog();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         if (workerHasContract){
@@ -40,7 +36,6 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
         }
         addClickListener(buttonClickEvent -> clickEvent());
     }
-
     private void openWriteContractDialog(){
         WriteContractDialog writeContractDialog = new WriteContractDialog(
                 positionService,

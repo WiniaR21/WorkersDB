@@ -28,7 +28,6 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         configureOryginalFields();
         configureNewFields();
     }
-
     @Override
     public void configureFront() {
         setAlignItems(Alignment.STRETCH);
@@ -41,7 +40,6 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
                 new HorizontalLayout(contactField, newContactField)
         );
     }
-
     private void configureOryginalFields(){
 
         firstNameField = new WorkerDataField(
@@ -66,7 +64,6 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
         peselField.setLabel("PESEL");
         contactField.setLabel("Email");
     }
-
     private void configureNewFields(){
         newFirstNameField = new WorkerDataField(
                 newWorker.getFirstName(), false

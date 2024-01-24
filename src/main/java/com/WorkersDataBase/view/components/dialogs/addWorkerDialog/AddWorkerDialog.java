@@ -19,7 +19,6 @@ public class AddWorkerDialog extends Dialog implements ComponentCreator {
 
     @Override
     public void configureComponents(){
-
         addWorkerDialogLayout = new AddWorkerDialogLayout(
                 workerService, workersGrid, this
         );

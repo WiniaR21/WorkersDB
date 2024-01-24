@@ -17,14 +17,12 @@ public class WorkerDataField extends TextField implements ComponentCreator {
     public void configureComponents() {
         message = createTextMessage();
     }
-
     @Override
     public void configureFront() {
         setLabel("PESEL");
         setReadOnly(true);
         setValue(message);
     }
-
     private String createTextMessage() {
         return dataCollectedFromRepo ? data + " ->" : data;
     }

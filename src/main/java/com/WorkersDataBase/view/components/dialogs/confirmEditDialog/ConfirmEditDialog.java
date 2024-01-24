@@ -24,13 +24,11 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
     public void configureComponents() {
         configureDialogLayout();
     }
-
     @Override
     public void configureFront() {
         add(dialogLayout);
         open();
     }
-
     private void configureDialogLayout(){
         dialogLayout = new DialogLayout(
                 workerService,

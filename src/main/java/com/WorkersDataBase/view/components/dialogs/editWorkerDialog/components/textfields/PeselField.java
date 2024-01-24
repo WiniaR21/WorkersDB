@@ -10,10 +10,7 @@ public class PeselField extends TextField implements ComponentCreator {
     private final String pesel;
 
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setLabel("PESEL");

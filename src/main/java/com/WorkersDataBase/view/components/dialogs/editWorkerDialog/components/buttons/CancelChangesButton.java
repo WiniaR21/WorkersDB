@@ -15,12 +15,8 @@ public class CancelChangesButton extends Button implements ComponentCreator, But
     public void clickEvent() {
         editWorkerDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Przerwij");

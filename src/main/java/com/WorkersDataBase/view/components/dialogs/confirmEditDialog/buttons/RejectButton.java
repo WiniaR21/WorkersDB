@@ -15,12 +15,8 @@ public class RejectButton extends Button implements ComponentCreator, ButtonCrea
     public void clickEvent() {
         confirmEditDialog.close();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Odrzuć");

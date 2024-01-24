@@ -15,17 +15,16 @@ public class RemovePositionDialog extends Dialog implements ComponentCreator {
 
     //  To configure
     RemovePositionLayout removePositionLayout;
+
     @Override
     public void configureComponents() {
           configureRemovePositionLayout();
     }
-
     @Override
     public void configureFront() {
         add(removePositionLayout);
         open();
     }
-
     private void configureRemovePositionLayout(){
         removePositionLayout = new RemovePositionLayout(
                 positionService,

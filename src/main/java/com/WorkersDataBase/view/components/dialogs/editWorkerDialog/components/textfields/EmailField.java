@@ -3,7 +3,6 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @RequiredArgsConstructor
 public class EmailField extends TextField implements ComponentCreator {
@@ -11,10 +10,7 @@ public class EmailField extends TextField implements ComponentCreator {
     private final String email;
 
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setLabel("Adres email");

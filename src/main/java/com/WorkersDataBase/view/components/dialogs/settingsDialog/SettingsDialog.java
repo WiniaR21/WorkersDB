@@ -41,7 +41,4 @@ public class SettingsDialog extends Dialog implements ComponentCreator {
         );
         settingsDialogLayout.configure();
     }
-
-
-
 }
