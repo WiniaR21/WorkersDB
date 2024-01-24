@@ -14,28 +14,19 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 
 @PageTitle("Pracownicy")
 @Route("strona-glowna")
+@RequiredArgsConstructor
 public class MainView extends VerticalLayout implements ComponentCreator {
     // To inject by constructor
     private final WorkerService workerService;
     private final PositionService positionService;
     private final ContractService contractService;
-    @Autowired
-    public MainView(
-            WorkerService workerService,
-            PositionService positionService,
-            ContractService contractService
-    ) {
-        this.workerService = workerService;
-        this.positionService = positionService;
-        this.contractService = contractService;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     WorkersGrid grid;
@@ -44,10 +35,9 @@ public class MainView extends VerticalLayout implements ComponentCreator {
     TopBar topBar;
     LineBetweenComponents line;
 
-    @Override
+    @Override @PostConstruct @Order(1)
     public void configureComponents() {
-        grid = new WorkersGrid(workerService, positionService, contractService);
-        grid.configure();
+        configureGrid();
 
         addWorkerDialog = new AddWorkerDialog(workerService, grid);
         addWorkerDialog.configure();
@@ -55,18 +45,25 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         settingsDialog = new SettingsDialog(grid);
         settingsDialog.configure();
 
-        topBar = new TopBar(grid,addWorkerDialog,settingsDialog, positionService);
-        topBar.configure();
+        configureTopBar();
 
         line = new LineBetweenComponents();
     }
-    @Override
+    @Override @PostConstruct @Order(2)
     public void configureFront(){
         setClassName("main-view");
         setPadding(false);
         getStyle().setDisplay(Style.Display.BLOCK);
         setSizeFull();
         add(topBar, line, grid);
+    }
+    private void configureGrid(){
+        grid = new WorkersGrid(workerService, positionService, contractService);
+        grid.configure();
+    }
+    private void configureTopBar(){
+        topBar = new TopBar(grid,addWorkerDialog,settingsDialog, positionService);
+        topBar.configure();
     }
 
 }
