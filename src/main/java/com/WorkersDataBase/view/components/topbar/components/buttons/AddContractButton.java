@@ -18,7 +18,7 @@ public class AddContractButton extends Button implements ComponentCreator, Butto
 
     @Override
     public void clickEvent() {
-        new ManageCompanyDialog(positionService);
+        openManageCompanyDialog();
     }
 
     @Override
@@ -31,5 +31,11 @@ public class AddContractButton extends Button implements ComponentCreator, Butto
         setText("Zarządzaj firmą");
         addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         addClickListener(clickEvent -> clickEvent());
+    }
+
+    private void openManageCompanyDialog(){
+        ManageCompanyDialog manageCompanyDialog =
+                new ManageCompanyDialog(positionService);
+        manageCompanyDialog.configure();
     }
 }

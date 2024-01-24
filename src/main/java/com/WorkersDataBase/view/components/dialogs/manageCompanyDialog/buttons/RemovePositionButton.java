@@ -7,21 +7,13 @@ import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
-public class RemovePosition extends Button implements ComponentCreator, ButtonCreator {
+@RequiredArgsConstructor
+public class RemovePositionButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;
-    public RemovePosition(
-            PositionService positionService,
-            ManageCompanyDialog manageCompanyDialog
-    ) {
-        this.positionService = positionService;
-        this.manageCompanyDialog = manageCompanyDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {
