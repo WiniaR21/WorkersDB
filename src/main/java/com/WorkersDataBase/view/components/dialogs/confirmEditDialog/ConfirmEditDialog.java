@@ -6,28 +6,17 @@ import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.Dia
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
+import lombok.RequiredArgsConstructor;
 
+
+@RequiredArgsConstructor
 public class ConfirmEditDialog extends Dialog implements ComponentCreator {
+
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final Worker oryginalWorker;
-
-    public ConfirmEditDialog(
-            WorkerService workerService,
-            Worker newWorker,
-            WorkersGrid workersGrid,
-            Worker oryginalWorker
-    ) {
-        this.workerService = workerService;
-        this.newWorker = newWorker;
-        this.workersGrid = workersGrid;
-        this.oryginalWorker = oryginalWorker;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     DialogLayout dialogLayout;
@@ -41,6 +30,7 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
                 this,
                 oryginalWorker
         );
+        dialogLayout.configure();
     }
 
     @Override

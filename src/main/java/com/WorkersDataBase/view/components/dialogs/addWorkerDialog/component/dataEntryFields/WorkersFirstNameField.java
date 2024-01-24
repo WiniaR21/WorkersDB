@@ -2,13 +2,10 @@ package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.da
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
+import lombok.RequiredArgsConstructor;
 
-
+@RequiredArgsConstructor
 public class WorkersFirstNameField extends TextField implements ComponentCreator {
-    public WorkersFirstNameField() {
-       configureComponents();
-       configureFront();
-    }
 
     @Override
     public void configureComponents() {

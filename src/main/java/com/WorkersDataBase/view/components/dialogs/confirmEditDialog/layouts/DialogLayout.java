@@ -6,31 +6,17 @@ import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEdit
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class DialogLayout extends VerticalLayout implements ComponentCreator {
+
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final ConfirmEditDialog confirmEditDialog;
     private final Worker oryginalWorker;
-
-    public DialogLayout(
-            WorkerService workerService,
-            Worker newWorker,
-            WorkersGrid workersGrid,
-            ConfirmEditDialog confirmEditDialog,
-            Worker oryginalWorker
-    ) {
-        this.workerService = workerService;
-        this.newWorker = newWorker;
-        this.workersGrid = workersGrid;
-        this.confirmEditDialog = confirmEditDialog;
-        this.oryginalWorker = oryginalWorker;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     FieldsLayout fieldsLayout;
@@ -43,6 +29,7 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 oryginalWorker,
                 newWorker
         );
+        fieldsLayout.configure();
 
         buttonsLayout = new ButtonsLayout(
                 workerService,
@@ -50,6 +37,7 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 workersGrid,
                 confirmEditDialog
         );
+        buttonsLayout.configure();
     }
 
     @Override

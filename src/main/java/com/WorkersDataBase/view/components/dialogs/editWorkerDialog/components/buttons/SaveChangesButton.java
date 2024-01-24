@@ -46,13 +46,10 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
             Optional<Worker> original = workerService.getById(workerSelectedFromGrid.getId());
             Worker newWorker = getWorkerFromUser();
 
-            original.ifPresent(originalWorker ->
-                    new ConfirmEditDialog(
-                            workerService,
-                            newWorker,
-                            workersGrid,
-                            originalWorker
-                    ));
+            original.ifPresent(
+                    originalWorker -> openConfirmEditDialog(newWorker, originalWorker)
+            );
+
             editWorkerDialog.close();
         }
 
@@ -83,5 +80,16 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
                 .setEmail(fieldsLayout.getEmailField().getValue());
 
         return workerSelectedFromGrid;
+    }
+
+    private void openConfirmEditDialog(Worker newWorker, Worker originalWorker){
+        ConfirmEditDialog confirmEditDialog = new ConfirmEditDialog(
+                workerService,
+                newWorker,
+                workersGrid,
+                originalWorker
+        );
+        confirmEditDialog.configureComponents();
+        confirmEditDialog.configureFront();
     }
 }

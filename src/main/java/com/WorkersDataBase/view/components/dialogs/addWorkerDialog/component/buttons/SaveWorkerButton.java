@@ -20,6 +20,7 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 public class SaveWorkerButton extends Button implements ComponentCreator, ButtonCreator {
+
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
@@ -33,6 +34,7 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
     public void clickEvent() {
         addWorkerToDB();
     }
+
     @Override
     public void configureComponents() {
 
@@ -45,6 +47,7 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
         addThemeVariants(ButtonVariant.LUMO_SUCCESS);
         addClickShortcut(Key.ENTER);
     }
+
     private void addWorkerToDB(){
         Worker worker = getWorkerFromUser();
         boolean operationSuccess = workerService.addWorker(worker, false);
@@ -52,7 +55,6 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
             workersGrid.refresh();
             addWorkerDialog.close();
         }
-
     }
 
     private Worker getWorkerFromUser(){

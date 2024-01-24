@@ -14,59 +14,41 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
     private final AddWorkerDialog addWorkerDialog;
 
-    public AddWorkerDialogLayout(
-            WorkerService workerService,
-            WorkersGrid workersGrid, AddWorkerDialog addWorkerDialog
-    ) {
-        this.workerService = workerService;
-        this.workersGrid = workersGrid;
-        this.addWorkerDialog = addWorkerDialog;
-
-
-        configureComponents();
-        configureFront();
-    }
     //  To configure
     H3 header;
-
+        //  Fields
     WorkersFirstNameField workersFirstNameField;
     WorkersLastNameField workersLastNameField;
     WorkersEmailField workersEmailField;
     WorkersPeselField workersPeselField;
     VerticalLayout fieldsLayout;
-
-
+        //  Buttons
     SaveWorkerButton saveWorkerButton;
     CloseDialogButton closeDialogButton;
     HorizontalLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
-
         header = new H3("Dodaj pracownika");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
-
 
         configureFields();
         configureFieldsLayout();
 
         configureButtons();
         configureButtonsLayout();
-
-
-
-
     }
-
 
     private void configureButtons() {
         saveWorkerButton = new SaveWorkerButton(
@@ -78,12 +60,10 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
                 workersEmailField,
                 workersPeselField
         );
-        saveWorkerButton.configureComponents();
-        saveWorkerButton.configureFront();
+        saveWorkerButton.configure();
 
         closeDialogButton = new CloseDialogButton(addWorkerDialog);
-        closeDialogButton.configureComponents();
-        closeDialogButton.configureFront();
+        closeDialogButton.configure();
     }
     private void configureButtonsLayout() {
         buttonsLayout = new HorizontalLayout(saveWorkerButton, closeDialogButton);
@@ -96,6 +76,7 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
         setPadding(false);
         setAlignItems(FlexComponent.Alignment.STRETCH);
         getStyle().set("width", "300px").set("max-width", "100%");
+
         add(
                 header,
                 fieldsLayout,
@@ -104,9 +85,16 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
     }
     private void configureFields() {
         workersFirstNameField = new WorkersFirstNameField();
+        workersFirstNameField.configure();
+
         workersLastNameField = new WorkersLastNameField();
+        workersLastNameField.configure();
+
         workersEmailField = new WorkersEmailField();
+        workersEmailField.configure();
+
         workersPeselField = new WorkersPeselField();
+        workersPeselField.configure();
     }
     private void configureFieldsLayout(){
         fieldsLayout = new VerticalLayout(

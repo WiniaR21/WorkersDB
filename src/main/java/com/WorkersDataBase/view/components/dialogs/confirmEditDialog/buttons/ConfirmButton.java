@@ -9,28 +9,16 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class ConfirmButton extends Button implements ComponentCreator, ButtonCreator {
+
     // To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final ConfirmEditDialog confirmEditDialog;
-
-    public ConfirmButton(
-            WorkerService workerService,
-            Worker newWorker,
-            WorkersGrid workersGrid,
-            ConfirmEditDialog confirmEditDialog
-    ) {
-        this.workerService = workerService;
-        this.newWorker = newWorker;
-        this.workersGrid = workersGrid;
-        this.confirmEditDialog = confirmEditDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     @Override
     public void clickEvent() {

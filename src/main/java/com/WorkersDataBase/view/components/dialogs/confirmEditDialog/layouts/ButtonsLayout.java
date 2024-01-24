@@ -9,28 +9,16 @@ import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
+
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final ConfirmEditDialog confirmEditDialog;
-
-    public ButtonsLayout(
-            WorkerService workerService,
-            Worker newWorker,
-            WorkersGrid workersGrid,
-            ConfirmEditDialog confirmEditDialog
-    ) {
-        this.workerService = workerService;
-        this.newWorker = newWorker;
-        this.workersGrid = workersGrid;
-        this.confirmEditDialog = confirmEditDialog;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     ConfirmButton confirmButton;
@@ -44,8 +32,10 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 workersGrid,
                 confirmEditDialog
         );
+        confirmButton.configure();
 
         rejectButton = new RejectButton(confirmEditDialog);
+        rejectButton.configure();
     }
 
     @Override

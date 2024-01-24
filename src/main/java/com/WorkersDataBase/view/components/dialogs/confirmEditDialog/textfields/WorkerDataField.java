@@ -2,19 +2,13 @@ package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields
 
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.textfield.TextField;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class WorkerDataField extends TextField implements ComponentCreator {
     //  To inject by constructor
     private final String data;
     private final boolean dataCollectedFromRepo;
-
-    public WorkerDataField(String data, boolean dataCollectedFromRepo) {
-        this.data = data;
-        this.dataCollectedFromRepo = dataCollectedFromRepo;
-
-        configureComponents();
-        configureFront();
-    }
 
     //  To configure
     String message;

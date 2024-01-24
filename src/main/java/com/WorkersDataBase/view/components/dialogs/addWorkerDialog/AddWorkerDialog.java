@@ -5,23 +5,14 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts.AddWorkerDialogLayout;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.vaadin.flow.component.dialog.Dialog;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
-@Getter
-@Setter
+
+@RequiredArgsConstructor
 public class AddWorkerDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
-
-    public AddWorkerDialog(WorkerService workerService, WorkersGrid workersGrid) {
-        this.workerService = workerService;
-        this.workersGrid = workersGrid;
-
-        configureComponents();
-        configureFront();
-    }
 
     // To configure
     AddWorkerDialogLayout addWorkerDialogLayout;
@@ -32,6 +23,7 @@ public class AddWorkerDialog extends Dialog implements ComponentCreator {
         addWorkerDialogLayout = new AddWorkerDialogLayout(
                 workerService, workersGrid, this
         );
+        addWorkerDialogLayout.configure();
     }
     @Override
     public void configureFront(){

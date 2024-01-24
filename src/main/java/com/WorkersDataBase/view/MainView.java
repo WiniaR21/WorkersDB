@@ -49,6 +49,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         grid = new WorkersGrid(workerService, positionService, contractService);
 
         addWorkerDialog = new AddWorkerDialog(workerService, grid);
+        addWorkerDialog.configure();
 
         settingsDialog = new SettingsDialog(grid);
 
