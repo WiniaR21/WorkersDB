@@ -33,6 +33,7 @@ public class SettingsDialog extends Dialog implements ComponentCreator {
         setModal(true);
         setCloseOnOutsideClick(false);
         add(settingsDialogLayout);
+        open();
     }
     private void configureSettingsDialogLayout(){
         settingsDialogLayout = new SettingsDialogLayout(

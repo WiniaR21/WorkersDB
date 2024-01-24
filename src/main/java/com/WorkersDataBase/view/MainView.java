@@ -29,25 +29,16 @@ public class MainView extends VerticalLayout implements ComponentCreator {
     private final ContractService contractService;
 
     //  To configure
-    WorkersGrid grid;
-    AddWorkerDialog addWorkerDialog;
-    SettingsDialog settingsDialog;
+    WorkersGrid workersGrid;
     TopBar topBar;
     LineBetweenComponents line;
 
     @Override @PostConstruct @Order(1)
     public void configureComponents() {
-        configureGrid();
-
-        addWorkerDialog = new AddWorkerDialog(workerService, grid);
-        addWorkerDialog.configure();
-
-        settingsDialog = new SettingsDialog(grid);
-        settingsDialog.configure();
-
-        configureTopBar();
-
         line = new LineBetweenComponents();
+
+        configureGrid();
+        configureTopBar();
     }
     @Override @PostConstruct @Order(2)
     public void configureFront(){
@@ -55,14 +46,27 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         setPadding(false);
         getStyle().setDisplay(Style.Display.BLOCK);
         setSizeFull();
-        add(topBar, line, grid);
+
+        add(
+                topBar,
+                line,
+                workersGrid
+        );
     }
     private void configureGrid(){
-        grid = new WorkersGrid(workerService, positionService, contractService);
-        grid.configure();
+        workersGrid = new WorkersGrid(
+                workerService,
+                positionService,
+                contractService
+        );
+        workersGrid.configure();
     }
     private void configureTopBar(){
-        topBar = new TopBar(grid,addWorkerDialog,settingsDialog, positionService);
+        topBar = new TopBar(
+                workerService,
+                workersGrid,
+                positionService
+        );
         topBar.configure();
     }
 

@@ -28,5 +28,6 @@ public class AddWorkerDialog extends Dialog implements ComponentCreator {
     public void configureFront(){
         setModal(true);
         add(addWorkerDialogLayout);
+        open();
     }
 }

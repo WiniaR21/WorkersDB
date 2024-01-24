@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.topbar;
 
 import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -13,9 +14,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TopBar extends HorizontalLayout implements ComponentCreator {
     //  Inject by constructor
-    private final WorkersGrid grid;
-    private final AddWorkerDialog addWorkerDialog;
-    private final SettingsDialog settingsDialog;
+    private final WorkerService workerService;
+    private final WorkersGrid workersGrid;
     private final PositionService positionService;
 
     //  To configure
@@ -36,13 +36,13 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
         add(filterText, buttonsLayout);
     }
     private void configureFilterText(){
-        filterText = new FilterText(grid);
+        filterText = new FilterText(workersGrid);
         filterText.configure();
     }
     private void configureButtonsLayout(){
         buttonsLayout = new ButtonsLayoutTopBar(
-                addWorkerDialog,
-                settingsDialog,
+                workerService,
+                workersGrid,
                 positionService
         );
         buttonsLayout.configure();

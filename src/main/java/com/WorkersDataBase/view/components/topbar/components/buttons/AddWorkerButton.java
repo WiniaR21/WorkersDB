@@ -1,6 +1,8 @@
 package com.WorkersDataBase.view.components.topbar.components.buttons;
 
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
+import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
@@ -10,11 +12,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AddWorkerButton extends Button implements ComponentCreator, ButtonCreator {
     // To inject by constructor
-    private final AddWorkerDialog addWorkerDialog;
+    private final WorkerService workerService;
+    private final WorkersGrid workersGrid;
 
     @Override
     public void clickEvent() {
-        addWorkerDialog.open();
+        openAddWorkerDialog();
     }
     @Override
     public void configureComponents() {}
@@ -23,5 +26,11 @@ public class AddWorkerButton extends Button implements ComponentCreator, ButtonC
         setText("Dodaj pracownka");
         addClickListener(clickEvent -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+    }
+    private void openAddWorkerDialog(){
+        AddWorkerDialog addWorkerDialog = new AddWorkerDialog(
+                workerService, workersGrid
+        );
+        addWorkerDialog.configure();
     }
 }
