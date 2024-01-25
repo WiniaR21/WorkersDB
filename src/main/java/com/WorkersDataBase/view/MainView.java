@@ -3,12 +3,11 @@ package com.WorkersDataBase.view;
 
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
+import com.WorkersDataBase.view.components.grid.WorkersGridSettings;
 import com.WorkersDataBase.view.components.line.LineBetweenComponents;
 import com.WorkersDataBase.view.components.topbar.TopBar;
-import com.WorkersDataBase.view.components.dialogs.settingsDialog.SettingsDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.dom.Style;
@@ -16,8 +15,6 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 
 @PageTitle("Pracownicy")
 @Route("strona-glowna")
@@ -27,20 +24,22 @@ public class MainView extends VerticalLayout implements ComponentCreator {
     private final WorkerService workerService;
     private final PositionService positionService;
     private final ContractService contractService;
+    private final WorkersGridSettings workersGridSettings;
 
     //  To configure
     WorkersGrid workersGrid;
     TopBar topBar;
     LineBetweenComponents line;
 
-    @Override @PostConstruct @Order(1)
+    @Override @PostConstruct
     public void configureComponents() {
         line = new LineBetweenComponents();
 
         configureGrid();
         configureTopBar();
+        configureFront();
     }
-    @Override @PostConstruct @Order(2)
+    @Override
     public void configureFront(){
         setClassName("main-view");
         setPadding(false);
@@ -57,7 +56,9 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         workersGrid = new WorkersGrid(
                 workerService,
                 positionService,
-                contractService
+                contractService,
+                workersGridSettings
+
         );
         workersGrid.configure();
     }
@@ -69,5 +70,4 @@ public class MainView extends VerticalLayout implements ComponentCreator {
         );
         topBar.configure();
     }
-
 }

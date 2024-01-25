@@ -28,4 +28,5 @@ public class Position {
     @ToString.Exclude
     @OneToMany(mappedBy = "position", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Contract> contracts = new ArrayList<>();
+
 }

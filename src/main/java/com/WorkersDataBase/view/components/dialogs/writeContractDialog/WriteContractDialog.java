@@ -5,6 +5,7 @@ import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.layouts.WriteContractLayout;
+import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     private final ContractService contractService;
     private final boolean workerHasContract;
     private final EditWorkerDialog editWorkerDialog;
+    private final WorkersGrid workersGrid;
 
     //  To configure
     WriteContractLayout writeContractLayout;
@@ -37,7 +39,8 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
                 worker,
                 contractService,
                 workerHasContract,
-                editWorkerDialog
+                editWorkerDialog,
+                workersGrid
         );
         writeContractLayout.configure();
     }

@@ -22,6 +22,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     private final WorkerService workerService;
     private final PositionService positionService;
     private final ContractService contractService;
+    private final WorkersGridSettings workersGridSettings;
 
     //  To configure
     Grid<Worker> grid;
@@ -52,42 +53,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     }
     public void setBySetting(Set<String> checkBoxValue){
         grid.removeAllColumns();
-
-        if(checkBoxValue.contains("Imie")){
-            grid
-                    .addColumn("firstName")
-                    .setTextAlign(ColumnTextAlign.CENTER);
-            grid
-                    .getColumnByKey("firstName")
-                    .setHeader("Imie");
-        }
-
-        if (checkBoxValue.contains("Nazwisko")){
-            grid
-                    .addColumn("lastName")
-                    .setTextAlign(ColumnTextAlign.CENTER);
-
-            grid
-                    .getColumnByKey("lastName")
-                    .setHeader("Nazwisko");
-        }
-        if (checkBoxValue.contains("PESEL")){
-            grid
-                    .addColumn("pesel").
-                    setTextAlign(ColumnTextAlign.CENTER);
-            grid
-                    .getColumnByKey("pesel")
-                    .setHeader("PESEL");
-        }
-        if (checkBoxValue.contains("Email")){
-            grid
-                    .addColumn(
-                            worker -> worker
-                                    .getContact()
-                                    .getEmail())
-                    .setHeader("Email")
-                    .setTextAlign(ColumnTextAlign.CENTER);
-        }
+        workersGridSettings.setBySetting(checkBoxValue, grid);
     }
     private void openEditWorkerDialog(ItemClickEvent<Worker> event){
 
@@ -98,7 +64,6 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
                 positionService,
                 contractService
         );
-
         editWorkerDialog.configure();
     }
     public void refresh(){

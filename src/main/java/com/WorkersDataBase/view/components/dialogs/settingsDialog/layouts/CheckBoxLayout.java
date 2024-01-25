@@ -37,6 +37,9 @@ public class CheckBoxLayout extends VerticalLayout implements ComponentCreator {
                 "Imie",
                 "Nazwisko",
                 "PESEL",
-                "Email");
+                "Email",
+                "Stanowisko",
+                "Wynagrodzenie"
+        );
     }
 }

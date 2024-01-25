@@ -8,7 +8,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Set;
 @RequiredArgsConstructor
 public class OpenSettingsButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor

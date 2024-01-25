@@ -4,6 +4,7 @@ import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import static jakarta.persistence.GenerationType.SEQUENCE;
@@ -12,6 +13,7 @@ import static jakarta.persistence.GenerationType.SEQUENCE;
 @Data
 @Table(name = "contract")
 @NoArgsConstructor
+@Getter
 public class Contract {
     @Id
     @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
@@ -31,4 +33,6 @@ public class Contract {
     @ToString.Exclude
     @OneToOne(mappedBy = "contract")
     private Worker worker;
+
+
 }

@@ -4,15 +4,11 @@ import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.topbar.components.buttons.AddContractButton;
 import com.WorkersDataBase.view.components.topbar.components.buttons.AddWorkerButton;
 import com.WorkersDataBase.view.components.topbar.components.buttons.OpenSettingsButton;
-import com.WorkersDataBase.view.components.dialogs.settingsDialog.SettingsDialog;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @RequiredArgsConstructor
 public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCreator {

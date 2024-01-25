@@ -69,7 +69,8 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 workerSelectedFromGrid,
                 workerSelectedFromGrid.getContract() != null,
                 contractService,
-                editWorkerDialog
+                editWorkerDialog,
+                workersGrid
         );
         writteContractButton.configure();
     }

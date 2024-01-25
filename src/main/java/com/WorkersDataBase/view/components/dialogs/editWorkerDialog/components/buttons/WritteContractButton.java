@@ -5,6 +5,7 @@ import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
+import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
@@ -18,6 +19,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final boolean workerHasContract;
     private final ContractService contractService;
     private final EditWorkerDialog editWorkerDialog;
+    private final WorkersGrid workersGrid;
 
     @Override
     public void clickEvent() {
@@ -42,7 +44,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
                 worker,
                 contractService,
                 workerHasContract,
-                editWorkerDialog
+                editWorkerDialog,
+                workersGrid
         );
         writeContractDialog.configure();
     }

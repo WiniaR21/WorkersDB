@@ -34,7 +34,7 @@ public class SettingsDialogLayout extends VerticalLayout implements ComponentCre
         );
     }
     private void configureHeader(){
-        header = new H3("Usuń stanowisko");
+        header = new H3("Ustawienia");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");

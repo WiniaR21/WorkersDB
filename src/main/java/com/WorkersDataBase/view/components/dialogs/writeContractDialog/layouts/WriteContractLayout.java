@@ -9,6 +9,7 @@ import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteCont
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.CloseWriteContract;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.WritteContractButton;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.SalaryField;
+import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H3;
@@ -25,6 +26,7 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     private final ContractService contractService;
     private final boolean workerHasContract;
     private final EditWorkerDialog editWorkerDialog;
+    private final WorkersGrid workersGrid;
 
     //   To configure
     H3 header;
@@ -75,7 +77,9 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 position,
                 contractService,
                 workerHasContract,
-                editWorkerDialog
+                editWorkerDialog,
+                workersGrid
+
         );
         writteContractButton.configure();
     }

@@ -34,7 +34,6 @@ public class Worker {
     @Column(name = "pesel")
     private String pesel;
 
-
     @OneToOne
     @JoinColumn(name = "contract_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "contract_fk"))
     private Contract contract;
@@ -44,4 +43,5 @@ public class Worker {
         this.pesel = pesel;
         this.contact = contact;
     }
+
 }
