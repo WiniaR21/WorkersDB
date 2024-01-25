@@ -4,6 +4,7 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDi
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,6 @@ public class CloseWriteContract extends Button implements ComponentCreator, Butt
         setText("Cofnij");
         addClickListener(e -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        addClickShortcut(Key.ESCAPE);
     }
 }

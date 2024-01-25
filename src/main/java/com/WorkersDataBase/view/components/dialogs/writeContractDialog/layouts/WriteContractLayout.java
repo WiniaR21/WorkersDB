@@ -76,7 +76,6 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 salaryField,
                 position,
                 contractService,
-                workerHasContract,
                 editWorkerDialog,
                 workersGrid
 

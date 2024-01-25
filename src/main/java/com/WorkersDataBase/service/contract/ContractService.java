@@ -6,8 +6,7 @@ import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.position.PositionRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.ServicePushNotification;
-import com.WorkersDataBase.service.validTools.ContractValidTool;
+import com.WorkersDataBase.service.Notification.ServicePushNotification;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,31 +25,29 @@ public class ContractService {
     public boolean writeContractWithWorker(
             Worker worker,
             String positionName,
-            double salary,
-            boolean workerHasContract
+            double salary
     ) {
-
+        boolean workerHasContract = worker.getContract() != null;
         //  Valid
         //  * It is impossible to provide null worker, so valid do not needed
         //  * It is impossible to provide wrong positionName, so valid do not needed
 
         if (!contractValidTool.validSalary(salary)){
-            servicePushNotification.pushError("Najniższa krajowa wynosi 4242zł.");
+            servicePushNotification.pushNationalLowestInfo();
             return false;
         }
 
         if (workerHasContract) {
             removeOldContract(worker);
             writeNewContract(worker, positionName, salary);
-            servicePushNotification.pushSuccess("Zmieniono umowę pracownika.");
-            return true;
+            servicePushNotification.pushChangeContractSuccess(worker);
         }
         else
         {
             writeNewContract(worker, positionName, salary);
-            servicePushNotification.pushSuccess("Od teraz pracownik ma umowę.");
-            return true;
+            servicePushNotification.pushWriteContractSuccess(worker);
         }
+        return true;
 
     }
 
