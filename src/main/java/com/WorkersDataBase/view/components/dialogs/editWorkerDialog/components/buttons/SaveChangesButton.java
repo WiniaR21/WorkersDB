@@ -64,7 +64,8 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
                 workerService,
                 newWorker,
                 workersGrid,
-                originalWorker
+                originalWorker,
+                editWorkerDialog    
         );
         confirmEditDialog.configure();
     }

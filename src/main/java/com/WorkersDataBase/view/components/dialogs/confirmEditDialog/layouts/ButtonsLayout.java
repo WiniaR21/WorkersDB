@@ -5,6 +5,7 @@ import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.buttons.ConfirmButton;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.buttons.RejectButton;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -18,6 +19,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final ConfirmEditDialog confirmEditDialog;
+    private final EditWorkerDialog editWorkerDialog;
 
     //  To configure
     ConfirmButton confirmButton;
@@ -33,7 +35,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         );
         confirmButton.configure();
 
-        rejectButton = new RejectButton(confirmEditDialog);
+        rejectButton = new RejectButton(confirmEditDialog, editWorkerDialog);
         rejectButton.configure();
     }
     @Override

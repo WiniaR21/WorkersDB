@@ -3,6 +3,8 @@ package com.WorkersDataBase.view.components.dialogs.confirmEditDialog;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.DialogLayout;
+import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.FieldsLayout;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -16,6 +18,7 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final Worker oryginalWorker;
+    private final EditWorkerDialog editWorkerDialog;
 
     //  To configure
     DialogLayout dialogLayout;
@@ -35,7 +38,8 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
                 newWorker,
                 workersGrid,
                 this,
-                oryginalWorker
+                oryginalWorker,
+                editWorkerDialog
         );
         dialogLayout.configure();
     }

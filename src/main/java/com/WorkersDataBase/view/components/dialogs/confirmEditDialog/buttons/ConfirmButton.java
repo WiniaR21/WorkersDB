@@ -21,9 +21,14 @@ public class ConfirmButton extends Button implements ComponentCreator, ButtonCre
 
     @Override
     public void clickEvent() {
-        workerService.addWorker(newWorker, true);
-        workersGrid.refresh();
-        confirmEditDialog.close();
+        boolean success = workerService.addWorker(newWorker, true);
+
+        if (success) {
+            workersGrid.refresh();
+            confirmEditDialog.close();
+        }
+        else confirmEditDialog.close();
+        
     }
     @Override
     public void configureComponents() {}
