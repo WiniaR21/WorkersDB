@@ -35,6 +35,4 @@ public class WorkerValidTool {
     public boolean peselIsPossible(Worker worker){
         return worker.getPesel().length() == 11;
     }
-
-
 }

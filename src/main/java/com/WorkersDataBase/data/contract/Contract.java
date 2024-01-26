@@ -34,5 +34,4 @@ public class Contract {
     @OneToOne(mappedBy = "contract")
     private Worker worker;
 
-
 }

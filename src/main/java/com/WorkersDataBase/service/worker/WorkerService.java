@@ -66,9 +66,7 @@ public class WorkerService {
             notification.pushPeselLengthError();
             return false;
         }
-        if(
-                editingWorker 
-        ){
+        if(editingWorker){
             workerRepository.save(worker);
             notification.pushEditSuccess();
             return true;
