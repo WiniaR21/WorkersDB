@@ -18,14 +18,15 @@ public class PositionValidTool {
     boolean someoneHasContract(Position position){
         return contractRepository.existsByPosition(position);
     }
-
     public boolean positionIsNull(Position position) {
         return position == null;
     }
     public boolean positionIsNull(String position) {
+        if(position == null){
+            return true;
+        }
         return position.isEmpty() || position.isBlank();
     }
-
     public boolean positionNameIsFine(String positionName) {
         return positionName.length() > 4;
     }
