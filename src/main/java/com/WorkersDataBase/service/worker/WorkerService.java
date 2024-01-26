@@ -1,7 +1,8 @@
 package com.WorkersDataBase.service.worker;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.Notification.ServicePushNotification;
+import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class WorkerService {
     private final WorkerRepository workerRepository;
     private final ServicePushNotification notification;
     private final WorkerValidTool workerValidTool;
-
+    private final ContractService contractService;
     public Optional<Worker> getById(Long id){
         return workerRepository.findById(id);
     }
@@ -65,7 +66,9 @@ public class WorkerService {
             notification.pushPeselLengthError();
             return false;
         }
-        if(editingWorker){
+        if(
+                editingWorker 
+        ){
             workerRepository.save(worker);
             notification.pushEditSuccess();
             return true;
@@ -79,13 +82,32 @@ public class WorkerService {
             notification.pushEmailUniqueError();
             return false;
         }
-
-
-
         workerRepository.save(worker);
         notification.pushAddingWorkerSuccess(worker);
         return true;
 
+    }
+    @Transactional
+    public boolean fireWorker(Long idWorkerToFire){
+
+        if(!workerRepository.existsById(idWorkerToFire)){
+            notification.pushError();
+            return false;
+        }
+
+        workerRepository.findById(idWorkerToFire).ifPresent(
+                worker -> {
+                        if (worker.getContract() != null){
+                            contractService.removeOldContract(worker);
+                            workerRepository.deleteById(idWorkerToFire);
+                            notification.pushFireWorkerSucces(worker);
+                        }
+                        else {
+                            workerRepository.deleteById(idWorkerToFire);
+                        }
+                }
+        );
+        return true;
     }
 
 }

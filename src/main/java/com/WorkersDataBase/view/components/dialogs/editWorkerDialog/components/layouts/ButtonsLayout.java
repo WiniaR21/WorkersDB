@@ -6,6 +6,7 @@ import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.CancelChangesButton;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.FireWorkerButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.SaveChangesButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.WritteContractButton;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -29,12 +30,14 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
     // To configure
     SaveChangesButton saveChangesButton;
     CancelChangesButton cancelChangesButton;
+    FireWorkerButton fireWorkerButton;
     WritteContractButton writteContractButton;
 
     @Override
     public void configureComponents() {
         configureSaveChangesButton();
         configureCancelChangesButton();
+        configureFireWorkerButton();
         configureWriteContractButton();
     }
     @Override
@@ -42,6 +45,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         add(
                 saveChangesButton,
                 cancelChangesButton,
+                fireWorkerButton,
                 writteContractButton
         );
     }
@@ -73,5 +77,15 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 workersGrid
         );
         writteContractButton.configure();
+    }
+    private void configureFireWorkerButton(){
+        fireWorkerButton = new FireWorkerButton(
+                workerService,
+                editWorkerDialog,
+                workersGrid,
+                fieldsLayout,
+                workerSelectedFromGrid
+        );
+        fireWorkerButton.configure();
     }
 }

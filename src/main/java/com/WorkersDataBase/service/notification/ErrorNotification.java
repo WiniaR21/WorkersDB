@@ -1,11 +1,11 @@
-package com.WorkersDataBase.service.Notification;
+package com.WorkersDataBase.service.notification;
 
 import com.vaadin.flow.component.notification.Notification;
 
-public class InfoNotification extends NotificationBase{
-    public InfoNotification(String message) {
+public class ErrorNotification extends NotificationBase{
+    public ErrorNotification(String message) {
         Notification notification = Notification.show(message);
-        notification.addThemeVariants(infoTheme);
+        notification.addThemeVariants(errorTheme);
         notification.setDuration(notificationTimeDuration);
         notification.setPosition(topCenter);
     }

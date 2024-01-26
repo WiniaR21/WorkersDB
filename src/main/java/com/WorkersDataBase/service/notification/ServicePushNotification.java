@@ -1,4 +1,4 @@
-package com.WorkersDataBase.service.Notification;
+package com.WorkersDataBase.service.notification;
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
@@ -36,6 +36,16 @@ public class ServicePushNotification{
                 String.format("Utworzono stanowisko %s w firmie", positionName);
         new SuccessNotification(message);
     }
+    public void pushFireWorkerSucces(Worker worker) {
+        String message =
+                String.format("%s %s został zwolniony", worker.getFirstName(), worker.getLastName());
+        new SuccessNotification(message);
+    }
+    public void pushBreachContractSuccess(Worker worker) {
+        String message =
+                String.format("Zerwano umowę z %s %s", worker.getFirstName(), worker.getLastName());
+        new SuccessNotification(message);
+    }
 
     //  Info
     public void pushDeletingPositionConflictInfo(){
@@ -43,6 +53,12 @@ public class ServicePushNotification{
     }
     public void pushNationalLowestInfo() {
         new InfoNotification("Najniższa krajowa to 4242 PLN");
+    }
+    public void pushUserTryingAddNullPositionInfo() {
+        new InfoNotification("Nie podano nazwy stanowiska");
+    }
+    public void pushToShortPositionNameInfo() {
+        new InfoNotification("Nazwa jest za krótka");
     }
 
     //  Errors
@@ -67,6 +83,4 @@ public class ServicePushNotification{
     public void pushError() {
        new ErrorNotification("Coś poszło nie tak");
     }
-
-
 }

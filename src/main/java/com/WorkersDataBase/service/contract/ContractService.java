@@ -6,7 +6,7 @@ import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.position.PositionRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.Notification.ServicePushNotification;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class ContractService {
     private final ContractRepository contractRepository;
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
-    private final ServicePushNotification servicePushNotification;
+    private final ServicePushNotification notification;
 
     //  writeContractWithWorker returns true if operation was success
     @Transactional
@@ -27,31 +27,30 @@ public class ContractService {
             String positionName,
             double salary
     ) {
-        boolean workerHasContract = worker.getContract() != null;
         //  Valid
         //  * It is impossible to provide null worker, so valid do not needed
         //  * It is impossible to provide wrong positionName, so valid do not needed
 
         if (!contractValidTool.validSalary(salary)){
-            servicePushNotification.pushNationalLowestInfo();
+            notification.pushNationalLowestInfo();
             return false;
         }
 
-        if (workerHasContract) {
+        if (contractValidTool.workerHasContract(worker)) {
             removeOldContract(worker);
             writeNewContract(worker, positionName, salary);
-            servicePushNotification.pushChangeContractSuccess(worker);
+            notification.pushChangeContractSuccess(worker);
         }
         else
         {
             writeNewContract(worker, positionName, salary);
-            servicePushNotification.pushWriteContractSuccess(worker);
+            notification.pushWriteContractSuccess(worker);
         }
         return true;
 
     }
-
-    private void removeOldContract(Worker worker) {
+    @Transactional
+    public void removeOldContract(Worker worker) {
         //  Get old contract from worker and remove dependencies
             //  For now delete, but of course is possible to storage old contract in DB
         Position position = worker.getContract().getPosition();
@@ -63,6 +62,8 @@ public class ContractService {
 
         workerRepository.save(worker);
         positionRepository.save(position);
+
+        notification.pushBreachContractSuccess(worker);
     }
 
     private void writeNewContract(Worker worker, String positionName, double salary) {
