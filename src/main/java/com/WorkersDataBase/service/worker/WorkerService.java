@@ -43,7 +43,7 @@ public class WorkerService {
     }
         private boolean startAddingProcedure(Worker worker, boolean editingWorker){
 
-        if (workerValidTool.workerHasNotNullFields(worker)) {
+        if (workerValidTool.workerHasNotEmptyFields(worker)) {
             return validWorker(worker, editingWorker);
         }
         else {
@@ -62,7 +62,7 @@ public class WorkerService {
         }
     }
         private boolean tryAddWorker(Worker worker, boolean editingWorker) {
-        if (!workerValidTool.peselIsPossible(worker)){
+        if (!workerValidTool.peselLengthIsFine(worker)){
             notification.pushPeselLengthError();
             return false;
         }

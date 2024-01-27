@@ -66,7 +66,7 @@ class PositionValidToolTest {
         //  Test
         assertTrue(underTest.someoneHasContract(position));
     }
-    @Test
+    @Test()
     void someoneHasContract_should_return_false(){
         //  Given
         Contract contract = new Contract();

@@ -15,7 +15,14 @@ public class WorkerValidTool {
     private final WorkerRepository workerRepository;
     private final ContactRepository contactRepository;
 
-    public boolean workerHasNotNullFields(Worker worker){
+    public boolean workerHasNotEmptyFields(Worker worker){
+        if (
+                        worker.getContact() == null ||
+                        worker.getFirstName() == null ||
+                        worker.getLastName() == null ||
+                        worker.getPesel() == null
+        ) return false;
+
         return  !worker.getContact().getEmail().isEmpty() &&
                 !worker.getFirstName().isEmpty() &&
                 !worker.getLastName().isEmpty() &&
@@ -32,7 +39,7 @@ public class WorkerValidTool {
     public boolean emailIsUnique(Worker worker){
         return !contactRepository.existsByEmail(worker.getContact().getEmail());
     }
-    public boolean peselIsPossible(Worker worker){
+    public boolean peselLengthIsFine(Worker worker){
         return worker.getPesel().length() == 11;
     }
 }

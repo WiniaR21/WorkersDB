@@ -69,5 +69,6 @@ public class MainView extends VerticalLayout implements ComponentCreator {
                 positionService
         );
         topBar.configure();
+        System.out.println("xd");
     }
 }
