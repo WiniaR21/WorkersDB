@@ -4,7 +4,6 @@ import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.FieldsLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

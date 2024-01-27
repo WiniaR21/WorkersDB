@@ -92,7 +92,6 @@ public class WorkerService {
             notification.pushError();
             return false;
         }
-
         workerRepository.findById(idWorkerToFire).ifPresent(
                 worker -> {
                         if (worker.getContract() != null){
