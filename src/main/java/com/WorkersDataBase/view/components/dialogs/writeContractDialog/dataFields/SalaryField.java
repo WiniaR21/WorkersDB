@@ -13,7 +13,7 @@ public class SalaryField extends NumberField implements ComponentCreator {
     @Override
     public void configureComponents() {
         zlSuffix = new Div();
-        zlSuffix.setText("ZŁ");
+        zlSuffix.setText("PLN");
     }
     @Override
     public void configureFront() {

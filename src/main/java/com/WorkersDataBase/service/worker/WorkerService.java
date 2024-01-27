@@ -30,7 +30,7 @@ public class WorkerService {
     }
 
 
-    //  addWorker returns true if adding was successful
+
     @Transactional
     public boolean addWorker(Worker worker, boolean editingWorker){
         boolean workerIsNotNull = worker != null;

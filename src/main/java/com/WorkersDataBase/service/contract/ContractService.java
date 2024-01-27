@@ -15,10 +15,10 @@ import java.time.LocalDate;
 @Service
 @AllArgsConstructor
 public class ContractService {
-    private final ContractValidTool contractValidTool;
     private final ContractRepository contractRepository;
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
+    private final ContractValidTool contractValidTool;
 
     /*
     *   RETURN CODE

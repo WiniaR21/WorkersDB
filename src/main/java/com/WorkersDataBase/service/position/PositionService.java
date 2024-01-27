@@ -5,16 +5,18 @@ import com.WorkersDataBase.data.position.PositionRepository;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PositionService {
     private final PositionRepository positionRepository;
     private final PositionValidTool positionValidTool;
     private final ServicePushNotification notification;
+
 
     @Transactional
     public boolean addNewPositionType(String positionName){
