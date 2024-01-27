@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -20,6 +21,7 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     private final Worker workerSelectedFromGrid;
     private final PositionService positionService;
     private final ContractService contractService;
+    private final ServicePushNotification notification;
 
     //  To configure
     H3 header;
@@ -60,7 +62,8 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 fieldsLayout,
                 workerSelectedFromGrid,
                 positionService,
-                contractService
+                contractService,
+                notification
         );
 
         buttonsLayout.configure();

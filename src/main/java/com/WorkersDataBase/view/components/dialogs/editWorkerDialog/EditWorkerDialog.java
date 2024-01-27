@@ -3,6 +3,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.DialogLayout;
@@ -20,6 +21,7 @@ public class EditWorkerDialog extends Dialog implements ComponentCreator {
     private final Worker workerSelectedFromGrid;
     private final PositionService positionService;
     private final ContractService contractService;
+    private final ServicePushNotification notification;
 
     //  To configure
     DialogLayout dialogLayout;
@@ -32,7 +34,8 @@ public class EditWorkerDialog extends Dialog implements ComponentCreator {
                 workersGrid,
                 workerSelectedFromGrid,
                 positionService,
-                contractService
+                contractService,
+                notification
         );
         dialogLayout.configure();
     }

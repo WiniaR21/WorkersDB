@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.grid;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -23,6 +24,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     private final PositionService positionService;
     private final ContractService contractService;
     private final WorkersGridSettings workersGridSettings;
+    private final ServicePushNotification notification;
 
     //  To configure
     Grid<Worker> grid;
@@ -62,7 +64,8 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
                 this,
                 event.getItem(),
                 positionService,
-                contractService
+                contractService,
+                notification
         );
         editWorkerDialog.configure();
     }

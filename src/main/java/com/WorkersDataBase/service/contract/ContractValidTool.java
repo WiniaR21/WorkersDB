@@ -19,4 +19,8 @@ public class ContractValidTool {
     public boolean dateIsFine(LocalDate localDate){
         return localDate != null;
     }
+
+    public boolean positionNameIsFine(String positionName) {
+        return positionName != null;
+    }
 }

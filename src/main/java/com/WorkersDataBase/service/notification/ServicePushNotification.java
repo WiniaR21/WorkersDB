@@ -83,4 +83,8 @@ public class ServicePushNotification{
     public void pushError() {
        new ErrorNotification("Coś poszło nie tak");
     }
+    public void pushStartDateError(){new ErrorNotification("Wprowadź datę rozpoczęcia umowy");}
+    public void pushEndDateError(){new ErrorNotification("Wprowadź datę zakończenia umowy");}
+    public void pushPositionNameIsNull(){new ErrorNotification("Podaj stanowisko");}
+
 }

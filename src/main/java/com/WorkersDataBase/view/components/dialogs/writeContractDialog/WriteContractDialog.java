@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.layouts.WriteContractLayout;
@@ -19,6 +20,7 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     private final boolean workerHasContract;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
+    private final ServicePushNotification notification;
 
     //  To configure
     WriteContractLayout writeContractLayout;
@@ -40,7 +42,8 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
                 contractService,
                 workerHasContract,
                 editWorkerDialog,
-                workersGrid
+                workersGrid,
+                notification
         );
         writeContractLayout.configure();
     }

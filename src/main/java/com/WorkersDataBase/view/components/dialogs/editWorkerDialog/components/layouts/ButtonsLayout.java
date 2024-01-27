@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -26,6 +27,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
     private final Worker workerSelectedFromGrid;
     private final PositionService positionService;
     private final ContractService contractService;
+    private final ServicePushNotification notification;
 
     // To configure
     SaveChangesButton saveChangesButton;
@@ -74,7 +76,8 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 workerSelectedFromGrid.getContract() != null,
                 contractService,
                 editWorkerDialog,
-                workersGrid
+                workersGrid,
+                notification
         );
         writteContractButton.configure();
     }

@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
@@ -20,6 +21,7 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final ContractService contractService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
+    private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
@@ -45,7 +47,8 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
                 contractService,
                 workerHasContract,
                 editWorkerDialog,
-                workersGrid
+                workersGrid,
+                notification
         );
         writeContractDialog.configure();
     }

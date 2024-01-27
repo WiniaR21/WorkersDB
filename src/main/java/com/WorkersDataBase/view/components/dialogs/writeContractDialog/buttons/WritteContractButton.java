@@ -3,6 +3,7 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons;
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.EndContractDateField;
@@ -31,22 +32,17 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final WorkersGrid workersGrid;
     private final StartContractDateField startContractDateField;
     private final EndContractDateField endContractDateField;
-
+    private final ServicePushNotification notification;
     @Override
     public void clickEvent() {
-        boolean success = contractService.writeContractWithWorker(
+        int status = contractService.writeContractWithWorker(
                 worker,
                 getPositionFromUser(),
                 getSalaryFromUser(),
                 getStartDateFromUser(),
                 getEndDateFromUser()
         );
-
-        if (success) {
-            workersGrid.refresh();
-            writeContractDialog.close();
-            editWorkerDialog.close();
-        }
+        statusResponse(status);
     }
     @Override
     public void configureComponents() {}
@@ -58,15 +54,11 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
         addClickShortcut(Key.ENTER);
     }
     private String getPositionFromUser(){
-        if (position.isEmpty()){
-            throw new RuntimeException("PositionField can not be empty");
-        }
+        if (position.isEmpty()) return null;
         return position.getValue().getPositionName();
     }
     private double getSalaryFromUser(){
-        if (salaryField.isEmpty()){
-         throw new RuntimeException("SalaryField can not be empty");
-        }
+        if (salaryField.isEmpty()) return 0;
         return salaryField.getValue();
     }
     private LocalDate getStartDateFromUser(){
@@ -74,5 +66,20 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     }
     private LocalDate getEndDateFromUser(){
         return endContractDateField.getValue();
+    }
+    private void statusResponse(int status){
+
+        if (status ==  1) notification.pushChangeContractSuccess(worker);
+        if (status ==  0) notification.pushWriteContractSuccess(worker);
+        if (status == -1) notification.pushPositionNameIsNull();
+        if (status == -2) notification.pushNationalLowestInfo();
+        if (status == -3) notification.pushStartDateError();
+        if (status == -4) notification.pushEndDateError();
+
+        if (status == 0 || status == 1) {
+            workersGrid.refresh();
+            writeContractDialog.close();
+            editWorkerDialog.close();
+        }
     }
 }
