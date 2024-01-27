@@ -5,7 +5,9 @@ import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
+import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.EndContractDateField;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.SalaryField;
+import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.StartContractDateField;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -14,6 +16,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
 import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDate;
 
 @RequiredArgsConstructor
 public class WritteContractButton extends Button implements ComponentCreator, ButtonCreator {
@@ -25,11 +29,18 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
     private final ContractService contractService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
+    private final StartContractDateField startContractDateField;
+    private final EndContractDateField endContractDateField;
 
     @Override
     public void clickEvent() {
         boolean success = contractService.writeContractWithWorker(
-                worker, getPositionFromUser(), getSalaryFromUser());
+                worker,
+                getPositionFromUser(),
+                getSalaryFromUser(),
+                getStartDateFromUser(),
+                getEndDateFromUser()
+        );
 
         if (success) {
             workersGrid.refresh();
@@ -57,5 +68,11 @@ public class WritteContractButton extends Button implements ComponentCreator, Bu
          throw new RuntimeException("SalaryField can not be empty");
         }
         return salaryField.getValue();
+    }
+    private LocalDate getStartDateFromUser(){
+        return startContractDateField.getValue();
+    }
+    private LocalDate getEndDateFromUser(){
+        return endContractDateField.getValue();
     }
 }

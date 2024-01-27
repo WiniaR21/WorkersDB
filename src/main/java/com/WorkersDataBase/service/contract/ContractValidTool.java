@@ -5,6 +5,8 @@ import com.WorkersDataBase.data.worker.Worker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 @RequiredArgsConstructor
 public class ContractValidTool {
@@ -13,5 +15,8 @@ public class ContractValidTool {
     }
     public boolean workerHasContract(Worker worker){
         return worker.getContract() != null;
+    }
+    public boolean dateIsFine(LocalDate localDate){
+        return localDate != null;
     }
 }

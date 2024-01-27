@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.LocalDate;
+
 import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -29,6 +32,12 @@ public class Contract {
 
     @Column(name = "salary")
     private Double salary;
+
+    @Column(name = "start_date")
+    LocalDate startDate;
+
+    @Column(name = "end_date")
+    LocalDate endDate;
 
     @ToString.Exclude
     @OneToOne(mappedBy = "contract")

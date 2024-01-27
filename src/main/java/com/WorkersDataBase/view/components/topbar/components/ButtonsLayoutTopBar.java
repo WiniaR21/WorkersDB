@@ -3,6 +3,7 @@ package com.WorkersDataBase.view.components.topbar.components;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
+import com.WorkersDataBase.view.components.topbar.components.buttons.DashboardButton;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.topbar.components.buttons.AddContractButton;
 import com.WorkersDataBase.view.components.topbar.components.buttons.AddWorkerButton;
@@ -21,17 +22,19 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     AddContractButton addContractButton;
     AddWorkerButton addWorkerButton;
     OpenSettingsButton openSettingsButton;
+    DashboardButton dashboardButton;
 
     @Override
     public void configureComponents() {
         configureAddContractButton();
         configureAddWorkerButton();
         configureOpenSettingsButton();
+        configureDashboardButton();
     }
     @Override
     public void configureFront() {
         setClassName("buttons-bar");
-        add(addWorkerButton, addContractButton, openSettingsButton);
+        add(addWorkerButton, addContractButton, openSettingsButton, dashboardButton);
     }
     private void configureAddContractButton(){
         addContractButton = new AddContractButton(positionService);
@@ -44,5 +47,9 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     private void configureOpenSettingsButton(){
         openSettingsButton = new OpenSettingsButton(workersGrid);
         openSettingsButton.configure();
+    }
+    private void configureDashboardButton(){
+        dashboardButton = new DashboardButton();
+        dashboardButton.configure();
     }
 }

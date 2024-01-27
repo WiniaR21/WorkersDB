@@ -11,6 +11,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 @AllArgsConstructor
 public class ContractService {
@@ -20,12 +22,14 @@ public class ContractService {
     private final PositionRepository positionRepository;
     private final ServicePushNotification notification;
 
-    //  writeContractWithWorker returns true if operation was success
+
     @Transactional
     public boolean writeContractWithWorker(
             Worker worker,
             String positionName,
-            double salary
+            double salary,
+            LocalDate startDate,
+            LocalDate endDate
     ) {
         //  Valid
         //  * It is impossible to provide null worker, so valid do not needed
@@ -35,15 +39,19 @@ public class ContractService {
             notification.pushNationalLowestInfo();
             return false;
         }
+        if(!contractValidTool.dateIsFine(startDate)){
+
+            return false;
+        }
 
         if (contractValidTool.workerHasContract(worker)) {
             removeOldContract(worker);
-            writeNewContract(worker, positionName, salary);
+            writeNewContract(worker, positionName, salary, startDate, endDate);
             notification.pushChangeContractSuccess(worker);
         }
         else
         {
-            writeNewContract(worker, positionName, salary);
+            writeNewContract(worker, positionName, salary, startDate, endDate);
             notification.pushWriteContractSuccess(worker);
         }
         return true;
@@ -66,11 +74,13 @@ public class ContractService {
         notification.pushBreachContractSuccess(worker);
     }
 
-    private void writeNewContract(Worker worker, String positionName, double salary) {
+    private void writeNewContract(Worker worker, String positionName, double salary, LocalDate startDate, LocalDate endDate) {
         //  Write new contract based on data provided by user
         Contract contract = new Contract();
         contract.setWorker(worker);
         contract.setSalary(salary);
+        contract.setStartDate(startDate);
+        contract.setEndDate(endDate);
 
         //  Add dependencies in DB
         positionRepository.getPositionsByPositionName(positionName).ifPresent(

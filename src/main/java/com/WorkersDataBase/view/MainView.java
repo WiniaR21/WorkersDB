@@ -48,7 +48,6 @@ public class MainView extends VerticalLayout implements ComponentCreator {
 
         add(
                 topBar,
-                line,
                 workersGrid
         );
     }

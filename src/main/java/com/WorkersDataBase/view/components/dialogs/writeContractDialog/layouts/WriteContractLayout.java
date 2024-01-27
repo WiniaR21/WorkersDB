@@ -8,7 +8,9 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDi
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.CloseWriteContract;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.buttons.WritteContractButton;
+import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.EndContractDateField;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.SalaryField;
+import com.WorkersDataBase.view.components.dialogs.writeContractDialog.dataFields.StartContractDateField;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -32,7 +34,9 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
     H3 header;
     ComboBox<Position> position;
     SalaryField salaryField;
+    StartContractDateField startContractDateField;
     WritteContractButton writteContractButton;
+    EndContractDateField endContractDateField;
     CloseWriteContract closeWriteContract;
 
     @Override
@@ -40,6 +44,8 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
         configureHeader();
         configurePosition();
         configureSalaryField();
+        configureStartContractDateField();
+        configureEndContractDateField();
         configureWriteContractButton();
         configureCloseWriteContract();
     }
@@ -49,6 +55,8 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                     header,
                     position,
                     salaryField,
+                    startContractDateField,
+                    endContractDateField,
                     new HorizontalLayout(writteContractButton, closeWriteContract)
             );
     }
@@ -69,6 +77,14 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
         salaryField = new SalaryField();
         salaryField.configure();
     }
+    private void configureStartContractDateField(){
+        startContractDateField = new StartContractDateField();
+        startContractDateField.configure();
+    }
+    private void configureEndContractDateField(){
+        endContractDateField = new EndContractDateField();
+        endContractDateField.configure();
+    }
     private void configureWriteContractButton(){
         writteContractButton = new WritteContractButton(
                 writeContractDialog,
@@ -77,7 +93,9 @@ public class WriteContractLayout extends VerticalLayout implements ComponentCrea
                 position,
                 contractService,
                 editWorkerDialog,
-                workersGrid
+                workersGrid,
+                startContractDateField,
+                endContractDateField
 
         );
         writteContractButton.configure();

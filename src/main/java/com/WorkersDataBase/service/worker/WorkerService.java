@@ -6,6 +6,8 @@ import com.WorkersDataBase.service.notification.ServicePushNotification;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -107,4 +109,13 @@ public class WorkerService {
         return true;
     }
 
+    public List<Worker> getWorkersWithoutContract() {
+        List<Worker> workersWithoutContract = new ArrayList<>();
+        workerRepository.findAll().forEach(worker -> {
+            if(worker.getContract() != null){
+                workersWithoutContract.add(worker);
+            }
+        });
+        return workersWithoutContract;
+    }
 }
