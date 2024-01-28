@@ -10,25 +10,31 @@ import java.util.Set;
 public class WorkersGridSettings {
 
     public void setBySetting(Set<String> checkBoxValue, Grid<Worker> grid){
-        if(checkBoxValue.contains("Imie")){
+        if(checkBoxValue.contains("Imie"))
            addFirstNameColumn(grid);
-        }
-        if (checkBoxValue.contains("Nazwisko")){
+
+        if (checkBoxValue.contains("Nazwisko"))
             addLastNameColumn(grid);
-        }
-        if (checkBoxValue.contains("PESEL")){
+
+        if (checkBoxValue.contains("PESEL"))
            addPeselColumn(grid);
-        }
-        if (checkBoxValue.contains("Email")){
+
+        if (checkBoxValue.contains("Email"))
            addEmailColumn(grid);
-        }
-        if (checkBoxValue.contains("Stanowisko")){
+
+        if (checkBoxValue.contains("Stanowisko"))
             addPositionColumn(grid);
-        }
-        if (checkBoxValue.contains("Wynagrodzenie")){
+
+        if (checkBoxValue.contains("Wynagrodzenie"))
             addSalaryColumn(grid);
-        }
+
+        if (checkBoxValue.contains("Płeć"))
+            addGenderColumn(grid);
+
+        if (checkBoxValue.contains("Data urodzenia"))
+            addBirthColumn(grid);
     }
+
     private void addFirstNameColumn(Grid<Worker> grid){
         grid.addColumn("firstName")
                 .setTextAlign(ColumnTextAlign.CENTER)
@@ -60,5 +66,16 @@ public class WorkersGridSettings {
                 worker.getContract().getSalary() + " PLN" : "Brak")
                 .setHeader("Wynagrodzenie")
                 .setTextAlign(ColumnTextAlign.CENTER);
+    }
+    private void addBirthColumn(Grid<Worker> grid) {
+        grid.addColumn("birthDate")
+                .setTextAlign(ColumnTextAlign.CENTER)
+                .setHeader("Data urodzenia");
+    }
+
+    private void addGenderColumn(Grid<Worker> grid) {
+        grid.addColumn("gender")
+                .setTextAlign(ColumnTextAlign.CENTER)
+                .setHeader("Płeć");
     }
 }

@@ -1,4 +1,5 @@
 package com.WorkersDataBase.service.worker;
+import com.WorkersDataBase.data.worker.Gender;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
 import com.WorkersDataBase.service.contract.ContractService;
@@ -55,6 +56,7 @@ public class WorkerService {
 
         if(editingWorker){
             worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
+            worker.setGender(readGenderFromPersonalNumber(worker));
             workerRepository.save(worker);
             return 1;
         }
@@ -62,6 +64,7 @@ public class WorkerService {
         if (!workerValidTool.peselIsUnique(worker))       return -5;
         if (!workerValidTool.emailIsUnique(worker))       return -6;
 
+        worker.setGender(readGenderFromPersonalNumber(worker));
         worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
         workerRepository.save(worker);
         return 0;
@@ -117,7 +120,14 @@ public class WorkerService {
 
        return LocalDate.of(yearInt, monthInt, dayInt);
     }
+    private Gender readGenderFromPersonalNumber(Worker worker){
+        String personalNumber = worker.getPesel();
+        char genderCharInPersonalNumber = personalNumber.charAt(9);
 
+        if (Character.getNumericValue(genderCharInPersonalNumber) % 2 == 0)
+            return Gender.K;
+        else return Gender.M;
+    }
     public List<Worker> getWorkersWithoutContract() {
         List<Worker> workersWithoutContract = new ArrayList<>();
         workerRepository.findAll().forEach(worker -> {

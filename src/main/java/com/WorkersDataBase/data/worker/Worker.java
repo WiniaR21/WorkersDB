@@ -40,6 +40,7 @@ public class Worker {
     @Column(name = "date_of_birth")
     private LocalDate birthDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
 
