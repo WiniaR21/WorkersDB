@@ -50,33 +50,33 @@ class WorkerValidToolTest {
         assertTrue(underTest.noSpecialSymbols(worker));
     }
     @Test
-    void workerHasNotNullFields_should_return_false_case_a() {
+    void workerHasEmptyFields_should_return_true_case_a() {
         //  Given
         worker.setFirstName("Jan");
         //  Test
-        assertFalse(underTest.workerHasNotEmptyFields(worker));
+        assertTrue(underTest.workerHasEmptyFields(worker));
     }
     @Test
-    void workerHasNotNullFields_should_return_false_case_b() {
+    void workerHasEmptyFields_should_return_true_case_b() {
         //  Given
         worker.setFirstName("Jan");
         worker.setLastName("Kowalski");
         //  Test
-        assertFalse(underTest.workerHasNotEmptyFields(worker));
+        assertTrue(underTest.workerHasEmptyFields(worker));
     }
     @Test
-    void workerHasNotNullFields_should_return_false_case_c() {
+    void workerHasEmptyFields_should_return_true_case_c() {
         //  Given
         Contact contact = new Contact("email@gmail.com");
         worker.setFirstName("Jan");
         worker.setLastName("Kowalski");
         worker.setContact(contact);
         //  Test
-        assertFalse(underTest.workerHasNotEmptyFields(worker));
+        assertTrue(underTest.workerHasEmptyFields(worker));
     }
 
     @Test
-    void workerHasNotNullFields_should_return_true() {
+    void workerHasEmptyFields_should_return_false() {
         //  Given
         Contact contact = new Contact("email@gmail.com");
         worker.setFirstName("Jan");
@@ -84,7 +84,7 @@ class WorkerValidToolTest {
         worker.setContact(contact);
         worker.setPesel("12312312312");
         //  Test
-        assertTrue(underTest.workerHasNotEmptyFields(worker));
+        assertFalse(underTest.workerHasEmptyFields(worker));
 
     }
     @Test
@@ -167,5 +167,33 @@ class WorkerValidToolTest {
         worker.setPesel("123112");
         //  Test
         assertFalse(underTest.peselLengthIsFine(worker));
+    }
+
+    @Test
+    void firstNameLengthIsFine_should_return_true(){
+        //  Given
+        worker.setFirstName("Jan");
+        //  Test
+        assertTrue(underTest.firstNameLengthIsFine(worker));
+    }
+    @Test
+    void firstNameLengthIsFine_should_return_false(){
+        //  Given
+        worker.setFirstName("Ja");
+        //  Test
+        assertFalse(underTest.firstNameLengthIsFine(worker));
+    }
+
+    @Test
+    void lastNameLengthIsFine_should_return_true(){
+        //  Given
+        worker.setLastName("Bąk");
+        //  Test
+        assertTrue(underTest.lastNameLengthIsFine(worker));
+    }
+    @Test
+    void lastNameLengthIsFine_should_return_false(){
+        worker.setLastName("Bą");
+        assertFalse(underTest.lastNameLengthIsFine(worker));
     }
 }

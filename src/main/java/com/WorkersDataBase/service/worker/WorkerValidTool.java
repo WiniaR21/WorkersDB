@@ -19,10 +19,8 @@ public class WorkerValidTool {
     }
     public boolean workerHasEmptyFields(Worker worker){
         if (
-                        worker.getContact() == null ||
-                        worker.getFirstName() == null ||
-                        worker.getLastName() == null ||
-                        worker.getPesel() == null
+                worker.getContact() == null || worker.getFirstName() == null ||
+                worker.getLastName() == null || worker.getPesel() == null
         ) return true;
 
         return  worker.getContact().getEmail().isEmpty() ||
@@ -45,9 +43,9 @@ public class WorkerValidTool {
         return worker.getPesel().length() == 11;
     }
     public boolean firstNameLengthIsFine(Worker worker){
-        return worker.getFirstName().length() > 3;
+        return worker.getFirstName().length() > 2;
     }
     public boolean lastNameLengthIsFine(Worker worker){
-        return worker.getLastName().length() > 3;
+        return worker.getLastName().length() > 2;
     }
 }

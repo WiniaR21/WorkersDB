@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.buttons.ConfirmFireButton;
@@ -21,6 +22,7 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
     private final Worker workerSelectedFromGrid;
     private final FireWorkerConfirmDialog fireWorkerConfirmDialog;
     private final EditWorkerDialog editWorkerDialog;
+    private final ServicePushNotification notification;
 
     //  To configure
     H3 header;
@@ -59,7 +61,8 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
                 workerService,
                 workersGrid,
                 workerSelectedFromGrid,
-                fireWorkerConfirmDialog
+                fireWorkerConfirmDialog,
+                notification
         );
         confirmFireButton.configure();
     }

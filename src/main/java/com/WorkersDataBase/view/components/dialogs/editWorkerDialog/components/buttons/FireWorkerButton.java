@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -18,6 +19,7 @@ public class FireWorkerButton extends Button implements ComponentCreator, Button
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final Worker workerSelectedFromGrid;
+    private final ServicePushNotification notification;
     @Override
     public void clickEvent() {
         editWorkerDialog.close();
@@ -27,7 +29,8 @@ public class FireWorkerButton extends Button implements ComponentCreator, Button
                 workerService,
                 editWorkerDialog,
                 workersGrid,
-                workerSelectedFromGrid
+                workerSelectedFromGrid,
+                notification
         );
         fireWorkerConfirmDialog.configure();
     }

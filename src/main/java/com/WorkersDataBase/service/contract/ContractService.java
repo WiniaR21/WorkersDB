@@ -52,7 +52,8 @@ public class ContractService {
                     positionName,
                     salary,
                     startDate,
-                    endDate);
+                    endDate
+            );
             return 1;
         }
         else writeNewContract(

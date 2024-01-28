@@ -87,7 +87,8 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 workerService,
                 editWorkerDialog,
                 workersGrid,
-                workerSelectedFromGrid
+                workerSelectedFromGrid,
+                notification
         );
         fireWorkerButton.configure();
     }

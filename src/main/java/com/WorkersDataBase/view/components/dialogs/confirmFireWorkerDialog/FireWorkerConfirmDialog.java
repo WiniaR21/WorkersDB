@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.layouts.FireWorkerConfirmDialogLayout;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -16,6 +17,7 @@ public class FireWorkerConfirmDialog extends Dialog implements ComponentCreator 
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final Worker workerSelectedFromGrid;
+    private final ServicePushNotification notification;
 
     //  To configure
     FireWorkerConfirmDialogLayout fireWorkerConfirmDialogLayout;
@@ -26,7 +28,8 @@ public class FireWorkerConfirmDialog extends Dialog implements ComponentCreator 
                 workersGrid,
                 workerSelectedFromGrid,
                 this,
-                editWorkerDialog
+                editWorkerDialog,
+                notification
         );
         fireWorkerConfirmDialogLayout.configure();
     }
