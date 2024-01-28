@@ -15,23 +15,22 @@ import java.util.List;
 public class PositionService {
     private final PositionRepository positionRepository;
     private final PositionValidTool positionValidTool;
-    private final ServicePushNotification notification;
 
-    /*
-    *   RETURN CODE
-    *    0 - adding success
-    *   -1 - error, positionName is null
-    *   -2 - error, positionName is not unique
-    *   -3 - error, positionName to short
-    */
+
     @Transactional
     public int addNewPositionType(String positionName){
-
+        /*
+         *   RETURN CODE
+         *    0 - adding success
+         *   -1 - error, positionName is null
+         *   -2 - error, positionName is not unique
+         *   -3 - error, positionName to short
+         */
         //  Valid
-        if(positionValidTool.positionIsNull(positionName)) return -1;
+        if( positionValidTool.positionIsNull(positionName))       return -1;
         if(!positionValidTool.positionNameIsUnique(positionName)) return -2;
-        if(!positionValidTool.positionNameIsFine(positionName)) return -3;
-        
+        if(!positionValidTool.positionNameIsFine(positionName))   return -3;
+
         //  Do
         Position position = new Position();
         position.setPositionName(positionName);
@@ -39,23 +38,22 @@ public class PositionService {
         return 0;
     }
 
+
     @Transactional
-    public boolean deletePosition(Position position){
-
+    public int deletePosition(Position position){
+        /*
+         *   RETURN CODE
+         *    0 - removing success
+         *   -1 - error, position is null
+         *   -2 - error, someone has contract with this position
+         */
         //  Valid
-        if(positionValidTool.positionIsNull(position)){
-            notification.pushError();
-            return false;
-        }
+        if(positionValidTool.positionIsNull(position))     return -1;
+        if(positionValidTool.someoneHasContract(position)) return -2;
 
-        if (positionValidTool.someoneHasContract(position)){
-            notification.pushDeletingPositionConflictInfo();
-            return false;
-        }
         //  Do
         positionRepository.delete(position);
-        notification.pushDeletePositionSuccess(position);
-        return true;
+        return 0;
     }
 
     public List<Position> getPositions(){

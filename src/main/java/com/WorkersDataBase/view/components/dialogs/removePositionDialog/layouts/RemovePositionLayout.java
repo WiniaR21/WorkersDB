@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog.layouts;
 
 import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
@@ -19,6 +20,8 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
     private final PositionService positionService;
     private final RemovePositionDialog removePositionDialog;
     private final ManageCompanyDialog manageCompanyDialog;
+    private final ServicePushNotification notification;
+
 
     //  To configure
     ComboBox<Position> positions;
@@ -56,11 +59,17 @@ public class RemovePositionLayout extends VerticalLayout implements ComponentCre
     }
     private void configureButtons(){
         removePositionButton = new RemovePositionButton(
-                positions, positionService, removePositionDialog);
+                positions,
+                positionService,
+                removePositionDialog,
+                notification
+        );
         removePositionButton.configure();
 
         closeRemovePositionDialog = new CloseRemovePositionDialog(
-                removePositionDialog, manageCompanyDialog);
+                removePositionDialog,
+                manageCompanyDialog
+        );
         closeRemovePositionDialog.configure();
     }
 }

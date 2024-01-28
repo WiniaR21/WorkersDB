@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog.buttons;
 
 import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -16,11 +17,12 @@ public class RemovePositionButton extends Button implements ComponentCreator, Bu
     private final ComboBox<Position> positions;
     private final PositionService positionService;
     private final RemovePositionDialog removePositionDialog;
+    private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
-        boolean success = positionService.deletePosition(positions.getValue());
-        if (success) removePositionDialog.close();
+        int status = positionService.deletePosition(getPositionFromUser());
+        statusResponse(status);
     }
     @Override
     public void configureComponents() {
@@ -31,5 +33,15 @@ public class RemovePositionButton extends Button implements ComponentCreator, Bu
         setText("Usuń");
         addThemeVariants(ButtonVariant.LUMO_ERROR);
         addClickListener(buttonClickEvent -> clickEvent());
+    }
+    private Position getPositionFromUser(){
+        return positions.getValue();
+    }
+    private void statusResponse(int status){
+        if (status ==  0) notification.pushDeletePositionSuccess(getPositionFromUser());
+        if (status == -1) notification.pushUserTryingAddNullPositionInfo();
+        if (status == -2) notification.pushDeletingPositionConflictInfo();
+
+        if (status ==  0) removePositionDialog.close();
     }
 }

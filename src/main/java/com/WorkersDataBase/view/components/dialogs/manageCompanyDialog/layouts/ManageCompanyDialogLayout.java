@@ -52,8 +52,7 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
     private void configureAddNewPositionButton(){
-        addNewPositionButton =
-                new AddNewPositionButton(
+        addNewPositionButton = new AddNewPositionButton(
                         manageCompanyDialog,
                         positionService,
                         notification
@@ -61,8 +60,11 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
         addNewPositionButton.configure();
     }
     private void configureRemovePositionButton(){
-        removePositionButton =
-                new RemovePositionButton(positionService, manageCompanyDialog);
+        removePositionButton = new RemovePositionButton(
+                        positionService,
+                        manageCompanyDialog,
+                        notification
+        );
         removePositionButton.configure();
     }
     private void configureCancelButton(){
