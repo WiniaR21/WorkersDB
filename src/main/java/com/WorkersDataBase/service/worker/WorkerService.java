@@ -2,7 +2,6 @@ package com.WorkersDataBase.service.worker;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
 import com.WorkersDataBase.service.contract.ContractService;
-import com.WorkersDataBase.service.notification.ServicePushNotification;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,8 +37,8 @@ public class WorkerService {
         *   -1 - error, worker is null
         *   -2 - error, worker has empty data fields
         *   -3 - error, worker data fields has special symbols
-        *   -4 - error, pesel has invalid length
-        *   -5 - error, pesel should be unique
+        *   -4 - error, personalNumber has invalid length
+        *   -5 - error, personalNumber should be unique
         *   -6 - error, email should be unique
         *   -7 - error, firstName to short
         *   -8 - error, lastName to short
