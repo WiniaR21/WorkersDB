@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.layouts;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.buttons.CloseDialogButton;
@@ -22,6 +23,7 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
     private final AddWorkerDialog addWorkerDialog;
+    private final ServicePushNotification notification;
 
     //  To configure
     H3 header;
@@ -69,7 +71,8 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
                 workersFirstNameField,
                 workersLastNameField,
                 workersEmailField,
-                workersPeselField
+                workersPeselField,
+                notification
         );
         saveWorkerButton.configure();
 

@@ -43,7 +43,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
         addContractButton.configure();
     }
     private void configureAddWorkerButton(){
-        addWorkerButton = new AddWorkerButton(workerService, workersGrid);
+        addWorkerButton = new AddWorkerButton(workerService, workersGrid, notification);
         addWorkerButton.configure();
     }
     private void configureOpenSettingsButton(){

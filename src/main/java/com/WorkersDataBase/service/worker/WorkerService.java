@@ -30,63 +30,41 @@ public class WorkerService {
     }
 
 
-
     @Transactional
-    public boolean addWorker(Worker worker, boolean editingWorker){
-        boolean workerIsNotNull = worker != null;
+    public int addWorker(Worker worker, boolean editingWorker){
+        /*
+        *       ERROR CODE
+        *    1 - editing success
+        *    0 - adding success
+        *   -1 - error, worker is null
+        *   -2 - error, worker has empty data fields
+        *   -3 - error, worker data fields has special symbols
+        *   -4 - error, pesel has invalid length
+        *   -5 - error, pesel should be unique
+        *   -6 - error, email should be unique
+        *   -7 - error, firstName to short
+        *   -8 - error, lastName to short
+        */
+        if( workerValidTool.workerIsNull(worker))          return -1;
+        if( workerValidTool.workerHasEmptyFields(worker))  return -2;
+        if(!workerValidTool.noSpecialSymbols(worker))      return -3;
+        if(!workerValidTool.peselLengthIsFine(worker))     return -4;
+        if(!workerValidTool.firstNameLengthIsFine(worker)) return -7;
+        if(!workerValidTool.lastNameLengthIsFine(worker))  return -8;
 
-        if (workerIsNotNull) {
-           return startAddingProcedure(worker, editingWorker);
-        }
-        else {
-            notification.pushError();
-            return false;
-        }
-    }
-        private boolean startAddingProcedure(Worker worker, boolean editingWorker){
-
-        if (workerValidTool.workerHasNotEmptyFields(worker)) {
-            return validWorker(worker, editingWorker);
-        }
-        else {
-            notification.pushEmptyFieldsError();
-            return false;
-        }
-    }
-        private boolean validWorker(Worker worker, boolean editingWorker){
-
-        if (workerValidTool.noSpecialSymbols(worker)) {
-            return tryAddWorker(worker, editingWorker);
-        }
-        else {
-            notification.pushSpecialSymbolsError();
-            return false;
-        }
-    }
-        private boolean tryAddWorker(Worker worker, boolean editingWorker) {
-        if (!workerValidTool.peselLengthIsFine(worker)){
-            notification.pushPeselLengthError();
-            return false;
-        }
         if(editingWorker){
             workerRepository.save(worker);
-            notification.pushEditSuccess();
-            return true;
+            return 1;
         }
 
-        if (!workerValidTool.peselIsUnique(worker)){
-            notification.pushPeselUniqueError();
-            return false;
-        }
-        if (!workerValidTool.emailIsUnique(worker)){
-            notification.pushEmailUniqueError();
-            return false;
-        }
+        if (!workerValidTool.peselIsUnique(worker))       return -5;
+        if (!workerValidTool.emailIsUnique(worker))       return -6;
+
         workerRepository.save(worker);
-        notification.pushAddingWorkerSuccess(worker);
-        return true;
-
+        return 0;
     }
+
+
     @Transactional
     public boolean fireWorker(Long idWorkerToFire){
 

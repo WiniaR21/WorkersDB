@@ -57,7 +57,8 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 editWorkerDialog,
                 workersGrid,
                 fieldsLayout,
-                workerSelectedFromGrid
+                workerSelectedFromGrid,
+                notification
         );
 
         saveChangesButton.configure();

@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.buttons;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.data.contact.Contact;
 import com.WorkersDataBase.data.worker.Worker;
@@ -28,6 +29,7 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
     private final WorkersLastNameField lastNameField;
     private final WorkersEmailField emailField;
     private final WorkersPeselField peselField;
+    private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
@@ -43,12 +45,8 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
         addClickShortcut(Key.ENTER);
     }
     private void addWorkerToDB(){
-        Worker worker = getWorkerFromUser();
-        boolean operationSuccess = workerService.addWorker(worker, false);
-        if(operationSuccess){
-            workersGrid.refresh();
-            addWorkerDialog.close();
-        }
+        int status = workerService.addWorker(getWorkerFromUser(), false);
+        statusResponse(status);
     }
     private Worker getWorkerFromUser(){
         Contact contact = new Contact(emailField.getValue());
@@ -59,5 +57,22 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
                 peselField.getValue(),
                 contact
         );
+    }
+    private void statusResponse(int status){
+        if (status ==  1) notification.pushEditSuccess();
+        if (status ==  0) notification.pushAddingWorkerSuccess(getWorkerFromUser());
+        if (status == -1) notification.pushError();
+        if (status == -2) notification.pushEmptyFieldsError();
+        if (status == -3) notification.pushSpecialSymbolsError();
+        if (status == -4) notification.pushPeselLengthError();
+        if (status == -5) notification.pushPeselUniqueError();
+        if (status == -6) notification.pushEmailUniqueError();
+        if (status == -7) notification.pushFirstNameIsToShortInfo();
+        if (status == -8) notification.pushLastNameIsToShortInfo();
+
+        if (status == 0){
+            workersGrid.refresh();
+            addWorkerDialog.close();
+        }
     }
 }

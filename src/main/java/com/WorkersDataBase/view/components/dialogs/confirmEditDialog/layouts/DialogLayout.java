@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -18,6 +19,7 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
     private final ConfirmEditDialog confirmEditDialog;
     private final Worker oryginalWorker;
     private final EditWorkerDialog editWorkerDialog;
+    private final ServicePushNotification notification;
 
     //  To configure
     FieldsLayout fieldsLayout;
@@ -48,7 +50,8 @@ public class DialogLayout extends VerticalLayout implements ComponentCreator {
                 newWorker,
                 workersGrid,
                 confirmEditDialog,
-                editWorkerDialog
+                editWorkerDialog,
+                notification
         );
         buttonsLayout.configure();
     }

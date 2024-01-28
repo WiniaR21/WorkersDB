@@ -20,7 +20,7 @@ public class PositionService {
     @Transactional
     public int addNewPositionType(String positionName){
         /*
-         *   RETURN CODE
+         *   ERROR CODE
          *    0 - adding success
          *   -1 - error, positionName is null
          *   -2 - error, positionName is not unique

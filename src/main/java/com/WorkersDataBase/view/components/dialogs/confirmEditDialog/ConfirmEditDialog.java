@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.confirmEditDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.DialogLayout;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.FieldsLayout;
@@ -19,6 +20,7 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
     private final WorkersGrid workersGrid;
     private final Worker oryginalWorker;
     private final EditWorkerDialog editWorkerDialog;
+    private final ServicePushNotification notification;
 
     //  To configure
     DialogLayout dialogLayout;
@@ -39,7 +41,8 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
                 workersGrid,
                 this,
                 oryginalWorker,
-                editWorkerDialog
+                editWorkerDialog,
+                notification
         );
         dialogLayout.configure();
     }

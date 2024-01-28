@@ -60,6 +60,9 @@ public class ServicePushNotification{
     public void pushToShortPositionNameInfo() {
         new InfoNotification("Nazwa jest za krótka");
     }
+    public void pushFirstNameIsToShortInfo() {new InfoNotification("Imie jest za krótkie");}
+    public void pushLastNameIsToShortInfo() {new InfoNotification("Nazwisko jest za krótkie");}
+
 
     //  Errors
     public void pushPeselLengthError(){
@@ -86,5 +89,6 @@ public class ServicePushNotification{
     public void pushStartDateError(){new ErrorNotification("Wprowadź datę rozpoczęcia umowy");}
     public void pushEndDateError(){new ErrorNotification("Wprowadź datę zakończenia umowy");}
     public void pushPositionNameIsNull(){new ErrorNotification("Podaj stanowisko");}
+
 
 }

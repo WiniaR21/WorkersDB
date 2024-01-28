@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons;
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
@@ -22,6 +23,7 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
     private final WorkersGrid workersGrid;
     private final FieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
+    private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
@@ -65,7 +67,8 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
                 newWorker,
                 workersGrid,
                 originalWorker,
-                editWorkerDialog    
+                editWorkerDialog,
+                notification
         );
         confirmEditDialog.configure();
     }
