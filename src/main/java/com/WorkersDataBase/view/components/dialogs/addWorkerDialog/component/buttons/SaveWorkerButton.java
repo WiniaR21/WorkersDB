@@ -69,6 +69,7 @@ public class SaveWorkerButton extends Button implements ComponentCreator, Button
         if (status == -6) notification.pushEmailUniqueError();
         if (status == -7) notification.pushFirstNameIsToShortInfo();
         if (status == -8) notification.pushLastNameIsToShortInfo();
+        if (status == -9) notification.pushPeselControlNumberError();
 
         if (status == 0){
             workersGrid.refresh();

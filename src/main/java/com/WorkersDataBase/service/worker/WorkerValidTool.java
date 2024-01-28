@@ -42,6 +42,24 @@ public class WorkerValidTool {
     public boolean peselLengthIsFine(Worker worker){
         return worker.getPesel().length() == 11;
     }
+
+    boolean peselIsPossible(Worker worker){
+
+        char[] digitsArray = worker.getPesel().toCharArray();
+        int[] weights = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3};
+        int controlNumberInOriginal = Character.getNumericValue(digitsArray[10]);
+        int sum = 0;
+
+        for(int i = 0; i < 10; i++){
+            int digit = Character.getNumericValue(digitsArray[i]);
+            sum += digit * weights[i];
+        }
+
+        int rest = sum % 10;
+        int controlNumberShouldBe = rest == 0 ? 0 : 10 - rest;
+
+        return controlNumberInOriginal == controlNumberShouldBe;
+    }
     public boolean firstNameLengthIsFine(Worker worker){
         return worker.getFirstName().length() > 2;
     }

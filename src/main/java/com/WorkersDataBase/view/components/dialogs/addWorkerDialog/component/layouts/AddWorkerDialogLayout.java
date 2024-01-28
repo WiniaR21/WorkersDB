@@ -5,10 +5,7 @@ import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.buttons.CloseDialogButton;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.buttons.SaveWorkerButton;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.dataEntryFields.WorkersEmailField;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.dataEntryFields.WorkersFirstNameField;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.dataEntryFields.WorkersLastNameField;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.dataEntryFields.WorkersPeselField;
+import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.component.dataEntryFields.*;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.H3;
@@ -33,6 +30,7 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
     WorkersEmailField workersEmailField;
     WorkersPeselField workersPeselField;
     VerticalLayout fieldsLayout;
+    BirthDataField birthDataField;
         //  Buttons
     SaveWorkerButton saveWorkerButton;
     CloseDialogButton closeDialogButton;
@@ -95,13 +93,17 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
 
         workersPeselField = new WorkersPeselField();
         workersPeselField.configure();
+
+        birthDataField = new BirthDataField();
+        birthDataField.configure();
     }
     private void configureFieldsLayout(){
         fieldsLayout = new VerticalLayout(
                 workersFirstNameField,
                 workersLastNameField,
                 workersEmailField,
-                workersPeselField
+                workersPeselField,
+                birthDataField
         );
 
         fieldsLayout.setAlignItems(Alignment.CENTER);

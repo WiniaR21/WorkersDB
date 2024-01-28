@@ -42,6 +42,7 @@ public class WorkerService {
         *   -6 - error, email should be unique
         *   -7 - error, firstName to short
         *   -8 - error, lastName to short
+        *   -9 - error, control number in personalNumber failed
         */
         if( workerValidTool.workerIsNull(worker))          return -1;
         if( workerValidTool.workerHasEmptyFields(worker))  return -2;
@@ -49,6 +50,7 @@ public class WorkerService {
         if(!workerValidTool.peselLengthIsFine(worker))     return -4;
         if(!workerValidTool.firstNameLengthIsFine(worker)) return -7;
         if(!workerValidTool.lastNameLengthIsFine(worker))  return -8;
+        if(!workerValidTool.peselIsPossible(worker))       return -9;
 
         if(editingWorker){
             workerRepository.save(worker);
@@ -84,6 +86,9 @@ public class WorkerService {
                 }
         );
         return 0;
+    }
+    private void readBirthDateFromPersonalNumber(Worker worker){
+            
     }
 
     public List<Worker> getWorkersWithoutContract() {
