@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.dataFields.PositionNameField;
@@ -15,13 +16,14 @@ public class SaveNewPositionType extends Button implements ComponentCreator, But
     private final PositionNameField positionNameField;
     private final PositionService positionService;
     private final NewPositionTypeDialog newPositionTypeDialog;
+    private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
-        String positionName = positionNameField.getValue();
 
-        boolean success = positionService.addNewPositionType(positionName);
-        if(success) newPositionTypeDialog.close();
+        int status = positionService.addNewPositionType(getPositionNameFromUser());
+
+        statusResponse(status);
     }
     @Override
     public void configureComponents() {}
@@ -30,5 +32,16 @@ public class SaveNewPositionType extends Button implements ComponentCreator, But
         setText("Zapisz");
         addClickListener(e -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_SUCCESS);
+    }
+    public String getPositionNameFromUser(){
+        return positionNameField.getValue();
+    }
+    private void statusResponse(int status){
+        if (status ==  0) notification.pushNewPositionSuccess(getPositionNameFromUser());
+        if (status == -1) notification.pushUserTryingAddNullPositionInfo();
+        if (status == -2) notification.pushUniquePositionError();
+        if (status == -3) notification.pushToShortPositionNameInfo();
+
+        if(status == 0) newPositionTypeDialog.close();
     }
 }

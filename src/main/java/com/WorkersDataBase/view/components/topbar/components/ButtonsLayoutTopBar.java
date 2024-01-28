@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.topbar.components;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -17,6 +18,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
     private final PositionService positionService;
+    private final ServicePushNotification notification;
 
     //  To configure
     AddContractButton addContractButton;
@@ -37,7 +39,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
         add(addWorkerButton, addContractButton, openSettingsButton, dashboardButton);
     }
     private void configureAddContractButton(){
-        addContractButton = new AddContractButton(positionService);
+        addContractButton = new AddContractButton(positionService, notification);
         addContractButton.configure();
     }
     private void configureAddWorkerButton(){

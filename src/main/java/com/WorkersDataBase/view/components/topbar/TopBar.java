@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.topbar;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -15,6 +16,7 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
     private final PositionService positionService;
+    private final ServicePushNotification notification;
 
     //  To configure
     FilterText filterText;
@@ -41,7 +43,8 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
         buttonsLayout = new ButtonsLayoutTopBar(
                 workerService,
                 workersGrid,
-                positionService
+                positionService,
+                notification
         );
         buttonsLayout.configure();
     }

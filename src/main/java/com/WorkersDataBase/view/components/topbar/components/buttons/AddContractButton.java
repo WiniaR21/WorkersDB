@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.topbar.components.buttons;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class AddContractButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final PositionService positionService;
+    private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
@@ -27,7 +29,7 @@ public class AddContractButton extends Button implements ComponentCreator, Butto
     }
     private void openManageCompanyDialog(){
         ManageCompanyDialog manageCompanyDialog =
-                new ManageCompanyDialog(positionService);
+                new ManageCompanyDialog(positionService, notification);
         manageCompanyDialog.configure();
     }
 }

@@ -17,31 +17,26 @@ public class PositionService {
     private final PositionValidTool positionValidTool;
     private final ServicePushNotification notification;
 
-
+    /*
+    *   RETURN CODE
+    *    0 - adding success
+    *   -1 - error, positionName is null
+    *   -2 - error, positionName is not unique
+    *   -3 - error, positionName to short
+    */
     @Transactional
-    public boolean addNewPositionType(String positionName){
+    public int addNewPositionType(String positionName){
 
         //  Valid
-        if(positionValidTool.positionIsNull(positionName)){
-            notification.pushUserTryingAddNullPositionInfo();
-            return false;
-        }
-        if (!positionValidTool.positionNameIsUnique(positionName)){
-            notification.pushUniquePositionError();
-            return false;
-        }
-        if (!positionValidTool.positionNameIsFine(positionName)){
-            notification.pushToShortPositionNameInfo();
-            return false;
-        }
-
+        if(positionValidTool.positionIsNull(positionName)) return -1;
+        if(!positionValidTool.positionNameIsUnique(positionName)) return -2;
+        if(!positionValidTool.positionNameIsFine(positionName)) return -3;
+        
         //  Do
         Position position = new Position();
         position.setPositionName(positionName);
         positionRepository.save(position);
-
-        notification.pushNewPositionSuccess(positionName);
-        return true;
+        return 0;
     }
 
     @Transactional

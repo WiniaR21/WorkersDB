@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog;
 
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts.NewPositionDialogLayout;
@@ -12,6 +13,7 @@ public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
     // To inject by constructor
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;
+    private final ServicePushNotification notification;
 
     //  To configure
     NewPositionDialogLayout newPositionDialogLayout;
@@ -27,7 +29,11 @@ public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
     }
     private void configureNewPositionDialogLayout(){
         newPositionDialogLayout = new NewPositionDialogLayout(
-                this, positionService, manageCompanyDialog);
+                this,
+                positionService,
+                manageCompanyDialog,
+                notification
+        );
         newPositionDialogLayout.configure();
     }
 }
