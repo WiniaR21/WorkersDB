@@ -2,6 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.butt
 
 
 import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -19,15 +20,13 @@ public class ConfirmFireButton extends Button implements ComponentCreator, Butto
     private final WorkersGrid workersGrid;
     private final Worker workerSelectedFromGrid;
     private final FireWorkerConfirmDialog fireWorkerConfirmDialog;
+    private final ServicePushNotification notification;
     @Override
     public void clickEvent() {
         Long idWorkerToFire = workerSelectedFromGrid.getId();
 
-        boolean success = workerService.fireWorker(idWorkerToFire);
-        if (success){
-            workersGrid.refresh();
-            fireWorkerConfirmDialog.close();
-        }
+        int status = workerService.fireWorker(idWorkerToFire);
+        statusResponse(status);
     }
 
     @Override
@@ -41,5 +40,13 @@ public class ConfirmFireButton extends Button implements ComponentCreator, Butto
         addClickListener(buttonClickEvent -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_ERROR);
         addClickShortcut(Key.ENTER);
+    }
+    private void statusResponse(int status){
+        if (status == -1) notification.pushError();
+        if (status ==  0){
+            notification.pushFireWorkerSucces(workerSelectedFromGrid);
+            workersGrid.refresh();
+            fireWorkerConfirmDialog.close();
+        }
     }
 }

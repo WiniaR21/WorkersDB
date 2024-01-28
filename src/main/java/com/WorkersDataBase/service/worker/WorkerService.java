@@ -16,7 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WorkerService {
     private final WorkerRepository workerRepository;
-    private final ServicePushNotification notification;
     private final WorkerValidTool workerValidTool;
     private final ContractService contractService;
     public Optional<Worker> getById(Long id){
@@ -66,25 +65,26 @@ public class WorkerService {
 
 
     @Transactional
-    public boolean fireWorker(Long idWorkerToFire){
+    public int fireWorker(Long idWorkerToFire){
+        /*
+         *       ERROR CODE
+         *    0 - removing success
+         *   -1 - error, worker do not exist in DB
+         */
+        if(!workerRepository.existsById(idWorkerToFire)) return -1;
 
-        if(!workerRepository.existsById(idWorkerToFire)){
-            notification.pushError();
-            return false;
-        }
         workerRepository.findById(idWorkerToFire).ifPresent(
                 worker -> {
                         if (worker.getContract() != null){
                             contractService.removeOldContract(worker);
                             workerRepository.deleteById(idWorkerToFire);
-                            notification.pushFireWorkerSucces(worker);
                         }
                         else {
                             workerRepository.deleteById(idWorkerToFire);
                         }
                 }
         );
-        return true;
+        return 0;
     }
 
     public List<Worker> getWorkersWithoutContract() {
