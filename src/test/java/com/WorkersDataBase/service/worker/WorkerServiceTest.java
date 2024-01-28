@@ -27,7 +27,7 @@ class WorkerServiceTest {
 
     @AfterEach
     void tearDown() {
-        workerRepository.deleteAll();
+
     }
     @Test
     void addWorker_should_return_1(){
@@ -95,6 +95,29 @@ class WorkerServiceTest {
         //  Test
         assertEquals(-8, underTest.addWorker(worker, false));
     }
+
+
+    @Test
+    void fireWorker_should_return_0(){
+        //  Given
+        Worker worker = getValidWorker();
+        workerRepository.save(worker);
+
+        //  Test
+        workerRepository.findAll().forEach(
+                worker1 -> assertEquals(0, underTest.fireWorker(worker1.getId()))
+        );
+    }
+    @Test
+    void fireWorker_should_return_minus_1(){
+        //  Given
+
+
+        //  Test
+        assertEquals(-1, underTest.fireWorker(1L));
+    }
+
+
 
     Worker existingWorker(){
         Worker worker = new Worker();
