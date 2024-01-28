@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -53,6 +54,7 @@ public class WorkerService {
         if(!workerValidTool.peselIsPossible(worker))       return -9;
 
         if(editingWorker){
+            worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
             workerRepository.save(worker);
             return 1;
         }
@@ -60,6 +62,7 @@ public class WorkerService {
         if (!workerValidTool.peselIsUnique(worker))       return -5;
         if (!workerValidTool.emailIsUnique(worker))       return -6;
 
+        worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
         workerRepository.save(worker);
         return 0;
     }
@@ -87,8 +90,32 @@ public class WorkerService {
         );
         return 0;
     }
-    private void readBirthDateFromPersonalNumber(Worker worker){
-            
+    private LocalDate readBirthDateFromPersonalNumber(Worker worker){
+        String personalNumber = worker.getPesel();
+
+        String year = personalNumber.substring(0, 2);
+        String month = personalNumber.substring(2, 4);
+        String day = personalNumber.substring(4, 6);
+
+        char[] monthCharArray = month.toCharArray();
+
+        int firstDigitInMonth = Character.getNumericValue(monthCharArray[0]);
+        int lastDigitInMonth = Character.getNumericValue(monthCharArray[1]);
+
+        if(firstDigitInMonth == 0 || firstDigitInMonth == 1){
+            year = "19" + year;
+        }
+        else if(firstDigitInMonth == 2 || firstDigitInMonth == 3){
+            year = "20" + year;
+            if(firstDigitInMonth == 2 ) month = "0" + lastDigitInMonth;
+            else month = "1" + lastDigitInMonth;
+        }
+
+        int yearInt = Integer.parseInt(year);
+        int monthInt = Integer.parseInt(month);
+        int dayInt = Integer.parseInt(day);
+
+       return LocalDate.of(yearInt, monthInt, dayInt);
     }
 
     public List<Worker> getWorkersWithoutContract() {

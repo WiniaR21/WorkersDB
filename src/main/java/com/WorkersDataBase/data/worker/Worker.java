@@ -40,6 +40,9 @@ public class Worker {
     @Column(name = "date_of_birth")
     private LocalDate birthDate;
 
+    @Column(name = "gender")
+    private Gender gender;
+
     @OneToOne
     @JoinColumn(name = "contract_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "contract_fk"))
     private Contract contract;

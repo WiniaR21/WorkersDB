@@ -30,7 +30,7 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
     WorkersEmailField workersEmailField;
     WorkersPeselField workersPeselField;
     VerticalLayout fieldsLayout;
-    BirthDataField birthDataField;
+
         //  Buttons
     SaveWorkerButton saveWorkerButton;
     CloseDialogButton closeDialogButton;
@@ -94,16 +94,14 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
         workersPeselField = new WorkersPeselField();
         workersPeselField.configure();
 
-        birthDataField = new BirthDataField();
-        birthDataField.configure();
+
     }
     private void configureFieldsLayout(){
         fieldsLayout = new VerticalLayout(
                 workersFirstNameField,
                 workersLastNameField,
                 workersEmailField,
-                workersPeselField,
-                birthDataField
+                workersPeselField
         );
 
         fieldsLayout.setAlignItems(Alignment.CENTER);
