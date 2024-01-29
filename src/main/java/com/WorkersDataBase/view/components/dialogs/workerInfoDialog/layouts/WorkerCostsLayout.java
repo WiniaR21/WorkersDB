@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.workerInfoDialog.layouts;
 
+import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.WorkerInfoDialog;
 import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.dataFields.worker.*;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 public class WorkerCostsLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerInfoDialog workerInfoDialog;
+    private final Worker workerSelectedFromGrid;
 
     //  To configure
     WorkerSkladkaEmerytalna emerytalna;
@@ -23,39 +25,60 @@ public class WorkerCostsLayout extends VerticalLayout implements ComponentCreato
 
     @Override
     public void configureComponents() {
-
+        setEmerytalna();
+        setRentowa();
+        setChorobowe();
+        setZdrowotne();
+        setKosztyUzyskaniaPrzychodu();
+        setZaliczkaNaPodatekDochodowy();
+        setKwotaDoWyplaty();
     }
 
     @Override
     public void configureFront() {
-
+        add(
+                emerytalna,
+                rentowa,
+                chorobowe,
+                zdrowotne,
+                kosztyUzyskaniaPrzychodu,
+                zaliczkaNaPodatekDochodowy,
+                kwotaDoWyplaty
+        );
     }
 
     private void setEmerytalna( ) {
-        this.emerytalna = emerytalna;
+        emerytalna = new WorkerSkladkaEmerytalna(workerSelectedFromGrid);
+        emerytalna.configure();
     }
 
     private void setRentowa( ) {
-        this.rentowa = rentowa;
+        rentowa = new WorkerSkladkaRentowa(workerSelectedFromGrid);
+        rentowa.configure();
     }
 
     private void setChorobowe( ) {
-        this.chorobowe = chorobowe;
+        chorobowe = new WorkerSkladkaNaUbezpieczenieChorobowe(workerSelectedFromGrid);
+        chorobowe.configure();
     }
 
     private void setZdrowotne( ) {
-        this.zdrowotne = zdrowotne;
+        zdrowotne = new WorkerSkladkaNaUbezpieczenieZdrowotne(workerSelectedFromGrid);
+        zdrowotne.configure();
     }
 
     private void setKosztyUzyskaniaPrzychodu( ) {
-        this.kosztyUzyskaniaPrzychodu = kosztyUzyskaniaPrzychodu;
+        kosztyUzyskaniaPrzychodu = new WorkerKosztyUzyskaniaPrzychodu(workerSelectedFromGrid);
+        kosztyUzyskaniaPrzychodu.configure();
     }
 
     private void setZaliczkaNaPodatekDochodowy( ) {
-        this.zaliczkaNaPodatekDochodowy = zaliczkaNaPodatekDochodowy;
+        zaliczkaNaPodatekDochodowy = new WorkerZaliczkaNaPodatekDochodowy(workerSelectedFromGrid);
+        zaliczkaNaPodatekDochodowy.configure();
     }
 
     private void setKwotaDoWyplaty( ) {
-        this.kwotaDoWyplaty = kwotaDoWyplaty;
+        kwotaDoWyplaty = new WorkerKwotaDoWyplaty(workerSelectedFromGrid);
+        kwotaDoWyplaty.configure();
     }
 }

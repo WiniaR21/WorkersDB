@@ -62,7 +62,9 @@ public class ServicePushNotification{
     }
     public void pushFirstNameIsToShortInfo() {new InfoNotification("Imie jest za krótkie");}
     public void pushLastNameIsToShortInfo() {new InfoNotification("Nazwisko jest za krótkie");}
-
+    public void pushCanNotShowInfoNoContract() {
+        new InfoNotification("Nie można wyświetlić informacji, pracownik nie posiada umowy");
+    }
 
     //  Errors
     public void pushPeselLengthError(){
@@ -92,6 +94,7 @@ public class ServicePushNotification{
     public void pushPeselControlNumberError() {
         new ErrorNotification("Literówka w numerze pesel");
     }
+
 
 
 }

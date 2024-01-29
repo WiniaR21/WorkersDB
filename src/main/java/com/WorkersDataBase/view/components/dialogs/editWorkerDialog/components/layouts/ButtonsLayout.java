@@ -6,10 +6,7 @@ import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.CancelChangesButton;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.FireWorkerButton;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.SaveChangesButton;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.WritteContractButton;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.*;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -34,6 +31,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
     CancelChangesButton cancelChangesButton;
     FireWorkerButton fireWorkerButton;
     WritteContractButton writteContractButton;
+    WorkerCostsInfoButton workerCostsInfoButton;
 
     @Override
     public void configureComponents() {
@@ -41,6 +39,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         configureCancelChangesButton();
         configureFireWorkerButton();
         configureWriteContractButton();
+        configureWorkerCostsInfoButton();
     }
     @Override
     public void configureFront() {
@@ -48,7 +47,8 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 saveChangesButton,
                 cancelChangesButton,
                 fireWorkerButton,
-                writteContractButton
+                writteContractButton,
+                workerCostsInfoButton
         );
     }
     private void configureSaveChangesButton(){
@@ -91,5 +91,13 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 notification
         );
         fireWorkerButton.configure();
+    }
+    private void configureWorkerCostsInfoButton(){
+        workerCostsInfoButton = new WorkerCostsInfoButton(
+                workerService,
+                workerSelectedFromGrid,
+                notification
+                );
+        workerCostsInfoButton.configure();
     }
 }

@@ -1,7 +1,6 @@
 package com.WorkersDataBase.service.contract;
 
 import com.WorkersDataBase.data.contract.companyFee.CompanyFee;
-import com.WorkersDataBase.data.contract.companyFee.CompanyFeeRepository;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
 import com.WorkersDataBase.data.contract.position.Position;
@@ -121,6 +120,7 @@ public class ContractService {
 
         worker.setContract(contract);
         workerRepository.save(worker);
+
     }
 }
 
