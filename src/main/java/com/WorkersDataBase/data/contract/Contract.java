@@ -1,8 +1,9 @@
 package com.WorkersDataBase.data.contract;
 
-import com.WorkersDataBase.data.companyFee.CompanyFee;
-import com.WorkersDataBase.data.position.Position;
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.companyFee.CompanyFee;
+import com.WorkersDataBase.data.contract.position.Position;
+import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.contract.workersFee.WorkersFee;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -41,8 +42,12 @@ public class Contract {
     LocalDate endDate;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_fee", referencedColumnName = "id", foreignKey = @ForeignKey (name = "company_fk"))
+    @JoinColumn(name = "company_fee", referencedColumnName = "id", foreignKey = @ForeignKey (name = "company_fee_fk"))
     CompanyFee companyFee;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "workers_fee", referencedColumnName = "id", foreignKey = @ForeignKey (name = "workers_fee_fk"))
+    WorkersFee workersFee;
 
     @ToString.Exclude
     @OneToOne(mappedBy = "contract")

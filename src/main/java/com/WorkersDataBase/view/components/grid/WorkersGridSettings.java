@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.grid;
 
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.Worker;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.worker;
-import com.WorkersDataBase.data.worker.Gender;
-import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.data.worker.WorkerRepository;
+import com.WorkersDataBase.data.contract.worker.Gender;
+import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.WorkerRepository;
 import com.WorkersDataBase.service.contract.ContractService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

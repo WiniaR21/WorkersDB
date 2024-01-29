@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.contract;
 
 import com.WorkersDataBase.data.contract.Contract;
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.Worker;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

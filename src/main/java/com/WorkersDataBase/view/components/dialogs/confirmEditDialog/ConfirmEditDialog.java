@@ -1,10 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.confirmEditDialog;
 
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.DialogLayout;
-import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.FieldsLayout;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

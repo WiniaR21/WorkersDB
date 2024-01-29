@@ -1,12 +1,12 @@
 package com.WorkersDataBase.data;
 
-import com.WorkersDataBase.data.contact.Contact;
+import com.WorkersDataBase.data.contract.worker.contact.Contact;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.position.Position;
-import com.WorkersDataBase.data.position.PositionRepository;
-import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.data.worker.WorkerRepository;
+import com.WorkersDataBase.data.contract.position.Position;
+import com.WorkersDataBase.data.contract.position.PositionRepository;
+import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.WorkerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

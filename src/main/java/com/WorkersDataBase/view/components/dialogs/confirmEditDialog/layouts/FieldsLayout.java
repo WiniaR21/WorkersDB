@@ -1,14 +1,11 @@
 package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts;
 
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields.*;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RequiredArgsConstructor
 public class FieldsLayout extends VerticalLayout implements ComponentCreator {

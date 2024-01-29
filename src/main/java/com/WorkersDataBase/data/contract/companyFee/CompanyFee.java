@@ -1,4 +1,4 @@
-package com.WorkersDataBase.data.companyFee;
+package com.WorkersDataBase.data.contract.companyFee;
 
 import com.WorkersDataBase.data.contract.Contract;
 import jakarta.persistence.*;
@@ -26,10 +26,10 @@ public class CompanyFee {
 
     @Column(name = "skladka_na_ubezpieczenie_wypadkowe")
     private double skladkaNaUbezpieczenieWypadkowe;
-    //2,45%
+
     @Column(name = "skladka_na_fundusz_pracy")
     private double skladkaNaFunduszPracy;
-    //0,10%
+
     @Column(name = "skladka_na_fgsp")
     private double skladkaNaFGSP;
 

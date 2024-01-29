@@ -1,8 +1,8 @@
 package com.WorkersDataBase.service.worker;
 
-import com.WorkersDataBase.data.contact.ContactRepository;
-import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.data.worker.WorkerRepository;
+import com.WorkersDataBase.data.contract.worker.contact.ContactRepository;
+import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.WorkerRepository;
 import com.WorkersDataBase.service.validTools.StringValidTool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

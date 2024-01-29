@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.grid;
 
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;

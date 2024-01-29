@@ -1,13 +1,14 @@
 package com.WorkersDataBase.service.contract;
 
-import com.WorkersDataBase.data.companyFee.CompanyFee;
-import com.WorkersDataBase.data.companyFee.CompanyFeeRepository;
+import com.WorkersDataBase.data.contract.companyFee.CompanyFee;
+import com.WorkersDataBase.data.contract.companyFee.CompanyFeeRepository;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.position.Position;
-import com.WorkersDataBase.data.position.PositionRepository;
-import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.data.worker.WorkerRepository;
+import com.WorkersDataBase.data.contract.position.Position;
+import com.WorkersDataBase.data.contract.position.PositionRepository;
+import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.WorkerRepository;
+import com.WorkersDataBase.data.contract.workersFee.WorkersFee;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,6 @@ public class ContractService {
     private final ContractRepository contractRepository;
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
-    private final CompanyFeeRepository companyFeeRepository;
     private final ContractValidTool contractValidTool;
 
     /*
@@ -92,10 +92,16 @@ public class ContractService {
         contract.setSalary(salary);
         contract.setStartDate(startDate);
         contract.setEndDate(endDate);
+
         //  Calculate companyFee
         CompanyFee companyFee = new CompanyFee(salary);
         companyFee.setContract(contract);
         contract.setCompanyFee(companyFee);
+
+        //  Calculate workersFee
+        WorkersFee workersFee = new WorkersFee(salary);
+        workersFee.setContract(contract);
+        contract.setWorkersFee(workersFee);
 
         //  Add dependencies in DB
         positionRepository.getPositionsByPositionName(positionName).ifPresent(

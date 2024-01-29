@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog.layouts;
 
-import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.contract.position.Position;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;

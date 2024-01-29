@@ -1,4 +1,4 @@
-package com.WorkersDataBase.data.position;
+package com.WorkersDataBase.data.contract.position;
 
 import com.WorkersDataBase.data.contract.Contract;
 import jakarta.persistence.*;

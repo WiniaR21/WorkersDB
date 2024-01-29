@@ -1,6 +1,6 @@
 package com.WorkersDataBase.dashboard.workersWithoutContractLayout;
 
-import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
