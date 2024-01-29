@@ -36,21 +36,26 @@ public class ConfirmButton extends Button implements ComponentCreator, ButtonCre
         addClickShortcut(Key.ENTER);
     }
     private void statusResponse(int status){
-        if (status ==  1) notification.pushEditSuccess();
-        if (status ==  0) notification.pushAddingWorkerSuccess(newWorker);
-        if (status == -1) notification.pushError();
-        if (status == -2) notification.pushEmptyFieldsError();
-        if (status == -3) notification.pushSpecialSymbolsError();
-        if (status == -4) notification.pushPeselLengthError();
-        if (status == -5) notification.pushPeselUniqueError();
-        if (status == -6) notification.pushEmailUniqueError();
-        if (status == -7) notification.pushFirstNameIsToShortInfo();
-        if (status == -8) notification.pushLastNameIsToShortInfo();
-        if (status == -9) notification.pushPeselControlNumberError();
-
-        if (status == 0){
+        if (status ==  0) {
+            notification.pushAddingWorkerSuccess(newWorker);
             workersGrid.refresh();
             confirmEditDialog.close();
         }
+        else if (status ==  1) {
+            notification.pushEditSuccess();
+            workersGrid.refresh();
+            confirmEditDialog.close();
+        }
+
+        else if (status == -1) notification.pushError();
+        else if (status == -2) notification.pushEmptyFieldsError();
+        else if (status == -3) notification.pushSpecialSymbolsError();
+        else if (status == -4) notification.pushPeselLengthError();
+        else if (status == -5) notification.pushPeselUniqueError();
+        else if (status == -6) notification.pushEmailUniqueError();
+        else if (status == -7) notification.pushFirstNameIsToShortInfo();
+        else if (status == -8) notification.pushLastNameIsToShortInfo();
+        else if (status == -9) notification.pushPeselControlNumberError();
+
     }
 }

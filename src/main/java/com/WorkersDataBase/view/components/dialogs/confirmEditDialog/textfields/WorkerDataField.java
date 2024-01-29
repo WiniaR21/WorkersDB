@@ -19,7 +19,6 @@ public class WorkerDataField extends TextField implements ComponentCreator {
     }
     @Override
     public void configureFront() {
-        setLabel("PESEL");
         setReadOnly(true);
         setValue(message);
     }
