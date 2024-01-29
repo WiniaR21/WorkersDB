@@ -53,24 +53,18 @@ public class WorkerService {
         if(!workerValidTool.firstNameLengthIsFine(worker)) return -7;
         if(!workerValidTool.lastNameLengthIsFine(worker))  return -8;
         if(!workerValidTool.peselIsPossible(worker))       return -9;
-
-        if(editingWorker){
-            worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
-            worker.setGender(readGenderFromPersonalNumber(worker));
-            workerRepository.save(worker);
-            return 1;
-        }
-
+        if(editingWorker) return saveWorker(worker, true);
         if (!workerValidTool.peselIsUnique(worker))       return -5;
         if (!workerValidTool.emailIsUnique(worker))       return -6;
-
-        worker.setGender(readGenderFromPersonalNumber(worker));
-        worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
-        workerRepository.save(worker);
-        return 0;
+        return saveWorker(worker, false);
     }
 
-
+    private int saveWorker(Worker worker, boolean editingWorker){
+        worker.setBirthDate(readBirthDateFromPersonalNumber(worker));
+        worker.setGender(readGenderFromPersonalNumber(worker));
+        workerRepository.save(worker);
+        return editingWorker ? 1 : 0;
+    }
     @Transactional
     public int fireWorker(Long idWorkerToFire){
         /*

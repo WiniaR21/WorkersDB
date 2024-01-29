@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ContractValidTool {
     public boolean validSalary(Double salary){
-        return salary > 4242;
+        return salary >= 4242;
     }
     public boolean workerHasContract(Worker worker){
         return worker.getContract() != null;

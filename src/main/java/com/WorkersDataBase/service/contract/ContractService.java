@@ -1,5 +1,7 @@
 package com.WorkersDataBase.service.contract;
 
+import com.WorkersDataBase.data.companyFee.CompanyFee;
+import com.WorkersDataBase.data.companyFee.CompanyFeeRepository;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
 import com.WorkersDataBase.data.position.Position;
@@ -18,6 +20,7 @@ public class ContractService {
     private final ContractRepository contractRepository;
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
+    private final CompanyFeeRepository companyFeeRepository;
     private final ContractValidTool contractValidTool;
 
     /*
@@ -89,6 +92,10 @@ public class ContractService {
         contract.setSalary(salary);
         contract.setStartDate(startDate);
         contract.setEndDate(endDate);
+        //  Calculate companyFee
+        CompanyFee companyFee = new CompanyFee(salary);
+        companyFee.setContract(contract);
+        contract.setCompanyFee(companyFee);
 
         //  Add dependencies in DB
         positionRepository.getPositionsByPositionName(positionName).ifPresent(

@@ -1,5 +1,6 @@
 package com.WorkersDataBase.data.contract;
 
+import com.WorkersDataBase.data.companyFee.CompanyFee;
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
 import jakarta.persistence.*;
@@ -38,6 +39,10 @@ public class Contract {
 
     @Column(name = "end_date")
     LocalDate endDate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_fee", referencedColumnName = "id", foreignKey = @ForeignKey (name = "company_fk"))
+    CompanyFee companyFee;
 
     @ToString.Exclude
     @OneToOne(mappedBy = "contract")
