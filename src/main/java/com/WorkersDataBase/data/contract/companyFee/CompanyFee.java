@@ -40,12 +40,13 @@ public class CompanyFee {
     Contract contract = new Contract();
 
     public CompanyFee(double salary) {
-        skladkaEmerytalna = setSkladkaEmerytalna(salary);
-        skladkaRentowa = setSkladkaRentowa(salary);
-        skladkaNaUbezpieczenieWypadkowe = setSkladkaNaUbezpieczenieWypadkowe(salary);
-        skladkaNaFunduszPracy = setSkladkaNaFunduszPracy(salary);
-        skladkaNaFGSP = setSkladkaNaFGSP(salary);
-        laczneKosztyPracodawcy = setLaczneKosztyPracodawcy(salary);
+        skladkaEmerytalna = Math.round(setSkladkaEmerytalna(salary) * 100.0) / 100.0;
+        skladkaRentowa = Math.round(setSkladkaRentowa(salary) * 100.0) / 100.0;
+        skladkaNaUbezpieczenieWypadkowe = Math.round(setSkladkaNaUbezpieczenieWypadkowe(salary) * 100.0) / 100.0;
+        skladkaNaFunduszPracy = Math.round(setSkladkaNaFunduszPracy(salary) * 100.0) / 100.0;
+        skladkaNaFGSP = Math.round(setSkladkaNaFGSP(salary) * 100.0) / 100.0;
+        laczneKosztyPracodawcy = Math.round(setLaczneKosztyPracodawcy(salary) * 100.0) / 100.0;
+
     }
 
     private double setSkladkaEmerytalna(double salary) {

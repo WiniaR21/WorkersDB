@@ -51,15 +51,16 @@ public class WorkersFee {
     private double kwotaDoWyplatyDlaPracownika;
 
     public WorkersFee(double salary) {
-        skladkaEmerytalna = setSkladkaEmerytalna(salary);
-        skladkaRentowa = setSkladkaRentowa(salary);
-        skladkaNaUbezpieczenieChorobowe = setSkladkaNaUbezpieczenieChorobowe(salary);;
-        podstawaNaUbezpieczenieZdrowotne = setPodstawaNaUbezpieczenieZdrowotne(salary);
-        skladkaNaUbezpieczenieZdrowotne = setSkladkaNaUbezpieczenieZdrowotne();
-        kosztyUzyskaniaPrzychodu = setKosztyUzyskaniaPrzychodu();
-        podstawaNaPodatekDochodowy = setPodstawaNaPodatekDochodowy(salary);
-        zaliczkaNaPodatekDochodowy = setZaliczkaNaPodatekDochodowy();
-        kwotaDoWyplatyDlaPracownika = setKwotaDoWyplatyDlaPracownika(salary);
+        skladkaEmerytalna = Math.round(setSkladkaEmerytalna(salary) * 100.0) / 100.0;
+        skladkaRentowa = Math.round(setSkladkaRentowa(salary) * 100.0) / 100.0;
+        skladkaNaUbezpieczenieChorobowe = Math.round(setSkladkaNaUbezpieczenieChorobowe(salary) * 100.0) / 100.0;
+        podstawaNaUbezpieczenieZdrowotne = Math.round(setPodstawaNaUbezpieczenieZdrowotne(salary) * 100.0) / 100.0;
+        skladkaNaUbezpieczenieZdrowotne = Math.round(setSkladkaNaUbezpieczenieZdrowotne() * 100.0) / 100.0;
+        kosztyUzyskaniaPrzychodu = Math.round(setKosztyUzyskaniaPrzychodu() * 100.0) / 100.0;
+        podstawaNaPodatekDochodowy = Math.round(setPodstawaNaPodatekDochodowy(salary));
+        zaliczkaNaPodatekDochodowy = Math.round(setZaliczkaNaPodatekDochodowy());
+        kwotaDoWyplatyDlaPracownika = Math.round(setKwotaDoWyplatyDlaPracownika(salary) * 100.0) / 100.0;
+
     }
 
     private double setSkladkaEmerytalna(double salary) {
