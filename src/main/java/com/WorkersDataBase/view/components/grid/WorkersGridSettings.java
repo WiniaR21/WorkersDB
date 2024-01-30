@@ -33,6 +33,10 @@ public class WorkersGridSettings {
 
         if (checkBoxValue.contains("Data urodzenia"))
             addBirthColumn(grid);
+
+        if (checkBoxValue.contains("Wiek"))
+            addAgeColumn(grid);
+
     }
 
     private void addFirstNameColumn(Grid<Worker> grid){
@@ -77,5 +81,11 @@ public class WorkersGridSettings {
         grid.addColumn("gender")
                 .setTextAlign(ColumnTextAlign.CENTER)
                 .setHeader("Płeć");
+    }
+
+    private void addAgeColumn(Grid<Worker> grid) {
+        grid.addColumn("age")
+                .setTextAlign(ColumnTextAlign.CENTER)
+                .setHeader("Wiek");
     }
 }

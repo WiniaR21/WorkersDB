@@ -41,7 +41,8 @@ public class CheckBoxLayout extends VerticalLayout implements ComponentCreator {
                 "Stanowisko",
                 "Wynagrodzenie",
                 "Płeć",
-                "Data urodzenia"
+                "Data urodzenia",
+                "Wiek"
         );
     }
 }
