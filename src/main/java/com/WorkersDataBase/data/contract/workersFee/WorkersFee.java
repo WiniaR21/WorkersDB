@@ -50,15 +50,15 @@ public class WorkersFee {
     @Column(name = "kwota_do_wyplaty_dla_pracownika")
     private double kwotaDoWyplatyDlaPracownika;
 
-    public WorkersFee(double salary) {
+    public WorkersFee(double salary, int age) {
         skladkaEmerytalna = Math.round(setSkladkaEmerytalna(salary) * 100.0) / 100.0;
         skladkaRentowa = Math.round(setSkladkaRentowa(salary) * 100.0) / 100.0;
         skladkaNaUbezpieczenieChorobowe = Math.round(setSkladkaNaUbezpieczenieChorobowe(salary) * 100.0) / 100.0;
         podstawaNaUbezpieczenieZdrowotne = Math.round(setPodstawaNaUbezpieczenieZdrowotne(salary) * 100.0) / 100.0;
         skladkaNaUbezpieczenieZdrowotne = Math.round(setSkladkaNaUbezpieczenieZdrowotne() * 100.0) / 100.0;
-        kosztyUzyskaniaPrzychodu = Math.round(setKosztyUzyskaniaPrzychodu() * 100.0) / 100.0;
+        kosztyUzyskaniaPrzychodu = Math.round(setKosztyUzyskaniaPrzychodu(age) * 100.0) / 100.0;
         podstawaNaPodatekDochodowy = Math.round(setPodstawaNaPodatekDochodowy(salary));
-        zaliczkaNaPodatekDochodowy = Math.round(setZaliczkaNaPodatekDochodowy());
+        zaliczkaNaPodatekDochodowy = Math.round(setZaliczkaNaPodatekDochodowy(age));
         kwotaDoWyplatyDlaPracownika = Math.round(setKwotaDoWyplatyDlaPracownika(salary) * 100.0) / 100.0;
 
     }
@@ -86,8 +86,9 @@ public class WorkersFee {
         return podstawaNaUbezpieczenieZdrowotne * 0.09;
     }
 
-    private double setKosztyUzyskaniaPrzychodu() {
-        return 250;
+    private double setKosztyUzyskaniaPrzychodu(int age)
+    {
+        return age >= 26 ? 250 : 0;
     }
 
     private double setPodstawaNaPodatekDochodowy(double salary) {
@@ -98,8 +99,9 @@ public class WorkersFee {
                 kosztyUzyskaniaPrzychodu;
     }
 
-    private double setZaliczkaNaPodatekDochodowy() {
-        return (0.12 * podstawaNaPodatekDochodowy) - 300;
+    private double setZaliczkaNaPodatekDochodowy(int age) {
+
+        return age >= 26 ? (0.12 * podstawaNaPodatekDochodowy) - 300 : 0;
     }
 
     public double setKwotaDoWyplatyDlaPracownika(double salary) {

@@ -98,7 +98,7 @@ public class ContractService {
         contract.setCompanyFee(companyFee);
 
         //  Calculate workersFee
-        WorkersFee workersFee = new WorkersFee(salary);
+        WorkersFee workersFee = new WorkersFee(salary, worker.getAge());
         workersFee.setContract(contract);
         contract.setWorkersFee(workersFee);
 
