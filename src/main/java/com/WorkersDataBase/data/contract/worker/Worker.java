@@ -44,6 +44,8 @@ public class Worker {
     @Column(name = "gender")
     private Gender gender;
 
+    @Column(name = "age")
+    private Integer age;
     @OneToOne
     @JoinColumn(name = "contract_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "contract_fk"))
     private Contract contract;
