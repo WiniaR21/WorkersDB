@@ -1,6 +1,7 @@
-package com.WorkersDataBase.view.components.topbar.components.buttons;
+package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons;
 
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
+import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.GeneralCostsDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;
@@ -8,11 +9,14 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DashboardButton extends Button implements ComponentCreator, ButtonCreator {
+public class OpenGeneralCostsDialog extends Button implements ComponentCreator, ButtonCreator {
+    private final DashboardDialog dashboardDialog;
     @Override
     public void clickEvent() {
-        DashboardDialog dashboardDialog = new DashboardDialog();
-        dashboardDialog.configure();
+        GeneralCostsDialog generalCostsDialog = new GeneralCostsDialog(
+                dashboardDialog
+        );
+        generalCostsDialog.configure();
     }
 
     @Override
@@ -22,8 +26,8 @@ public class DashboardButton extends Button implements ComponentCreator, ButtonC
 
     @Override
     public void configureFront() {
-        setText("Statystyki");
-        addClickListener(clickEvent -> clickEvent());
+        setText("Generalne koszty firmy");
+        addClickListener(buttonClickEvent -> clickEvent());
         addThemeVariants(ButtonVariant.LUMO_TERTIARY);
     }
 }

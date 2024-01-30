@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts;
 
 import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields.*;
+import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.textfields.WorkerDataField;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

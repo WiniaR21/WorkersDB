@@ -1,7 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.workerInfoDialog;
 
 import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.layouts.WorkerInfoDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
