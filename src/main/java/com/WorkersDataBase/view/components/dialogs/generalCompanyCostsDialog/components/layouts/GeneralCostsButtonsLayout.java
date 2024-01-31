@@ -13,21 +13,21 @@ public class GeneralCostsButtonsLayout extends HorizontalLayout implements Compo
     private final GeneralCostsDialog generalCostsDialog;
     private final DashboardDialog dashboardDialog;
     //  To configure
-    CloseGeneralCostsDialogButton closeGeneralCostsDialogButton;
+    CloseGeneralCostsDialogButton closeButton;
     @Override
     public void configureComponents() {
-        setCloseGeneralCostsDialogButton();
+        setCloseButton();
     }
 
     @Override
     public void configureFront() {
-        add(closeGeneralCostsDialogButton);
+        add(closeButton);
     }
-    private void setCloseGeneralCostsDialogButton(){
-        closeGeneralCostsDialogButton = new CloseGeneralCostsDialogButton(
+    private void setCloseButton(){
+        closeButton = new CloseGeneralCostsDialogButton(
                 generalCostsDialog,
                 dashboardDialog
         );
-        closeGeneralCostsDialogButton.configure();
+        closeButton.configure();
     }
 }

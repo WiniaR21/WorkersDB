@@ -1,31 +1,35 @@
 package com.WorkersDataBase.view.components.dialogs.workerInfoDialog;
 
 import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.layouts.WorkerInfoDialogLayout;
+import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.components.layouts.WorkerInfoDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WorkerInfoDialog extends Dialog implements ComponentCreator {
+public class WorkerInfoDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
     private final Worker workerSelectedFromGrid;
 
     //  To configure
-    WorkerInfoDialogLayout workerInfoDialogLayout;
+    WorkerInfoDialogLayout dialogLayout;
+
     @Override
     public void configureComponents() {
-        setWorkerInfoDialog();
+        setDialogLayout();
     }
-
     @Override
     public void configureFront() {
-        add(workerInfoDialogLayout);
+        add(dialogLayout);
         open();
     }
-
-    private void setWorkerInfoDialog( ) {
-        workerInfoDialogLayout = new WorkerInfoDialogLayout(this, workerSelectedFromGrid);
-        workerInfoDialogLayout.configure();
+    @Override
+    public void setDialogLayout( ) {
+        dialogLayout = new WorkerInfoDialogLayout(
+                this,
+                workerSelectedFromGrid
+        );
+        dialogLayout.configure();
     }
 }

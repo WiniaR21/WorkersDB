@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts;
 
-import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.costFields.*;
+import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.fields.*;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 

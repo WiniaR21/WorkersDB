@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog;
 
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
-import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts.GeneralCostsLayout;
+import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts.GeneralCostsDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ public class GeneralCostsDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
     //  To configure
-    GeneralCostsLayout generalCostsLayout;
+    GeneralCostsDialogLayout dialogLayout;
     @Override
     public void configureComponents() {
         setGeneralCostsLayout();
@@ -19,15 +19,15 @@ public class GeneralCostsDialog extends Dialog implements ComponentCreator {
 
     @Override
     public void configureFront() {
-        add(generalCostsLayout);
+        add(dialogLayout);
         open();
     }
 
     private void setGeneralCostsLayout() {
-        generalCostsLayout = new GeneralCostsLayout(
+        dialogLayout = new GeneralCostsDialogLayout(
                 this,
                 dashboardDialog
         );
-        generalCostsLayout.configure();
+        dialogLayout.configure();
     }
 }

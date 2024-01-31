@@ -5,14 +5,15 @@ import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.writeContractDialog.layouts.WriteContractLayout;
+import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts.WriteContractLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WriteContractDialog extends Dialog implements ComponentCreator {
+public class WriteContractDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
     private final PositionService positionService;
     private final Worker worker;
@@ -26,15 +27,14 @@ public class WriteContractDialog extends Dialog implements ComponentCreator {
     WriteContractLayout writeContractLayout;
 
     @Override
-    public void configureComponents() {
-        configureWriteContractLayout();
-    }
+    public void configureComponents() { setDialogLayout();}
     @Override
     public void configureFront() {
         add(writeContractLayout);
         open();
     }
-    private void configureWriteContractLayout(){
+    @Override
+    public void setDialogLayout() {
         writeContractLayout = new WriteContractLayout(
                 this,
                 positionService,

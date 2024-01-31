@@ -3,7 +3,7 @@ package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.compon
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
-import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.dataFields.PositionNameField;
+import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.fields.PositionNameField;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.button.Button;

@@ -2,35 +2,37 @@ package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog;
 
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.layouts.ManageCompanyDialogLayout;
+import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.layouts.ManageCompanyDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ManageCompanyDialog extends Dialog implements ComponentCreator {
+public class ManageCompanyDialog extends Dialog implements ComponentCreator, DialogCreator {
     private final PositionService positionService;
     private final ServicePushNotification notification;
 
     //  To configure
-    ManageCompanyDialogLayout manageCompanyDialogLayout;
+    ManageCompanyDialogLayout dialogLayout;
 
     @Override
     public void configureComponents() {
-       configureManageCompanyDialogLayout();
+        setDialogLayout();
     }
     @Override
     public void configureFront() {
-        add(manageCompanyDialogLayout);
+        add(dialogLayout);
         open();
     }
-    private void configureManageCompanyDialogLayout(){
-        manageCompanyDialogLayout =
+    @Override
+    public void setDialogLayout() {
+        dialogLayout =
                 new ManageCompanyDialogLayout(
                         this,
                         positionService,
                         notification
                 );
-        manageCompanyDialogLayout.configure();
+        dialogLayout.configure();
     }
 }

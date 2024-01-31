@@ -3,16 +3,17 @@ package com.WorkersDataBase.view.components.dialogs.confirmEditDialog;
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
-import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.layouts.DialogLayout;
+import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.components.layouts.ConfirmEditDialogLayout;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-public class ConfirmEditDialog extends Dialog implements ComponentCreator {
+public class ConfirmEditDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
@@ -22,19 +23,20 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator {
     private final ServicePushNotification notification;
 
     //  To configure
-    DialogLayout dialogLayout;
+    ConfirmEditDialogLayout dialogLayout;
 
     @Override
     public void configureComponents() {
-        configureDialogLayout();
+        setDialogLayout();
     }
     @Override
     public void configureFront() {
         add(dialogLayout);
         open();
     }
-    private void configureDialogLayout(){
-        dialogLayout = new DialogLayout(
+    @Override
+    public void setDialogLayout() {
+        dialogLayout = new ConfirmEditDialogLayout(
                 workerService,
                 newWorker,
                 workersGrid,

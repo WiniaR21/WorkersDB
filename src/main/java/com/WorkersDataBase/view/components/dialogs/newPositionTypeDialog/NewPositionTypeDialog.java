@@ -3,37 +3,40 @@ package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
-import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts.NewPositionDialogLayout;
+import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts.NewPositionDialogTypeLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class NewPositionTypeDialog extends Dialog implements ComponentCreator {
+public class NewPositionTypeDialog extends Dialog implements ComponentCreator, DialogCreator {
     // To inject by constructor
     private final PositionService positionService;
     private final ManageCompanyDialog manageCompanyDialog;
     private final ServicePushNotification notification;
 
     //  To configure
-    NewPositionDialogLayout newPositionDialogLayout;
+    NewPositionDialogTypeLayout dialogLayout;
 
     @Override
     public void configureComponents() {
-        configureNewPositionDialogLayout();
+        setDialogLayout();
     }
     @Override
     public void configureFront() {
-        add(newPositionDialogLayout);
+        add(dialogLayout);
         open();
     }
-    private void configureNewPositionDialogLayout(){
-        newPositionDialogLayout = new NewPositionDialogLayout(
+
+    @Override
+    public void setDialogLayout() {
+        dialogLayout = new NewPositionDialogTypeLayout(
                 this,
                 positionService,
                 manageCompanyDialog,
                 notification
         );
-        newPositionDialogLayout.configure();
+        dialogLayout.configure();
     }
 }

@@ -1,36 +1,35 @@
 package com.WorkersDataBase.view.components.dialogs.statisticDialog;
 
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
-import com.WorkersDataBase.view.components.dialogs.statisticDialog.layouts.StatisticsDialogLayout;
+import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.layouts.StatisticsDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class StatisticDialog extends Dialog implements ComponentCreator {
+public class StatisticDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
     //  To configure
-    StatisticsDialogLayout statisticsDialogLayout;
+    StatisticsDialogLayout dialogLayout;
 
     @Override
     public void configureComponents() {
-        setStatisticsDialogLayout();
+        setDialogLayout();
     }
-
     @Override
     public void configureFront() {
-        add(statisticsDialogLayout);
+        add(dialogLayout);
         open();
     }
+    @Override
+    public void setDialogLayout() {
+        dialogLayout = new StatisticsDialogLayout(
+                this,
+                dashboardDialog
 
-    private void setStatisticsDialogLayout() {
-       statisticsDialogLayout = new StatisticsDialogLayout(
-               this,
-               dashboardDialog
-
-       );
-       statisticsDialogLayout.configure();
+        );
+        dialogLayout.configure();
     }
-
 }
