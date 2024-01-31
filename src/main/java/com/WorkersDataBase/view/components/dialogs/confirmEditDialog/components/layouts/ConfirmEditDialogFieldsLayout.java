@@ -8,7 +8,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FieldsLayout extends VerticalLayout implements ComponentCreator {
+public class ConfirmEditDialogFieldsLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final Worker oryginalWorker;
     private final Worker newWorker;
@@ -22,8 +22,14 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
 
     @Override
     public void configureComponents() {
-        configureOryginalFields();
-        configureNewFields();
+        setFirstNameField();
+        setLastNameField();
+        setPeselField();
+        setContactField();
+        setNewFirstNameField();
+        setNewLastNameField();
+        setNewPeselField();
+        setNewContactField();
     }
     @Override
     public void configureFront() {
@@ -37,51 +43,60 @@ public class FieldsLayout extends VerticalLayout implements ComponentCreator {
                 new HorizontalLayout(contactField, newContactField)
         );
     }
-    private void configureOryginalFields(){
-
+    private void setFirstNameField() {
         firstNameField = new WorkerDataField(
                 oryginalWorker.getFirstName(), true
-        );  firstNameField.configure();
-
-
-        lastNameField = new WorkerDataField(
-                oryginalWorker.getLastName(), true
-        );  lastNameField.configure();
-
-        peselField = new WorkerDataField(
-                oryginalWorker.getPesel(), true
-        );  peselField.configure();
-
-        contactField = new WorkerDataField(
-                oryginalWorker.getContact().getEmail(), true
-        );  contactField.configure();
-
+        );
+        firstNameField.configure();
         firstNameField.setLabel("Imie");
-        lastNameField.setLabel("Nazwisko");
-        peselField.setLabel("PESEL");
-        contactField.setLabel("Email");
     }
-    private void configureNewFields(){
+    private void setNewFirstNameField() {
         newFirstNameField = new WorkerDataField(
                 newWorker.getFirstName(), false
-        );  newFirstNameField.configure();
-
+        );
+        newFirstNameField.configure();
+        newFirstNameField.setLabel("Imie");
+    }
+    private void setLastNameField() {
+        lastNameField = new WorkerDataField(
+                oryginalWorker.getLastName(), true
+        );
+        lastNameField.configure();
+        lastNameField.setLabel("Nazwisko");
+    }
+    private void setNewLastNameField() {
         newLastnameField = new WorkerDataField(
                 newWorker.getLastName(), false
-        );  newLastnameField.configure();
-
+        );
+        newLastnameField.configure();
+        newLastnameField.setLabel("Nazwisko");
+    }
+    private void setPeselField() {
+        peselField = new WorkerDataField(
+                oryginalWorker.getPesel(), true
+        );
+        peselField.configure();
+        peselField.setLabel("PESEL");
+    }
+    private void setNewPeselField() {
         newPeselField = new WorkerDataField(
                 newWorker.getPesel(), false
-        );  newPeselField.configure();
-
+        );
+        newPeselField.configure();
+        newPeselField.setLabel("PESEL");
+    }
+    private void setContactField() {
+        contactField = new WorkerDataField(
+                oryginalWorker.getContact().getEmail(), true
+        );
+        contactField.configure();
+        contactField.setLabel("Email");
+    }
+    private void setNewContactField() {
         newContactField = new WorkerDataField(
                 newWorker.getContact().getEmail(), false
-        );  newContactField.configure();
-
-
-        newFirstNameField.setLabel("Imie");
-        newLastnameField.setLabel("Nazwisko");
-        newPeselField.setLabel("PESEL");
+        );
+        newContactField.configure();
         newContactField.setLabel("Email");
     }
 }

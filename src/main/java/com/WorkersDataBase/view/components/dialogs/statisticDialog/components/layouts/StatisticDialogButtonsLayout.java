@@ -14,23 +14,23 @@ public class StatisticDialogButtonsLayout extends HorizontalLayout implements Co
     private final DashboardDialog dashboardDialog;
 
     //  To configure
-    CloseStatisticDialogButton closeStatisticDialogButton;
+    CloseStatisticDialogButton closeDialogButton;
     @Override
     public void configureComponents() {
-        setCloseStatisticDialogButton();
+        setCloseDialogButton();
     }
 
     @Override
     public void configureFront() {
         setAlignItems(Alignment.END);
-        add(closeStatisticDialogButton);
+        add(closeDialogButton);
     }
 
-    private void setCloseStatisticDialogButton() {
-        closeStatisticDialogButton = new CloseStatisticDialogButton(
+    private void setCloseDialogButton() {
+        closeDialogButton = new CloseStatisticDialogButton(
                 statisticDialog,
                 dashboardDialog
         );
-        closeStatisticDialogButton.configure();
+        closeDialogButton.configure();
     }
 }

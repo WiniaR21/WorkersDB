@@ -3,9 +3,6 @@ package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.componen
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
-import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.buttons.AddNewPositionButton;
-import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.buttons.CancelButton;
-import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.buttons.RemovePositionButton;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -20,17 +17,14 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
     private final ServicePushNotification notification;
 
     // To configure
-    AddNewPositionButton addNewPositionButton;
-    RemovePositionButton removePositionButton;
-    CancelButton cancelButton;
     H3 header;
+    ManageCompanyDialogButtonsLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
         configureHeader();
-        configureAddNewPositionButton();
-        configureRemovePositionButton();
-        configureCancelButton();
+        setButtonsLayout();
+
     }
     @Override
     public void configureFront() {
@@ -40,9 +34,7 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
 
         add(
                 header,
-                addNewPositionButton,
-                removePositionButton,
-                cancelButton
+                buttonsLayout
         );
     }
     private void configureHeader(){
@@ -51,24 +43,12 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void configureAddNewPositionButton(){
-        addNewPositionButton = new AddNewPositionButton(
-                        manageCompanyDialog,
-                        positionService,
-                        notification
-                );
-        addNewPositionButton.configure();
-    }
-    private void configureRemovePositionButton(){
-        removePositionButton = new RemovePositionButton(
-                        positionService,
-                        manageCompanyDialog,
-                        notification
+    private void setButtonsLayout(){
+        buttonsLayout = new ManageCompanyDialogButtonsLayout(
+                manageCompanyDialog,
+                positionService,
+                notification
         );
-        removePositionButton.configure();
-    }
-    private void configureCancelButton(){
-        cancelButton = new CancelButton(manageCompanyDialog);
-        cancelButton.configure();
+        buttonsLayout.configure();
     }
 }

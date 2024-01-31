@@ -4,14 +4,11 @@ import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
-import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons.CancelNewPositionTypeDialog;
-import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons.SaveNewPositionType;
-import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.fields.PositionNameField;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
+
 
 @RequiredArgsConstructor
 public class NewPositionDialogTypeLayout extends VerticalLayout implements ComponentCreator {
@@ -23,17 +20,15 @@ public class NewPositionDialogTypeLayout extends VerticalLayout implements Compo
 
     //  To configure
     H3 header;
-    PositionNameField positionNameField;
-    SaveNewPositionType saveNewPositionType;
-    CancelNewPositionTypeDialog cancelNewPositionTypeDialog;
+    NewPositionTypeDialogFieldsLayout fieldsLayout;
+    NewPositionTypeDialogButtonsLayout buttonsLayout;
 
 
     @Override
     public void configureComponents() {
-        configureHeader();
-        configurePositionNameField();
-        configureCancelNewPositionTypeDialog();
-        configureSaveNewPositionType();
+        setHeader();
+        setFieldsLayout();
+        setButtonsLayout();
     }
     @Override
     public void configureFront() {
@@ -42,34 +37,28 @@ public class NewPositionDialogTypeLayout extends VerticalLayout implements Compo
 
         add(
                 header,
-                positionNameField,
-
-                new HorizontalLayout(saveNewPositionType, cancelNewPositionTypeDialog));
+                fieldsLayout,
+                buttonsLayout
+        );
     }
-    private void configureHeader(){
+    private void setHeader(){
         header = new H3("Nowe stanowisko");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void configurePositionNameField(){
-        positionNameField = new PositionNameField();
-        positionNameField.configure();
+    private void setFieldsLayout(){
+        fieldsLayout = new NewPositionTypeDialogFieldsLayout();
+        fieldsLayout.configure();
     }
-    private void configureCancelNewPositionTypeDialog(){
-        cancelNewPositionTypeDialog = new CancelNewPositionTypeDialog(
-                newPositionTypeDialog, manageCompanyDialog);
-
-        cancelNewPositionTypeDialog.configure();
-    }
-    private void configureSaveNewPositionType(){
-        saveNewPositionType = new SaveNewPositionType(
-                positionNameField,
-                positionService,
+    private void setButtonsLayout(){
+        buttonsLayout = new NewPositionTypeDialogButtonsLayout(
                 newPositionTypeDialog,
-                notification
+                positionService,
+                manageCompanyDialog,
+                notification,
+                fieldsLayout.positionNameField
         );
-
-        saveNewPositionType.configure();
+        buttonsLayout.configure();
     }
 }

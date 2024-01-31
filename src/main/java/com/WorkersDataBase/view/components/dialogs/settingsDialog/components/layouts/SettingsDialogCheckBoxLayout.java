@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 @Getter
 @RequiredArgsConstructor
-public class CheckBoxLayout extends VerticalLayout implements ComponentCreator {
+public class SettingsDialogCheckBoxLayout extends VerticalLayout implements ComponentCreator {
     //To configure
     CheckboxGroup<String> checkBox;
     Set<String> checkBoxValue;

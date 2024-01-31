@@ -5,12 +5,9 @@ import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
-import com.WorkersDataBase.view.components.dialogs.removePositionDialog.components.buttons.CloseRemovePositionDialog;
-import com.WorkersDataBase.view.components.dialogs.removePositionDialog.components.buttons.RemovePositionButton;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
@@ -24,16 +21,15 @@ public class RemovePositionDialogLayout extends VerticalLayout implements Compon
 
 
     //  To configure
-    ComboBox<Position> positions;
-    RemovePositionButton removePositionButton;
-    CloseRemovePositionDialog closeRemovePositionDialog;
     H3 header;
+    ComboBox<Position> positions;
+    RemovePositionDialogButtonsLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
         configureHeader();
         configurePositions();
-        configureButtons();
+        setButtonsLayout();
     }
     @Override
     public void configureFront() {
@@ -43,7 +39,7 @@ public class RemovePositionDialogLayout extends VerticalLayout implements Compon
         add(
                 header,
                 positions,
-                new HorizontalLayout(removePositionButton, closeRemovePositionDialog)
+                buttonsLayout
         );
     }
     private void configureHeader(){
@@ -57,19 +53,14 @@ public class RemovePositionDialogLayout extends VerticalLayout implements Compon
         positions.setItems(positionService.getPositions());
         positions.setItemLabelGenerator(Position::getPositionName);
     }
-    private void configureButtons(){
-        removePositionButton = new RemovePositionButton(
-                positions,
+    private void setButtonsLayout(){
+        buttonsLayout = new RemovePositionDialogButtonsLayout(
                 positionService,
                 removePositionDialog,
-                notification
+                manageCompanyDialog,
+                notification,
+                positions
         );
-        removePositionButton.configure();
-
-        closeRemovePositionDialog = new CloseRemovePositionDialog(
-                removePositionDialog,
-                manageCompanyDialog
-        );
-        closeRemovePositionDialog.configure();
+        buttonsLayout.configure();
     }
 }

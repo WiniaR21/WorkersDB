@@ -3,7 +3,7 @@ package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.l
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.CloseAddWorkerDialog;
+import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.CloseAddWorkerDialogButton;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.SaveWorkerButton;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.WorkersEmailField;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.WorkersFirstNameField;
@@ -16,7 +16,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AddWorkerButtonsLayout extends HorizontalLayout implements ComponentCreator {
+public class AddWorkerDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
@@ -29,19 +29,19 @@ public class AddWorkerButtonsLayout extends HorizontalLayout implements Componen
 
     //  To configure
     SaveWorkerButton saveWorkerButton;
-    CloseAddWorkerDialog closeAddWorkerDialog;
+    CloseAddWorkerDialogButton closeDialogButton;
 
     @Override
     public void configureComponents() {
         setSaveWorkerButton();
-        setCloseAddWorkerDialog();
+        setCloseDialogButton();
     }
     @Override
     public void configureFront() {
         setJustifyContentMode(FlexComponent.JustifyContentMode.END);
         add(
                 saveWorkerButton,
-                closeAddWorkerDialog
+                closeDialogButton
         );
     }
     private void setSaveWorkerButton() {
@@ -57,10 +57,10 @@ public class AddWorkerButtonsLayout extends HorizontalLayout implements Componen
         );
         saveWorkerButton.configure();
     }
-    private void setCloseAddWorkerDialog() {
-        closeAddWorkerDialog = new CloseAddWorkerDialog(
+    private void setCloseDialogButton() {
+        closeDialogButton = new CloseAddWorkerDialogButton(
                 addWorkerDialog
         );
-        closeAddWorkerDialog.configure();
+        closeDialogButton.configure();
     }
 }

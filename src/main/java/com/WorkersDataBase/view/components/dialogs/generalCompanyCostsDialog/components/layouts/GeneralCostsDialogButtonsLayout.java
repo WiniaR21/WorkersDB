@@ -8,26 +8,26 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class GeneralCostsButtonsLayout extends HorizontalLayout implements ComponentCreator {
+public class GeneralCostsDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final GeneralCostsDialog generalCostsDialog;
     private final DashboardDialog dashboardDialog;
     //  To configure
-    CloseGeneralCostsDialogButton closeButton;
+    CloseGeneralCostsDialogButton closeDialogButton;
     @Override
     public void configureComponents() {
-        setCloseButton();
+        setCloseDialogButton();
     }
 
     @Override
     public void configureFront() {
-        add(closeButton);
+        add(closeDialogButton);
     }
-    private void setCloseButton(){
-        closeButton = new CloseGeneralCostsDialogButton(
+    private void setCloseDialogButton(){
+        closeDialogButton = new CloseGeneralCostsDialogButton(
                 generalCostsDialog,
                 dashboardDialog
         );
-        closeButton.configure();
+        closeDialogButton.configure();
     }
 }

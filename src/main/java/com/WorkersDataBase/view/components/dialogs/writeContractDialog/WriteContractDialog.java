@@ -5,7 +5,7 @@ import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts.WriteContractLayout;
+import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts.WriteContractDialogLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogCreator;
@@ -24,18 +24,18 @@ public class WriteContractDialog extends Dialog implements ComponentCreator, Dia
     private final ServicePushNotification notification;
 
     //  To configure
-    WriteContractLayout writeContractLayout;
+    WriteContractDialogLayout dialogLayout;
 
     @Override
     public void configureComponents() { setDialogLayout();}
     @Override
     public void configureFront() {
-        add(writeContractLayout);
+        add(dialogLayout);
         open();
     }
     @Override
     public void setDialogLayout() {
-        writeContractLayout = new WriteContractLayout(
+        dialogLayout = new WriteContractDialogLayout(
                 this,
                 positionService,
                 worker,
@@ -45,6 +45,6 @@ public class WriteContractDialog extends Dialog implements ComponentCreator, Dia
                 workersGrid,
                 notification
         );
-        writeContractLayout.configure();
+        dialogLayout.configure();
     }
 }

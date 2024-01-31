@@ -14,16 +14,16 @@ public class SettingsDialogButtonsLayout extends HorizontalLayout implements Com
     //  To inject by constructor
     private final SettingsDialog settingsDialog;
     private final WorkersGrid workersGrid;
-    private final CheckBoxLayout checkBoxLayout;
+    private final SettingsDialogCheckBoxLayout checkBoxLayout;
 
     //  To configure
     SaveSettingsButton saveSettingsButton;
-    CloseSettingsDialogButton closeSettingsDialogButton;
+    CloseSettingsDialogButton closeDialogButton;
 
     @Override
     public void configureComponents() {
         configureSaveSettingsButton();
-        configureCloseSettingsDialogButton();
+        setCloseDialogButton();
     }
     @Override
     public void configureFront() {
@@ -31,7 +31,7 @@ public class SettingsDialogButtonsLayout extends HorizontalLayout implements Com
 
         add(
                 saveSettingsButton,
-                closeSettingsDialogButton
+                closeDialogButton
         );
     }
     private void configureSaveSettingsButton(){
@@ -42,8 +42,8 @@ public class SettingsDialogButtonsLayout extends HorizontalLayout implements Com
         );
         saveSettingsButton.configure();
     }
-    private void configureCloseSettingsDialogButton(){
-        closeSettingsDialogButton = new CloseSettingsDialogButton(settingsDialog);
-        closeSettingsDialogButton.configure();
+    private void setCloseDialogButton(){
+        closeDialogButton = new CloseSettingsDialogButton(settingsDialog);
+        closeDialogButton.configure();
     }
 }

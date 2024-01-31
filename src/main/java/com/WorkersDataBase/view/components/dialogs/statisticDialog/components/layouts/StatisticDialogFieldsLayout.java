@@ -7,7 +7,7 @@ import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.fi
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-public class MeanFieldsLayout extends VerticalLayout implements ComponentCreator {
+public class StatisticDialogFieldsLayout extends VerticalLayout implements ComponentCreator {
 
     //  To configure
     MeanAgeField meanAgeField;

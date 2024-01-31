@@ -16,7 +16,7 @@ public class SettingsDialogLayout extends VerticalLayout implements ComponentCre
 
     //  To configure
     H3 header;
-    CheckBoxLayout checkBoxLayout;
+    SettingsDialogCheckBoxLayout checkBoxLayout;
     SettingsDialogButtonsLayout settingsDialogButtonsLayout;
 
     @Override
@@ -40,7 +40,7 @@ public class SettingsDialogLayout extends VerticalLayout implements ComponentCre
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
     private void configureCheckBoxLayout(){
-        checkBoxLayout = new CheckBoxLayout();
+        checkBoxLayout = new SettingsDialogCheckBoxLayout();
         checkBoxLayout.configure();
     }
     private void configureSettingsDialogButtonLayout(){

@@ -25,8 +25,8 @@ public class EditWorkerDialogLayout extends VerticalLayout implements ComponentC
 
     //  To configure
     H3 header;
-    FieldsLayout fieldsLayout;
-    ButtonsLayout buttonsLayout;
+    EditWorkerDialogFieldsLayout fieldsLayout;
+    EditWorkerDialogButtonsLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -51,11 +51,11 @@ public class EditWorkerDialogLayout extends VerticalLayout implements ComponentC
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
     private void configureFieldsLayout() {
-        fieldsLayout = new FieldsLayout(workerSelectedFromGrid);
+        fieldsLayout = new EditWorkerDialogFieldsLayout(workerSelectedFromGrid);
         fieldsLayout.configure();
     }
     private void configureButtonsLayout(){
-        buttonsLayout = new ButtonsLayout(
+        buttonsLayout = new EditWorkerDialogButtonsLayout(
                 workerService,
                 editWorkerDialog,
                 workersGrid,

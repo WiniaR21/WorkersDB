@@ -22,8 +22,8 @@ public class ConfirmEditDialogLayout extends VerticalLayout implements Component
     private final ServicePushNotification notification;
 
     //  To configure
-    FieldsLayout fieldsLayout;
-    ButtonsLayout buttonsLayout;
+    ConfirmEditDialogFieldsLayout fieldsLayout;
+    ConfirmEditDialogButtonsLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -38,14 +38,14 @@ public class ConfirmEditDialogLayout extends VerticalLayout implements Component
         );
     }
     private void configureFieldsLayout(){
-        fieldsLayout = new FieldsLayout(
+        fieldsLayout = new ConfirmEditDialogFieldsLayout(
                 oryginalWorker,
                 newWorker
         );
         fieldsLayout.configure();
     }
     private void configureButtonsLayout(){
-        buttonsLayout = new ButtonsLayout(
+        buttonsLayout = new ConfirmEditDialogButtonsLayout(
                 workerService,
                 newWorker,
                 workersGrid,

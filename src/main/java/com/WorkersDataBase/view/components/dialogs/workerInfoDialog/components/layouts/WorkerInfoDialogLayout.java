@@ -13,27 +13,31 @@ public class WorkerInfoDialogLayout extends HorizontalLayout implements Componen
     private final Worker workerSelectedFromGrid;
 
     //  To configure
-    CompanyCostsLayout companyCostsLayout;
-    WorkerCostsLayout workerCostsLayout;
+    WorkerInfoDialogWorkerCostsLayout workerCostsLayout;
+    WorkerInfoDialogCompanyCostsLayout companyCostsLayout;
 
     @Override
     public void configureComponents() {
-        setCompanyCostsLayout();
         setWorkerCostsLayout();
+        setCompanyCostsLayout();
     }
 
     @Override
     public void configureFront() {
-        add(companyCostsLayout, workerCostsLayout);
+        add(workerCostsLayout, companyCostsLayout);
     }
-
-    private void setCompanyCostsLayout( ) {
-        companyCostsLayout = new CompanyCostsLayout(workerInfoDialog, workerSelectedFromGrid);
-        companyCostsLayout.configure();
-    }
-
     private void setWorkerCostsLayout( ) {
-        workerCostsLayout = new WorkerCostsLayout(workerInfoDialog, workerSelectedFromGrid);
+        workerCostsLayout = new WorkerInfoDialogWorkerCostsLayout(
+                workerInfoDialog,
+                workerSelectedFromGrid
+        );
         workerCostsLayout.configure();
+    }
+    private void setCompanyCostsLayout( ) {
+        companyCostsLayout = new WorkerInfoDialogCompanyCostsLayout(
+                workerInfoDialog,
+                workerSelectedFromGrid
+        );
+        companyCostsLayout.configure();
     }
 }

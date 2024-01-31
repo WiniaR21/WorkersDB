@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
+public class EditWorkerDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     // To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
-    private final FieldsLayout fieldsLayout;
+    private final EditWorkerDialogFieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
     private final PositionService positionService;
     private final ContractService contractService;
@@ -28,30 +28,30 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
 
     // To configure
     SaveChangesButton saveChangesButton;
-    CancelChangesButton cancelChangesButton;
+    CloseEditWorkerDialogButton closeDialogButton;
     FireWorkerButton fireWorkerButton;
     WritteContractButton writteContractButton;
     WorkerCostsInfoButton workerCostsInfoButton;
 
     @Override
     public void configureComponents() {
-        configureSaveChangesButton();
-        configureCancelChangesButton();
-        configureFireWorkerButton();
-        configureWriteContractButton();
-        configureWorkerCostsInfoButton();
+        setSaveChangesButton();
+        setCloseDialogButton();
+        setFireWorkerButton();
+        setWriteContractButton();
+        setWorkerCostsInfoButton();
     }
     @Override
     public void configureFront() {
         add(
                 saveChangesButton,
-                cancelChangesButton,
+                closeDialogButton,
                 fireWorkerButton,
                 writteContractButton,
                 workerCostsInfoButton
         );
     }
-    private void configureSaveChangesButton(){
+    private void setSaveChangesButton(){
         saveChangesButton = new SaveChangesButton(
                 workerService,
                 editWorkerDialog,
@@ -63,14 +63,14 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
 
         saveChangesButton.configure();
     }
-    private void configureCancelChangesButton(){
-        cancelChangesButton = new CancelChangesButton(
+    private void setCloseDialogButton(){
+        closeDialogButton = new CloseEditWorkerDialogButton(
                 editWorkerDialog
         );
 
-        cancelChangesButton.configure();
+        closeDialogButton.configure();
     }
-    private void configureWriteContractButton(){
+    private void setWriteContractButton(){
         writteContractButton = new WritteContractButton(
                 positionService,
                 workerSelectedFromGrid,
@@ -82,7 +82,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         );
         writteContractButton.configure();
     }
-    private void configureFireWorkerButton(){
+    private void setFireWorkerButton(){
         fireWorkerButton = new FireWorkerButton(
                 workerService,
                 editWorkerDialog,
@@ -92,7 +92,7 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
         );
         fireWorkerButton.configure();
     }
-    private void configureWorkerCostsInfoButton(){
+    private void setWorkerCostsInfoButton(){
         workerCostsInfoButton = new WorkerCostsInfoButton(
                 workerService,
                 workerSelectedFromGrid,

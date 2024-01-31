@@ -3,14 +3,10 @@ package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.l
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.CloseAddWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.SaveWorkerButton;
-import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.*;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
@@ -24,8 +20,8 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
 
     //  To configure
     H3 header;
-    AddWorkerFieldsLayout fieldsLayout;
-    AddWorkerButtonsLayout buttonsLayout;
+    AddWorkerDialogFieldsLayout fieldsLayout;
+    AddWorkerDialogButtonsLayout buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -46,11 +42,11 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
         );
     }
     private void setFieldsLayout(){
-        fieldsLayout = new AddWorkerFieldsLayout();
+        fieldsLayout = new AddWorkerDialogFieldsLayout();
         fieldsLayout.configure();
     }
     private void setButtonsLayout() {
-        buttonsLayout = new AddWorkerButtonsLayout(
+        buttonsLayout = new AddWorkerDialogButtonsLayout(
                 workerService,
                 workersGrid,
                 addWorkerDialog,

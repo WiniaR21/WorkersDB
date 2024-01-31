@@ -15,12 +15,12 @@ public class StatisticsDialogLayout extends VerticalLayout implements ComponentC
 
     //  To configure
     H3 header;
-    MeanFieldsLayout meanFieldsLayout;
+    StatisticDialogFieldsLayout fieldsLayout;
     StatisticDialogButtonsLayout statisticDialogButtonsLayout;
     @Override
     public void configureComponents() {
         setHeader();
-        setMeanFieldsLayout();
+        setFieldsLayout();
         setStatisticDialogButtonsLayout();
     }
 
@@ -31,7 +31,7 @@ public class StatisticsDialogLayout extends VerticalLayout implements ComponentC
 
         add(
                 header,
-                meanFieldsLayout,
+                fieldsLayout,
                 statisticDialogButtonsLayout
         );
     }
@@ -42,9 +42,9 @@ public class StatisticsDialogLayout extends VerticalLayout implements ComponentC
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void setMeanFieldsLayout() {
-        meanFieldsLayout = new MeanFieldsLayout();
-        meanFieldsLayout.configure();
+    private void setFieldsLayout() {
+        fieldsLayout = new StatisticDialogFieldsLayout();
+        fieldsLayout.configure();
     }
     private void setStatisticDialogButtonsLayout(){
         statisticDialogButtonsLayout = new StatisticDialogButtonsLayout(

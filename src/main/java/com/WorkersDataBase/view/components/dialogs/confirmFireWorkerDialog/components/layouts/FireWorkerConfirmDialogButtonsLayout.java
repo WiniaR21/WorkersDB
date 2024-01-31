@@ -4,16 +4,16 @@ import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
+import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.components.buttons.ConfirmFireButton;
+import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.components.buttons.CloseFireWorkerConfirmDialogButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FireWorkerConfirmDialogLayout extends VerticalLayout implements ComponentCreator {
+public class FireWorkerConfirmDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
@@ -23,43 +23,35 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
     private final ServicePushNotification notification;
 
     //  To configure
-    H3 header;
-    FireWorkerConfirmDialogButtonsLayout buttonsLayout;
-
+    ConfirmFireButton confirmFireButton;
+    CloseFireWorkerConfirmDialogButton closeDialogButton;
     @Override
     public void configureComponents() {
-        configureHeader();
-        setButtonsLayout();
+        setConfirmFireButton();
+        setCloseDialogButton();
     }
     @Override
     public void configureFront() {
         add(
-                header,
-                new HorizontalLayout(buttonsLayout)
+                confirmFireButton,
+                closeDialogButton
         );
     }
-    private void configureHeader(){
-        String headerText =
-                String.format(
-                       "Zwolnić %s %s?",
-                        workerSelectedFromGrid.getFirstName(),
-                        workerSelectedFromGrid.getLastName());
-
-        header = new H3(headerText);
-        header.getStyle()
-                .set("margin", "var(--lumo-space-m) 0 0 0")
-                .set("font-size", "1.5em").set("font-weight", "bold");
-    }
-    private void setButtonsLayout(){
-        buttonsLayout = new FireWorkerConfirmDialogButtonsLayout(
+    private void setConfirmFireButton() {
+        confirmFireButton = new ConfirmFireButton(
                 workerService,
                 workersGrid,
                 workerSelectedFromGrid,
                 fireWorkerConfirmDialog,
-                editWorkerDialog,
                 notification
         );
-        buttonsLayout.configure();
+        confirmFireButton.configure();
     }
-
+    public void setCloseDialogButton() {
+        closeDialogButton = new CloseFireWorkerConfirmDialogButton(
+                fireWorkerConfirmDialog,
+                editWorkerDialog
+        );
+        closeDialogButton.configure();
+    }
 }

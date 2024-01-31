@@ -10,7 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Getter;
 
 @Getter
-public class AddWorkerFieldsLayout extends VerticalLayout implements ComponentCreator {
+public class AddWorkerDialogFieldsLayout extends VerticalLayout implements ComponentCreator {
     //  TO configure
     WorkersFirstNameField firstNameField;
     WorkersLastNameField lastNameField;

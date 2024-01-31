@@ -21,18 +21,18 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
 
 @RequiredArgsConstructor
-public class WritteContractButton extends Button implements ComponentCreator, ButtonCreator {
+public class WriteContractButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
-    private final Worker worker;
-    private final SalaryField salaryField;
-    private final ComboBox<Position> position;
     private final ContractService contractService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
+    private final ServicePushNotification notification;
+    private final Worker worker;
+    private final SalaryField salaryField;
+    private final ComboBox<Position> position;
     private final StartContractDateField startContractDateField;
     private final EndContractDateField endContractDateField;
-    private final ServicePushNotification notification;
     @Override
     public void clickEvent() {
         int status = contractService.writeContractWithWorker(

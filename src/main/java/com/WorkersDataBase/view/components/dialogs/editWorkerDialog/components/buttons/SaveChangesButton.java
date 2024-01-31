@@ -5,7 +5,7 @@ import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
-import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.FieldsLayout;
+import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.EditWorkerDialogFieldsLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -21,7 +21,7 @@ public class SaveChangesButton extends Button implements ComponentCreator, Butto
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
-    private final FieldsLayout fieldsLayout;
+    private final EditWorkerDialogFieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
     private final ServicePushNotification notification;
 

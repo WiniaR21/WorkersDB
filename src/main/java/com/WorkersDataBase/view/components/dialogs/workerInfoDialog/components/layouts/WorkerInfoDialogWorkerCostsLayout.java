@@ -9,7 +9,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CompanyCostsLayout extends VerticalLayout implements ComponentCreator {
+public class WorkerInfoDialogWorkerCostsLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerInfoDialog workerInfoDialog;
     private final Worker workerSelectedFromGrid;
@@ -22,7 +22,7 @@ public class CompanyCostsLayout extends VerticalLayout implements ComponentCreat
     CompanySkladkaNaFGSP fGSP;
     CompanyLacznyKoszt lacznyKoszt;
 
-    CloseWorkerInfoDialogButton closeWorkerInfoDialogButton;
+    CloseWorkerInfoDialogButton closeDialogButton;
 
     @Override
     public void configureComponents() {
@@ -32,7 +32,7 @@ public class CompanyCostsLayout extends VerticalLayout implements ComponentCreat
         setFunduszPracy();
         setfGSP();
         setLacznyKoszt();
-        setCloseWorkerInfoDialogButton();
+        setCloseDialogButton();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class CompanyCostsLayout extends VerticalLayout implements ComponentCreat
                 funduszPracy,
                 fGSP,
                 lacznyKoszt,
-                closeWorkerInfoDialogButton
+                closeDialogButton
         );
     }
 
@@ -78,8 +78,8 @@ public class CompanyCostsLayout extends VerticalLayout implements ComponentCreat
         lacznyKoszt.configure();
     }
 
-    private void setCloseWorkerInfoDialogButton() {
-        closeWorkerInfoDialogButton = new CloseWorkerInfoDialogButton(workerInfoDialog);
-        closeWorkerInfoDialogButton.configure();
+    private void setCloseDialogButton() {
+        closeDialogButton = new CloseWorkerInfoDialogButton(workerInfoDialog);
+        closeDialogButton.configure();
     }
 }

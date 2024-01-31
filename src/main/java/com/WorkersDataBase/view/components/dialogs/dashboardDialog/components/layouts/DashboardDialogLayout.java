@@ -11,19 +11,19 @@ public class DashboardDialogLayout extends HorizontalLayout implements Component
     private final DashboardDialog dashboardDialog;
 
     //  To configure
-    DashboardButtonsLayout dashboardButtonsLayout;
+    DashboardDialogButtonsLayout buttonsLayout;
     @Override
     public void configureComponents() {
-        setDashboardButtonsLayout();
+        setButtonsLayout();
     }
 
     @Override
     public void configureFront() {
-        add(dashboardButtonsLayout);
+        add(buttonsLayout);
     }
 
-    private void setDashboardButtonsLayout() {
-        dashboardButtonsLayout = new DashboardButtonsLayout(dashboardDialog);
-        dashboardButtonsLayout.configure();
+    private void setButtonsLayout() {
+        buttonsLayout = new DashboardDialogButtonsLayout(dashboardDialog);
+        buttonsLayout.configure();
     }
 }

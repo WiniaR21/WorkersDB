@@ -4,7 +4,7 @@ import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
-import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.components.buttons.RejectButton;
+import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.components.buttons.CloseConfirmEditDialogButton;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.components.buttons.ConfirmButton;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -14,7 +14,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ButtonsLayout extends HorizontalLayout implements ComponentCreator {
+public class ConfirmEditDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
@@ -25,10 +25,19 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
 
     //  To configure
     ConfirmButton confirmButton;
-    RejectButton rejectButton;
+    CloseConfirmEditDialogButton closeDialogButton;
 
     @Override
     public void configureComponents() {
+        setConfirmButton();
+        setCloseDialogButton();
+    }
+    @Override
+    public void configureFront() {
+        setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+        add(confirmButton, closeDialogButton);
+    }
+    private void setConfirmButton() {
         confirmButton = new ConfirmButton(
                 workerService,
                 newWorker,
@@ -37,13 +46,12 @@ public class ButtonsLayout extends HorizontalLayout implements ComponentCreator 
                 notification
         );
         confirmButton.configure();
-
-        rejectButton = new RejectButton(confirmEditDialog, editWorkerDialog);
-        rejectButton.configure();
     }
-    @Override
-    public void configureFront() {
-        setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-        add(confirmButton, rejectButton);
+    private void setCloseDialogButton() {
+        closeDialogButton = new CloseConfirmEditDialogButton(
+                confirmEditDialog,
+                editWorkerDialog
+        );
+        closeDialogButton.configure();
     }
 }

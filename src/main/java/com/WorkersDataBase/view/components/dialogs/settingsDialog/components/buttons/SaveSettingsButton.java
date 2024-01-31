@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.settingsDialog.components.buttons;
 
 import com.WorkersDataBase.view.components.dialogs.settingsDialog.SettingsDialog;
-import com.WorkersDataBase.view.components.dialogs.settingsDialog.components.layouts.CheckBoxLayout;
+import com.WorkersDataBase.view.components.dialogs.settingsDialog.components.layouts.SettingsDialogCheckBoxLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class SaveSettingsButton extends Button implements ComponentCreator, ButtonCreator {
     //  To inject by constructor
     private final WorkersGrid workersGrid;
-    private final CheckBoxLayout checkBoxLayout;
+    private final SettingsDialogCheckBoxLayout checkBoxLayout;
     private final SettingsDialog settingsDialog;
 
     @Override

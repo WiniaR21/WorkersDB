@@ -4,7 +4,7 @@ import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.com
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-public class GeneralCostsFieldsLayout extends VerticalLayout implements ComponentCreator {
+public class GeneralCostsDialogFieldsLayout extends VerticalLayout implements ComponentCreator {
     //  To configure
     GeneralEmerytalna emerytalna;
     GeneralRentowa rentowa;

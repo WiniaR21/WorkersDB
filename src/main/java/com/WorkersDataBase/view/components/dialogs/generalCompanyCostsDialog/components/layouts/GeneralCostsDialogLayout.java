@@ -14,8 +14,8 @@ public class GeneralCostsDialogLayout extends VerticalLayout implements Componen
     private final DashboardDialog dashboardDialog;
 
     //  To configure
-    GeneralCostsFieldsLayout fieldsLayout;
-    GeneralCostsButtonsLayout buttonsLayout;
+    GeneralCostsDialogFieldsLayout fieldsLayout;
+    GeneralCostsDialogButtonsLayout buttonsLayout;
     @Override
     public void configureComponents() {
         setHeader();
@@ -40,11 +40,11 @@ public class GeneralCostsDialogLayout extends VerticalLayout implements Componen
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
     private void setFieldsLayout() {
-        fieldsLayout = new GeneralCostsFieldsLayout();
+        fieldsLayout = new GeneralCostsDialogFieldsLayout();
         fieldsLayout.configure();
     }
     private void setButtonsLayout(){
-        buttonsLayout = new GeneralCostsButtonsLayout(
+        buttonsLayout = new GeneralCostsDialogButtonsLayout(
                 generalCostsDialog,
                 dashboardDialog
         );

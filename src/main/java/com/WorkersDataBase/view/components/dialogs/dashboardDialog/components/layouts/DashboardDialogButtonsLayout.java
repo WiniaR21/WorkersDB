@@ -8,7 +8,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DashboardButtonsLayout extends VerticalLayout implements ComponentCreator {
+public class DashboardDialogButtonsLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
 
