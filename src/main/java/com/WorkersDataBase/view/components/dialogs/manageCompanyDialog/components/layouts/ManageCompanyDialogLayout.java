@@ -4,13 +4,17 @@ import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-public class ManageCompanyDialogLayout extends VerticalLayout implements ComponentCreator {
+public class ManageCompanyDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final ManageCompanyDialog manageCompanyDialog;
     private final PositionService positionService;
@@ -23,7 +27,7 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
     @Override
     public void configureComponents() {
         configureHeader();
-        setButtonsLayout();
+        configureButtonsLayout();
 
     }
     @Override
@@ -37,13 +41,19 @@ public class ManageCompanyDialogLayout extends VerticalLayout implements Compone
                 buttonsLayout
         );
     }
-    private void configureHeader(){
+    @Override
+    public void configureHeader(){
         header = new H3("Zarządzanie");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void setButtonsLayout(){
+    @Override
+    public void configureFieldsLayout() {
+
+    }
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new ManageCompanyDialogButtonsLayout(
                 manageCompanyDialog,
                 positionService,

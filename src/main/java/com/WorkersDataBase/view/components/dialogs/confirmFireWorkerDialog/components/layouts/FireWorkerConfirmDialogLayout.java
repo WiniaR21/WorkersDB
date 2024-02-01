@@ -7,13 +7,17 @@ import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireW
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FireWorkerConfirmDialogLayout extends VerticalLayout implements ComponentCreator {
+public class FireWorkerConfirmDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
@@ -29,7 +33,7 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
     @Override
     public void configureComponents() {
         configureHeader();
-        setButtonsLayout();
+        configureButtonsLayout();
     }
     @Override
     public void configureFront() {
@@ -38,7 +42,8 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
                 new HorizontalLayout(buttonsLayout)
         );
     }
-    private void configureHeader(){
+    @Override
+    public void configureHeader(){
         String headerText =
                 String.format(
                        "Zwolnić %s %s?",
@@ -50,7 +55,10 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void setButtonsLayout(){
+    @Override
+    public void configureFieldsLayout() {}
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new FireWorkerConfirmDialogButtonsLayout(
                 workerService,
                 workersGrid,
@@ -61,5 +69,4 @@ public class FireWorkerConfirmDialogLayout extends VerticalLayout implements Com
         );
         buttonsLayout.configure();
     }
-
 }

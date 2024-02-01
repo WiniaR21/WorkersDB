@@ -5,13 +5,17 @@ import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-public class NewPositionDialogTypeLayout extends VerticalLayout implements ComponentCreator {
+public class NewPositionDialogTypeLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final NewPositionTypeDialog newPositionTypeDialog;
     private final PositionService positionService;
@@ -26,9 +30,9 @@ public class NewPositionDialogTypeLayout extends VerticalLayout implements Compo
 
     @Override
     public void configureComponents() {
-        setHeader();
-        setFieldsLayout();
-        setButtonsLayout();
+        configureHeader();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
     @Override
     public void configureFront() {
@@ -41,17 +45,20 @@ public class NewPositionDialogTypeLayout extends VerticalLayout implements Compo
                 buttonsLayout
         );
     }
-    private void setHeader(){
+    @Override
+    public void configureHeader() {
         header = new H3("Nowe stanowisko");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void setFieldsLayout(){
+    @Override
+    public void configureFieldsLayout() {
         fieldsLayout = new NewPositionTypeDialogFieldsLayout();
         fieldsLayout.configure();
     }
-    private void setButtonsLayout(){
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new NewPositionTypeDialogButtonsLayout(
                 newPositionTypeDialog,
                 positionService,

@@ -9,7 +9,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WorkerInfoDialogWorkerCostsLayout extends VerticalLayout implements ComponentCreator {
+public class WorkerInfoDialogWorkerCostsLayout
+        extends VerticalLayout
+        implements ComponentCreator
+{
     //  To inject by constructor
     private final WorkerInfoDialog workerInfoDialog;
     private final Worker workerSelectedFromGrid;

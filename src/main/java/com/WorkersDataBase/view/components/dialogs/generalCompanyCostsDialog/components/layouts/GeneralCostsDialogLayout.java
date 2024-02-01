@@ -3,12 +3,16 @@ package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.co
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.GeneralCostsDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class GeneralCostsDialogLayout extends VerticalLayout implements ComponentCreator {
+public class GeneralCostsDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final GeneralCostsDialog generalCostsDialog;
     private final DashboardDialog dashboardDialog;
@@ -18,9 +22,9 @@ public class GeneralCostsDialogLayout extends VerticalLayout implements Componen
     GeneralCostsDialogButtonsLayout buttonsLayout;
     @Override
     public void configureComponents() {
-        setHeader();
-        setFieldsLayout();
-        setButtonsLayout();
+        configureHeader();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
     H3 header;
     @Override
@@ -32,18 +36,22 @@ public class GeneralCostsDialogLayout extends VerticalLayout implements Componen
                 buttonsLayout
         );
     }
-
-    private void setHeader(){
+    @Override
+    public void configureHeader() {
         header = new H3("Suma kosztów");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void setFieldsLayout() {
+
+    @Override
+    public void configureFieldsLayout() {
         fieldsLayout = new GeneralCostsDialogFieldsLayout();
         fieldsLayout.configure();
     }
-    private void setButtonsLayout(){
+
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new GeneralCostsDialogButtonsLayout(
                 generalCostsDialog,
                 dashboardDialog

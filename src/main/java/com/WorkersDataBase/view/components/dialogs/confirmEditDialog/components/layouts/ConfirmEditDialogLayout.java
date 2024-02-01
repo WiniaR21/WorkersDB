@@ -7,11 +7,15 @@ import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEdit
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ConfirmEditDialogLayout extends VerticalLayout implements ComponentCreator {
+public class ConfirmEditDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final WorkerService workerService;
     private final Worker newWorker;
@@ -37,14 +41,20 @@ public class ConfirmEditDialogLayout extends VerticalLayout implements Component
                 buttonsLayout
         );
     }
-    private void configureFieldsLayout(){
+    @Override
+    public void configureHeader() {
+
+    }
+    @Override
+    public void configureFieldsLayout(){
         fieldsLayout = new ConfirmEditDialogFieldsLayout(
                 oryginalWorker,
                 newWorker
         );
         fieldsLayout.configure();
     }
-    private void configureButtonsLayout(){
+    @Override
+    public void configureButtonsLayout(){
         buttonsLayout = new ConfirmEditDialogButtonsLayout(
                 workerService,
                 newWorker,

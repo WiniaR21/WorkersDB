@@ -8,12 +8,16 @@ import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class EditWorkerDialogLayout extends VerticalLayout implements ComponentCreator {
+public class EditWorkerDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final WorkerService workerService;
     private final EditWorkerDialog editWorkerDialog;
@@ -44,17 +48,20 @@ public class EditWorkerDialogLayout extends VerticalLayout implements ComponentC
                 buttonsLayout
         );
     }
-    private void configureHeader(){
+    @Override
+    public void configureHeader(){
         header = new H3("Edytuj dane pracownika");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void configureFieldsLayout() {
+    @Override
+    public void configureFieldsLayout() {
         fieldsLayout = new EditWorkerDialogFieldsLayout(workerSelectedFromGrid);
         fieldsLayout.configure();
     }
-    private void configureButtonsLayout(){
+    @Override
+    public void configureButtonsLayout(){
         buttonsLayout = new EditWorkerDialogButtonsLayout(
                 workerService,
                 editWorkerDialog,
@@ -65,7 +72,6 @@ public class EditWorkerDialogLayout extends VerticalLayout implements ComponentC
                 contractService,
                 notification
         );
-
         buttonsLayout.configure();
     }
 }

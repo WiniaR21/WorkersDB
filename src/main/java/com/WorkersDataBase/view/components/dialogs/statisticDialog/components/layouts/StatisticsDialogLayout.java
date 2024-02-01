@@ -3,12 +3,16 @@ package com.WorkersDataBase.view.components.dialogs.statisticDialog.components.l
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.StatisticDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class StatisticsDialogLayout extends VerticalLayout implements ComponentCreator {
+public class StatisticsDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final StatisticDialog statisticDialog;
     private final DashboardDialog dashboardDialog;
@@ -16,12 +20,12 @@ public class StatisticsDialogLayout extends VerticalLayout implements ComponentC
     //  To configure
     H3 header;
     StatisticDialogFieldsLayout fieldsLayout;
-    StatisticDialogButtonsLayout statisticDialogButtonsLayout;
+    StatisticDialogButtonsLayout buttonsLayout;
     @Override
     public void configureComponents() {
-        setHeader();
-        setFieldsLayout();
-        setStatisticDialogButtonsLayout();
+        configureHeader();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
 
     @Override
@@ -32,25 +36,27 @@ public class StatisticsDialogLayout extends VerticalLayout implements ComponentC
         add(
                 header,
                 fieldsLayout,
-                statisticDialogButtonsLayout
+                buttonsLayout
         );
     }
-
-    private void setHeader(){
+    @Override
+    public void configureHeader() {
         header = new H3("Średnie w firmie");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void setFieldsLayout() {
+    @Override
+    public void configureFieldsLayout() {
         fieldsLayout = new StatisticDialogFieldsLayout();
         fieldsLayout.configure();
     }
-    private void setStatisticDialogButtonsLayout(){
-        statisticDialogButtonsLayout = new StatisticDialogButtonsLayout(
+    @Override
+    public void configureButtonsLayout() {
+        buttonsLayout = new StatisticDialogButtonsLayout(
                 statisticDialog,
                 dashboardDialog
         );
-        statisticDialogButtonsLayout.configure();
+        buttonsLayout.configure();
     }
 }

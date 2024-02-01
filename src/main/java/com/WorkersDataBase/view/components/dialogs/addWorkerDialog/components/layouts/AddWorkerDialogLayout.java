@@ -5,13 +5,17 @@ import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCreator {
+public class AddWorkerDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final WorkerService workerService;
     private final WorkersGrid workersGrid;
@@ -25,9 +29,9 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
 
     @Override
     public void configureComponents() {
-        setHeader();
-        setFieldsLayout();
-        setButtonsLayout();
+        configureHeader();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
     @Override
     public void configureFront(){
@@ -41,11 +45,20 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
                 buttonsLayout
         );
     }
-    private void setFieldsLayout(){
+    @Override
+    public void configureHeader() {
+        header = new H3("Dodaj pracownika");
+        header.getStyle()
+                .set("margin", "var(--lumo-space-m) 0 0 0")
+                .set("font-size", "1.5em").set("font-weight", "bold");
+    }
+    @Override
+    public void configureFieldsLayout() {
         fieldsLayout = new AddWorkerDialogFieldsLayout();
         fieldsLayout.configure();
     }
-    private void setButtonsLayout() {
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new AddWorkerDialogButtonsLayout(
                 workerService,
                 workersGrid,
@@ -57,11 +70,5 @@ public class AddWorkerDialogLayout extends VerticalLayout implements ComponentCr
                 notification
         );
         buttonsLayout.configure();
-    }
-    private void setHeader() {
-        header = new H3("Dodaj pracownika");
-        header.getStyle()
-                .set("margin", "var(--lumo-space-m) 0 0 0")
-                .set("font-size", "1.5em").set("font-weight", "bold");
     }
 }

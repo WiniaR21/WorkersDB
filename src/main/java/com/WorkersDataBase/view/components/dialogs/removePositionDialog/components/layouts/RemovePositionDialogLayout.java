@@ -6,13 +6,17 @@ import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class RemovePositionDialogLayout extends VerticalLayout implements ComponentCreator {
+public class RemovePositionDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final PositionService positionService;
     private final RemovePositionDialog removePositionDialog;
@@ -28,8 +32,8 @@ public class RemovePositionDialogLayout extends VerticalLayout implements Compon
     @Override
     public void configureComponents() {
         configureHeader();
-        configurePositions();
-        setButtonsLayout();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
     @Override
     public void configureFront() {
@@ -42,18 +46,21 @@ public class RemovePositionDialogLayout extends VerticalLayout implements Compon
                 buttonsLayout
         );
     }
-    private void configureHeader(){
+    @Override
+    public void configureHeader(){
         header = new H3("Usuń stanowisko");
         header.getStyle()
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-    private void configurePositions(){
+    @Override
+    public void configureFieldsLayout() {
         positions = new ComboBox<>("Stanowiska");
         positions.setItems(positionService.getPositions());
         positions.setItemLabelGenerator(Position::getPositionName);
     }
-    private void setButtonsLayout(){
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new RemovePositionDialogButtonsLayout(
                 positionService,
                 removePositionDialog,

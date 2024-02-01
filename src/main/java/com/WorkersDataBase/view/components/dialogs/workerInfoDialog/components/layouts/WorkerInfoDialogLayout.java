@@ -3,11 +3,15 @@ package com.WorkersDataBase.view.components.dialogs.workerInfoDialog.components.
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.WorkerInfoDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WorkerInfoDialogLayout extends HorizontalLayout implements ComponentCreator {
+public class WorkerInfoDialogLayout
+        extends HorizontalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     // To inject by constructor
     private final WorkerInfoDialog workerInfoDialog;
     private final Worker workerSelectedFromGrid;
@@ -39,5 +43,20 @@ public class WorkerInfoDialogLayout extends HorizontalLayout implements Componen
                 workerSelectedFromGrid
         );
         companyCostsLayout.configure();
+    }
+
+    @Override
+    public void configureHeader() {
+
+    }
+
+    @Override
+    public void configureFieldsLayout() {
+
+    }
+
+    @Override
+    public void configureButtonsLayout() {
+
     }
 }

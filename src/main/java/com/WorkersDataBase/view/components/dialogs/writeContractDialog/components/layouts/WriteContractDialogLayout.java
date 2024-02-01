@@ -8,12 +8,16 @@ import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDi
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
+import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WriteContractDialogLayout extends VerticalLayout implements ComponentCreator {
+public class WriteContractDialogLayout
+        extends VerticalLayout
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
     private final PositionService positionService;
@@ -32,8 +36,8 @@ public class WriteContractDialogLayout extends VerticalLayout implements Compone
     @Override
     public void configureComponents() {
         configureHeader();
-        setFieldsLayout();
-        setButtonsLayout();
+        configureFieldsLayout();
+        configureButtonsLayout();
     }
     @Override
     public void configureFront() {
@@ -43,7 +47,8 @@ public class WriteContractDialogLayout extends VerticalLayout implements Compone
                     buttonsLayout
             );
     }
-    private void configureHeader(){
+    @Override
+    public void configureHeader(){
         if(workerHasContract) header = new H3("Zmień umowę");
         else header = new H3("Podpisz nową umowę");
 
@@ -51,13 +56,16 @@ public class WriteContractDialogLayout extends VerticalLayout implements Compone
                 .set("margin", "var(--lumo-space-m) 0 0 0")
                 .set("font-size", "1.5em").set("font-weight", "bold");
     }
-   private void setFieldsLayout(){
+    @Override
+    public void configureFieldsLayout() {
         fieldsLayout = new WriteContractDialogFieldsLayout(
                 positionService
         );
         fieldsLayout.configure();
-   }
-   private void setButtonsLayout(){
+    }
+
+    @Override
+    public void configureButtonsLayout() {
         buttonsLayout = new WriteContractDialogButtonsLayout(
                 writeContractDialog,
                 contractService,
@@ -71,5 +79,5 @@ public class WriteContractDialogLayout extends VerticalLayout implements Compone
                 fieldsLayout.endContractDateField
         );
         buttonsLayout.configure();
-   }
+    }
 }
