@@ -5,7 +5,10 @@ import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 
-public class DashboardDialog extends Dialog implements ComponentCreator, DialogCreator {
+public class DashboardDialog
+        extends Dialog
+        implements ComponentCreator, DialogCreator
+{
     //  To configure
     DashboardDialogLayout dialogLayout;
 

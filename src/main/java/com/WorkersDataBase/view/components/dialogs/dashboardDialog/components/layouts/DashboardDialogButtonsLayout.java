@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
+import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.CloseDashboardDialogButton;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.OpenGeneralCostsDialog;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.OpenStatisticsDialogButton;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -15,17 +16,23 @@ public class DashboardDialogButtonsLayout extends VerticalLayout implements Comp
     //  To configure
     OpenStatisticsDialogButton openStatisticsDialogButton;
     OpenGeneralCostsDialog openGeneralCostsDialog;
+    CloseDashboardDialogButton closeDialogButton;
     @Override
     public void configureComponents() {
         setOpenStatisticsDialogButton();
         setOpenGeneralCostsDialog();
+        setCloseDialogButton();
     }
 
     @Override
     public void configureFront() {
+        setAlignItems(Alignment.STRETCH);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+
         add(
                 openStatisticsDialogButton,
-                openGeneralCostsDialog
+                openGeneralCostsDialog,
+                closeDialogButton
         );
     }
 
@@ -36,5 +43,10 @@ public class DashboardDialogButtonsLayout extends VerticalLayout implements Comp
     private void setOpenGeneralCostsDialog(){
         openGeneralCostsDialog = new OpenGeneralCostsDialog(dashboardDialog);
         openGeneralCostsDialog.configure();
+    }
+
+    private void setCloseDialogButton() {
+        closeDialogButton = new CloseDashboardDialogButton(dashboardDialog);
+        closeDialogButton.configure();
     }
 }
