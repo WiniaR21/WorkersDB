@@ -10,7 +10,9 @@ import com.vaadin.flow.component.button.Button;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WorkerCostsInfoButton extends Button implements ComponentCreator, ButtonCreator {
+public class WorkerCostsInfoButton
+        extends Button
+        implements ComponentCreator, ButtonCreator {
     private final WorkerService workerService;
     private final Worker workerSelectedFromGrid;
     private final ServicePushNotification notification;

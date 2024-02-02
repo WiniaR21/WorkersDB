@@ -11,7 +11,10 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AddNewPositionButton extends Button implements ComponentCreator ,ButtonCreator {
+public class AddNewPositionButton
+        extends Button
+        implements ComponentCreator ,ButtonCreator
+{
     //  To inject by constructor
     private final ManageCompanyDialog manageCompanyDialog;
     private final PositionService positionService;

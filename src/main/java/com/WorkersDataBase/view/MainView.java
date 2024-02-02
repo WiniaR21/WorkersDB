@@ -68,7 +68,8 @@ public class MainView extends VerticalLayout implements ComponentCreator {
                 workerService,
                 workersGrid,
                 positionService,
-                notification
+                notification,
+                contractService
         );
         topBar.configure();
     }

@@ -1,33 +1,25 @@
 package com.WorkersDataBase.data;
 
-import com.WorkersDataBase.data.contract.worker.contact.Contact;
-import com.WorkersDataBase.data.contract.Contract;
-import com.WorkersDataBase.data.contract.ContractRepository;
+
 import com.WorkersDataBase.data.contract.position.Position;
 import com.WorkersDataBase.data.contract.position.PositionRepository;
-import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.data.contract.worker.WorkerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
 
 @Configuration
 public class TestDataConfiguration {
    Position pracownikProdukcji;
    Position lider;
+   Position operatorWozka;
+   Position operatorMaszyn;
 
-   Worker daniel = new Worker();
-   Worker kuba = new Worker();
 
     @Bean
-    CommandLineRunner commandLineRunner(WorkerRepository workerRepository, PositionRepository positionRepository, ContractRepository contractRepository){
+    CommandLineRunner commandLineRunner( PositionRepository positionRepository){
         return args -> {
             createPosition(positionRepository);
-            createWorkers(workerRepository);
-            createContract(contractRepository, workerRepository);
-
         };
 
     }
@@ -39,53 +31,14 @@ public class TestDataConfiguration {
         lider = new Position();
         lider.setPositionName("Lider");
         positionRepository.save(lider);
+
+        operatorWozka = new Position();
+        operatorWozka.setPositionName("Operator wózka");
+        positionRepository.save(operatorWozka);
+
+        operatorMaszyn = new Position();
+        operatorMaszyn.setPositionName("Operator maszyn");
+        positionRepository.save(operatorMaszyn);
     }
 
-    void createWorkers(WorkerRepository workerRepository){
-        daniel.setPesel("12312312312");
-        daniel.setFirstName("Daniel");
-        daniel.setLastName("Winiarczyk");
-
-        Contact contact = new Contact("Dada@gmail.com");
-        daniel.setContact(contact);
-
-        //=============================
-
-        kuba.setPesel("75756745312");
-        kuba.setFirstName("Kuba");
-        kuba.setLastName("Jakistam");
-
-        Contact contact1 = new Contact("fbbxcdasdasa@gmail.com");
-        kuba.setContact(contact1);
-
-
-        workerRepository.saveAll(List.of(daniel,kuba));
-    }
-    void createContract(ContractRepository contractRepository,WorkerRepository workerRepository){
-        Contract danielsContract = new Contract();
-        danielsContract.setWorker(daniel);
-        danielsContract.setPosition(lider);
-        danielsContract.setSalary(4000.0);
-
-        contractRepository.save(danielsContract);
-
-        workerRepository.findByPesel(daniel.getPesel()).ifPresent(worker -> {
-            worker.setContract(danielsContract);
-            workerRepository.save(worker);
-        });
-
-        Contract kubaContract = new Contract();
-        kubaContract.setWorker(kuba);
-        kubaContract.setPosition(pracownikProdukcji);
-        kubaContract.setSalary(3000.0);
-
-        contractRepository.save(kubaContract);
-
-        workerRepository.findByPesel(kuba.getPesel()).ifPresent(worker -> {
-            worker.setContract(kubaContract);
-            workerRepository.save(worker);
-        });
-
-
-    }
 }

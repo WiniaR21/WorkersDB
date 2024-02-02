@@ -8,7 +8,10 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DashboardButton extends Button implements ComponentCreator, ButtonCreator {
+public class DashboardButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     @Override
     public void clickEvent() {
         DashboardDialog dashboardDialog = new DashboardDialog();

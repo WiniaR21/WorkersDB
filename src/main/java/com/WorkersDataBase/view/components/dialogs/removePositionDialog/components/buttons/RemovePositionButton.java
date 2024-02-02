@@ -12,7 +12,10 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class RemovePositionButton extends Button implements ComponentCreator, ButtonCreator {
+public class RemovePositionButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     //  To inject by constructor
     private final ComboBox<Position> positions;
     private final PositionService positionService;

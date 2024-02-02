@@ -10,7 +10,10 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CloseWriteContractDialogButton extends Button implements ComponentCreator, ButtonCreator {
+public class CloseWriteContractDialogButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
     private final EditWorkerDialog editWorkerDialog;

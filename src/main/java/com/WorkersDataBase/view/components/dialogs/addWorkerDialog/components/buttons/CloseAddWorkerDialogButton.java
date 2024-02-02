@@ -11,7 +11,10 @@ import lombok.Setter;
 
 @Setter
 @RequiredArgsConstructor
-public class CloseAddWorkerDialogButton extends Button implements ComponentCreator, ButtonCreator {
+public class CloseAddWorkerDialogButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     //  To inject by constructor
     private final AddWorkerDialog addWorkerDialog;
 

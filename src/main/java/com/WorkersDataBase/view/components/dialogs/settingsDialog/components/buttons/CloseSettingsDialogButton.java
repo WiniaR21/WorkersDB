@@ -8,7 +8,10 @@ import com.vaadin.flow.component.button.Button;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CloseSettingsDialogButton extends Button implements ComponentCreator, ButtonCreator {
+public class CloseSettingsDialogButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     //  To inject by constructor
     private final SettingsDialog settingsDialog;
 

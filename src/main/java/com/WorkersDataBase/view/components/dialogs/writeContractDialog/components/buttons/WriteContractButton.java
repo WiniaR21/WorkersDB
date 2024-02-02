@@ -21,7 +21,10 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
 
 @RequiredArgsConstructor
-public class WriteContractButton extends Button implements ComponentCreator, ButtonCreator {
+public class WriteContractButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
     private final ContractService contractService;

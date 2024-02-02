@@ -9,7 +9,10 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CloseRemovePositionDialogButton extends Button implements ComponentCreator, ButtonCreator {
+public class CloseRemovePositionDialogButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     //  To inject by constructor
     private final RemovePositionDialog removePositionDialog;
     private final ManageCompanyDialog manageCompanyDialog;

@@ -8,7 +8,10 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CloseWorkerInfoDialogButton extends Button implements ComponentCreator, ButtonCreator {
+public class CloseWorkerInfoDialogButton
+        extends Button
+        implements ComponentCreator, ButtonCreator
+{
     private final WorkerInfoDialog workerInfoDialog;
 
     @Override
