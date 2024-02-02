@@ -46,11 +46,18 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
         );
     }
     private void configureAddContractButton(){
-        addContractButton = new AddContractButton(positionService, notification);
+        addContractButton = new AddContractButton(
+                positionService,
+                notification
+        );
         addContractButton.configure();
     }
     private void configureAddWorkerButton(){
-        addWorkerButton = new AddWorkerButton(workerService, workersGrid, notification);
+        addWorkerButton = new AddWorkerButton(
+                workerService,
+                workersGrid,
+                notification
+        );
         addWorkerButton.configure();
     }
     private void configureOpenSettingsButton(){
@@ -58,7 +65,10 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
         openSettingsButton.configure();
     }
     private void configureDashboardButton(){
-        dashboardButton = new DashboardButton(contractService);
+        dashboardButton = new DashboardButton(
+                contractService,
+                workerService
+        );
         dashboardButton.configure();
     }
     private void configureInjectTestDataButton(){

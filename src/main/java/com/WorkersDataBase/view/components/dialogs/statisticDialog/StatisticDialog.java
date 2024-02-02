@@ -1,5 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.statisticDialog;
 
+import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.layouts.StatisticsDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -11,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 public class StatisticDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
+    private final WorkerService workerService;
+    private final ContractService contractService;
     //  To configure
     StatisticsDialogLayout dialogLayout;
 
@@ -27,8 +31,9 @@ public class StatisticDialog extends Dialog implements ComponentCreator, DialogC
     public void setDialogLayout() {
         dialogLayout = new StatisticsDialogLayout(
                 this,
-                dashboardDialog
-
+                dashboardDialog,
+                workerService,
+                contractService
         );
         dialogLayout.configure();
     }

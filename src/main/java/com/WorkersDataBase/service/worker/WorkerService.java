@@ -1,4 +1,5 @@
 package com.WorkersDataBase.service.worker;
+
 import com.WorkersDataBase.data.contract.worker.Gender;
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.data.contract.worker.WorkerRepository;
@@ -6,10 +7,8 @@ import com.WorkersDataBase.service.contract.ContractService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,15 +28,7 @@ public class WorkerService {
     public List<Worker> getWorkers(){
         return workerRepository.findAll();
     }
-    public List<Worker> getWorkersWithoutContract() {
-        List<Worker> workersWithoutContract = new ArrayList<>();
-        workerRepository.findAll().forEach(worker -> {
-            if(worker.getContract() != null){
-                workersWithoutContract.add(worker);
-            }
-        });
-        return workersWithoutContract;
-    }
+
     /*
      *       ERROR CODE
      *    1 - editing success
@@ -144,6 +135,17 @@ public class WorkerService {
         return period.getYears();
     }
 
+    public Double getAverageAge(){
+
+        return impossibleToCalculateAVG() ? 0 :
+                roundSum(workerRepository.getAverageAge());
+    }
+    private boolean impossibleToCalculateAVG(){
+        return workerRepository.count() == 0;
+    }
+    private Double roundSum(Double sum){
+        return Math.round(sum * 100.0) / 100.0;
+    }
 
 
 }

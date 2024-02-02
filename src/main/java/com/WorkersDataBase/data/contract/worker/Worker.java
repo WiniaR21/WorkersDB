@@ -1,6 +1,6 @@
 package com.WorkersDataBase.data.contract.worker;
 
-import com.WorkersDataBase.data.contract.worker.contact.Contact;
+import com.WorkersDataBase.data.contract.contact.Contact;
 import com.WorkersDataBase.data.contract.Contract;
 import jakarta.persistence.*;
 import lombok.Data;

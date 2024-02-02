@@ -1,6 +1,6 @@
 package com.WorkersDataBase.service.worker;
 
-import com.WorkersDataBase.data.contract.worker.contact.ContactRepository;
+import com.WorkersDataBase.data.contract.contact.ContactRepository;
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.data.contract.worker.WorkerRepository;
 import com.WorkersDataBase.service.validTools.StringValidTool;

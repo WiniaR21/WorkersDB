@@ -3,7 +3,7 @@ package com.WorkersDataBase.view.components.topbar.components.buttons;
 
 import com.WorkersDataBase.data.contract.position.Position;
 import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.data.contract.worker.contact.Contact;
+import com.WorkersDataBase.data.contract.contact.Contact;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;

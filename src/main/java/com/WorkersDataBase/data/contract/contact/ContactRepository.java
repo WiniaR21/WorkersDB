@@ -1,4 +1,4 @@
-package com.WorkersDataBase.data.contract.worker.contact;
+package com.WorkersDataBase.data.contract.contact;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.b
 
 import com.WorkersDataBase.service.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
-import com.WorkersDataBase.data.contract.worker.contact.Contact;
+import com.WorkersDataBase.data.contract.contact.Contact;
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.WorkersEmailField;

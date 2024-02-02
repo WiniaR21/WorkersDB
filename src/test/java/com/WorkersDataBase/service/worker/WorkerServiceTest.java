@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.worker;
 
 
-import com.WorkersDataBase.data.contract.worker.contact.Contact;
+import com.WorkersDataBase.data.contract.contact.Contact;
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.WorkersDataBase.data.contract.worker.WorkerRepository;
 import org.junit.jupiter.api.AfterEach;

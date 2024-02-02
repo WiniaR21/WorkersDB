@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.position;
 
 
-import com.WorkersDataBase.data.contract.worker.contact.Contact;
+import com.WorkersDataBase.data.contract.contact.Contact;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
 import com.WorkersDataBase.data.contract.position.Position;

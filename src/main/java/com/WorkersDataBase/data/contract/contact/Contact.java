@@ -1,4 +1,4 @@
-package com.WorkersDataBase.data.contract.worker.contact;
+package com.WorkersDataBase.data.contract.contact;
 
 import com.WorkersDataBase.data.contract.worker.Worker;
 import com.fasterxml.jackson.annotation.JsonIgnore;
