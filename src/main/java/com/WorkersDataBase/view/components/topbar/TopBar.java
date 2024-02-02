@@ -1,7 +1,8 @@
 package com.WorkersDataBase.view.components.topbar;
 
 import com.WorkersDataBase.service.contract.ContractService;
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.notification.ServicePushNotification;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -20,6 +21,7 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
     private final ServicePushNotification notification;
 
     private final ContractService contractService;
+    private final CompanyFeeGetService companyFeeGetService;
 
 
     //  To configure
@@ -49,7 +51,8 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
                 workersGrid,
                 positionService,
                 notification,
-                contractService
+                contractService,
+                companyFeeGetService
         );
         buttonsLayout.configure();
     }

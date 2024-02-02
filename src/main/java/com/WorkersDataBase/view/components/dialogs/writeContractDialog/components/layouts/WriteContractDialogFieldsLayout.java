@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts;
 
-import com.WorkersDataBase.data.contract.position.Position;
+import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.fields.EndContractDateField;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.fields.SalaryField;

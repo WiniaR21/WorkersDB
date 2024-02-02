@@ -1,4 +1,4 @@
-package com.WorkersDataBase.data.contract.companyFee;
+package com.WorkersDataBase.data.companyFee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

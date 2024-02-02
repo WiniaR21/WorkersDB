@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.CloseDashboardDialogButton;
@@ -16,6 +17,8 @@ public class DashboardDialogButtonsLayout extends VerticalLayout implements Comp
     private final DashboardDialog dashboardDialog;
     private final ContractService contractService;
     private final WorkerService workerService;
+    private final CompanyFeeGetService companyFeeGetService;
+
 
     //  To configure
     OpenStatisticsDialogButton openStatisticsDialogButton;
@@ -44,14 +47,16 @@ public class DashboardDialogButtonsLayout extends VerticalLayout implements Comp
         openStatisticsDialogButton = new OpenStatisticsDialogButton(
                 dashboardDialog,
                 workerService,
-                contractService
+                contractService,
+                companyFeeGetService
         );
         openStatisticsDialogButton.configure();
     }
     private void setOpenGeneralCostsDialog(){
         openGeneralCostsDialog = new OpenGeneralCostsDialog(
                 dashboardDialog,
-                contractService
+                contractService,
+                companyFeeGetService
         );
         openGeneralCostsDialog.configure();
     }

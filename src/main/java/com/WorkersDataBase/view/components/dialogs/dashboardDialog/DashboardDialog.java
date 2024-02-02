@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog;
 
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts.DashboardDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -16,6 +17,7 @@ public class DashboardDialog
     //  To inject by constructor
     private final ContractService contractService;
     private final WorkerService workerService;
+    private final CompanyFeeGetService companyFeeGetService;
 
     //  To configure
     DashboardDialogLayout dialogLayout;
@@ -34,7 +36,8 @@ public class DashboardDialog
         dialogLayout = new DashboardDialogLayout(
                 this,
                 contractService,
-                workerService
+                workerService,
+                companyFeeGetService
         );
         dialogLayout.configure();
     }

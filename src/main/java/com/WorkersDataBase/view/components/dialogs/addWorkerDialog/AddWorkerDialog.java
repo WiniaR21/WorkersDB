@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.addWorkerDialog;
 
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.layouts.AddWorkerDialogLayout;

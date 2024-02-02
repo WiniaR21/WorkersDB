@@ -1,9 +1,9 @@
 package com.WorkersDataBase.service.worker;
 
 
-import com.WorkersDataBase.data.contract.contact.Contact;
-import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.data.contract.worker.WorkerRepository;
+import com.WorkersDataBase.data.contact.Contact;
+import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.worker.WorkerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

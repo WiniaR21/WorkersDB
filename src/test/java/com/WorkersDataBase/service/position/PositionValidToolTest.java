@@ -2,8 +2,8 @@ package com.WorkersDataBase.service.position;
 
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.position.PositionRepository;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.position.PositionRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,11 +1,9 @@
-package com.WorkersDataBase.data.contract.workersFee;
+package com.WorkersDataBase.data.workersFee;
 
 import com.WorkersDataBase.data.contract.Contract;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.RoundingMode;
 
 import static jakarta.persistence.GenerationType.SEQUENCE;
 

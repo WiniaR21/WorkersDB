@@ -1,7 +1,7 @@
-package com.WorkersDataBase.service.notification;
+package com.WorkersDataBase.notification;
 
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.worker.Worker;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.workerInfoDialog.components.layouts;
 
-import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.WorkerInfoDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;

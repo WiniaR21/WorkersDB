@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog.components.buttons;
 
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;

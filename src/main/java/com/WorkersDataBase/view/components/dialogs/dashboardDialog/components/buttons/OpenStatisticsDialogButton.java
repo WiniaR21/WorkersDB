@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons;
 
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.StatisticDialog;
@@ -19,12 +20,14 @@ public class OpenStatisticsDialogButton
     private final DashboardDialog dashboardDialog;
     private final WorkerService workerService;
     private final ContractService contractService;
+    private final CompanyFeeGetService companyFeeGetService;
     @Override
     public void clickEvent() {
         StatisticDialog statisticDialog = new StatisticDialog(
                 dashboardDialog,
                 workerService,
-                contractService
+                contractService,
+                companyFeeGetService
         );
         statisticDialog.configure();
     }

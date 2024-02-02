@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.contract;
 
 
-import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.worker.Worker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,9 +1,7 @@
-package com.WorkersDataBase.data.contract.worker;
+package com.WorkersDataBase.data.worker;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.Optional;
 
 public interface WorkerRepository extends JpaRepository<Worker,Long> {
     boolean existsByPesel(String pesel);

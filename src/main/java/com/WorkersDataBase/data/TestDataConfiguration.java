@@ -1,8 +1,8 @@
 package com.WorkersDataBase.data;
 
 
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.position.PositionRepository;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.position.PositionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

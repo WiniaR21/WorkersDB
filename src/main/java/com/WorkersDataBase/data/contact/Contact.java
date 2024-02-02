@@ -1,6 +1,6 @@
-package com.WorkersDataBase.data.contract.contact;
+package com.WorkersDataBase.data.contact;
 
-import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.worker.Worker;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;

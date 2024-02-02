@@ -1,8 +1,8 @@
 package com.WorkersDataBase.service.position;
 
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.position.PositionRepository;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.position.PositionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,8 @@
 package com.WorkersDataBase.view.components.dialogs.writeContractDialog;
 
-import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.service.contract.ContractService;
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts.WriteContractDialogLayout;

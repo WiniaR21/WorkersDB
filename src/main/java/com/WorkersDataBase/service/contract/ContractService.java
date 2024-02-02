@@ -1,15 +1,15 @@
 package com.WorkersDataBase.service.contract;
 
-import com.WorkersDataBase.data.contract.companyFee.CompanyFee;
+import com.WorkersDataBase.data.companyFee.CompanyFee;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.contract.companyFee.CompanyFeeRepository;
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.position.PositionRepository;
-import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.data.contract.worker.WorkerRepository;
-import com.WorkersDataBase.data.contract.workersFee.WorkersFee;
-import com.WorkersDataBase.data.contract.workersFee.WorkersFeeRepository;
+import com.WorkersDataBase.data.companyFee.CompanyFeeRepository;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.position.PositionRepository;
+import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.worker.WorkerRepository;
+import com.WorkersDataBase.data.workersFee.WorkersFee;
+import com.WorkersDataBase.data.workersFee.WorkersFeeRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -126,31 +126,6 @@ public class ContractService {
 
     }
 
-    public Double getSumSkladkaEmerytalna(){
-
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getSumSkladkaEmerytalna());
-    }
-    public Double getSumSkladkaRentowa(){
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getSumSkladkaRentowa());
-    }
-    public Double getSumUbezpieczenieWypadkowe(){
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getSumUbezpieczenieWypadkowe());
-    }
-    public Double getSumFunduszPracy(){
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getSumFunduszPracy());
-    }
-    public Double getSumFGSP(){
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getSumFGSP());
-    }
-    public Double getSumKosztyPracodawcy(){
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getSumKosztyPracodawcy());
-    }
     public Double getAvgGrossSalary(){
         return impossibleToCalculateAvgFromContract() ? 0 :
                 roundSum(contractRepository.getAvgSalary());
@@ -159,13 +134,7 @@ public class ContractService {
         return impossibleToCalculateAvgFromWorkersFee() ? 0 :
                 roundSum(workersFeeRepository.getAvgNetSalary());
     }
-    public Double getAvgCostForWorker(){
-        return impossibleToCalculateSum() ? 0 :
-                roundSum(companyFeeRepository.getAvgCostForWorker());
-    }
-    private boolean impossibleToCalculateSum(){
-        return companyFeeRepository.count() == 0;
-    }
+
     private boolean impossibleToCalculateAvgFromWorkersFee(){
         return workersFeeRepository.count() == 0;
     }

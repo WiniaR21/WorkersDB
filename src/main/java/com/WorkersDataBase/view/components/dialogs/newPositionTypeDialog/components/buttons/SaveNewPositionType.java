@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons;
 
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.fields.PositionNameField;

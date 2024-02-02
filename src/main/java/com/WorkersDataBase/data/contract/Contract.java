@@ -1,9 +1,9 @@
 package com.WorkersDataBase.data.contract;
 
-import com.WorkersDataBase.data.contract.companyFee.CompanyFee;
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.data.contract.workersFee.WorkersFee;
+import com.WorkersDataBase.data.companyFee.CompanyFee;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.workersFee.WorkersFee;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;

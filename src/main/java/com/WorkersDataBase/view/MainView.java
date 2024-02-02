@@ -2,7 +2,8 @@ package com.WorkersDataBase.view;
 
 
 import com.WorkersDataBase.service.contract.ContractService;
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.notification.ServicePushNotification;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -27,6 +28,7 @@ public class MainView extends VerticalLayout implements ComponentCreator {
     private final ContractService contractService;
     private final WorkersGridSettings workersGridSettings;
     private final ServicePushNotification notification;
+    private final CompanyFeeGetService companyFeeGetService;
 
     //  To configure
     WorkersGrid workersGrid;
@@ -69,7 +71,8 @@ public class MainView extends VerticalLayout implements ComponentCreator {
                 workersGrid,
                 positionService,
                 notification,
-                contractService
+                contractService,
+                companyFeeGetService
         );
         topBar.configure();
     }

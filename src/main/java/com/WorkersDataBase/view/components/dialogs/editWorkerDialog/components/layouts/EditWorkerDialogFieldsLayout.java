@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
-import com.WorkersDataBase.data.contract.worker.Worker;
+import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.fields.EmailField;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.fields.FirstNameField;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.fields.LastNameField;

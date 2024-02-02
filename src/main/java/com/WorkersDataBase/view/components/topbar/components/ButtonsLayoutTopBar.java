@@ -1,7 +1,8 @@
 package com.WorkersDataBase.view.components.topbar.components;
 
 import com.WorkersDataBase.service.contract.ContractService;
-import com.WorkersDataBase.service.notification.ServicePushNotification;
+import com.WorkersDataBase.notification.ServicePushNotification;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -18,6 +19,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     private final PositionService positionService;
     private final ServicePushNotification notification;
     private final ContractService contractService;
+    private final CompanyFeeGetService companyFeeGetService;
 
     //  To configure
     AddContractButton addContractButton;
@@ -67,7 +69,8 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     private void configureDashboardButton(){
         dashboardButton = new DashboardButton(
                 contractService,
-                workerService
+                workerService,
+                companyFeeGetService
         );
         dashboardButton.configure();
     }

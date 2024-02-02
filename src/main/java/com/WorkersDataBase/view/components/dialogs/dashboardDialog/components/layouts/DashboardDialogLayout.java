@@ -1,6 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
 import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -17,6 +18,7 @@ public class DashboardDialogLayout
     private final DashboardDialog dashboardDialog;
     private final ContractService contractService;
     private final WorkerService workerService;
+    private final CompanyFeeGetService companyFeeGetService;
 
     //  To configure
     DashboardDialogButtonsLayout buttonsLayout;
@@ -50,7 +52,8 @@ public class DashboardDialogLayout
         buttonsLayout = new DashboardDialogButtonsLayout(
                 dashboardDialog,
                 contractService,
-                workerService
+                workerService,
+                companyFeeGetService
         );
         buttonsLayout.configure();
     }

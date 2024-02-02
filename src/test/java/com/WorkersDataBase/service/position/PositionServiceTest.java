@@ -1,13 +1,13 @@
 package com.WorkersDataBase.service.position;
 
 
-import com.WorkersDataBase.data.contract.contact.Contact;
+import com.WorkersDataBase.data.contact.Contact;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.contract.position.Position;
-import com.WorkersDataBase.data.contract.position.PositionRepository;
-import com.WorkersDataBase.data.contract.worker.Worker;
-import com.WorkersDataBase.data.contract.worker.WorkerRepository;
+import com.WorkersDataBase.data.position.Position;
+import com.WorkersDataBase.data.position.PositionRepository;
+import com.WorkersDataBase.data.worker.Worker;
+import com.WorkersDataBase.data.worker.WorkerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
