@@ -42,14 +42,10 @@ public class InjectTestDataButton
         workersGrid.refresh();
 
     }
-
-
-
     @Override
     public void configureComponents() {
 
     }
-
     @Override
     public void configureFront() {
         setText("Wstrzyknij dane testowe");
@@ -87,7 +83,8 @@ public class InjectTestDataButton
                 positions.get(ThreadLocalRandom.current().nextInt(4)).getPositionName(),
                 getRandomSalary(),
                 LocalDate.now(),
-                generateEndDate()));
+                generateEndDate()
+                ));
     }
     private double getRandomSalary() {
         double randomDouble = ThreadLocalRandom.current().nextDouble(4242, 9000 + 0.01);

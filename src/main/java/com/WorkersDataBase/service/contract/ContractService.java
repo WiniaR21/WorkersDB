@@ -3,6 +3,7 @@ package com.WorkersDataBase.service.contract;
 import com.WorkersDataBase.data.contract.companyFee.CompanyFee;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
+import com.WorkersDataBase.data.contract.companyFee.CompanyFeeRepository;
 import com.WorkersDataBase.data.contract.position.Position;
 import com.WorkersDataBase.data.contract.position.PositionRepository;
 import com.WorkersDataBase.data.contract.worker.Worker;
@@ -21,6 +22,7 @@ public class ContractService {
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
     private final ContractValidTool contractValidTool;
+    private final CompanyFeeRepository companyFeeRepository;
 
     /*
     *   RETURN CODE
@@ -83,7 +85,6 @@ public class ContractService {
         positionRepository.save(position);
 
     }
-
     private void writeNewContract(Worker worker, String positionName, double salary, LocalDate startDate, LocalDate endDate) {
         //  Write new contract based on data provided by user
         Contract contract = new Contract();
@@ -121,6 +122,38 @@ public class ContractService {
         worker.setContract(contract);
         workerRepository.save(worker);
 
+    }
+
+    public Double getSumSkladkaEmerytalna(){
+
+        return impossibleToCalculateSum() ? 0 :
+                roundSum(companyFeeRepository.getSumSkladkaEmerytalna());
+    }
+    public Double getSumSkladkaRentowa(){
+        return impossibleToCalculateSum() ? 0 :
+                roundSum(companyFeeRepository.getSumSkladkaRentowa());
+    }
+    public Double getSumUbezpieczenieWypadkowe(){
+        return impossibleToCalculateSum() ? 0 :
+                roundSum(companyFeeRepository.getSumUbezpieczenieWypadkowe());
+    }
+    public Double getSumFunduszPracy(){
+        return impossibleToCalculateSum() ? 0 :
+                roundSum(companyFeeRepository.getSumFunduszPracy());
+    }
+    public Double getSumFGSP(){
+        return impossibleToCalculateSum() ? 0 :
+                roundSum(companyFeeRepository.getSumFGSP());
+    }
+    public Double getSumKosztyPracodawcy(){
+        return impossibleToCalculateSum() ? 0 :
+                roundSum(companyFeeRepository.getSumKosztyPracodawcy());
+    }
+    private boolean impossibleToCalculateSum(){
+        return companyFeeRepository.count() == 0;
+    }
+    private Double roundSum(Double sum){
+        return Math.round(sum * 100.0) / 100.0;
     }
 }
 

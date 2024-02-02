@@ -8,16 +8,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SalaryField extends NumberField implements ComponentCreator {
     //  To configure
-    Div zlSuffix;
+    Div plnSuffix;
 
     @Override
     public void configureComponents() {
-        zlSuffix = new Div();
-        zlSuffix.setText("PLN");
+        plnSuffix = new Div();
+        plnSuffix.setText("PLN");
     }
     @Override
     public void configureFront() {
         setLabel("Wynagrodzenie brutto");
-        setSuffixComponent(zlSuffix);
+        setSuffixComponent(plnSuffix);
     }
 }

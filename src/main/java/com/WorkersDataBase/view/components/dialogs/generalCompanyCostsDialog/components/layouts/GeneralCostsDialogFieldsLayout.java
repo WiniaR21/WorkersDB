@@ -1,10 +1,19 @@
 package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts;
 
+
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.fields.*;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import lombok.RequiredArgsConstructor;
 
-public class GeneralCostsDialogFieldsLayout extends VerticalLayout implements ComponentCreator {
+@RequiredArgsConstructor
+public class GeneralCostsDialogFieldsLayout
+        extends VerticalLayout
+        implements ComponentCreator
+{
+    //  To inject by constructor
+    private final ContractService contractService;
     //  To configure
     GeneralEmerytalna emerytalna;
     GeneralRentowa rentowa;
@@ -36,27 +45,27 @@ public class GeneralCostsDialogFieldsLayout extends VerticalLayout implements Co
     }
 
     private void setEmerytalna() {
-        emerytalna = new GeneralEmerytalna();
+        emerytalna = new GeneralEmerytalna(contractService);
         emerytalna.configure();
     }
     private void setRentowa() {
-        rentowa = new GeneralRentowa();
+        rentowa = new GeneralRentowa(contractService);
         rentowa.configure();
     }
     private void setWypadkowe() {
-        wypadkowe = new GeneralWypadkowe();
+        wypadkowe = new GeneralWypadkowe(contractService);
         wypadkowe.configure();
     }
     private void setFunduszPracy() {
-        funduszPracy = new GeneralFunduszPracy();
+        funduszPracy = new GeneralFunduszPracy(contractService);
         funduszPracy.configure();
     }
     private void setFgsp() {
-        fgsp = new GeneralFGSP();
+        fgsp = new GeneralFGSP(contractService);
         fgsp.configure();
     }
     private void setCost() {
-        cost = new GeneralCost();
+        cost = new GeneralCost(contractService);
         cost.configure();
     }
 }

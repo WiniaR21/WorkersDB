@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts;
 
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.GeneralCostsDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -16,6 +17,7 @@ public class GeneralCostsDialogLayout
     //  To inject by constructor
     private final GeneralCostsDialog generalCostsDialog;
     private final DashboardDialog dashboardDialog;
+    private final ContractService contractService;
 
     //  To configure
     GeneralCostsDialogFieldsLayout fieldsLayout;
@@ -46,7 +48,7 @@ public class GeneralCostsDialogLayout
 
     @Override
     public void configureFieldsLayout() {
-        fieldsLayout = new GeneralCostsDialogFieldsLayout();
+        fieldsLayout = new GeneralCostsDialogFieldsLayout(contractService);
         fieldsLayout.configure();
     }
 

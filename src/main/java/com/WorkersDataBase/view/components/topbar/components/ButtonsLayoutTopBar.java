@@ -17,7 +17,6 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     private final WorkersGrid workersGrid;
     private final PositionService positionService;
     private final ServicePushNotification notification;
-
     private final ContractService contractService;
 
     //  To configure
@@ -59,7 +58,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
         openSettingsButton.configure();
     }
     private void configureDashboardButton(){
-        dashboardButton = new DashboardButton();
+        dashboardButton = new DashboardButton(contractService);
         dashboardButton.configure();
     }
     private void configureInjectTestDataButton(){

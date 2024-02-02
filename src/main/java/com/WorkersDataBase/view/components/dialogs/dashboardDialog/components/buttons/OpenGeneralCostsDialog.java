@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons;
 
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.GeneralCostsDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -14,10 +15,12 @@ public class OpenGeneralCostsDialog
         implements ComponentCreator, ButtonCreator
 {
     private final DashboardDialog dashboardDialog;
+    private final ContractService contractService;
     @Override
     public void clickEvent() {
         GeneralCostsDialog generalCostsDialog = new GeneralCostsDialog(
-                dashboardDialog
+                dashboardDialog,
+                contractService
         );
         generalCostsDialog.configure();
     }

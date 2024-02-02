@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.topbar.components.buttons;
 
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -12,9 +13,12 @@ public class DashboardButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
+    //  To inject by constructor
+    private final ContractService contractService;
+
     @Override
     public void clickEvent() {
-        DashboardDialog dashboardDialog = new DashboardDialog();
+        DashboardDialog dashboardDialog = new DashboardDialog(contractService);
         dashboardDialog.configure();
     }
 

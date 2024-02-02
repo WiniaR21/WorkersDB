@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
@@ -13,6 +14,7 @@ public class DashboardDialogLayout
         implements ComponentCreator, DialogLayoutCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
+    private final ContractService contractService;
 
     //  To configure
     DashboardDialogButtonsLayout buttonsLayout;
@@ -43,7 +45,10 @@ public class DashboardDialogLayout
     public void configureFieldsLayout() {}
     @Override
     public void configureButtonsLayout() {
-        buttonsLayout = new DashboardDialogButtonsLayout(dashboardDialog);
+        buttonsLayout = new DashboardDialogButtonsLayout(
+                dashboardDialog,
+                contractService
+        );
         buttonsLayout.configure();
     }
 }

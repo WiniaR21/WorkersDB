@@ -1,5 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
+import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.CloseDashboardDialogButton;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.OpenGeneralCostsDialog;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class DashboardDialogButtonsLayout extends VerticalLayout implements ComponentCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
+    private final ContractService contractService;
 
     //  To configure
     OpenStatisticsDialogButton openStatisticsDialogButton;
@@ -41,7 +43,10 @@ public class DashboardDialogButtonsLayout extends VerticalLayout implements Comp
         openStatisticsDialogButton.configure();
     }
     private void setOpenGeneralCostsDialog(){
-        openGeneralCostsDialog = new OpenGeneralCostsDialog(dashboardDialog);
+        openGeneralCostsDialog = new OpenGeneralCostsDialog(
+                dashboardDialog,
+                contractService
+        );
         openGeneralCostsDialog.configure();
     }
 
