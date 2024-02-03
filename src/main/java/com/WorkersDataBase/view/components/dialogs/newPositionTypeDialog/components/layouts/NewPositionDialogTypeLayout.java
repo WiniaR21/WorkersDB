@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionPostService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -18,7 +18,7 @@ public class NewPositionDialogTypeLayout
 {
     //  To inject by constructor
     private final NewPositionTypeDialog newPositionTypeDialog;
-    private final PositionService positionService;
+    private final PositionPostService positionPostService;
     private final ManageCompanyDialog manageCompanyDialog;
     private final ServicePushNotification notification;
 
@@ -61,7 +61,7 @@ public class NewPositionDialogTypeLayout
     public void configureButtonsLayout() {
         buttonsLayout = new NewPositionTypeDialogButtonsLayout(
                 newPositionTypeDialog,
-                positionService,
+                positionPostService,
                 manageCompanyDialog,
                 notification,
                 fieldsLayout.positionNameField

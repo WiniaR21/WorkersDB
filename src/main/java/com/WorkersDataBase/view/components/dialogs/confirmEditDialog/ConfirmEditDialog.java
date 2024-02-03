@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.confirmEditDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.components.layouts.ConfirmEditDialogLayout;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ConfirmEditDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final Worker oryginalWorker;
@@ -37,7 +37,7 @@ public class ConfirmEditDialog extends Dialog implements ComponentCreator, Dialo
     @Override
     public void setDialogLayout() {
         dialogLayout = new ConfirmEditDialogLayout(
-                workerService,
+                workerPostService,
                 newWorker,
                 workersGrid,
                 this,

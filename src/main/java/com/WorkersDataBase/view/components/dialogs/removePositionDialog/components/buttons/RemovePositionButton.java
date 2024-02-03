@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.removePositionDialog.compone
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -16,15 +16,16 @@ public class RemovePositionButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
-    //  To inject by constructor
-    private final ComboBox<Position> positions;
-    private final PositionService positionService;
-    private final RemovePositionDialog removePositionDialog;
+    //  Components
     private final ServicePushNotification notification;
+    private final ComboBox<Position> positions;
+    private final RemovePositionDialog removePositionDialog;
+    //  Services
+    private final PositionDeleteService positionDeleteService;
 
     @Override
     public void clickEvent() {
-        int status = positionService.deletePosition(getPositionFromUser());
+        int status = positionDeleteService.deletePosition(getPositionFromUser());
         statusResponse(status);
     }
     @Override
@@ -41,10 +42,19 @@ public class RemovePositionButton
         return positions.getValue();
     }
     private void statusResponse(int status){
-        if (status ==  0) notification.pushDeletePositionSuccess(getPositionFromUser());
-        if (status == -1) notification.pushUserTryingAddNullPositionInfo();
-        if (status == -2) notification.pushDeletingPositionConflictInfo();
 
-        if (status ==  0) removePositionDialog.close();
+        if (status ==  0) {
+            notification.pushDeletePositionSuccess(getPositionFromUser());
+            removePositionDialog.close();
+        }
+        else if (status == -1){
+            notification.pushUserTryingAddNullPositionInfo();
+        }
+        else {
+            notification.pushDeletingPositionConflictInfo();
+            //  -2
+        }
+
+
     }
 }

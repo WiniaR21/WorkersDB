@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.CloseAddWorkerDialogButton;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.buttons.SaveWorkerButton;
@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AddWorkerDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final WorkersGrid workersGrid;
     private final AddWorkerDialog addWorkerDialog;
     private final WorkersFirstNameField firstNameField;
@@ -46,7 +46,7 @@ public class AddWorkerDialogButtonsLayout extends HorizontalLayout implements Co
     }
     private void setSaveWorkerButton() {
         saveWorkerButton = new SaveWorkerButton(
-                workerService,
+                workerPostService,
                 workersGrid,
                 addWorkerDialog,
                 firstNameField,

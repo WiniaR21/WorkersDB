@@ -4,9 +4,10 @@ package com.WorkersDataBase.view.components.topbar.components.buttons;
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.contact.Contact;
-import com.WorkersDataBase.service.contract.ContractService;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.contract.ContractPostService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -27,10 +28,11 @@ public class InjectTestDataButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final WorkersGrid workersGrid;
-    private final ContractService contractService;
-    private final PositionService positionService;
+    private final ContractPostService contractPostService;
+    private final PositionGetService positionGetService;
+    private final WorkerGetService workerGetService;
     Faker faker = new Faker();
     FakeValuesService fakeValuesService = new FakeValuesService(
             new Locale("en-GB"), new RandomService()
@@ -70,15 +72,15 @@ public class InjectTestDataButton
 
             worker.setContact(contact);
             worker.setPesel(pesel);
-            workerService.addWorker(worker, false);
+            workerPostService.addWorker(worker, false);
         });
     }
     private void writeRandomContractWithAllWorkers(){
-        List<Worker> workerList  = workerService.getWorkers();
-        List<Position> positions = positionService.getPositions();
+        List<Worker> workerList  = workerGetService.getWorkers();
+        List<Position> positions = positionGetService.getPositions();
 
         workerList.forEach(worker ->
-                contractService.writeContractWithWorker(
+                contractPostService.writeContractWithWorker(
                 worker,
                 positions.get(ThreadLocalRandom.current().nextInt(4)).getPositionName(),
                 getRandomSalary(),

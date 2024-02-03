@@ -1,13 +1,15 @@
 package com.WorkersDataBase.view.components.topbar;
 
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
+import com.WorkersDataBase.service.contract.ContractGetService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.getService.ContractGetService;
-import com.WorkersDataBase.service.getService.WorkerGetService;
-import com.WorkersDataBase.service.getService.WorkersFeeGetService;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionPostService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
+import com.WorkersDataBase.service.workersFee.WorkersFeeGetService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.components.topbar.components.ButtonsLayoutTopBar;
@@ -21,17 +23,18 @@ public class TopBar
         implements ComponentCreator
 {
     //Components
-    private final WorkersGrid               workersGrid;
     private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
     //Services
-    private final WorkerService             workerService;
-    private final PositionService           positionService;
-    private final ContractService           contractService;
-    // Get Services
-    private final CompanyFeeGetService      companyFeeGetService;
-    private final WorkerGetService          workerGetService;
-    private final WorkersFeeGetService      workersFeeGetService;
-    private final ContractGetService        contractGetService;
+    private final WorkerPostService workerPostService;
+    private final PositionPostService       positionPostService;
+    private final ContractPostService contractPostService;
+    private final CompanyFeeGetService companyFeeGetService;
+    private final WorkerGetService workerGetService;
+    private final WorkersFeeGetService workersFeeGetService;
+    private final ContractGetService contractGetService;
+    private final PositionGetService positionGetService;
+    private final PositionDeleteService     positionDeleteService;
 
                     // To configure
                     FilterText              filterText;
@@ -60,15 +63,17 @@ public class TopBar
     }
     private void configureButtonsLayout(){
         buttonsLayout = new ButtonsLayoutTopBar(
-                workersGrid,
                 notification,
-                workerService,
-                positionService,
-                contractService,
+                workersGrid,
+                workerPostService,
+                positionPostService,
+                contractPostService,
                 contractGetService,
                 workerGetService,
                 companyFeeGetService,
-                workersFeeGetService
+                workersFeeGetService,
+                positionGetService,
+                positionDeleteService
         );
         buttonsLayout.configure();
     }

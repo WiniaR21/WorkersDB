@@ -1,14 +1,17 @@
 package com.WorkersDataBase.view;
 
 
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
+import com.WorkersDataBase.service.contract.ContractGetService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.getService.ContractGetService;
-import com.WorkersDataBase.service.getService.WorkerGetService;
-import com.WorkersDataBase.service.getService.WorkersFeeGetService;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionPostService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
+import com.WorkersDataBase.service.workersFee.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.components.grid.WorkersGridSettings;
 import com.WorkersDataBase.view.components.topbar.TopBar;
@@ -28,21 +31,23 @@ public class MainView
         implements ComponentCreator
 {
     //  Components
-    private final ServicePushNotification   notification;
-    private final WorkersGridSettings       workersGridSettings;
+    private final ServicePushNotification notification;
+    private final WorkersGridSettings workersGridSettings;
     //  Services
-    private final WorkerService             workerService;
-    private final PositionService           positionService;
-    private final ContractService           contractService;
-    //  Get Services
-    private final CompanyFeeGetService      companyFeeGetService;
-    private final WorkersFeeGetService      workersFeeGetService;
-    private final WorkerGetService          workerGetService;
-    private final ContractGetService        contractGetService;
+    private final WorkerPostService workerPostService;
+    private final PositionPostService positionPostService;
+    private final ContractPostService contractPostService;
+    private final CompanyFeeGetService companyFeeGetService;
+    private final WorkersFeeGetService workersFeeGetService;
+    private final WorkerGetService workerGetService;
+    private final ContractGetService contractGetService;
+    private final PositionGetService positionGetService;
+    private final PositionDeleteService positionDeleteService;
+    private final WorkerDeleteService workerDeleteService;
 
-                    //  To configure
-                    WorkersGrid             workersGrid;
-                    TopBar                  topBar;
+    //  To configure
+    WorkersGrid workersGrid;
+    TopBar topBar;
 
     @Override @PostConstruct
     public void configureComponents() {
@@ -64,25 +69,29 @@ public class MainView
     }
     private void configureGrid(){
         workersGrid = new WorkersGrid(
-                workerService,
-                positionService,
-                contractService,
+              notification,
                 workersGridSettings,
-                notification
+                workerPostService,
+                contractPostService,
+                positionGetService,
+                workerDeleteService,
+                workerGetService
         );
         workersGrid.configure();
     }
     private void configureTopBar(){
         topBar = new TopBar(
-                workersGrid,
                 notification,
-                workerService,
-                positionService,
-                contractService,
+                workersGrid,
+                workerPostService,
+                positionPostService,
+                contractPostService,
                 companyFeeGetService,
                 workerGetService,
                 workersFeeGetService,
-                contractGetService
+                contractGetService,
+                positionGetService,
+                positionDeleteService
         );
         topBar.configure();
     }

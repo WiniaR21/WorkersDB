@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.components.layouts.FireWorkerConfirmDialogLayout;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -12,13 +12,17 @@ import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FireWorkerConfirmDialog extends Dialog implements ComponentCreator, DialogCreator {
-    //  To inject by constructor
-    private final WorkerService workerService;
-    private final EditWorkerDialog editWorkerDialog;
-    private final WorkersGrid workersGrid;
-    private final Worker workerSelectedFromGrid;
+public class FireWorkerConfirmDialog
+        extends Dialog
+        implements ComponentCreator, DialogCreator
+{
+    //  Components
     private final ServicePushNotification notification;
+    private final WorkersGrid workersGrid;
+    private final EditWorkerDialog editWorkerDialog;
+    private final Worker workerSelectedFromGrid;
+    //  Services
+    private final WorkerDeleteService workerDeleteService;
 
     //  To configure
     FireWorkerConfirmDialogLayout dialogLayout;
@@ -35,12 +39,12 @@ public class FireWorkerConfirmDialog extends Dialog implements ComponentCreator,
     @Override
     public void setDialogLayout() {
         dialogLayout = new FireWorkerConfirmDialogLayout(
-                workerService,
+                notification,
                 workersGrid,
-                workerSelectedFromGrid,
                 this,
                 editWorkerDialog,
-                notification
+                workerSelectedFromGrid,
+                workerDeleteService
         );
         dialogLayout.configure();
     }

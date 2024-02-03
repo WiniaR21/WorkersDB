@@ -1,4 +1,4 @@
-package com.WorkersDataBase.service.getService;
+package com.WorkersDataBase.service.contact;
 
 import com.WorkersDataBase.data.contact.ContactRepository;
 import lombok.RequiredArgsConstructor;

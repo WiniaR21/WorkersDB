@@ -1,10 +1,12 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -18,14 +20,17 @@ public class EditWorkerDialogLayout
         extends VerticalLayout
         implements ComponentCreator, DialogLayoutCreator
 {
-    //  To inject by constructor
-    private final WorkerService workerService;
+    //  Components
+    private final ServicePushNotification notification;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final Worker workerSelectedFromGrid;
-    private final PositionService positionService;
-    private final ContractService contractService;
-    private final ServicePushNotification notification;
+    //  Services
+    private final PositionGetService positionGetService;
+    private final WorkerPostService workerPostService;
+    private final ContractPostService contractPostService;
+    private final WorkerDeleteService workerDeleteService;
+    private final WorkerGetService workerGetService;
 
     //  To configure
     H3 header;
@@ -63,14 +68,16 @@ public class EditWorkerDialogLayout
     @Override
     public void configureButtonsLayout(){
         buttonsLayout = new EditWorkerDialogButtonsLayout(
-                workerService,
-                editWorkerDialog,
+              notification,
                 workersGrid,
-                fieldsLayout,
                 workerSelectedFromGrid,
-                positionService,
-                contractService,
-                notification
+                fieldsLayout,
+                editWorkerDialog,
+                workerPostService,
+                positionGetService,
+                contractPostService,
+                workerDeleteService,
+                workerGetService
         );
         buttonsLayout.configure();
     }

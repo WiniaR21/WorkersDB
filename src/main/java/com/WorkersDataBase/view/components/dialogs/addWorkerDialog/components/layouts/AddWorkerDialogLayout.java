@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -17,7 +17,7 @@ public class AddWorkerDialogLayout
         implements ComponentCreator, DialogLayoutCreator
 {
     //  To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final WorkersGrid workersGrid;
     private final AddWorkerDialog addWorkerDialog;
     private final ServicePushNotification notification;
@@ -60,7 +60,7 @@ public class AddWorkerDialogLayout
     @Override
     public void configureButtonsLayout() {
         buttonsLayout = new AddWorkerDialogButtonsLayout(
-                workerService,
+                workerPostService,
                 workersGrid,
                 addWorkerDialog,
                 fieldsLayout.firstNameField,

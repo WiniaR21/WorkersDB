@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.buttons;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionPostService;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.fields.PositionNameField;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -17,14 +17,14 @@ public class SaveNewPositionType
 {
     //  To inject by constructor
     private final PositionNameField positionNameField;
-    private final PositionService positionService;
+    private final PositionPostService positionPostService;
     private final NewPositionTypeDialog newPositionTypeDialog;
     private final ServicePushNotification notification;
 
     @Override
     public void clickEvent() {
 
-        int status = positionService.addNewPositionType(getPositionNameFromUser());
+        int status = positionPostService.addNewPositionType(getPositionNameFromUser());
 
         statusResponse(status);
     }

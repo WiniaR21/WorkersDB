@@ -3,34 +3,23 @@ package com.WorkersDataBase.service.worker;
 import com.WorkersDataBase.data.worker.Gender;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractDeleteService;
+import com.WorkersDataBase.service.tools.WorkerValidTool;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.List;
-import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
-public class WorkerService {
+public class WorkerPostService {
     private final WorkerRepository workerRepository;
     private final WorkerValidTool workerValidTool;
-    private final ContractService contractService;
-    public Optional<Worker> getById(Long id){
-        return workerRepository.findById(id);
-    }
-    public boolean workerWithIdExistInDB(Long id){
-        return workerRepository.existsById(id);
-    }
-    public List<Worker> getWorkers(){
-        return workerRepository.findAll();
-    }
+    private final ContractDeleteService contractDeleteService;
 
-    /*
-     *       ERROR CODE
+    /*        STATUS CODE
      *    1 - editing success
      *    0 - adding success
      *   -1 - error, worker is null
@@ -41,26 +30,25 @@ public class WorkerService {
      *   -6 - error, email should be unique
      *   -7 - error, firstName to short
      *   -8 - error, lastName to short
-     *   -9 - error, control number in personalNumber failed
-     */
+     *   -9 - error, control number in personalNumber failed */
     @Transactional
     public int addWorker(Worker worker, boolean editingWorker){
 
-        if( workerValidTool.workerIsNull(worker))          return -1;
-        if( workerValidTool.workerHasEmptyFields(worker))  return -2;
-        if(!workerValidTool.noSpecialSymbols(worker))      return -3;
-        if(!workerValidTool.peselLengthIsFine(worker))     return -4;
+        if( worker == null ) return -1;
+        if( workerValidTool.workerHasEmptyFields(worker)) return -2;
+        if(!workerValidTool.noSpecialSymbols(worker)) return -3;
+        if(!workerValidTool.personalNumberLengthIsFine(worker)) return -4;
         if(!workerValidTool.firstNameLengthIsFine(worker)) return -7;
-        if(!workerValidTool.lastNameLengthIsFine(worker))  return -8;
-        if(!workerValidTool.peselIsPossible(worker))       return -9;
+        if(!workerValidTool.lastNameLengthIsFine(worker)) return -8;
+        if(!workerValidTool.personalNumberIsPossible(worker)) return -9;
 
         if(editingWorker) {
             saveWorker(worker);
             return 1;
         }
 
-        if (!workerValidTool.peselIsUnique(worker))       return -5;
-        if (!workerValidTool.emailIsUnique(worker))       return -6;
+        if (!workerValidTool.personalNumberIsUnique(worker)) return -5;
+        if (!workerValidTool.emailIsUnique(worker)) return -6;
 
         saveWorker(worker);
         return 0;
@@ -84,7 +72,7 @@ public class WorkerService {
         workerRepository.findById(idWorkerToFire).ifPresent(
                 worker -> {
                         if (worker.getContract() != null){
-                            contractService.removeOldContract(worker);
+                            contractDeleteService.removeOldContract(worker);
                             workerRepository.deleteById(idWorkerToFire);
                         }
                         else {

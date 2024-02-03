@@ -1,9 +1,9 @@
 package com.WorkersDataBase.view.components.topbar.components.buttons;
 
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.getService.ContractGetService;
-import com.WorkersDataBase.service.getService.WorkerGetService;
-import com.WorkersDataBase.service.getService.WorkersFeeGetService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
+import com.WorkersDataBase.service.contract.ContractGetService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.workersFee.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

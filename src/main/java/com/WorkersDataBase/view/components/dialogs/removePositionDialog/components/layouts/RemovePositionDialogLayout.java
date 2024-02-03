@@ -2,7 +2,8 @@ package com.WorkersDataBase.view.components.dialogs.removePositionDialog.compone
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -17,17 +18,18 @@ public class RemovePositionDialogLayout
         extends VerticalLayout
         implements ComponentCreator, DialogLayoutCreator
 {
-    //  To inject by constructor
-    private final PositionService positionService;
-    private final RemovePositionDialog removePositionDialog;
-    private final ManageCompanyDialog manageCompanyDialog;
-    private final ServicePushNotification notification;
+    //  Components
+    private final ManageCompanyDialog       manageCompanyDialog;
+    private final ServicePushNotification   notification;
+    private final RemovePositionDialog      removePositionDialog;
+    //  Services
+    private final PositionDeleteService     positionDeleteService;
+    private final PositionGetService        positionGetService;
 
-
-    //  To configure
-    H3 header;
-    ComboBox<Position> positions;
-    RemovePositionDialogButtonsLayout buttonsLayout;
+                    //  To configure
+                    H3                      header;
+                    ComboBox<Position>      positions;
+        RemovePositionDialogButtonsLayout   buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -56,17 +58,17 @@ public class RemovePositionDialogLayout
     @Override
     public void configureFieldsLayout() {
         positions = new ComboBox<>("Stanowiska");
-        positions.setItems(positionService.getPositions());
+        positions.setItems(positionGetService.getPositions());
         positions.setItemLabelGenerator(Position::getPositionName);
     }
     @Override
     public void configureButtonsLayout() {
         buttonsLayout = new RemovePositionDialogButtonsLayout(
-                positionService,
                 removePositionDialog,
                 manageCompanyDialog,
+                positions,
                 notification,
-                positions
+                positionDeleteService
         );
         buttonsLayout.configure();
     }

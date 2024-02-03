@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.removePositionDialog.compone
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.components.buttons.CloseRemovePositionDialogButton;
@@ -13,13 +13,18 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class RemovePositionDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
-    //  To inject by constructor
-    private final PositionService positionService;
+public class RemovePositionDialogButtonsLayout
+        extends HorizontalLayout
+        implements ComponentCreator
+{
+    //  Components
     private final RemovePositionDialog removePositionDialog;
     private final ManageCompanyDialog manageCompanyDialog;
-    private final ServicePushNotification notification;
     private final ComboBox<Position> positions;
+    private final ServicePushNotification notification;
+    //  Services
+    private final PositionDeleteService positionDeleteService;
+
     //  To configure
     RemovePositionButton removePositionButton;
     CloseRemovePositionDialogButton closeDialogButton;
@@ -39,10 +44,10 @@ public class RemovePositionDialogButtonsLayout extends HorizontalLayout implemen
 
     private void setRemovePositionButton() {
         removePositionButton = new RemovePositionButton(
+                notification,
                 positions,
-                positionService,
                 removePositionDialog,
-                notification
+                positionDeleteService
         );
         removePositionButton.configure();
     }

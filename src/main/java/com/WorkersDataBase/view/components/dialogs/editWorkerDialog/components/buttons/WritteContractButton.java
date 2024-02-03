@@ -1,9 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -17,14 +17,16 @@ public class WritteContractButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
-    //  To inject by constructor
-    private final PositionService positionService;
-    private final Worker worker;
-    private final boolean workerHasContract;
-    private final ContractService contractService;
-    private final EditWorkerDialog editWorkerDialog;
-    private final WorkersGrid workersGrid;
-    private final ServicePushNotification notification;
+    //  Components
+    private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
+    private final EditWorkerDialog          editWorkerDialog;
+    private final boolean                   workerHasContract;
+    private final Worker                    worker;
+    //  Services
+    private final PositionGetService        positionGetService;
+    private final ContractPostService contractPostService;
+
 
     @Override
     public void clickEvent() {
@@ -45,13 +47,13 @@ public class WritteContractButton
     }
     private void openWriteContractDialog(){
         WriteContractDialog writeContractDialog = new WriteContractDialog(
-                positionService,
+               notification,
+                workersGrid,
                 worker,
-                contractService,
                 workerHasContract,
                 editWorkerDialog,
-                workersGrid,
-                notification
+                positionGetService,
+                contractPostService
         );
         writeContractDialog.configure();
     }

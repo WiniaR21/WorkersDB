@@ -4,7 +4,7 @@ import com.WorkersDataBase.data.contact.Contact;
 import com.WorkersDataBase.data.contact.ContactRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.validTools.StringValidTool;
+import com.WorkersDataBase.service.tools.WorkerValidTool;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,6 @@ class WorkerValidToolTest {
 
         worker = new Worker();
         underTest = new WorkerValidTool(
-                new StringValidTool(),
                 workerRepository,
                 contactRepository
         );

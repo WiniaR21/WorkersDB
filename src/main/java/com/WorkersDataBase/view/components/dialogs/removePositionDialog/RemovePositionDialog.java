@@ -1,7 +1,8 @@
 package com.WorkersDataBase.view.components.dialogs.removePositionDialog;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.components.layouts.RemovePositionDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -10,14 +11,19 @@ import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class RemovePositionDialog extends Dialog implements ComponentCreator, DialogCreator {
-    //  To inject by constructor
-    private final PositionService positionService;
-    private final ManageCompanyDialog manageCompanyDialog;
-    private final ServicePushNotification notification;
+public class RemovePositionDialog
+        extends Dialog
+        implements ComponentCreator, DialogCreator
+{
+    //  Components
+    private final ServicePushNotification   notification;
+    private final ManageCompanyDialog       manageCompanyDialog;
+    //  Services
+    private final PositionDeleteService     positionDeleteService;
+    private final PositionGetService        positionGetService;
 
-    //  To configure
-    RemovePositionDialogLayout dialogLayout;
+                //  To configure
+                RemovePositionDialogLayout  dialogLayout;
 
     @Override
     public void configureComponents() {
@@ -32,10 +38,11 @@ public class RemovePositionDialog extends Dialog implements ComponentCreator, Di
     @Override
     public void setDialogLayout() {
         dialogLayout = new RemovePositionDialogLayout(
-                positionService,
-                this,
                 manageCompanyDialog,
-                notification
+                notification,
+                this,
+                positionDeleteService,
+                positionGetService
         );
         dialogLayout.configure();
     }

@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.comp
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.components.buttons.ConfirmFireButton;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.components.buttons.CloseFireWorkerConfirmDialogButton;
@@ -13,14 +13,18 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class FireWorkerConfirmDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
-    //  To inject by constructor
-    private final WorkerService workerService;
-    private final WorkersGrid workersGrid;
-    private final Worker workerSelectedFromGrid;
-    private final FireWorkerConfirmDialog fireWorkerConfirmDialog;
-    private final EditWorkerDialog editWorkerDialog;
-    private final ServicePushNotification notification;
+public class FireWorkerConfirmDialogButtonsLayout
+        extends HorizontalLayout
+        implements ComponentCreator
+{
+    //  Components
+    private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
+    private final FireWorkerConfirmDialog   fireWorkerConfirmDialog;
+    private final EditWorkerDialog          editWorkerDialog;
+    private final Worker                    workerSelectedFromGrid;
+    //  Services
+    private final WorkerDeleteService       workerDeleteService;
 
     //  To configure
     ConfirmFireButton confirmFireButton;
@@ -39,11 +43,11 @@ public class FireWorkerConfirmDialogButtonsLayout extends HorizontalLayout imple
     }
     private void setConfirmFireButton() {
         confirmFireButton = new ConfirmFireButton(
-                workerService,
+                notification,
                 workersGrid,
-                workerSelectedFromGrid,
                 fireWorkerConfirmDialog,
-                notification
+                workerSelectedFromGrid,
+                workerDeleteService
         );
         confirmFireButton.configure();
     }

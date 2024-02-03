@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.topbar.components.buttons;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -16,7 +16,7 @@ public class AddWorkerButton
         implements ComponentCreator, ButtonCreator
 {
     // To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final WorkersGrid workersGrid;
     private final ServicePushNotification notification;
 
@@ -34,7 +34,7 @@ public class AddWorkerButton
     }
     private void openAddWorkerDialog(){
         AddWorkerDialog addWorkerDialog = new AddWorkerDialog(
-                workerService,
+                workerPostService,
                 workersGrid,
                 notification
         );

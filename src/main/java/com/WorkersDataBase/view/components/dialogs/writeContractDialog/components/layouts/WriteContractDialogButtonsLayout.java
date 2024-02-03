@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog.componen
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class WriteContractDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
-    private final ContractService contractService;
+    private final ContractPostService contractPostService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final ServicePushNotification notification;
@@ -50,7 +50,7 @@ public class WriteContractDialogButtonsLayout extends HorizontalLayout implement
     private void setWriteContractButton() {
         writeContractButton = new WriteContractButton(
               writeContractDialog,
-                contractService,
+                contractPostService,
                 editWorkerDialog,
                 workersGrid,
                 notification,

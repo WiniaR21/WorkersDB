@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.workerInfoDialog.WorkerInfoDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class WorkerCostsInfoButton
         extends Button
         implements ComponentCreator, ButtonCreator {
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final Worker workerSelectedFromGrid;
     private final ServicePushNotification notification;
     @Override

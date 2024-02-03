@@ -1,7 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
+import com.WorkersDataBase.service.position.PositionPostService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.layouts.ManageCompanyDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogCreator;
@@ -9,9 +11,16 @@ import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ManageCompanyDialog extends Dialog implements ComponentCreator, DialogCreator {
-    private final PositionService positionService;
+public class ManageCompanyDialog
+        extends Dialog
+        implements ComponentCreator, DialogCreator
+{
+    //  Components
     private final ServicePushNotification notification;
+    //  Services
+    private final PositionPostService positionPostService;
+    private final PositionGetService positionGetService;
+    private final PositionDeleteService positionDeleteService;
 
     //  To configure
     ManageCompanyDialogLayout dialogLayout;
@@ -29,9 +38,11 @@ public class ManageCompanyDialog extends Dialog implements ComponentCreator, Dia
     public void setDialogLayout() {
         dialogLayout =
                 new ManageCompanyDialogLayout(
+                        notification,
                         this,
-                        positionService,
-                        notification
+                        positionPostService,
+                        positionDeleteService,
+                        positionGetService
                 );
         dialogLayout.configure();
     }

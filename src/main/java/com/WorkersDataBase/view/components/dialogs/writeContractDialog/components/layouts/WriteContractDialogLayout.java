@@ -1,9 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -18,20 +18,21 @@ public class WriteContractDialogLayout
         extends VerticalLayout
         implements ComponentCreator, DialogLayoutCreator
 {
-    //  To inject by constructor
-    private final WriteContractDialog writeContractDialog;
-    private final PositionService positionService;
-    private final Worker worker;
-    private final ContractService contractService;
-    private final boolean workerHasContract;
-    private final EditWorkerDialog editWorkerDialog;
-    private final WorkersGrid workersGrid;
-    private final ServicePushNotification notification;
+    //  Components
+    private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
+    private final Worker                    worker;
+    private final boolean                   workerHasContract;
+    private final EditWorkerDialog          editWorkerDialog;
+    private final WriteContractDialog       writeContractDialog;
+    //  Services
+    private final PositionGetService        positionGetService;
+    private final ContractPostService contractPostService;
 
     //   To configure
-    H3 header;
-    WriteContractDialogFieldsLayout fieldsLayout;
-    WriteContractDialogButtonsLayout buttonsLayout;
+    H3                                 header;
+    WriteContractDialogFieldsLayout    fieldsLayout;
+    WriteContractDialogButtonsLayout   buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -59,7 +60,7 @@ public class WriteContractDialogLayout
     @Override
     public void configureFieldsLayout() {
         fieldsLayout = new WriteContractDialogFieldsLayout(
-                positionService
+                positionGetService
         );
         fieldsLayout.configure();
     }
@@ -68,7 +69,7 @@ public class WriteContractDialogLayout
     public void configureButtonsLayout() {
         buttonsLayout = new WriteContractDialogButtonsLayout(
                 writeContractDialog,
-                contractService,
+                contractPostService,
                 editWorkerDialog,
                 workersGrid,
                 notification,

@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionPostService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.components.layouts.NewPositionDialogTypeLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class NewPositionTypeDialog extends Dialog implements ComponentCreator, DialogCreator {
     // To inject by constructor
-    private final PositionService positionService;
+    private final PositionPostService positionPostService;
     private final ManageCompanyDialog manageCompanyDialog;
     private final ServicePushNotification notification;
 
@@ -33,7 +33,7 @@ public class NewPositionTypeDialog extends Dialog implements ComponentCreator, D
     public void setDialogLayout() {
         dialogLayout = new NewPositionDialogTypeLayout(
                 this,
-                positionService,
+                positionPostService,
                 manageCompanyDialog,
                 notification
         );

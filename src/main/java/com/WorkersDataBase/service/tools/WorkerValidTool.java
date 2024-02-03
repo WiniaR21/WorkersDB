@@ -1,9 +1,8 @@
-package com.WorkersDataBase.service.worker;
+package com.WorkersDataBase.service.tools;
 
 import com.WorkersDataBase.data.contact.ContactRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.validTools.StringValidTool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +10,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class WorkerValidTool {
 
-    private final StringValidTool stringValidTool;
     private final WorkerRepository workerRepository;
     private final ContactRepository contactRepository;
-    public boolean workerIsNull(Worker worker){
-        return worker == null;
-    }
     public boolean workerHasEmptyFields(Worker worker){
         if (
                 worker.getContact() == null || worker.getFirstName() == null ||
@@ -28,22 +23,23 @@ public class WorkerValidTool {
                 worker.getLastName().isEmpty() ||
                 worker.getPesel().isEmpty();
     }
+
     public boolean noSpecialSymbols(Worker worker){
-        return  stringValidTool.isStringLetters(worker.getFirstName()) &&
-                stringValidTool.isStringLetters(worker.getLastName()) &&
-                stringValidTool.isStringDigits(worker.getPesel());
-    }
-    public boolean peselIsUnique(Worker worker) {
-        return !workerRepository.existsByPesel(worker.getPesel());
+        return  isStringLetters(worker.getFirstName()) &&
+               isStringLetters(worker.getLastName()) &&
+               isStringDigits(worker.getPesel());
     }
     public boolean emailIsUnique(Worker worker){
         return !contactRepository.existsByEmail(worker.getContact().getEmail());
     }
-    public boolean peselLengthIsFine(Worker worker){
+    public boolean personalNumberIsUnique(Worker worker) {
+        return !workerRepository.existsByPesel(worker.getPesel());
+    }
+    public boolean personalNumberLengthIsFine(Worker worker){
         return worker.getPesel().length() == 11;
     }
 
-    boolean peselIsPossible(Worker worker){
+    public boolean personalNumberIsPossible(Worker worker){
 
         char[] digitsArray = worker.getPesel().toCharArray();
         int[] weights = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3};
@@ -65,5 +61,22 @@ public class WorkerValidTool {
     }
     public boolean lastNameLengthIsFine(Worker worker){
         return worker.getLastName().length() > 2;
+    }
+
+    public boolean isStringLetters(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean isStringDigits(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

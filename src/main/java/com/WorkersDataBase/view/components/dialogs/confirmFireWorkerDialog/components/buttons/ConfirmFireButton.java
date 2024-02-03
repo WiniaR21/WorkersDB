@@ -3,7 +3,7 @@ package com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.comp
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -18,17 +18,18 @@ public class ConfirmFireButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
-    //  To inject by constructor
-    private final WorkerService workerService;
-    private final WorkersGrid workersGrid;
-    private final Worker workerSelectedFromGrid;
-    private final FireWorkerConfirmDialog fireWorkerConfirmDialog;
-    private final ServicePushNotification notification;
+    //  Components
+    private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
+    private final FireWorkerConfirmDialog   fireWorkerConfirmDialog;
+    private final Worker                    workerSelectedFromGrid;
+    //  Services
+    private final WorkerDeleteService       workerDeleteService;
     @Override
     public void clickEvent() {
         Long idWorkerToFire = workerSelectedFromGrid.getId();
 
-        int status = workerService.fireWorker(idWorkerToFire);
+        int status = workerDeleteService.fireWorker(idWorkerToFire);
         statusResponse(status);
     }
 

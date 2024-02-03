@@ -1,9 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.getService.ContractGetService;
-import com.WorkersDataBase.service.getService.WorkerGetService;
-import com.WorkersDataBase.service.getService.WorkersFeeGetService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
+import com.WorkersDataBase.service.contract.ContractGetService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.workersFee.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.CloseDashboardDialogButton;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.OpenGeneralCostsDialog;

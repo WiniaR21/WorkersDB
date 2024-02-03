@@ -20,7 +20,7 @@ class WorkerServiceTest {
     @Autowired
     WorkerRepository workerRepository;
     @Autowired
-    WorkerService underTest;
+    WorkerPostService underTest;
     @BeforeEach
     void setUp() {
     }

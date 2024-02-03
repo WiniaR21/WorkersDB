@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.writeContractDialog.componen
 
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.WriteContractDialog;
@@ -27,7 +27,7 @@ public class WriteContractButton
 {
     //  To inject by constructor
     private final WriteContractDialog writeContractDialog;
-    private final ContractService contractService;
+    private final ContractPostService contractPostService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final ServicePushNotification notification;
@@ -38,7 +38,7 @@ public class WriteContractButton
     private final EndContractDateField endContractDateField;
     @Override
     public void clickEvent() {
-        int status = contractService.writeContractWithWorker(
+        int status = contractPostService.writeContractWithWorker(
                 worker,
                 getPositionFromUser(),
                 getSalaryFromUser(),

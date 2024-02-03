@@ -1,7 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.layouts;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
+import com.WorkersDataBase.service.position.PositionPostService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
@@ -15,14 +17,18 @@ public class ManageCompanyDialogLayout
         extends VerticalLayout
         implements ComponentCreator, DialogLayoutCreator
 {
-    //  To inject by constructor
-    private final ManageCompanyDialog manageCompanyDialog;
-    private final PositionService positionService;
-    private final ServicePushNotification notification;
+    //  Components
+    private final ServicePushNotification   notification;
+    private final ManageCompanyDialog       manageCompanyDialog;
+    //  Services
+    private final PositionPostService       positionPostService;
+    private final PositionDeleteService     positionDeleteService;
+    private final PositionGetService        positionGetService;
 
-    // To configure
-    H3 header;
-    ManageCompanyDialogButtonsLayout buttonsLayout;
+
+        // To configure
+                                H3          header;
+        ManageCompanyDialogButtonsLayout    buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -55,9 +61,11 @@ public class ManageCompanyDialogLayout
     @Override
     public void configureButtonsLayout() {
         buttonsLayout = new ManageCompanyDialogButtonsLayout(
+                notification,
                 manageCompanyDialog,
-                positionService,
-                notification
+                positionPostService,
+                positionGetService,
+                positionDeleteService
         );
         buttonsLayout.configure();
     }

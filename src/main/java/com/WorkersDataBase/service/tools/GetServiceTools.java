@@ -1,4 +1,4 @@
-package com.WorkersDataBase.service.getService;
+package com.WorkersDataBase.service.tools;
 
 import org.springframework.stereotype.Component;
 

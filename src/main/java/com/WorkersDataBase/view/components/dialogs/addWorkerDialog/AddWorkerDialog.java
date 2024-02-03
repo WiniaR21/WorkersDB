@@ -4,7 +4,7 @@ import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.layouts.AddWorkerDialogLayout;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.interfaces.DialogCreator;
 import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AddWorkerDialog extends Dialog implements ComponentCreator, DialogCreator {
     //  To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final WorkersGrid workersGrid;
     private final ServicePushNotification notification;
 
@@ -33,7 +33,7 @@ public class AddWorkerDialog extends Dialog implements ComponentCreator, DialogC
     @Override
     public void setDialogLayout() {
         dialogLayout = new AddWorkerDialogLayout(
-                workerService,
+                workerPostService,
                 workersGrid,
                 this,
                 notification

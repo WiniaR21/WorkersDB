@@ -1,6 +1,7 @@
-package com.WorkersDataBase.service.getService;
+package com.WorkersDataBase.service.companyFee;
 
 import com.WorkersDataBase.data.companyFee.CompanyFeeRepository;
+import com.WorkersDataBase.service.tools.GetServiceTools;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts;
 
 import com.WorkersDataBase.data.position.Position;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.fields.EndContractDateField;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.fields.SalaryField;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.fields.StartContractDateField;
@@ -11,14 +11,18 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WriteContractDialogFieldsLayout extends VerticalLayout implements ComponentCreator {
-    //  To inject by constructor
-    private final PositionService positionService;
+public class WriteContractDialogFieldsLayout
+        extends VerticalLayout
+        implements ComponentCreator
+{
+    //  Services
+    private final PositionGetService    positionGetService;
+
     //  To configure
-    ComboBox<Position> position;
-    SalaryField salaryField;
-    StartContractDateField startContractDateField;
-    EndContractDateField endContractDateField;
+                    ComboBox<Position>  position;
+                    SalaryField         salaryField;
+                StartContractDateField  startContractDateField;
+                EndContractDateField    endContractDateField;
     @Override
     public void configureComponents() {
         setPosition();
@@ -37,7 +41,7 @@ public class WriteContractDialogFieldsLayout extends VerticalLayout implements C
     }
     private void setPosition() {
         position = new ComboBox<>("Wybierz stanowisko");
-        position.setItems(positionService.getPositions());
+        position.setItems(positionGetService.getPositions());
         position.setItemLabelGenerator(Position::getPositionName);
     }
     private void setSalaryField() {

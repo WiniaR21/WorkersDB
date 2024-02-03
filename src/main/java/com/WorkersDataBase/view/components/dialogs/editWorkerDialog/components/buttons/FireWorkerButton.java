@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
 import com.WorkersDataBase.view.components.dialogs.confirmFireWorkerDialog.FireWorkerConfirmDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -17,23 +17,24 @@ public class FireWorkerButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
-    // To inject by constructor
-    private final WorkerService workerService;
-    private final EditWorkerDialog editWorkerDialog;
-    private final WorkersGrid workersGrid;
-    private final Worker workerSelectedFromGrid;
+    // Components
     private final ServicePushNotification notification;
+    private final WorkersGrid workersGrid;
+    private final EditWorkerDialog editWorkerDialog;
+    private final Worker workerSelectedFromGrid;
+    //  Services
+    private final WorkerDeleteService workerDeleteService;
     @Override
     public void clickEvent() {
         editWorkerDialog.close();
 
         FireWorkerConfirmDialog fireWorkerConfirmDialog
                 = new FireWorkerConfirmDialog(
-                workerService,
-                editWorkerDialog,
+                notification,
                 workersGrid,
+                editWorkerDialog,
                 workerSelectedFromGrid,
-                notification
+                workerDeleteService
         );
         fireWorkerConfirmDialog.configure();
     }

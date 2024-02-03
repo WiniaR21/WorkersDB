@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.statisticDialog.components.fields;
 
-import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.contract.ContractGetService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.textfield.NumberField;

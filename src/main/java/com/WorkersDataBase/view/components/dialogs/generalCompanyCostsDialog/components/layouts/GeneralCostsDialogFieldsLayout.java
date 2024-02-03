@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts;
 
 
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.fields.*;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

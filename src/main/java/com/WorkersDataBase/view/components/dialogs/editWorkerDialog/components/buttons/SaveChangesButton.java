@@ -2,7 +2,8 @@ package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts.EditWorkerDialogFieldsLayout;
@@ -21,17 +22,18 @@ public class SaveChangesButton
         implements ComponentCreator, ButtonCreator
 {
     // To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final EditWorkerDialog editWorkerDialog;
     private final WorkersGrid workersGrid;
     private final EditWorkerDialogFieldsLayout fieldsLayout;
     private final Worker workerSelectedFromGrid;
     private final ServicePushNotification notification;
+    private final WorkerGetService workerGetService;
 
     @Override
     public void clickEvent() {
-        if(workerService.workerWithIdExistInDB(workerSelectedFromGrid.getId())){
-            Optional<Worker> original = workerService.getById(workerSelectedFromGrid.getId());
+        if(workerGetService.existById(workerSelectedFromGrid.getId())){
+            Optional<Worker> original = workerGetService.getById(workerSelectedFromGrid.getId());
             Worker newWorker = getWorkerFromUser();
 
             original.ifPresent(
@@ -66,7 +68,7 @@ public class SaveChangesButton
     }
     private void openConfirmEditDialog(Worker newWorker, Worker originalWorker){
         ConfirmEditDialog confirmEditDialog = new ConfirmEditDialog(
-                workerService,
+                workerPostService,
                 newWorker,
                 workersGrid,
                 originalWorker,

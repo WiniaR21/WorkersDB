@@ -2,7 +2,7 @@ package com.WorkersDataBase.view.components.dialogs.confirmEditDialog.components
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.confirmEditDialog.ConfirmEditDialog;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -18,7 +18,7 @@ public class ConfirmButton
         implements ComponentCreator, ButtonCreator
 {
     // To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final Worker newWorker;
     private final WorkersGrid workersGrid;
     private final ConfirmEditDialog confirmEditDialog;
@@ -26,7 +26,7 @@ public class ConfirmButton
 
     @Override
     public void clickEvent() {
-        int status = workerService.addWorker(newWorker, true);
+        int status = workerPostService.addWorker(newWorker, true);
         statusResponse(status);
     }
     @Override

@@ -1,10 +1,12 @@
 package com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.layouts;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.components.buttons.*;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -16,15 +18,18 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class EditWorkerDialogButtonsLayout extends HorizontalLayout implements ComponentCreator {
-    // To inject by constructor
-    private final WorkerService workerService;
-    private final EditWorkerDialog editWorkerDialog;
-    private final WorkersGrid workersGrid;
-    private final EditWorkerDialogFieldsLayout fieldsLayout;
-    private final Worker workerSelectedFromGrid;
-    private final PositionService positionService;
-    private final ContractService contractService;
+    // Components
     private final ServicePushNotification notification;
+    private final WorkersGrid workersGrid;
+    private final Worker workerSelectedFromGrid;
+    private final EditWorkerDialogFieldsLayout fieldsLayout;
+    private final EditWorkerDialog editWorkerDialog;
+    //  Services
+    private final WorkerPostService workerPostService;
+    private final PositionGetService positionGetService;
+    private final ContractPostService contractPostService;
+    private final WorkerDeleteService workerDeleteService;
+    private final WorkerGetService workerGetService;
 
     // To configure
     SaveChangesButton saveChangesButton;
@@ -53,12 +58,13 @@ public class EditWorkerDialogButtonsLayout extends HorizontalLayout implements C
     }
     private void setSaveChangesButton(){
         saveChangesButton = new SaveChangesButton(
-                workerService,
+                workerPostService,
                 editWorkerDialog,
                 workersGrid,
                 fieldsLayout,
                 workerSelectedFromGrid,
-                notification
+                notification,
+                workerGetService
         );
 
         saveChangesButton.configure();
@@ -72,29 +78,29 @@ public class EditWorkerDialogButtonsLayout extends HorizontalLayout implements C
     }
     private void setWriteContractButton(){
         writteContractButton = new WritteContractButton(
-                positionService,
-                workerSelectedFromGrid,
-                workerSelectedFromGrid.getContract() != null,
-                contractService,
-                editWorkerDialog,
+                notification,
                 workersGrid,
-                notification
+                editWorkerDialog,
+                workerSelectedFromGrid.getContract() != null,
+                workerSelectedFromGrid,
+                positionGetService,
+                contractPostService
         );
         writteContractButton.configure();
     }
     private void setFireWorkerButton(){
         fireWorkerButton = new FireWorkerButton(
-                workerService,
-                editWorkerDialog,
+                notification,
                 workersGrid,
+                editWorkerDialog,
                 workerSelectedFromGrid,
-                notification
+                workerDeleteService
         );
         fireWorkerButton.configure();
     }
     private void setWorkerCostsInfoButton(){
         workerCostsInfoButton = new WorkerCostsInfoButton(
-                workerService,
+                workerPostService,
                 workerSelectedFromGrid,
                 notification
                 );

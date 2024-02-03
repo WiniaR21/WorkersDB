@@ -1,6 +1,6 @@
 package com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog;
 
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.components.layouts.GeneralCostsDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;

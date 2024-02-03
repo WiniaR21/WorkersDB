@@ -1,13 +1,15 @@
 package com.WorkersDataBase.view.components.topbar.components;
 
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.companyFee.CompanyFeeGetService;
+import com.WorkersDataBase.service.contract.ContractGetService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.getService.ContractGetService;
-import com.WorkersDataBase.service.getService.WorkerGetService;
-import com.WorkersDataBase.service.getService.WorkersFeeGetService;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionPostService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
+import com.WorkersDataBase.service.workersFee.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.components.topbar.components.buttons.*;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -19,18 +21,19 @@ public class ButtonsLayoutTopBar
         extends HorizontalLayout
         implements ComponentCreator
 {
-    //  To inject by constructor
-    private final WorkersGrid               workersGrid;
+    //  Components
     private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
     //  Services
-    private final WorkerService             workerService;
-    private final PositionService           positionService;
-    private final ContractService           contractService;
-        //  Get Services
-    private final ContractGetService        contractGetService;
-    private final WorkerGetService          workerGetService;
-    private final CompanyFeeGetService      companyFeeGetService;
-    private final WorkersFeeGetService      workersFeeGetService;
+    private final WorkerPostService workerPostService;
+    private final PositionPostService       positionPostService;
+    private final ContractPostService contractPostService;
+    private final ContractGetService contractGetService;
+    private final WorkerGetService workerGetService;
+    private final CompanyFeeGetService companyFeeGetService;
+    private final WorkersFeeGetService workersFeeGetService;
+    private final PositionGetService positionGetService;
+    private final PositionDeleteService     positionDeleteService;
 
                 //  To configure
                 AddContractButton           addContractButton;
@@ -60,14 +63,16 @@ public class ButtonsLayoutTopBar
     }
     private void configureAddContractButton(){
         addContractButton = new AddContractButton(
-                positionService,
-                notification
+               notification,
+                positionPostService,
+                positionGetService,
+                positionDeleteService
         );
         addContractButton.configure();
     }
     private void configureAddWorkerButton(){
         addWorkerButton = new AddWorkerButton(
-                workerService,
+                workerPostService,
                 workersGrid,
                 notification
         );
@@ -88,10 +93,11 @@ public class ButtonsLayoutTopBar
     }
     private void configureInjectTestDataButton(){
         injectTestDataButton = new InjectTestDataButton(
-                workerService,
+                workerPostService,
                 workersGrid,
-                contractService,
-                positionService
+                contractPostService,
+                positionGetService,
+                workerGetService
         );
         injectTestDataButton.configure();
     }

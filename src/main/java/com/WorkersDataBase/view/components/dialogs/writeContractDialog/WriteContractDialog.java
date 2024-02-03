@@ -1,9 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.writeContractDialog;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.components.dialogs.writeContractDialog.components.layouts.WriteContractDialogLayout;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -13,21 +13,24 @@ import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WriteContractDialog extends Dialog implements ComponentCreator, DialogCreator {
-    //  To inject by constructor
-    private final PositionService positionService;
-    private final Worker worker;
-    private final ContractService contractService;
-    private final boolean workerHasContract;
-    private final EditWorkerDialog editWorkerDialog;
-    private final WorkersGrid workersGrid;
-    private final ServicePushNotification notification;
+public class WriteContractDialog
+        extends Dialog
+        implements ComponentCreator, DialogCreator
+{
+    //  Components
+    private final ServicePushNotification   notification;
+    private final WorkersGrid               workersGrid;
+    private final Worker                    worker;
+    private final boolean                   workerHasContract;
+    private final EditWorkerDialog          editWorkerDialog;
+    private final PositionGetService        positionGetService;
+    private final ContractPostService contractPostService;
 
     //  To configure
     WriteContractDialogLayout dialogLayout;
 
     @Override
-    public void configureComponents() { setDialogLayout();}
+    public void configureComponents() {setDialogLayout();}
     @Override
     public void configureFront() {
         add(dialogLayout);
@@ -36,14 +39,14 @@ public class WriteContractDialog extends Dialog implements ComponentCreator, Dia
     @Override
     public void setDialogLayout() {
         dialogLayout = new WriteContractDialogLayout(
-                this,
-                positionService,
+                notification,
+                workersGrid,
                 worker,
-                contractService,
                 workerHasContract,
                 editWorkerDialog,
-                workersGrid,
-                notification
+                this,
+                positionGetService,
+                contractPostService
         );
         dialogLayout.configure();
     }

@@ -28,7 +28,7 @@ class PositionServiceTest {
     @Autowired
     private ContractRepository contractRepository;
     @Autowired
-    private PositionService underTest;
+    private PositionPostService underTest;
 
     @BeforeEach
     void setUp() {

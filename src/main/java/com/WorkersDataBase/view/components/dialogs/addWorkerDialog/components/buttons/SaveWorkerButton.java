@@ -4,7 +4,7 @@ import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.AddWorkerDialog;
 import com.WorkersDataBase.data.contact.Contact;
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.WorkersEmailField;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.WorkersFirstNameField;
 import com.WorkersDataBase.view.components.dialogs.addWorkerDialog.components.fields.WorkersLastNameField;
@@ -25,7 +25,7 @@ public class SaveWorkerButton
         implements ComponentCreator, ButtonCreator
 {
     //  To inject by constructor
-    private final WorkerService workerService;
+    private final WorkerPostService workerPostService;
     private final WorkersGrid workersGrid;
     private final AddWorkerDialog addWorkerDialog;
     private final WorkersFirstNameField firstNameField;
@@ -48,7 +48,7 @@ public class SaveWorkerButton
         addClickShortcut(Key.ENTER);
     }
     private void addWorkerToDB(){
-        int status = workerService.addWorker(getWorkerFromUser(), false);
+        int status = workerPostService.addWorker(getWorkerFromUser(), false);
         statusResponse(status);
     }
     private Worker getWorkerFromUser(){

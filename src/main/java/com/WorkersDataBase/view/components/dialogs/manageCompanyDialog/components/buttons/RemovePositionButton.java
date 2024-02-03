@@ -1,7 +1,8 @@
 package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.buttons;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.position.PositionDeleteService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.removePositionDialog.RemovePositionDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -15,11 +16,12 @@ public class RemovePositionButton
         extends Button
         implements ComponentCreator, ButtonCreator
 {
-    //  To inject by constructor
-    private final PositionService positionService;
-    private final ManageCompanyDialog manageCompanyDialog;
-    private final ServicePushNotification notification;
-
+    //  Components
+    private final ServicePushNotification   notification;
+    private final ManageCompanyDialog       manageCompanyDialog;
+    //  Services
+    private final PositionGetService        positionGetService;
+    private final PositionDeleteService     positionDeleteService;
 
     @Override
     public void clickEvent() {
@@ -37,9 +39,10 @@ public class RemovePositionButton
     private void openRemovePositionDialog(){
         RemovePositionDialog removePositionDialog =
                 new RemovePositionDialog(
-                        positionService,
+                        notification,
                         manageCompanyDialog,
-                        notification
+                        positionDeleteService,
+                        positionGetService
                 );
         removePositionDialog.configure();
     }

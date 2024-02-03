@@ -1,7 +1,7 @@
 package com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.components.buttons;
 
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
+import com.WorkersDataBase.service.position.PositionPostService;
 import com.WorkersDataBase.view.components.dialogs.manageCompanyDialog.ManageCompanyDialog;
 import com.WorkersDataBase.view.components.dialogs.newPositionTypeDialog.NewPositionTypeDialog;
 import com.WorkersDataBase.view.interfaces.ButtonCreator;
@@ -17,7 +17,7 @@ public class AddNewPositionButton
 {
     //  To inject by constructor
     private final ManageCompanyDialog manageCompanyDialog;
-    private final PositionService positionService;
+    private final PositionPostService positionPostService;
     private final ServicePushNotification notification;
 
     @Override
@@ -38,7 +38,7 @@ public class AddNewPositionButton
     private void openNewPositionTypeDialog(){
         NewPositionTypeDialog newPositionTypeDialog =
                 new NewPositionTypeDialog(
-                        positionService,
+                        positionPostService,
                         manageCompanyDialog,
                         notification
                 );

@@ -1,10 +1,12 @@
 package com.WorkersDataBase.view.components.grid;
 
 import com.WorkersDataBase.data.worker.Worker;
-import com.WorkersDataBase.service.contract.ContractService;
+import com.WorkersDataBase.service.contract.ContractPostService;
 import com.WorkersDataBase.notification.ServicePushNotification;
-import com.WorkersDataBase.service.position.PositionService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.position.PositionGetService;
+import com.WorkersDataBase.service.worker.WorkerDeleteService;
+import com.WorkersDataBase.service.worker.WorkerGetService;
+import com.WorkersDataBase.service.worker.WorkerPostService;
 import com.WorkersDataBase.view.components.dialogs.editWorkerDialog.EditWorkerDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
@@ -19,12 +21,15 @@ import java.util.Set;
 @Setter
 @RequiredArgsConstructor
 public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
-    //  To inject by constructor
-    private final WorkerService workerService;
-    private final PositionService positionService;
-    private final ContractService contractService;
-    private final WorkersGridSettings workersGridSettings;
+    //  Components
     private final ServicePushNotification notification;
+    private final WorkersGridSettings workersGridSettings;
+    //  Services
+    private final WorkerPostService workerPostService;
+    private final ContractPostService contractPostService;
+    private final PositionGetService positionGetService;
+    private final WorkerDeleteService workerDeleteService;
+    private final WorkerGetService workerGetService;
 
     //  To configure
     Grid<Worker> grid;
@@ -48,7 +53,7 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
         grid.getColumnByKey("firstName").setHeader("Imie").setTextAlign(ColumnTextAlign.CENTER);
         grid.getColumnByKey("lastName").setHeader("Nazwisko").setTextAlign(ColumnTextAlign.CENTER);
         grid.getColumnByKey("pesel").setHeader("PESEL").setTextAlign(ColumnTextAlign.CENTER);
-        grid.setItems(workerService.getWorkers());
+        grid.setItems(workerGetService.getWorkers());
         grid.setSizeFull();
         grid.getStyle().set("vaadin-grid-cell-background", "#0D1219");
         grid.addItemClickListener(this::openEditWorkerDialog);
@@ -60,17 +65,19 @@ public class WorkersGrid extends HorizontalLayout implements ComponentCreator {
     private void openEditWorkerDialog(ItemClickEvent<Worker> event){
 
         EditWorkerDialog editWorkerDialog = new EditWorkerDialog(
-                workerService,
-                this,
+                notification,
+        this,
                 event.getItem(),
-                positionService,
-                contractService,
-                notification
+                workerPostService,
+                positionGetService,
+                contractPostService,
+                workerDeleteService,
+                workerGetService
         );
         editWorkerDialog.configure();
     }
     public void refresh(){
-        grid.setItems(workerService.getWorkers());
+        grid.setItems(workerGetService.getWorkers());
     }
 
 }
