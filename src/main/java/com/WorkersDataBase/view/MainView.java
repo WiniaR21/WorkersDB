@@ -4,11 +4,13 @@ package com.WorkersDataBase.view;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
 import com.WorkersDataBase.view.components.grid.WorkersGridSettings;
-import com.WorkersDataBase.view.components.line.LineBetweenComponents;
 import com.WorkersDataBase.view.components.topbar.TopBar;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -21,24 +23,29 @@ import lombok.RequiredArgsConstructor;
 @PageTitle("Pracownicy")
 @Route("strona-glowna")
 @RequiredArgsConstructor
-public class MainView extends VerticalLayout implements ComponentCreator {
-    // To inject by constructor
-    private final WorkerService workerService;
-    private final PositionService positionService;
-    private final ContractService contractService;
-    private final WorkersGridSettings workersGridSettings;
-    private final ServicePushNotification notification;
-    private final CompanyFeeGetService companyFeeGetService;
+public class MainView
+        extends VerticalLayout
+        implements ComponentCreator
+{
+    //  Components
+    private final ServicePushNotification   notification;
+    private final WorkersGridSettings       workersGridSettings;
+    //  Services
+    private final WorkerService             workerService;
+    private final PositionService           positionService;
+    private final ContractService           contractService;
+    //  Get Services
+    private final CompanyFeeGetService      companyFeeGetService;
+    private final WorkersFeeGetService      workersFeeGetService;
+    private final WorkerGetService          workerGetService;
+    private final ContractGetService        contractGetService;
 
-    //  To configure
-    WorkersGrid workersGrid;
-    TopBar topBar;
-    LineBetweenComponents line;
+                    //  To configure
+                    WorkersGrid             workersGrid;
+                    TopBar                  topBar;
 
     @Override @PostConstruct
     public void configureComponents() {
-        line = new LineBetweenComponents();
-
         configureGrid();
         configureTopBar();
         configureFront();
@@ -67,12 +74,15 @@ public class MainView extends VerticalLayout implements ComponentCreator {
     }
     private void configureTopBar(){
         topBar = new TopBar(
-                workerService,
                 workersGrid,
-                positionService,
                 notification,
+                workerService,
+                positionService,
                 contractService,
-                companyFeeGetService
+                companyFeeGetService,
+                workerGetService,
+                workersFeeGetService,
+                contractGetService
         );
         topBar.configure();
     }

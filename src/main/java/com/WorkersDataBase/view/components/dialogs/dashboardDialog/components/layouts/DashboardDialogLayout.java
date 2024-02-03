@@ -1,8 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
-import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
 import com.WorkersDataBase.view.interfaces.DialogLayoutCreator;
@@ -13,16 +14,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DashboardDialogLayout
         extends VerticalLayout
-        implements ComponentCreator, DialogLayoutCreator {
+        implements ComponentCreator, DialogLayoutCreator
+{
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
-    private final ContractService contractService;
-    private final WorkerService workerService;
+    //  Services
+    private final ContractGetService contractGetService;
+    private final WorkerGetService workerGetService;
     private final CompanyFeeGetService companyFeeGetService;
-
+    private final WorkersFeeGetService workersFeeGetService;
     //  To configure
     DashboardDialogButtonsLayout buttonsLayout;
     H3 header;
+
     @Override
     public void configureComponents() {
         configureButtonsLayout();
@@ -51,9 +55,10 @@ public class DashboardDialogLayout
     public void configureButtonsLayout() {
         buttonsLayout = new DashboardDialogButtonsLayout(
                 dashboardDialog,
-                contractService,
-                workerService,
-                companyFeeGetService
+                contractGetService,
+                workerGetService,
+                companyFeeGetService,
+                workersFeeGetService
         );
         buttonsLayout.configure();
     }

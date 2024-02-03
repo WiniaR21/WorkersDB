@@ -8,4 +8,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WorkerGetService {
     private final WorkerRepository repository;
+    private final GetServiceTools tools;
+
+    public Double getAverageAge(){
+        return repository.count() == 0 ? 0 :
+                tools.roundSum(repository.getAverageAge());
+    }
 }

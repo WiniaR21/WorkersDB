@@ -17,8 +17,8 @@ public class GeneralCostsDialogLayout
     //  To inject by constructor
     private final GeneralCostsDialog generalCostsDialog;
     private final DashboardDialog dashboardDialog;
+    //  Services
     private final CompanyFeeGetService companyFeeGetService;
-
     //  To configure
     GeneralCostsDialogFieldsLayout fieldsLayout;
     GeneralCostsDialogButtonsLayout buttonsLayout;

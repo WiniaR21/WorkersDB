@@ -8,4 +8,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WorkersFeeGetService {
     private final WorkersFeeRepository repository;
+    private final GetServiceTools tools;
+    public Double getAvgNetSalary(){
+        return repository.count() == 0 ? 0 :
+                tools.roundSum(repository.getAvgNetSalary());
+    }
 }

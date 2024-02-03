@@ -135,17 +135,4 @@ public class WorkerService {
         return period.getYears();
     }
 
-    public Double getAverageAge(){
-
-        return impossibleToCalculateAVG() ? 0 :
-                roundSum(workerRepository.getAverageAge());
-    }
-    private boolean impossibleToCalculateAVG(){
-        return workerRepository.count() == 0;
-    }
-    private Double roundSum(Double sum){
-        return Math.round(sum * 100.0) / 100.0;
-    }
-
-
 }

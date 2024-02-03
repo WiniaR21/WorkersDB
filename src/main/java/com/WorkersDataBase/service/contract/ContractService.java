@@ -3,13 +3,11 @@ package com.WorkersDataBase.service.contract;
 import com.WorkersDataBase.data.companyFee.CompanyFee;
 import com.WorkersDataBase.data.contract.Contract;
 import com.WorkersDataBase.data.contract.ContractRepository;
-import com.WorkersDataBase.data.companyFee.CompanyFeeRepository;
 import com.WorkersDataBase.data.position.Position;
 import com.WorkersDataBase.data.position.PositionRepository;
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
 import com.WorkersDataBase.data.workersFee.WorkersFee;
-import com.WorkersDataBase.data.workersFee.WorkersFeeRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,8 +21,6 @@ public class ContractService {
     private final WorkerRepository workerRepository;
     private final PositionRepository positionRepository;
     private final ContractValidTool contractValidTool;
-    private final CompanyFeeRepository companyFeeRepository;
-    private final WorkersFeeRepository workersFeeRepository;
 
     /*
     *   RETURN CODE
@@ -126,23 +122,5 @@ public class ContractService {
 
     }
 
-    public Double getAvgGrossSalary(){
-        return impossibleToCalculateAvgFromContract() ? 0 :
-                roundSum(contractRepository.getAvgSalary());
-    }
-    public Double getAvgNetSalary(){
-        return impossibleToCalculateAvgFromWorkersFee() ? 0 :
-                roundSum(workersFeeRepository.getAvgNetSalary());
-    }
-
-    private boolean impossibleToCalculateAvgFromWorkersFee(){
-        return workersFeeRepository.count() == 0;
-    }
-    private boolean impossibleToCalculateAvgFromContract(){
-        return contractRepository.count() == 0;
-    }
-    private Double roundSum(Double sum){
-        return Math.round(sum * 100.0) / 100.0;
-    }
 }
 

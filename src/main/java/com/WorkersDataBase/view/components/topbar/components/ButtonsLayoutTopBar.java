@@ -3,6 +3,9 @@ package com.WorkersDataBase.view.components.topbar.components;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.components.grid.WorkersGrid;
@@ -12,21 +15,29 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCreator {
+public class ButtonsLayoutTopBar
+        extends HorizontalLayout
+        implements ComponentCreator
+{
     //  To inject by constructor
-    private final WorkerService workerService;
-    private final WorkersGrid workersGrid;
-    private final PositionService positionService;
-    private final ServicePushNotification notification;
-    private final ContractService contractService;
-    private final CompanyFeeGetService companyFeeGetService;
+    private final WorkersGrid               workersGrid;
+    private final ServicePushNotification   notification;
+    //  Services
+    private final WorkerService             workerService;
+    private final PositionService           positionService;
+    private final ContractService           contractService;
+        //  Get Services
+    private final ContractGetService        contractGetService;
+    private final WorkerGetService          workerGetService;
+    private final CompanyFeeGetService      companyFeeGetService;
+    private final WorkersFeeGetService      workersFeeGetService;
 
-    //  To configure
-    AddContractButton addContractButton;
-    AddWorkerButton addWorkerButton;
-    OpenSettingsButton openSettingsButton;
-    DashboardButton dashboardButton;
-    InjectTestDataButton injectTestDataButton;
+                //  To configure
+                AddContractButton           addContractButton;
+                AddWorkerButton             addWorkerButton;
+                OpenSettingsButton          openSettingsButton;
+                DashboardButton             dashboardButton;
+                InjectTestDataButton        injectTestDataButton;
 
     @Override
     public void configureComponents() {
@@ -68,9 +79,10 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
     }
     private void configureDashboardButton(){
         dashboardButton = new DashboardButton(
-                contractService,
-                workerService,
-                companyFeeGetService
+                contractGetService,
+                workerGetService,
+                companyFeeGetService,
+                workersFeeGetService
         );
         dashboardButton.configure();
     }
@@ -80,7 +92,7 @@ public class ButtonsLayoutTopBar extends HorizontalLayout implements ComponentCr
                 workersGrid,
                 contractService,
                 positionService
-                );
+        );
         injectTestDataButton.configure();
     }
 }

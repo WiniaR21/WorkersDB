@@ -1,8 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.statisticDialog.components.layouts;
 
-import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.fields.MeanAgeField;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.fields.MeanCostForWorker;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.fields.MeanGrossSalaryField;
@@ -17,9 +18,10 @@ public class StatisticDialogFieldsLayout
         implements ComponentCreator
 {
     //  To inject by constructor
-    private final WorkerService workerService;
-    private final ContractService contractService;
+    private final WorkerGetService workerGetService;
+    private final ContractGetService contractGetService;
     private final CompanyFeeGetService companyFeeGetService;
+    private final WorkersFeeGetService workersFeeGetService;
 
     //  To configure
     MeanAgeField meanAgeField;
@@ -46,17 +48,17 @@ public class StatisticDialogFieldsLayout
     }
 
     private void setMeanAgeField() {
-        meanAgeField = new MeanAgeField(workerService);
+        meanAgeField = new MeanAgeField(workerGetService);
         meanAgeField.configure();
     }
 
     private void setMeanGrossSalaryField() {
-        meanGrossSalaryField = new MeanGrossSalaryField(contractService);
+        meanGrossSalaryField = new MeanGrossSalaryField(contractGetService);
         meanGrossSalaryField.configure();
     }
 
     private void setMeanNetSalaryField() {
-        meanNetSalaryField = new MeanNetSalaryField(contractService);
+        meanNetSalaryField = new MeanNetSalaryField(workersFeeGetService);
         meanNetSalaryField.configure();
     }
 

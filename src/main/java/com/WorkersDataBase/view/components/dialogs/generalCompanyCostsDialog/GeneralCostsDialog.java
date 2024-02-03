@@ -11,9 +11,11 @@ import lombok.RequiredArgsConstructor;
 public class GeneralCostsDialog extends Dialog implements ComponentCreator {
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
+    //  Services
     private final CompanyFeeGetService companyFeeGetService;
     //  To configure
     GeneralCostsDialogLayout dialogLayout;
+
     @Override
     public void configureComponents() {
         setGeneralCostsLayout();

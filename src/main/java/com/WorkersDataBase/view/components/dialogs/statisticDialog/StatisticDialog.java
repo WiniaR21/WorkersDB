@@ -1,8 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.statisticDialog;
 
-import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.components.layouts.StatisticsDialogLayout;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -11,12 +12,18 @@ import com.vaadin.flow.component.dialog.Dialog;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class StatisticDialog extends Dialog implements ComponentCreator, DialogCreator {
+public class StatisticDialog
+        extends Dialog
+        implements ComponentCreator, DialogCreator
+{
     //  To inject by constructor
     private final DashboardDialog dashboardDialog;
-    private final WorkerService workerService;
-    private final ContractService contractService;
+    //  Services
+    private final WorkerGetService workerGetService;
+    private final ContractGetService contractGetService;
     private final CompanyFeeGetService companyFeeGetService;
+    private final WorkersFeeGetService workersFeeGetService;
+
     //  To configure
     StatisticsDialogLayout dialogLayout;
 
@@ -34,9 +41,10 @@ public class StatisticDialog extends Dialog implements ComponentCreator, DialogC
         dialogLayout = new StatisticsDialogLayout(
                 this,
                 dashboardDialog,
-                workerService,
-                contractService,
-                companyFeeGetService
+                workerGetService,
+                contractGetService,
+                companyFeeGetService,
+                workersFeeGetService
         );
         dialogLayout.configure();
     }

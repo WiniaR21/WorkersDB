@@ -1,8 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.layouts;
 
-import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.CloseDashboardDialogButton;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons.OpenGeneralCostsDialog;
@@ -12,18 +13,22 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class DashboardDialogButtonsLayout extends VerticalLayout implements ComponentCreator {
+public class DashboardDialogButtonsLayout
+        extends VerticalLayout
+        implements ComponentCreator
+{
     //  To inject by constructor
-    private final DashboardDialog dashboardDialog;
-    private final ContractService contractService;
-    private final WorkerService workerService;
-    private final CompanyFeeGetService companyFeeGetService;
-
-
+    private final DashboardDialog       dashboardDialog;
+    //  Services
+    private final ContractGetService    contractGetService;
+    private final WorkerGetService      workerGetService;
+    private final CompanyFeeGetService  companyFeeGetService;
+    private final WorkersFeeGetService  workersFeeGetService;
     //  To configure
-    OpenStatisticsDialogButton openStatisticsDialogButton;
-    OpenGeneralCostsDialog openGeneralCostsDialog;
-    CloseDashboardDialogButton closeDialogButton;
+    OpenStatisticsDialogButton          openStatisticsDialogButton;
+    OpenGeneralCostsDialog              openGeneralCostsDialog;
+    CloseDashboardDialogButton          closeDialogButton;
+
     @Override
     public void configureComponents() {
         setOpenStatisticsDialogButton();
@@ -42,20 +47,19 @@ public class DashboardDialogButtonsLayout extends VerticalLayout implements Comp
                 closeDialogButton
         );
     }
-
     private void setOpenStatisticsDialogButton() {
         openStatisticsDialogButton = new OpenStatisticsDialogButton(
                 dashboardDialog,
-                workerService,
-                contractService,
-                companyFeeGetService
+                workerGetService,
+                contractGetService,
+                companyFeeGetService,
+                workersFeeGetService
         );
         openStatisticsDialogButton.configure();
     }
     private void setOpenGeneralCostsDialog(){
         openGeneralCostsDialog = new OpenGeneralCostsDialog(
                 dashboardDialog,
-                contractService,
                 companyFeeGetService
         );
         openGeneralCostsDialog.configure();

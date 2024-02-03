@@ -1,6 +1,5 @@
 package com.WorkersDataBase.view.components.dialogs.dashboardDialog.components.buttons;
 
-import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.generalCompanyCostsDialog.GeneralCostsDialog;
@@ -15,9 +14,11 @@ public class OpenGeneralCostsDialog
         extends Button
         implements ComponentCreator, ButtonCreator
 {
+    //  To inject by constructor
     private final DashboardDialog dashboardDialog;
-    private final ContractService contractService;
+    //  Services
     private final CompanyFeeGetService companyFeeGetService;
+
     @Override
     public void clickEvent() {
         GeneralCostsDialog generalCostsDialog = new GeneralCostsDialog(
@@ -26,12 +27,8 @@ public class OpenGeneralCostsDialog
         );
         generalCostsDialog.configure();
     }
-
     @Override
-    public void configureComponents() {
-
-    }
-
+    public void configureComponents() {}
     @Override
     public void configureFront() {
         setText("Generalne koszty firmy");

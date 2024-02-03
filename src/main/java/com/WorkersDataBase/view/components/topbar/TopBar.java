@@ -3,6 +3,9 @@ package com.WorkersDataBase.view.components.topbar;
 import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.notification.ServicePushNotification;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.service.position.PositionService;
 import com.WorkersDataBase.service.worker.WorkerService;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -13,20 +16,26 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class TopBar extends HorizontalLayout implements ComponentCreator {
-    //  Inject by constructor
-    private final WorkerService workerService;
-    private final WorkersGrid workersGrid;
-    private final PositionService positionService;
-    private final ServicePushNotification notification;
+public class TopBar
+        extends HorizontalLayout
+        implements ComponentCreator
+{
+    //Components
+    private final WorkersGrid               workersGrid;
+    private final ServicePushNotification   notification;
+    //Services
+    private final WorkerService             workerService;
+    private final PositionService           positionService;
+    private final ContractService           contractService;
+    // Get Services
+    private final CompanyFeeGetService      companyFeeGetService;
+    private final WorkerGetService          workerGetService;
+    private final WorkersFeeGetService      workersFeeGetService;
+    private final ContractGetService        contractGetService;
 
-    private final ContractService contractService;
-    private final CompanyFeeGetService companyFeeGetService;
-
-
-    //  To configure
-    FilterText filterText;
-    ButtonsLayoutTopBar buttonsLayout;
+                    // To configure
+                    FilterText              filterText;
+                    ButtonsLayoutTopBar     buttonsLayout;
 
     @Override
     public void configureComponents() {
@@ -39,7 +48,11 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
         setPadding(true);
         setJustifyContentMode(JustifyContentMode.CENTER);
         setAlignItems(Alignment.CENTER);
-        add(filterText, buttonsLayout);
+
+        add(
+                filterText,
+                buttonsLayout
+        );
     }
     private void configureFilterText(){
         filterText = new FilterText(workersGrid);
@@ -47,12 +60,15 @@ public class TopBar extends HorizontalLayout implements ComponentCreator {
     }
     private void configureButtonsLayout(){
         buttonsLayout = new ButtonsLayoutTopBar(
-                workerService,
                 workersGrid,
-                positionService,
                 notification,
+                workerService,
+                positionService,
                 contractService,
-                companyFeeGetService
+                contractGetService,
+                workerGetService,
+                companyFeeGetService,
+                workersFeeGetService
         );
         buttonsLayout.configure();
     }

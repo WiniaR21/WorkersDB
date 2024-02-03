@@ -1,8 +1,9 @@
 package com.WorkersDataBase.view.components.dialogs.statisticDialog.components.layouts;
 
-import com.WorkersDataBase.service.contract.ContractService;
 import com.WorkersDataBase.service.getService.CompanyFeeGetService;
-import com.WorkersDataBase.service.worker.WorkerService;
+import com.WorkersDataBase.service.getService.ContractGetService;
+import com.WorkersDataBase.service.getService.WorkerGetService;
+import com.WorkersDataBase.service.getService.WorkersFeeGetService;
 import com.WorkersDataBase.view.components.dialogs.dashboardDialog.DashboardDialog;
 import com.WorkersDataBase.view.components.dialogs.statisticDialog.StatisticDialog;
 import com.WorkersDataBase.view.interfaces.ComponentCreator;
@@ -19,9 +20,11 @@ public class StatisticsDialogLayout
     //  To inject by constructor
     private final StatisticDialog statisticDialog;
     private final DashboardDialog dashboardDialog;
-    private final WorkerService workerService;
-    private final ContractService contractService;
+    //  Services
+    private final WorkerGetService workerGetService;
+    private final ContractGetService contractGetService;
     private final CompanyFeeGetService companyFeeGetService;
+    private final WorkersFeeGetService workersFeeGetService;
 
     //  To configure
     H3 header;
@@ -55,9 +58,10 @@ public class StatisticsDialogLayout
     @Override
     public void configureFieldsLayout() {
         fieldsLayout = new StatisticDialogFieldsLayout(
-                workerService,
-                contractService,
-                companyFeeGetService
+                workerGetService,
+                contractGetService,
+                companyFeeGetService,
+                workersFeeGetService
         );
         fieldsLayout.configure();
     }

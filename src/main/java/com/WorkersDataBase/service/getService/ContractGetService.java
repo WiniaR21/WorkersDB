@@ -8,4 +8,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ContractGetService {
     private final ContractRepository repository;
+    private final GetServiceTools tools;
+    public Double getAvgGrossSalary(){
+        return repository.count() == 0 ? 0 :
+                tools.roundSum(repository.getAvgSalary());
+    }
 }
