@@ -15,33 +15,33 @@ public class WorkerValidTool {
     public boolean workerHasEmptyFields(Worker worker){
         if (
                 worker.getContact() == null || worker.getFirstName() == null ||
-                worker.getLastName() == null || worker.getPesel() == null
+                worker.getLastName() == null || worker.getPersonalNumber() == null
         ) return true;
 
         return  worker.getContact().getEmail().isEmpty() ||
                 worker.getFirstName().isEmpty() ||
                 worker.getLastName().isEmpty() ||
-                worker.getPesel().isEmpty();
+                worker.getPersonalNumber().isEmpty();
     }
 
     public boolean noSpecialSymbols(Worker worker){
         return  isStringLetters(worker.getFirstName()) &&
-               isStringLetters(worker.getLastName()) &&
-               isStringDigits(worker.getPesel());
+                isStringLetters(worker.getLastName()) &&
+                isStringDigits(worker.getPersonalNumber());
     }
     public boolean emailIsUnique(Worker worker){
         return !contactRepository.existsByEmail(worker.getContact().getEmail());
     }
     public boolean personalNumberIsUnique(Worker worker) {
-        return !workerRepository.existsByPesel(worker.getPesel());
+        return !workerRepository.existsByPesel(worker.getPersonalNumber());
     }
     public boolean personalNumberLengthIsFine(Worker worker){
-        return worker.getPesel().length() == 11;
+        return worker.getPersonalNumber().length() == 11;
     }
 
     public boolean personalNumberIsPossible(Worker worker){
 
-        char[] digitsArray = worker.getPesel().toCharArray();
+        char[] digitsArray = worker.getPersonalNumber().toCharArray();
         int[] weights = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3};
         int controlNumberInOriginal = Character.getNumericValue(digitsArray[10]);
         int sum = 0;

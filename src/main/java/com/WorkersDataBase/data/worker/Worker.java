@@ -35,7 +35,7 @@ public class Worker {
     private Contact contact;
 
     @Column(name = "pesel")
-    private String pesel;
+    private String personalNumber;
 
     @Column(name = "date_of_birth")
     private LocalDate birthDate;
@@ -49,10 +49,10 @@ public class Worker {
     @OneToOne
     @JoinColumn(name = "contract_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "contract_fk"))
     private Contract contract;
-    public Worker(String firstName, String lastName, String pesel, Contact contact) {
+    public Worker(String firstName, String lastName, String personalNumber, Contact contact) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.pesel = pesel;
+        this.personalNumber = personalNumber;
         this.contact = contact;
     }
 

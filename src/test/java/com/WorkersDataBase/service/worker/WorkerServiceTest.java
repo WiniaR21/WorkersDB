@@ -59,7 +59,7 @@ class WorkerServiceTest {
     void addWorker_should_return_minus_3(){
         //  Given
         Worker worker = getValidWorker();
-        worker.setPesel("d2131234321");
+        worker.setPersonalNumber("d2131234321");
         //  Test
         assertEquals(-3, underTest.addWorker(worker, false));
     }
@@ -67,7 +67,7 @@ class WorkerServiceTest {
     void addWorker_should_return_minus_4(){
         //  Given
         Worker worker = getValidWorker();
-        worker.setPesel("4321");
+        worker.setPersonalNumber("4321");
         //  Test
         assertEquals(-4, underTest.addWorker(worker, false));
     }
@@ -123,7 +123,7 @@ class WorkerServiceTest {
         Worker worker = new Worker();
         worker.setFirstName("Daniel");
         worker.setLastName("Xyzzz");
-        worker.setPesel("12312312312");
+        worker.setPersonalNumber("12312312312");
 
         Contact contact = new Contact("email@gmail.com");
         contact.setWorker(worker);
@@ -135,7 +135,7 @@ class WorkerServiceTest {
         Worker worker = new Worker();
         worker.setFirstName("Daniel");
         worker.setLastName("Xyzzz");
-        worker.setPesel("54354354354");
+        worker.setPersonalNumber("54354354354");
 
         Contact contact = new Contact("avbcs@gmail.com");
         contact.setWorker(worker);

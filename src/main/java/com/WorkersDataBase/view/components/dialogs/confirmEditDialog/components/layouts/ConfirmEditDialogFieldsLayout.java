@@ -73,14 +73,14 @@ public class ConfirmEditDialogFieldsLayout extends VerticalLayout implements Com
     }
     private void setPeselField() {
         peselField = new WorkerDataField(
-                oryginalWorker.getPesel(), true
+                oryginalWorker.getPersonalNumber(), true
         );
         peselField.configure();
         peselField.setLabel("PESEL");
     }
     private void setNewPeselField() {
         newPeselField = new WorkerDataField(
-                newWorker.getPesel(), false
+                newWorker.getPersonalNumber(), false
         );
         newPeselField.configure();
         newPeselField.setLabel("PESEL");

@@ -71,7 +71,7 @@ public class InjectTestDataButton
             contact.setWorker(worker);
 
             worker.setContact(contact);
-            worker.setPesel(pesel);
+            worker.setPersonalNumber(pesel);
             workerPostService.addWorker(worker, false);
         });
     }

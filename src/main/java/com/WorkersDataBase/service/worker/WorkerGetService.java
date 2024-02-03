@@ -2,7 +2,7 @@ package com.WorkersDataBase.service.worker;
 
 import com.WorkersDataBase.data.worker.Worker;
 import com.WorkersDataBase.data.worker.WorkerRepository;
-import com.WorkersDataBase.service.tools.GetServiceTools;
+import com.WorkersDataBase.service.tools.MathTool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class WorkerGetService {
     private final WorkerRepository workerRepository;
-    private final GetServiceTools tools;
-    
+    private final MathTool tools;
+
     public Optional<Worker> getById(Long id){
         return workerRepository.findById(id);
     }

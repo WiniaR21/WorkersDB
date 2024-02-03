@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.workersFee;
 
 import com.WorkersDataBase.data.workersFee.WorkersFeeRepository;
-import com.WorkersDataBase.service.tools.GetServiceTools;
+import com.WorkersDataBase.service.tools.MathTool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class WorkersFeeGetService {
     private final WorkersFeeRepository repository;
-    private final GetServiceTools tools;
+    private final MathTool tools;
     public Double getAvgNetSalary(){
         return repository.count() == 0 ? 0 :
                 tools.roundSum(repository.getAvgNetSalary());

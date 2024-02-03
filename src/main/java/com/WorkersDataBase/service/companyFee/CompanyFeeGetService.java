@@ -1,7 +1,7 @@
 package com.WorkersDataBase.service.companyFee;
 
 import com.WorkersDataBase.data.companyFee.CompanyFeeRepository;
-import com.WorkersDataBase.service.tools.GetServiceTools;
+import com.WorkersDataBase.service.tools.MathTool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CompanyFeeGetService {
     private final CompanyFeeRepository repository;
-    private final GetServiceTools tools;
+    private final MathTool tools;
 
     public Double getSumSkladkaEmerytalna(){
 

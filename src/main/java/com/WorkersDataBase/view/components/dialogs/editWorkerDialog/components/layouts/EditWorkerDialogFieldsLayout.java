@@ -59,7 +59,7 @@ public class EditWorkerDialogFieldsLayout extends VerticalLayout implements Comp
     }
     private void configurePeselField(){
         peselField = new PeselField(
-                workerSelectedFromGrid.getPesel()
+                workerSelectedFromGrid.getPersonalNumber()
         );
         peselField.configure();
     }

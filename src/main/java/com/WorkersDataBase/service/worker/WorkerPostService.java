@@ -83,7 +83,7 @@ public class WorkerPostService {
         return 0;
     }
     private LocalDate readBirthDateFromPersonalNumber(Worker worker){
-        String personalNumber = worker.getPesel();
+        String personalNumber = worker.getPersonalNumber();
 
         String year = personalNumber.substring(0, 2);
         String month = personalNumber.substring(2, 4);
@@ -110,7 +110,7 @@ public class WorkerPostService {
        return LocalDate.of(yearInt, monthInt, dayInt);
     }
     private Gender readGenderFromPersonalNumber(Worker worker){
-        String personalNumber = worker.getPesel();
+        String personalNumber = worker.getPersonalNumber();
         char genderCharInPersonalNumber = personalNumber.charAt(9);
 
         if (Character.getNumericValue(genderCharInPersonalNumber) % 2 == 0)

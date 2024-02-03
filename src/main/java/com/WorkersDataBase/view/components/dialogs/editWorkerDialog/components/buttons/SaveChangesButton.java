@@ -59,7 +59,7 @@ public class SaveChangesButton
                 .setLastName(fieldsLayout.getLastNameField().getValue());
 
         workerSelectedFromGrid
-                .setPesel(fieldsLayout.getPeselField().getValue());
+                .setPersonalNumber(fieldsLayout.getPeselField().getValue());
 
         workerSelectedFromGrid.getContact()
                 .setEmail(fieldsLayout.getEmailField().getValue());
