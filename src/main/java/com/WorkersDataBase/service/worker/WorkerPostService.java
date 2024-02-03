@@ -37,7 +37,7 @@ public class WorkerPostService {
         if( worker == null ) return -1;
         if( workerValidTool.workerHasEmptyFields(worker)) return -2;
         if(!workerValidTool.noSpecialSymbols(worker)) return -3;
-        if(!workerValidTool.personalNumberLengthIsFine(worker)) return -4;
+        if(!workerValidTool.personalNumberLengthIsCorrect(worker)) return -4;
         if(!workerValidTool.firstNameLengthIsFine(worker)) return -7;
         if(!workerValidTool.lastNameLengthIsFine(worker)) return -8;
         if(!workerValidTool.personalNumberIsPossible(worker)) return -9;

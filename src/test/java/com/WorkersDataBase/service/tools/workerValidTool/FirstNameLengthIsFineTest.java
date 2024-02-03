@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class NoSpecialSymbolsTest {
+class FirstNameLengthIsFineTest {
     @InjectMocks
     private WorkerValidTool underTest;
     @BeforeEach
@@ -18,34 +18,28 @@ class NoSpecialSymbolsTest {
         MockitoAnnotations.openMocks(this);
     }
     @Test
-    void noSpecialSymbols_should_return_false_case_firstName_typo(){
+    void firstNameLengthIsFine_should_return_false_case_a() {
         //  Arrange
         Worker worker = GetWorkers.getValidWorker();
-        worker.setFirstName("Dan1el");
+        worker.setFirstName("12");
         //  Assert
-        assertFalse(underTest.noSpecialSymbols(worker));
+        assertFalse(underTest.firstNameLengthIsFine(worker));
     }
     @Test
-    void noSpecialSymbols_should_return_false_case_lastName_typo(){
+    void firstNameLengthIsFine_should_return_false_case_B() {
         //  Arrange
         Worker worker = GetWorkers.getValidWorker();
-        worker.setLastName("K0walski");
+        worker.setFirstName("123456789012345");
         //  Assert
-        assertFalse(underTest.noSpecialSymbols(worker));
+        assertFalse(underTest.firstNameLengthIsFine(worker));
     }
     @Test
-    void noSpecialSymbols_should_return_false_case_personalNumber_typo(){
+    void firstNameLengthIsFine_should_return_true() {
         //  Arrange
         Worker worker = GetWorkers.getValidWorker();
-        worker.setPersonalNumber("123123123q1");
+        worker.setFirstName("1234567");
         //  Assert
-        assertFalse(underTest.noSpecialSymbols(worker));
+        assertTrue(underTest.firstNameLengthIsFine(worker));
     }
-    @Test
-    void noSpecialSymbols_should_return_true(){
-        //  Arrange
-        Worker worker = GetWorkers.getValidWorker();
-        //  Assert
-        assertTrue(underTest.noSpecialSymbols(worker));
-    }
+
 }

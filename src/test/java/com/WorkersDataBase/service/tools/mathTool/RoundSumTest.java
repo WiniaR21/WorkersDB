@@ -1,11 +1,12 @@
-package com.WorkersDataBase.service.tools;
+package com.WorkersDataBase.service.tools.mathTool;
 
+import com.WorkersDataBase.service.tools.MathTool;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MathToolTest {
+class RoundSumTest {
 
     MathTool mathTool;
     @BeforeEach

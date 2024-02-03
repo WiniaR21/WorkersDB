@@ -35,7 +35,7 @@ public class WorkerValidTool {
     public boolean personalNumberIsUnique(Worker worker) {
         return !workerRepository.existsByPesel(worker.getPersonalNumber());
     }
-    public boolean personalNumberLengthIsFine(Worker worker){
+    public boolean personalNumberLengthIsCorrect(Worker worker){
         return worker.getPersonalNumber().length() == 11;
     }
 
@@ -57,10 +57,10 @@ public class WorkerValidTool {
         return controlNumberInOriginal == controlNumberShouldBe;
     }
     public boolean firstNameLengthIsFine(Worker worker){
-        return worker.getFirstName().length() > 2;
+        return worker.getFirstName().length() > 2 && worker.getFirstName().length() < 15;
     }
     public boolean lastNameLengthIsFine(Worker worker){
-        return worker.getLastName().length() > 2;
+        return worker.getLastName().length() > 2 && worker.getLastName().length() < 20;
     }
 
     public boolean isStringLetters(String str) {

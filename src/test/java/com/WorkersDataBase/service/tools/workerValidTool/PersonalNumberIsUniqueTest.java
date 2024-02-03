@@ -27,7 +27,7 @@ class PersonalNumberIsUniqueTest {
     @Test
     void personalNumberIsUnique_should_return_false() {
         // Arrange
-        Worker worker = getValidWorker();
+        Worker worker = GetWorkers.getValidWorker();
         when(workerRepository.existsByPesel(worker.getPersonalNumber())).thenReturn(true);
         // Assert
         assertFalse(underTest.personalNumberIsUnique(worker));
@@ -35,22 +35,9 @@ class PersonalNumberIsUniqueTest {
     @Test
     void personalNumberIsUnique_should_return_true() {
         // Arrange
-        Worker worker = getValidWorker();
+        Worker worker = GetWorkers.getValidWorker();
         when(workerRepository.existsByPesel(worker.getPersonalNumber())).thenReturn(false);
         // Assert
         assertTrue(underTest.personalNumberIsUnique(worker));
-    }
-
-    private Worker getValidWorker(){
-        Worker worker = new Worker();
-        worker.setFirstName("Daniel");
-        worker.setLastName("Winiarczyk");
-        worker.setPersonalNumber("77082383532");
-
-        Contact contact = new Contact("dw@gmail.com");
-        contact.setWorker(worker);
-        worker.setContact(contact);
-
-        return worker;
     }
 }
