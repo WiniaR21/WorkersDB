@@ -27,16 +27,16 @@ class GetSumSkladkaEmerytalnaTest {
     @Test
     void getSumSkladkaEmerytalna_should_return_0() {
         //  Arrange
-        arrange_repo_count_zero(companyFeeRepository);
+        arrange_company_repo_count_zero(companyFeeRepository);
         //  Assert
         assertEquals(0,underTest.getSumSkladkaEmerytalna());
     }
     @Test
     void getSumSkladkaEmerytalna_should_return_20() {
         //  Arrange
-        arrange_repo_count_one(companyFeeRepository);
+        arrange_company_repo_count_one(companyFeeRepository);
         arrange_math_tool_returns_10(tools);
-        arrange_repo_getSumSkladkaEmerytalna_returns_10(companyFeeRepository);
+        arrange_company_repo_getSumSkladkaEmerytalna_returns_10(companyFeeRepository);
         //  Assert
         assertEquals(20D,underTest.getSumSkladkaEmerytalna());
     }

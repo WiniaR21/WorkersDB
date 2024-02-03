@@ -16,7 +16,12 @@ public class ContractDeleteService {
     private final PositionRepository positionRepository;
 
     @Transactional
-    public void removeOldContract(Worker worker) {
+    public void removeOldContract(Worker worker) throws IllegalArgumentException {
+
+        if (worker.getContract() == null){
+            throw new IllegalArgumentException("Worker has no contract to remove");
+        }
+
         //  Get old contract from worker and remove dependencies
         //  For now delete, but of course is possible to storage old contract in DB
         Position position = worker.getContract().getPosition();
