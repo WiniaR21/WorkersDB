@@ -1,5 +1,6 @@
-package com.WorkersDataBase.service.tools;
+package com.WorkersDataBase.service.tools.workerValidTool;
 
+import com.WorkersDataBase.service.tools.WorkerValidTool;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
